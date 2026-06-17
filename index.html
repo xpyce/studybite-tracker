@@ -97,3 +97,825 @@
       background: var(--brand);
       color: #fff;
     }
+
+    .btn-primary:hover {
+      background: #ea580c;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      border-color: #d1d5db;
+      color: #111827;
+    }
+
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+
+    .btn-danger {
+      background: #fff;
+      border-color: #fecaca;
+      color: #dc2626;
+    }
+
+    .btn-danger:hover {
+      background: #fef2f2;
+    }
+
+    .status {
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 12px;
+      padding: 10px 12px;
+    }
+
+    .status.connected {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    .status.loading {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+    }
+
+    .tracker-section {
+      display: none;
+    }
+
+    .tracker-section.active {
+      display: block;
+    }
+
+    .metric-value {
+      color: #111827;
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      min-width: 860px;
+      width: 100%;
+    }
+
+    th {
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      padding: 12px 14px;
+      text-align: left;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    td {
+      border-top: 1px solid var(--line);
+      color: #1f2937;
+      font-size: 14px;
+      padding: 14px;
+      vertical-align: middle;
+    }
+
+    .empty-state {
+      color: #6b7280;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .rank-pill {
+      align-items: center;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 999px;
+      color: #9a3412;
+      display: inline-flex;
+      font-size: 12px;
+      font-weight: 900;
+      height: 28px;
+      justify-content: center;
+      min-width: 28px;
+      padding: 0 8px;
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        padding: 14px;
+      }
+
+      .mobile-stack {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .mobile-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex items-center gap-4">
+        <svg class="h-14 w-14 flex-none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 25 30 L 25 70 Q 25 80 35 80 L 65 80 Q 75 80 75 70 L 75 30 Z" fill="none" stroke="#111827" stroke-width="2.5"/>
+          <path d="M 75 45 Q 85 45 85 60 Q 85 75 75 75" fill="none" stroke="#111827" stroke-width="2.5" stroke-linecap="round"/>
+          <g transform="translate(50, 50)">
+            <path d="M -8 -10 L -2 -10 L -2 10 L -8 10 Q -12 10 -12 6 L -12 -6 Q -12 -10 -8 -10" fill="#f97316" opacity="0.8"/>
+            <path d="M 2 -10 L 8 -10 Q 12 -10 12 -6 L 12 6 Q 12 10 8 10 L 2 10 Z" fill="#f97316"/>
+            <line x1="0" y1="-8" x2="0" y2="8" stroke="#111827" stroke-width="1.5" opacity="0.4"/>
+          </g>
+          <circle cx="50" cy="25" r="3" fill="#f97316"/>
+        </svg>
+        <div>
+          <h1 class="text-3xl font-black tracking-normal text-gray-950">StudyBite</h1>
+          <p class="text-sm font-bold text-orange-600">Sales tracker dashboard</p>
+        </div>
+      </div>
+      <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge">Not connected</div>
+    </header>
+
+    <section id="setupSection" class="card mb-6 p-5">
+      <div class="mb-4">
+        <h2 class="text-xl font-black tracking-normal text-gray-950">Connect Firebase</h2>
+        <p class="mt-1 text-sm text-gray-600">Your config and name are remembered on this browser after a successful connection.</p>
+      </div>
+      <div class="grid gap-4">
+        <div>
+          <label class="label" for="firebaseConfig">Firebase Config</label>
+          <textarea class="field min-h-28 text-sm" id="firebaseConfig" placeholder='Paste like: {"apiKey": "...", "authDomain": "...", ...}'></textarea>
+        </div>
+        <div>
+          <label class="label" for="userName">Your name</label>
+          <input class="field" type="text" id="userName" placeholder="e.g., John or Staff A">
+        </div>
+        <button class="btn btn-primary w-full" id="connectBtn" onclick="setupFirebase()">Connect Firebase</button>
+        <div id="setupStatus"></div>
+      </div>
+    </section>
+
+    <section id="trackerSection" class="tracker-section">
+      <div class="mb-6 grid grid-cols-4 gap-4 mobile-stack">
+        <article class="card p-5">
+          <p class="text-sm font-bold text-gray-500">This month revenue</p>
+          <div class="metric-value mt-3" id="monthlyRevenue">RM 0.00</div>
+        </article>
+        <article class="card p-5">
+          <p class="text-sm font-bold text-gray-500">This month sales</p>
+          <div class="metric-value mt-3" id="monthlySalesCount">0</div>
+        </article>
+        <article class="card p-5">
+          <p class="text-sm font-bold text-gray-500">All-time revenue</p>
+          <div class="metric-value mt-3" id="totalRevenue">RM 0.00</div>
+        </article>
+        <article class="card p-5">
+          <p class="text-sm font-bold text-gray-500">All-time sales</p>
+          <div class="metric-value mt-3" id="totalSalesCount">0</div>
+        </article>
+      </div>
+
+      <div class="mb-6 grid grid-cols-[minmax(0,1fr)_360px] gap-6 mobile-stack">
+        <section class="card p-5">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black tracking-normal text-gray-950" id="formTitle">Record a sale</h2>
+              <p class="text-sm text-gray-500">Amount is calculated from quantity and floor price.</p>
+            </div>
+            <button class="btn btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Cancel edit</button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mobile-stack">
+            <div>
+              <label class="label" for="customerName">Customer name</label>
+              <input class="field" type="text" id="customerName" placeholder="e.g., John Doe">
+            </div>
+            <div>
+              <label class="label" for="product">Product or course</label>
+              <select class="field" id="product" onchange="toggleOtherProduct()"></select>
+            </div>
+            <div class="hidden col-span-2" id="customProductWrap">
+              <label class="label" for="customProduct">Custom product</label>
+              <input class="field" type="text" id="customProduct" placeholder="Enter product or course name">
+            </div>
+            <div>
+              <label class="label" for="quantity">Quantity</label>
+              <input class="field" type="number" id="quantity" placeholder="0" step="1" min="0" oninput="calculateAmount()">
+            </div>
+            <div>
+              <label class="label" for="floorPrice">Floor price (RM)</label>
+              <input class="field" type="number" id="floorPrice" placeholder="0.00" step="0.01" min="0" oninput="calculateAmount()">
+            </div>
+            <div>
+              <label class="label" for="amount">Total amount (RM)</label>
+              <input class="field" type="number" id="amount" placeholder="0.00" step="0.01" min="0" readonly>
+            </div>
+            <div>
+              <label class="label" for="saleDate">Date</label>
+              <input class="field" type="date" id="saleDate">
+            </div>
+          </div>
+
+          <button class="btn btn-primary mt-5 w-full" id="saveSaleBtn" onclick="saveSale()">Save sale</button>
+        </section>
+
+        <section class="card p-5">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black tracking-normal text-gray-950">Agent leaderboard</h2>
+              <p class="text-sm text-gray-500">Ranked by revenue.</p>
+            </div>
+          </div>
+          <div class="space-y-3" id="leaderboard">
+            <div class="empty-state">No agent data yet.</div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales trend</h2>
+            <p class="text-sm text-gray-500">Revenue by month across the latest 12 months.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+        </div>
+        <div class="h-72">
+          <canvas id="monthChart" aria-label="Monthly revenue chart"></canvas>
+          <div class="empty-state hidden" id="chartFallback">Chart.js could not load. Your data is still available in the table.</div>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <h2 class="mb-4 text-xl font-black tracking-normal text-gray-950">Customers</h2>
+        <div class="grid grid-cols-3 gap-4 mobile-stack" id="customerSummary">
+          <div class="empty-state">No customers yet. Add a sale to see customer summaries.</div>
+        </div>
+      </section>
+
+      <section class="card overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 p-5">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">All sales</h2>
+            <p class="text-sm text-gray-500">Real-time records from Firebase.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+        </div>
+        <div class="table-wrap" id="salesTableWrap">
+          <div class="empty-state">No sales yet. Record your first one above.</div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+  <script>
+    const STORAGE_KEYS = {
+      config: 'studybite.firebaseConfig',
+      userName: 'studybite.userName'
+    };
+
+    const DEFAULT_PRODUCTS = [
+      'Trial Class',
+      'Monthly Subscription',
+      'Premium Course',
+      'Exam Prep Package',
+      'One-to-One Coaching',
+      'StudyBite Bundle'
+    ];
+
+    let db;
+    let currentUser = '';
+    let allSales = [];
+    let editingSaleId = null;
+    let monthChart;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      hydrateSavedSetup();
+      populateProductDropdown();
+      setTodayDate();
+    });
+
+    function hydrateSavedSetup() {
+      document.getElementById('firebaseConfig').value = localStorage.getItem(STORAGE_KEYS.config) || '';
+      document.getElementById('userName').value = localStorage.getItem(STORAGE_KEYS.userName) || '';
+      document.getElementById('firebaseConfig').addEventListener('input', saveSetupDraft);
+      document.getElementById('userName').addEventListener('input', saveSetupDraft);
+    }
+
+    function saveSetupDraft() {
+      localStorage.setItem(STORAGE_KEYS.config, document.getElementById('firebaseConfig').value.trim());
+      localStorage.setItem(STORAGE_KEYS.userName, document.getElementById('userName').value.trim());
+    }
+
+    function populateProductDropdown(selectedProduct = '') {
+      const productSelect = document.getElementById('product');
+      const knownProducts = Array.from(new Set([
+        ...DEFAULT_PRODUCTS,
+        ...allSales.map(sale => sale.product).filter(Boolean)
+      ])).sort((a, b) => a.localeCompare(b));
+
+      productSelect.innerHTML = [
+        '<option value="">Select product or course</option>',
+        ...knownProducts.map(product => `<option value="${escapeAttr(product)}">${escapeHTML(product)}</option>`),
+        '<option value="__custom">Other...</option>'
+      ].join('');
+
+      if (selectedProduct && knownProducts.includes(selectedProduct)) {
+        productSelect.value = selectedProduct;
+        document.getElementById('customProduct').value = '';
+      } else if (selectedProduct) {
+        productSelect.value = '__custom';
+        document.getElementById('customProduct').value = selectedProduct;
+      }
+
+      toggleOtherProduct();
+    }
+
+    function toggleOtherProduct() {
+      const isCustom = document.getElementById('product').value === '__custom';
+      document.getElementById('customProductWrap').classList.toggle('hidden', !isCustom);
+    }
+
+    function setTodayDate() {
+      document.getElementById('saleDate').value = new Date().toISOString().slice(0, 10);
+    }
+
+    function setupFirebase() {
+      const configText = document.getElementById('firebaseConfig').value.trim();
+      const userName = document.getElementById('userName').value.trim();
+      const btn = document.getElementById('connectBtn');
+
+      if (!configText || !userName) {
+        showSetupStatus('Please fill in both Firebase config and your name.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      showSetupStatus('Connecting...', 'loading');
+
+      try {
+        const config = JSON.parse(configText);
+        if (!config.apiKey || !config.projectId) {
+          throw new Error('Missing required Firebase config fields: apiKey and projectId.');
+        }
+
+        if (!firebase.apps.length) {
+          firebase.initializeApp(config);
+        }
+
+        db = firebase.database();
+        currentUser = userName;
+        saveSetupDraft();
+        document.getElementById('userBadge').textContent = `Connected as ${currentUser}`;
+
+        db.ref('.info/connected').on('value', (snapshot) => {
+          if (snapshot.val() === true) {
+            showSetupStatus('Connected to Firebase.', 'connected');
+            document.getElementById('setupSection').style.display = 'none';
+            document.getElementById('trackerSection').classList.add('active');
+            setTodayDate();
+            listenForSales();
+          }
+        });
+      } catch (error) {
+        btn.disabled = false;
+        showSetupStatus('Error: ' + error.message, 'error');
+      }
+    }
+
+    function showSetupStatus(message, type) {
+      const status = document.getElementById('setupStatus');
+      status.textContent = message;
+      status.className = 'status ' + type;
+    }
+
+    function listenForSales() {
+      if (!db) return;
+
+      db.ref('sales').on('value', (snapshot) => {
+        if (snapshot.exists()) {
+          allSales = Object.entries(snapshot.val()).map(([key, value]) => ({
+            ...value,
+            id: value.id || key
+          }));
+          allSales.sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0));
+        } else {
+          allSales = [];
+        }
+        populateProductDropdown(document.getElementById('product').value === '__custom' ? document.getElementById('customProduct').value : document.getElementById('product').value);
+        render();
+      });
+    }
+
+    function calculateAmount() {
+      const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+      const floorPrice = parseFloat(document.getElementById('floorPrice').value) || 0;
+      document.getElementById('amount').value = (quantity * floorPrice).toFixed(2);
+    }
+
+    function getSelectedProduct() {
+      const productValue = document.getElementById('product').value;
+      if (productValue === '__custom') {
+        return document.getElementById('customProduct').value.trim();
+      }
+      return productValue.trim();
+    }
+
+    function saveSale() {
+      if (!db) {
+        alert('Firebase is not connected.');
+        return;
+      }
+
+      const customerName = document.getElementById('customerName').value.trim();
+      const product = getSelectedProduct();
+      const quantity = parseFloat(document.getElementById('quantity').value);
+      const floorPrice = parseFloat(document.getElementById('floorPrice').value);
+      const amount = parseFloat(document.getElementById('amount').value);
+      const saleDate = document.getElementById('saleDate').value;
+
+      if (!customerName || !product || !quantity || !floorPrice || !amount || !saleDate) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const existingSale = allSales.find(sale => String(sale.id) === String(editingSaleId));
+      const saleId = editingSaleId || String(Date.now());
+      const saleData = {
+        id: saleId,
+        customerName,
+        product,
+        quantity: Math.round(quantity),
+        floorPrice: roundMoney(floorPrice),
+        amount: roundMoney(amount),
+        date: saleDate,
+        timestamp: new Date(saleDate + 'T00:00:00').getTime(),
+        enteredBy: existingSale?.enteredBy || currentUser,
+        updatedBy: editingSaleId ? currentUser : '',
+        updatedAt: editingSaleId ? Date.now() : ''
+      };
+
+      db.ref('sales/' + saleId).set(saleData, (error) => {
+        if (error) {
+          alert('Error saving sale: ' + error);
+          return;
+        }
+
+        clearSaleForm();
+      });
+    }
+
+    function clearSaleForm() {
+      editingSaleId = null;
+      document.getElementById('formTitle').textContent = 'Record a sale';
+      document.getElementById('saveSaleBtn').textContent = 'Save sale';
+      document.getElementById('cancelEditBtn').classList.add('hidden');
+      document.getElementById('customerName').value = '';
+      document.getElementById('quantity').value = '';
+      document.getElementById('floorPrice').value = '';
+      document.getElementById('amount').value = '';
+      document.getElementById('customProduct').value = '';
+      populateProductDropdown();
+      setTodayDate();
+    }
+
+    function editSale(id) {
+      const sale = allSales.find(item => String(item.id) === String(id));
+      if (!sale) return;
+
+      editingSaleId = sale.id;
+      document.getElementById('formTitle').textContent = 'Edit sale';
+      document.getElementById('saveSaleBtn').textContent = 'Update sale';
+      document.getElementById('cancelEditBtn').classList.remove('hidden');
+      document.getElementById('customerName').value = sale.customerName || '';
+      populateProductDropdown(sale.product || '');
+      document.getElementById('quantity').value = sale.quantity || '';
+      document.getElementById('floorPrice').value = sale.floorPrice || '';
+      document.getElementById('amount').value = sale.amount || '';
+      document.getElementById('saleDate').value = sale.date || new Date().toISOString().slice(0, 10);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+      clearSaleForm();
+    }
+
+    function deleteSale(id) {
+      if (!db) return;
+      if (confirm('Delete this sale?')) {
+        db.ref('sales/' + id).remove();
+        if (String(editingSaleId) === String(id)) {
+          clearSaleForm();
+        }
+      }
+    }
+
+    function exportSales() {
+      if (!allSales.length) {
+        alert('No sales to export yet.');
+        return;
+      }
+
+      const headers = ['Date', 'Customer Name', 'Product', 'Quantity', 'Floor Price RM', 'Amount RM', 'Entered By', 'Updated By'];
+      const rows = allSales.map(sale => [
+        sale.date || '',
+        sale.customerName || '',
+        sale.product || '',
+        sale.quantity || 0,
+        Number(sale.floorPrice || 0).toFixed(2),
+        Number(sale.amount || 0).toFixed(2),
+        sale.enteredBy || '',
+        sale.updatedBy || ''
+      ]);
+
+      const csv = [headers, ...rows]
+        .map(row => row.map(csvEscape).join(','))
+        .join('\n');
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `studybite-sales-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+
+    function render() {
+      const now = new Date();
+      const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+      const monthlySales = allSales.filter(sale => String(sale.date || '').startsWith(currentMonth));
+      const monthlyTotal = roundMoney(monthlySales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const totalRevenue = roundMoney(allSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+
+      document.getElementById('monthlyRevenue').textContent = formatCurrency(monthlyTotal);
+      document.getElementById('monthlySalesCount').textContent = monthlySales.length;
+      document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
+      document.getElementById('totalSalesCount').textContent = allSales.length;
+
+      renderCustomers();
+      renderLeaderboard();
+      renderMonthlyChart();
+      renderSalesTable();
+    }
+
+    function renderCustomers() {
+      const customerMap = {};
+      allSales.forEach((sale) => {
+        const name = sale.customerName || 'Unknown customer';
+        if (!customerMap[name]) {
+          customerMap[name] = { orders: 0, revenue: 0 };
+        }
+        customerMap[name].orders += 1;
+        customerMap[name].revenue += Number(sale.amount || 0);
+      });
+
+      const target = document.getElementById('customerSummary');
+      if (!Object.keys(customerMap).length) {
+        target.innerHTML = '<div class="empty-state" style="grid-column: 1 / -1;">No customers yet. Add a sale to see customer summaries.</div>';
+        return;
+      }
+
+      target.innerHTML = Object.entries(customerMap)
+        .sort((a, b) => b[1].revenue - a[1].revenue)
+        .map(([name, data]) => `
+          <article class="rounded-lg border border-gray-200 bg-white p-4">
+            <div class="font-black text-gray-950">${escapeHTML(name)}</div>
+            <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-lg bg-gray-50 p-3">
+                <div class="font-bold text-gray-500">Orders</div>
+                <div class="mt-1 text-xl font-black text-gray-950">${data.orders}</div>
+              </div>
+              <div class="rounded-lg bg-orange-50 p-3">
+                <div class="font-bold text-orange-700">Revenue</div>
+                <div class="mt-1 text-xl font-black text-orange-700">${formatCurrency(data.revenue)}</div>
+              </div>
+            </div>
+          </article>
+        `).join('');
+    }
+
+    function renderLeaderboard() {
+      const agentMap = {};
+      allSales.forEach((sale) => {
+        const name = sale.enteredBy || 'Unknown';
+        if (!agentMap[name]) {
+          agentMap[name] = { sales: 0, revenue: 0 };
+        }
+        agentMap[name].sales += 1;
+        agentMap[name].revenue += Number(sale.amount || 0);
+      });
+
+      const target = document.getElementById('leaderboard');
+      if (!Object.keys(agentMap).length) {
+        target.innerHTML = '<div class="empty-state">No agent data yet.</div>';
+        return;
+      }
+
+      target.innerHTML = Object.entries(agentMap)
+        .sort((a, b) => b[1].revenue - a[1].revenue || b[1].sales - a[1].sales)
+        .map(([name, data], index) => `
+          <div class="flex items-center justify-between gap-3 rounded-lg border border-gray-200 bg-white p-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="rank-pill">#${index + 1}</span>
+              <div class="min-w-0">
+                <div class="truncate font-black text-gray-950">${escapeHTML(name)}</div>
+                <div class="text-sm font-bold text-gray-500">${data.sales} sale${data.sales === 1 ? '' : 's'}</div>
+              </div>
+            </div>
+            <div class="text-right font-black text-orange-600">${formatCurrency(data.revenue)}</div>
+          </div>
+        `).join('');
+    }
+
+    function renderMonthlyChart() {
+      const monthlyData = buildMonthlyData();
+      const chartCanvas = document.getElementById('monthChart');
+      const fallback = document.getElementById('chartFallback');
+
+      if (!window.Chart) {
+        chartCanvas.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        return;
+      }
+
+      chartCanvas.classList.remove('hidden');
+      fallback.classList.add('hidden');
+
+      const labels = monthlyData.map(item => item.label);
+      const values = monthlyData.map(item => item.total);
+
+      if (monthChart) {
+        monthChart.data.labels = labels;
+        monthChart.data.datasets[0].data = values;
+        monthChart.update();
+        return;
+      }
+
+      monthChart = new Chart(chartCanvas, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Revenue',
+            data: values,
+            backgroundColor: '#f97316',
+            borderRadius: 6,
+            maxBarThickness: 42
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => formatCurrency(Number(context.raw || 0))
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#6b7280', font: { weight: 700 } }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#eef2f7' },
+              ticks: {
+                color: '#6b7280',
+                callback: (value) => 'RM ' + value
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderSalesTable() {
+      const target = document.getElementById('salesTableWrap');
+      if (!allSales.length) {
+        target.innerHTML = '<div class="empty-state">No sales yet. Record your first one above.</div>';
+        return;
+      }
+
+      target.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Floor Price</th>
+              <th>Amount</th>
+              <th>Entered By</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${allSales.map(sale => `
+              <tr>
+                <td>${formatDate(sale.date)}</td>
+                <td class="font-bold text-gray-950">${escapeHTML(sale.customerName || '')}</td>
+                <td>${escapeHTML(sale.product || '')}</td>
+                <td>${Number(sale.quantity || 0)}</td>
+                <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
+                <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
+                <td>${escapeHTML(sale.enteredBy || '')}</td>
+                <td>
+                  <div class="flex gap-2 mobile-actions">
+                    <button class="btn btn-secondary" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
+                    <button class="btn btn-danger" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function buildMonthlyData() {
+      const months = [];
+      for (let i = 11; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(1);
+        d.setMonth(d.getMonth() - i);
+        const key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+        months.push({
+          key,
+          label: new Intl.DateTimeFormat('en', { month: 'short' }).format(d),
+          total: 0
+        });
+      }
+
+      return months.map(month => {
+        const total = allSales
+          .filter(sale => String(sale.date || '').startsWith(month.key))
+          .reduce((sum, sale) => sum + Number(sale.amount || 0), 0);
+        return { ...month, total: roundMoney(total) };
+      });
+    }
+
+    function roundMoney(value) {
+      return Math.round(Number(value || 0) * 100) / 100;
+    }
+
+    function formatCurrency(amount) {
+      return 'RM ' + Number(amount || 0).toFixed(2);
+    }
+
+    function formatDate(value) {
+      if (!value) return '';
+      return new Date(value + 'T00:00:00').toLocaleDateString('en-MY', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+    }
+
+    function csvEscape(value) {
+      return '"' + String(value ?? '').replace(/"/g, '""') + '"';
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function escapeAttr(value) {
+      return escapeHTML(value).replace(/`/g, '&#096;');
+    }
+  </script>
+</body>
+</html>
