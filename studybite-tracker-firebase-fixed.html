@@ -344,6 +344,33 @@
       font-weight: 500;
       margin-left: 6px;
     }
+
+    .customer-card {
+      background: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .customer-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .customer-stat {
+      font-size: 13px;
+      color: #666;
+      margin: 6px 0;
+    }
+
+    .customer-stat-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ff6b35;
+    }
   </style>
 </head>
 <body>
@@ -396,18 +423,30 @@
       <h2 style="margin-top: 1.5rem; margin-bottom: 1.5rem;">Record a sale</h2>
       <div class="entry-form">
         <div class="form-group">
+          <label>Customer Name</label>
+          <input type="text" id="customerName" placeholder="e.g., John Doe" />
+        </div>
+        <div class="form-group">
           <label>Product or course</label>
           <input type="text" id="product" placeholder="e.g., Premium Course, Monthly Subscription" />
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Amount (RM)</label>
-            <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" />
+            <label>Quantity</label>
+            <input type="number" id="quantity" placeholder="0" step="1" min="0" oninput="calculateAmount()" />
           </div>
           <div class="form-group">
-            <label>Date</label>
-            <input type="date" id="saleDate" />
+            <label>Floor Price (RM)</label>
+            <input type="number" id="floorPrice" placeholder="0.00" step="0.01" min="0" oninput="calculateAmount()" />
           </div>
+        </div>
+        <div class="form-group">
+          <label>Total Amount (RM) - Auto Calculated</label>
+          <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" readonly style="background: #f5f5f5; cursor: not-allowed;" />
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="saleDate" />
         </div>
         <button class="btn-submit" onclick="addSale()">Save sale</button>
       </div>
@@ -435,6 +474,13 @@
             <div class="metric-label">Total sales</div>
             <div class="metric-value" id="totalSalesCount">0</div>
           </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <h2>Customers</h2>
+        <div id="customerSummary" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
+          <div class="empty-state">No customers yet. Add a sale to see customer summaries.</div>
         </div>
       </div>
 
@@ -528,24 +574,38 @@
       });
     }
 
+    function calculateAmount() {
+      const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+      const floorPrice = parseFloat(document.getElementById('floorPrice').value) || 0;
+      const totalAmount = quantity * floorPrice;
+      
+      document.getElementById('amount').value = totalAmount.toFixed(2);
+    }
+
     function addSale() {
       if (!db) {
         alert('Firebase not connected');
         return;
       }
 
+      const customerName = document.getElementById('customerName').value.trim();
       const product = document.getElementById('product').value.trim();
+      const quantity = parseFloat(document.getElementById('quantity').value);
+      const floorPrice = parseFloat(document.getElementById('floorPrice').value);
       const amount = parseFloat(document.getElementById('amount').value);
       const saleDate = document.getElementById('saleDate').value;
 
-      if (!product || !amount || !saleDate) {
+      if (!customerName || !product || !quantity || !floorPrice || !amount || !saleDate) {
         alert('Please fill in all fields');
         return;
       }
 
       const saleData = {
         id: Date.now(),
+        customerName,
         product,
+        quantity: Math.round(quantity),
+        floorPrice: Math.round(floorPrice * 100) / 100,
         amount: Math.round(amount * 100) / 100,
         date: saleDate,
         timestamp: new Date(saleDate).getTime(),
@@ -556,7 +616,10 @@
         if (error) {
           alert('Error saving sale: ' + error);
         } else {
+          document.getElementById('customerName').value = '';
           document.getElementById('product').value = '';
+          document.getElementById('quantity').value = '';
+          document.getElementById('floorPrice').value = '';
           document.getElementById('amount').value = '';
           const today = new Date().toISOString().split('T')[0];
           document.getElementById('saleDate').value = today;
@@ -587,7 +650,32 @@
       document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
       document.getElementById('totalSalesCount').textContent = allSales.length;
 
-      const last12Months = [];
+      // Customer Summary
+      const customerMap = {};
+      allSales.forEach(sale => {
+        if (!customerMap[sale.customerName]) {
+          customerMap[sale.customerName] = { orders: 0, revenue: 0 };
+        }
+        customerMap[sale.customerName].orders += 1;
+        customerMap[sale.customerName].revenue += sale.amount;
+      });
+
+      if (Object.keys(customerMap).length === 0) {
+        document.getElementById('customerSummary').innerHTML = '<div class="empty-state" style="grid-column: 1/-1;">No customers yet. Add a sale to see customer summaries.</div>';
+      } else {
+        const customerHTML = Object.entries(customerMap)
+          .sort((a, b) => b[1].revenue - a[1].revenue)
+          .map(([name, data]) => `
+            <div class="customer-card">
+              <div class="customer-name">${name}</div>
+              <div class="customer-stat">Total Orders<br><span class="customer-stat-value">${data.orders}</span></div>
+              <div class="customer-stat">Total Revenue<br><span class="customer-stat-value">${formatCurrency(data.revenue)}</span></div>
+            </div>
+          `).join('');
+        document.getElementById('customerSummary').innerHTML = customerHTML;
+      }
+
+      // Monthly chart
       for (let i = 11; i >= 0; i--) {
         const d = new Date();
         d.setMonth(d.getMonth() - i);
@@ -617,8 +705,8 @@
         const txnHTML = allSales.map(s => `
           <div class="transaction-row">
             <div class="transaction-info">
-              <div class="transaction-product">${s.product}<span class="user-badge">${s.enteredBy}</span></div>
-              <div class="transaction-meta">${new Date(s.date).toLocaleDateString()}</div>
+              <div class="transaction-product"><strong>${s.customerName}</strong> - ${s.product}</div>
+              <div class="transaction-meta">${s.quantity} × RM ${s.floorPrice.toFixed(2)} = ${formatCurrency(s.amount)} • ${new Date(s.date).toLocaleDateString()} • ${s.enteredBy}</div>
             </div>
             <div style="display: flex; align-items: center;">
               <div class="transaction-amount">${formatCurrency(s.amount)}</div>
