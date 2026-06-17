@@ -3,720 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyBite Sales Tracker - Collaborative</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #1a1a1a;
-      padding: 20px;
-    }
-    
-    .wrapper {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    }
-    
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 2px solid #ff6b35;
-    }
-    
-    .logo {
-      width: 60px;
-      height: 60px;
-      flex-shrink: 0;
-    }
-    
-    .header-text h1 {
-      font-size: 28px;
-      color: #1a1a1a;
-      margin: 0 0 4px 0;
-    }
-    
-    .header-text p {
-      font-size: 12px;
-      color: #ff6b35;
-      margin: 0;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-    
-    .setup-section {
-      background: #f9f9f9;
-      border: 2px solid #ff6b35;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .setup-section h2 {
-      color: #ff6b35;
-      font-size: 16px;
-      margin-bottom: 12px;
-    }
-    
-    .setup-section p {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-    
-    .form-group {
-      margin-bottom: 12px;
-    }
-    
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      color: #1a1a1a;
-    }
-    
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 14px;
-      font-family: inherit;
-    }
-    
-    .form-group textarea {
-      font-size: 12px;
-      min-height: 80px;
-      resize: vertical;
-    }
-    
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #ff6b35;
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-    }
-    
-    .btn-setup {
-      width: 100%;
-      padding: 10px;
-      background: #ff6b35;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .btn-setup:hover:not(:disabled) {
-      background: #e55a24;
-    }
-
-    .btn-setup:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-    
-    .status {
-      font-size: 13px;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-    
-    .status.connected {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-    
-    .status.error {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-
-    .status.loading {
-      background: #e2e3e5;
-      color: #383d41;
-      border: 1px solid #d6d8db;
-    }
-    
-    .tracker-section {
-      display: none;
-    }
-    
-    .tracker-section.active {
-      display: block;
-    }
-    
-    h2 {
-      font-size: 16px;
-      font-weight: 500;
-      margin: 0 0 12px 0;
-      color: #1a1a1a;
-    }
-    
-    .entry-form {
-      background: white;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 24px;
-    }
-    
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    
-    .btn-submit {
-      width: 100%;
-      padding: 10px;
-      background: white;
-      border: 1px solid #d0d0d0;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .btn-submit:hover {
-      background: #f5f5f5;
-    }
-    
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    
-    @media (max-width: 700px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .metric-card {
-      background: #f9f9f9;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    
-    .metric-label {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 6px;
-    }
-    
-    .metric-value {
-      font-size: 28px;
-      font-weight: 500;
-      color: #1a1a1a;
-    }
-    
-    .btn-delete {
-      font-size: 12px;
-      background: none;
-      border: none;
-      color: #e74c3c;
-      cursor: pointer;
-      padding: 2px 4px;
-    }
-    
-    .transaction-list {
-      background: white;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    
-    .transaction-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .transaction-row:last-child {
-      border-bottom: none;
-    }
-    
-    .transaction-info {
-      flex: 1;
-    }
-    
-    .transaction-product {
-      font-size: 14px;
-      font-weight: 500;
-      color: #1a1a1a;
-    }
-    
-    .transaction-meta {
-      font-size: 12px;
-      color: #999;
-      margin-top: 2px;
-    }
-    
-    .transaction-amount {
-      font-size: 15px;
-      font-weight: 500;
-      color: #ff6b35;
-      margin-right: 12px;
-    }
-    
-    .chart-container {
-      height: 200px;
-      margin: 24px 0;
-    }
-    
-    .month-label {
-      font-size: 12px;
-      color: #999;
-      text-align: center;
-    }
-    
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-around;
-      height: 120px;
-      gap: 8px;
-      margin: 12px 0;
-    }
-    
-    .bar {
-      flex: 1;
-      background: #ff6b35;
-      border-radius: 4px 4px 0 0;
-      position: relative;
-      min-height: 8px;
-    }
-    
-    .bar-value {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      font-weight: 500;
-      color: #999;
-      white-space: nowrap;
-    }
-    
-    .empty-state {
-      padding: 24px;
-      text-align: center;
-      color: #999;
-      font-size: 14px;
-    }
-
-    .user-badge {
-      display: inline-block;
-      background: #e8f4f8;
-      color: #0c5a7a;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 500;
-      margin-left: 6px;
-    }
-
-    .customer-card {
-      background: #f9f9f9;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .customer-name {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-    }
-
-    .customer-stat {
-      font-size: 13px;
-      color: #666;
-      margin: 6px 0;
-    }
-
-    .customer-stat-value {
-      font-size: 18px;
-      font-weight: 600;
-      color: #ff6b35;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="header">
-      <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 25 30 L 25 70 Q 25 80 35 80 L 65 80 Q 75 80 75 70 L 75 30 Z" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
-        <path d="M 75 45 Q 85 45 85 60 Q 85 75 75 75" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
-        <g transform="translate(50, 50)">
-          <path d="M -8 -10 L -2 -10 L -2 10 L -8 10 Q -12 10 -12 6 L -12 -6 Q -12 -10 -8 -10" fill="#ff6b35" opacity="0.8"/>
-          <path d="M 2 -10 L 8 -10 Q 12 -10 12 -6 L 12 6 Q 12 10 8 10 L 2 10 Z" fill="#ff6b35"/>
-          <line x1="0" y1="-8" x2="0" y2="8" stroke="#1a1a1a" stroke-width="1.5" opacity="0.4"/>
-        </g>
-        <circle cx="50" cy="25" r="3" fill="#ff6b35"/>
-      </svg>
-      <div class="header-text">
-        <h1>StudyBite</h1>
-        <p>FUEL YOUR STUDY SESSIONS</p>
-      </div>
-    </div>
-
-    <div id="setupSection" class="setup-section">
-      <h2>🔧 Setup Firebase (One-time)</h2>
-      <p>To enable real-time syncing across devices, you need to connect to Firebase. Follow these steps:</p>
-      <ol style="font-size: 13px; color: #666; margin-left: 20px; margin-bottom: 12px; line-height: 1.8;">
-        <li>Go to <strong>firebase.google.com</strong> and sign in with Google</li>
-        <li>Create a new project (name it "StudyBite")</li>
-        <li>In the dashboard, go to <strong>Realtime Database</strong> → Create Database</li>
-        <li>Copy your Firebase config (Project Settings → Your apps → Config)</li>
-        <li>Paste the entire config object below</li>
-      </ol>
-      
-      <div class="form-group">
-        <label>Firebase Config (paste entire object):</label>
-        <textarea id="firebaseConfig" placeholder='Paste like: {"apiKey": "...", "authDomain": "...", ...}'></textarea>
-      </div>
-      
-      <div class="form-group">
-        <label>Your name (for tracking who entered what):</label>
-        <input type="text" id="userName" placeholder="e.g., John or Staff A" />
-      </div>
-      
-      <button class="btn-setup" id="connectBtn" onclick="setupFirebase()">Connect Firebase</button>
-      <div id="setupStatus"></div>
-    </div>
-
-    <div id="trackerSection" class="tracker-section">
-      <div id="connectionStatus"></div>
-      
-      <h2 style="margin-top: 1.5rem; margin-bottom: 1.5rem;">Record a sale</h2>
-      <div class="entry-form">
-        <div class="form-group">
-          <label>Customer Name</label>
-          <input type="text" id="customerName" placeholder="e.g., John Doe" />
-        </div>
-        <div class="form-group">
-          <label>Product or course</label>
-          <input type="text" id="product" placeholder="e.g., Premium Course, Monthly Subscription" />
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Quantity</label>
-            <input type="number" id="quantity" placeholder="0" step="1" min="0" oninput="calculateAmount()" />
-          </div>
-          <div class="form-group">
-            <label>Floor Price (RM)</label>
-            <input type="number" id="floorPrice" placeholder="0.00" step="0.01" min="0" oninput="calculateAmount()" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Total Amount (RM) - Auto Calculated</label>
-          <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" readonly style="background: #f5f5f5; cursor: not-allowed;" />
-        </div>
-        <div class="form-group">
-          <label>Date</label>
-          <input type="date" id="saleDate" />
-        </div>
-        <button class="btn-submit" onclick="addSale()">Save sale</button>
-      </div>
-
-      <div class="container">
-        <div>
-          <h2>This month</h2>
-          <div class="metric-card">
-            <div class="metric-label">Total revenue</div>
-            <div class="metric-value" id="monthlyRevenue">RM 0.00</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-label">Sales count</div>
-            <div class="metric-value" id="monthlySalesCount">0</div>
-          </div>
-        </div>
-
-        <div>
-          <h2>All time</h2>
-          <div class="metric-card">
-            <div class="metric-label">Total revenue</div>
-            <div class="metric-value" id="totalRevenue">RM 0.00</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-label">Total sales</div>
-            <div class="metric-value" id="totalSalesCount">0</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 32px;">
-        <h2>Customers</h2>
-        <div id="customerSummary" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
-          <div class="empty-state">No customers yet. Add a sale to see customer summaries.</div>
-        </div>
-      </div>
-
-      <div style="margin-top: 32px;">
-        <h2>Revenue by month</h2>
-        <div class="chart-container">
-          <div class="bar-chart" id="monthChart"></div>
-          <div style="display: flex; justify-content: space-around; margin-top: 8px;" id="monthLabels"></div>
-        </div>
-      </div>
-
-      <div style="margin-top: 32px;">
-        <h2>All sales (Real-time)</h2>
-        <div class="transaction-list" id="transactionList">
-          <div class="empty-state">No sales yet. Record your first one above.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <title>StudyBite Sales Tracker - Professional Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-slate-900 font-sans text-slate-100 min-h-screen antialiased selection:bg-orange-500 selection:text-white">
 
-  <script>
-    let db;
-    let currentUser = '';
-    let allSales = [];
+  <div class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+    
+    <header class="flex flex-col sm:flex-row justify-between items-center bg-slate-800 border border-slate-700/60 p-6 rounded-2xl gap-6 shadow-xl">
+      <div class="flex items-center gap-5">
+        <svg class="w-14 h-14 flex-shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 25 30 L 25 70 Q 25 80 35 80 L 65 80 Q 75 80 75 70 L 75 30 Z" fill="none" stroke="#f8fafc" stroke-width="3"/>
+          <path d="M 75 45 Q 85 45 85 60 Q 85 75 75 75" fill="none" stroke="#f8fafc" stroke-width="3" stroke-linecap="round"/>
+          <g transform="translate(50, 50)">
+            <path d="M -8 -10 L -2 -10 L -2 10 L -8 10 Q -12 10 -12 6 L -12 -6 Q -12 -10 -8 -10" fill="#ff6b35" opacity="0.9"/>
+            <path d="M 2 -10 L 8 -10 Q 12 -10 12 -6 L 12 6 Q 12 10 8 10 L 2 10 Z" fill="#ff6b35"/>
+            <line x1="0" y1="-8" x2="0" y2="8" stroke="#1e293b" stroke-width="2" opacity="0.5"/>
+          </g>
+          <circle cx="50" cy="25" r="4" fill="#ff6b35"/>
+        </svg>
+        <div>
+          <h1 class="text-3xl font-black text-white tracking-tight">StudyBite</h1>
+          <p class="text-xs text-orange-500 font-bold tracking-widest uppercase mt-0.5">Fuel Your Study Sessions</p>
+        </div>
+      </div>
+      <div id="connectionStatusBadge" class="flex items-center gap-2 text-sm bg-slate-900/60 px-4 py-2 rounded-full border border-slate-700">
+        <span id="statusIndicatorDot" class="w-2.5 h-2.5 rounded-full bg-slate-500"></span>
+        <span id="statusText" class="text-slate-400 font-medium">Awaiting Configuration</span>
+      </div>
+    </header>
 
-    function setupFirebase() {
-      const configText = document.getElementById('firebaseConfig').value.trim();
-      const userName = document.getElementById('userName').value.trim();
-      const btn = document.getElementById('connectBtn');
-
-      if (!configText || !userName) {
-        showSetupStatus('Please fill in both Firebase config and your name', 'error');
-        return;
-      }
-
-      btn.disabled = true;
-      showSetupStatus('Connecting...', 'loading');
-
-      try {
-        let config = JSON.parse(configText);
-        
-        if (!config.apiKey || !config.projectId) {
-          throw new Error('Missing required Firebase config fields (apiKey, projectId)');
-        }
-        
-        firebase.initializeApp(config);
-        db = firebase.database();
-        currentUser = userName;
-
-        setTimeout(() => {
-          db.ref('.info/connected').on('value', (snapshot) => {
-            if (snapshot.val() === true) {
-              showSetupStatus('✓ Connected to Firebase!', 'connected');
-              document.getElementById('setupSection').style.display = 'none';
-              document.getElementById('trackerSection').classList.add('active');
-              
-              const today = new Date().toISOString().split('T')[0];
-              document.getElementById('saleDate').value = today;
-              
-              listenForSales();
-            }
-          });
-        }, 500);
-      } catch (error) {
-        btn.disabled = false;
-        console.error('Setup error:', error);
-        showSetupStatus('Error: ' + error.message, 'error');
-      }
-    }
-
-    function showSetupStatus(message, type) {
-      const status = document.getElementById('setupStatus');
-      status.textContent = message;
-      status.className = 'status ' + type;
-    }
-
-    function listenForSales() {
-      if (!db) return;
+    <section id="setupSection" class="bg-slate-800 border border-orange-500/30 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center gap-2 text-orange-500 font-semibold text-lg">
+        <i class="fa-solid fa-sliders"></i>
+        <h2>🔧 Setup Firebase Connection</h2>
+      </div>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        Input your configurations below. Credentials are securely preserved within your local web browser session, enabling instant connectivity upon subsequent visits.
+      </p>
       
-      db.ref('sales').on('value', (snapshot) => {
-        if (snapshot.exists()) {
-          allSales = Object.values(snapshot.val());
-          allSales.sort((a, b) => b.timestamp - a.timestamp);
-        } else {
-          allSales = [];
-        }
-        render();
-      });
-    }
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1.5">Firebase Config (Paste full JSON Object)</label>
+          <textarea id="firebaseConfig" placeholder='{"apiKey": "AIzaSy...", "authDomain": "...", "databaseURL": "...", "projectId": "..."}' class="w-full font-mono text-xs p-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-300 placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 h-24 transition resize-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1.5">Your Identity / Name (For logging tracking metadata)</label>
+          <input type="text" id="userName" placeholder="e.g., John Doe" class="w-full text-sm p-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-200 placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition" />
+        </div>
+        <button id="connectBtn" onclick="setupFirebase()" class="w-full py-3 bg-orange-500 hover:bg-orange-600 active:scale-[0.99] text-white font-bold text-sm rounded-xl transition shadow-lg shadow-orange-500/10 flex justify-center items-center gap-2">
+          <i class="fa-solid fa-plug"></i> Connect Real-Time Database
+        </button>
+      </div>
+    </section>
 
-    function calculateAmount() {
-      const quantity = parseFloat(document.getElementById('quantity').value) || 0;
-      const floorPrice = parseFloat(document.getElementById('floorPrice').value) || 0;
-      const totalAmount = quantity * floorPrice;
+    <div id="trackerSection" class="hidden space-y-8">
       
-      document.getElementById('amount').value = totalAmount.toFixed(2);
-    }
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-gradient-to-br from-orange-500 to-amber-600 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
+          <p class="text-orange-100 text-xs font-bold uppercase tracking-wider">This Month Revenue</p>
+          <h3 id="monthlyRevenue" class="text-3xl font-black mt-1">RM 0.00</h3>
+          <i class="fa-solid fa-calendar-check absolute right-4 bottom-4 text-white/10 text-5xl pointer-events-none"></i>
+        </div>
+        <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-lg relative overflow-hidden">
+          <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">This Month Count</p>
+          <h3 id="monthlySalesCount" class="text-3xl font-bold text-white mt-1">0</h3>
+          <i class="fa-solid fa-cart-shopping absolute right-4 bottom-4 text-slate-700/40 text-5xl pointer-events-none"></i>
+        </div>
+        <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-lg relative overflow-hidden">
+          <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">All-Time Revenue</p>
+          <h3 id="totalRevenue" class="text-3xl font-bold text-white mt-1">RM 0.00</h3>
+          <i class="fa-solid fa-coins absolute right-4 bottom-4 text-slate-700/40 text-5xl pointer-events-none"></i>
+        </div>
+        <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-lg relative overflow-hidden">
+          <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">All-Time Count</p>
+          <h3 id="totalSalesCount" class="text-3xl font-bold text-white mt-1">0</h3>
+          <i class="fa-solid fa-globe absolute right-4 bottom-4 text-slate-700/40 text-5xl pointer-events-none"></i>
+        </div>
+      </section>
 
-    function addSale() {
-      if (!db) {
-        alert('Firebase not connected');
-        return;
-      }
-
-      const customerName = document.getElementById('customerName').value.trim();
-      const product = document.getElementById('product').value.trim();
-      const quantity = parseFloat(document.getElementById('quantity').value);
-      const floorPrice = parseFloat(document.getElementById('floorPrice').value);
-      const amount = parseFloat(document.getElementById('amount').value);
-      const saleDate = document.getElementById('saleDate').value;
-
-      if (!customerName || !product || !quantity || !floorPrice || !amount || !saleDate) {
-        alert('Please fill in all fields');
-        return;
-      }
-
-      const saleData = {
-        id: Date.now(),
-        customerName,
-        product,
-        quantity: Math.round(quantity),
-        floorPrice: Math.round(floorPrice * 100) / 100,
-        amount: Math.round(amount * 100) / 100,
-        date: saleDate,
-        timestamp: new Date(saleDate).getTime(),
-        enteredBy: currentUser
-      };
-
-      db.ref('sales/' + saleData.id).set(saleData, (error) => {
-        if (error) {
-          alert('Error saving sale: ' + error);
-        } else {
-          document.getElementById('customerName').value = '';
-          document.getElementById('product').value = '';
-          document.getElementById('quantity').value = '';
-          document.getElementById('floorPrice').value = '';
-          document.getElementById('amount').value = '';
-          const today = new Date().toISOString().split('T')[0];
-          document.getElementById('saleDate').value = today;
-        }
-      });
-    }
-
-    function deleteSale(id) {
-      if (confirm('Delete this sale?')) {
-        db.ref('sales/' + id).remove();
-      }
-    }
-
-    function formatCurrency(amount) {
-      return 'RM ' + amount.toFixed(2);
-    }
-
-    function render() {
-      const now = new Date();
-      const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
-      
-      const monthlySales = allSales.filter(s => s.date.startsWith(currentMonth));
-      const monthlyTotal = Math.round(monthlySales.reduce((sum, s) => sum + s.amount, 0) * 100) / 100;
-      const totalRevenue = Math.round(allSales.reduce((sum, s) => sum + s.amount, 0) * 100) / 100;
-
-      document.getElementById('monthlyRevenue').textContent = formatCurrency(monthlyTotal);
-      document.getElementById('monthlySalesCount').textContent = monthlySales.length;
-      document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
-      document.getElementById('totalSalesCount').textContent = allSales.length;
-
-      // Customer Summary
-      const customerMap = {};
-      allSales.forEach(sale => {
-        if (!customerMap[sale.customerName]) {
-          customerMap[sale.customerName] = { orders: 0, revenue: 0 };
-        }
-        customerMap[sale.customerName].orders += 1;
-        customerMap[sale.customerName].revenue += sale.amount;
-      });
-
-      if (Object.keys(customerMap).length === 0) {
-        document.getElementById('customerSummary').innerHTML = '<div class="empty-state" style="grid-column: 1/-1;">No customers yet. Add a sale to see customer summaries.</div>';
-      } else {
-        const customerHTML = Object.entries(customerMap)
-          .sort((a, b) => b[1].revenue - a[1].revenue)
-          .map(([name, data]) => `
-            <div class="customer-card">
-              <div class="customer-name">${name}</div>
-              <div class="customer-stat">Total Orders<br><span class="customer-stat-value">${data.orders}</span></div>
-              <div class="customer-stat">Total Revenue<br><span class="customer-stat-value">${formatCurrency(data.revenue)}</span></div>
-            </div>
-          `).join('');
-        document.getElementById('customerSummary').innerHTML = customerHTML;
-      }
-
-      // Monthly chart
-      for (let i = 11; i >= 0; i--) {
-        const d = new Date();
-        d.setMonth(d.getMonth() - i);
-        const year = d.getFullYear();
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        last12Months.push({ key: year + '-' + month, label: new Intl.DateTimeFormat('en', { month: 'short' }).format(d) });
-      }
-
-      const monthlyData = last12Months.map(m => {
-        const total = allSales.filter(s => s.date.startsWith(m.key)).reduce((sum, s) => sum + s.amount, 0);
-        return { label: m.label, total: Math.round(total * 100) / 100 };
-      });
-
-      const maxVal = Math.max(...monthlyData.map(m => m.total), 1);
-      const chartHTML = monthlyData.map(m => {
-        const height = (m.total / maxVal) * 100;
-        return `<div class="bar" style="height: ${height}%;"><div class="bar-value">${formatCurrency(m.total)}</div></div>`;
-      }).join('');
-      document.getElementById('monthChart').innerHTML = chartHTML;
-
-      const labelsHTML = monthlyData.map(m => `<div class="month-label">${m.label}</div>`).join('');
-      document.getElementById('monthLabels').innerHTML = labelsHTML;
-
-      if (allSales.length === 0) {
-        document.getElementById('transactionList').innerHTML = '<div class="empty-state">No sales yet. Record your first one above.</div>';
-      } else {
-        const txnHTML = allSales.map(s => `
-          <div class="transaction-row">
-            <div class="transaction-info">
-              <div class="transaction-product"><strong>${s.customerName}</strong> - ${s.product}</div>
-              <div class="transaction-meta">${s.quantity} × RM ${s.floorPrice.toFixed(2)} = ${formatCurrency(s.amount)} • ${new Date(s.date).toLocaleDateString()} • ${s.enteredBy}</div>
-            </div>
-            <div style="display: flex; align-items: center;">
-              <div class="transaction-amount">${formatCurrency(s.amount)}</div>
-              <button class="btn-delete" onclick="deleteSale(${s.id})">✕</button>
-            </div>
-          </div>
-        `).join('');
-        document.getElementById('transactionList').innerHTML = txnHTML;
-      }
-    }
-  </script>
-</body>
-</html>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
