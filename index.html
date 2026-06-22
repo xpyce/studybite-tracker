@@ -307,14 +307,511 @@
     body.dark-mode .text-orange-600 {
       color: #fb923c !important;
     }
+
+    .week-folder {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 16px;
+      overflow: hidden;
+    }
+
+    .week-folder-tab {
+      align-items: center;
+      background: var(--soft);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      padding: 14px 16px;
+    }
+
+    .week-folder-title {
+      align-items: center;
+      color: var(--ink);
+      display: flex;
+      font-size: 15px;
+      font-weight: 900;
+      gap: 10px;
+    }
+
+    .folder-icon {
+      color: var(--brand);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .week-folder-stats {
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 800;
+      gap: 12px;
+    }
+
+    .product-quantity-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .product-quantity-row {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .product-quantity-name {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .product-quantity-value {
+      background: var(--brand-soft);
+      border: 1px solid var(--brand-line);
+      border-radius: 999px;
+      color: #c2410c;
+      flex: none;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 4px 10px;
+    }
+
+    body.dark-mode .product-quantity-value {
+      color: #fdba74;
+    }
+
+    .filter-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    }
+
+    .weekly-strip {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .mini-value {
+      color: var(--ink);
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+
+    .undo-toast {
+      align-items: center;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 8px;
+      bottom: 18px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25);
+      color: #fff;
+      display: none;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      left: 50%;
+      max-width: min(560px, calc(100vw - 28px));
+      padding: 12px 14px;
+      position: fixed;
+      transform: translateX(-50%);
+      width: 100%;
+      z-index: 50;
+    }
+
+    .undo-toast.active {
+      display: flex;
+    }
+
+    .btn-ghost-dark {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+    }
+
+    .folder-toggle {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      font: inherit;
+      gap: 10px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .folder-chevron {
+      color: var(--muted);
+      display: inline-block;
+      font-size: 13px;
+      transform: rotate(90deg);
+      transition: transform 0.15s;
+    }
+
+    .week-folder.collapsed .folder-chevron {
+      transform: rotate(0deg);
+    }
+
+    .week-folder.collapsed .week-folder-body {
+      display: none;
+    }
+
+    @media (max-width: 920px) {
+      .filter-grid,
+      .weekly-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .receipt-overlay {
+      align-items: center;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      inset: 0;
+      justify-content: center;
+      padding: 20px;
+      position: fixed;
+      z-index: 60;
+    }
+
+    .receipt-overlay.active {
+      display: flex;
+    }
+
+    .receipt-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+      color: #111827;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .receipt-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .receipt-logo {
+      height: 48px;
+      margin: 0 auto 8px;
+      width: 48px;
+    }
+
+    .receipt-shop-name {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .receipt-tagline {
+      color: #f97316;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .receipt-divider {
+      border-top: 1px dashed #cbd5e1;
+      margin: 12px 0;
+    }
+
+    .receipt-meta-row {
+      display: flex;
+      font-size: 12px;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .receipt-meta-label {
+      color: #6b7280;
+    }
+
+    .receipt-line-item {
+      margin-bottom: 10px;
+    }
+
+    .receipt-line-top {
+      display: flex;
+      font-size: 13px;
+      font-weight: 800;
+      justify-content: space-between;
+    }
+
+    .receipt-line-sub {
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    .receipt-total-row {
+      display: flex;
+      font-size: 16px;
+      font-weight: 900;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .receipt-footer {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .receipt-thanks {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .receipt-footer-note {
+      color: #9ca3af;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .report-card {
+      max-width: 640px;
+    }
+
+    .report-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .report-subtitle {
+      color: #6b7280;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .report-summary-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .report-summary-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .report-summary-label {
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .report-summary-value {
+      font-size: 20px;
+      font-weight: 900;
+      margin-top: 4px;
+    }
+
+    .report-table {
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .report-table th,
+    .report-table td {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .report-table th {
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .goal-block {
+      margin-bottom: 16px;
+    }
+
+    .goal-row {
+      display: flex;
+      font-size: 14px;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .goal-label {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .goal-value {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .goal-bar {
+      background: var(--soft);
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .goal-bar-fill {
+      background: var(--brand);
+      border-radius: 999px;
+      height: 100%;
+      transition: width 0.25s ease;
+    }
+
+    .product-manager-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .product-manager-row {
+      align-items: center;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      padding: 10px 12px;
+    }
+
+    .product-manager-name {
+      color: var(--ink);
+      flex: 1;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .product-manager-price {
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .quick-entry-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .quick-entry-btn {
+      background: var(--brand-soft);
+      border: 1px solid var(--brand-line);
+      border-radius: 8px;
+      color: #9a3412;
+      cursor: pointer;
+      font-weight: 800;
+      padding: 14px 10px;
+      text-align: center;
+      transition: transform 0.1s, background 0.15s;
+    }
+
+    .quick-entry-btn:hover {
+      background: var(--brand);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .quick-entry-btn-price {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    body.dark-mode .quick-entry-btn {
+      color: #fdba74;
+    }
+
+    .offline-banner {
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      color: #92400e;
+      display: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 16px;
+      text-align: center;
+    }
+
+    .offline-banner.active {
+      display: block;
+    }
+
+    body.dark-mode .offline-banner {
+      background: #451a03;
+      border-color: #92400e;
+      color: #fde68a;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      .receipt-overlay,
+      .receipt-overlay * {
+        visibility: visible;
+      }
+
+      .receipt-overlay {
+        background: #fff;
+        position: absolute;
+        inset: 0;
+        padding: 0;
+      }
+
+      .receipt-card {
+        box-shadow: none;
+        max-height: none;
+        max-width: 100%;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="app-shell">
+    <div class="offline-banner" id="offlineBanner">You're offline. New sales are saved locally and will sync when you're back online.</div>
     <header class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex items-center gap-4">
         <span class="logo-badge">
-          <img class="h-14 w-14 object-contain" src="studybite-logo-transparent.png" alt="StudyBite logo">
+          <img class="h-14 w-14 object-contain" src="data:image/png;base64,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" alt="StudyBite logo">
         </span>
         <div>
           <h1 class="text-3xl font-black tracking-normal text-gray-950">StudyBite</h1>
@@ -324,36 +821,63 @@
       <div class="flex flex-wrap items-center gap-3">
         <button class="btn btn-secondary" id="themeToggle" onclick="toggleDarkMode()" type="button">Enable dark mode</button>
         <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge">Not connected</div>
+        <button class="btn btn-secondary hidden" id="logoutBtn" onclick="logout()" type="button">Log out</button>
       </div>
     </header>
 
-    <section id="setupSection" class="card mb-6 p-5">
+    <section id="setupSection" class="card mb-6 p-5 hidden">
       <div class="mb-4">
         <h2 class="text-xl font-black tracking-normal text-gray-950">Connect Firebase</h2>
-        <p class="mt-1 text-sm text-gray-600">Your config and name are remembered on this browser after a successful connection.</p>
+        <p class="mt-1 text-sm text-gray-600">Your config is remembered on this browser after a successful connection.</p>
       </div>
       <div class="grid gap-4">
         <div>
           <label class="label" for="firebaseConfig">Firebase Config</label>
           <textarea class="field min-h-28 text-sm" id="firebaseConfig" placeholder='Paste like: {"apiKey": "...", "authDomain": "...", ...}'></textarea>
         </div>
-        <div>
-          <label class="label" for="userName">Your name</label>
-          <input class="field" type="text" id="userName" placeholder="e.g., John or Staff A">
-        </div>
         <button class="btn btn-primary w-full" id="connectBtn" onclick="setupFirebase()">Connect Firebase</button>
         <div id="setupStatus"></div>
       </div>
     </section>
 
+    <section id="loginSection" class="card mb-6 p-5 hidden">
+      <div class="mb-4">
+        <h2 class="text-xl font-black tracking-normal text-gray-950">Staff login</h2>
+        <p class="mt-1 text-sm text-gray-600">Only pre-authorized accounts can sign in. Contact an admin if you need access.</p>
+      </div>
+      <div class="grid gap-4" id="loginFormWrap">
+        <div>
+          <label class="label" for="loginEmail">Email</label>
+          <input class="field" type="email" id="loginEmail" placeholder="you@example.com" autocomplete="username">
+        </div>
+        <div>
+          <label class="label" for="loginPassword">Password</label>
+          <input class="field" type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <button class="btn btn-primary w-full" id="loginBtn" onclick="loginWithEmail()">Log in</button>
+        <div id="loginStatus"></div>
+        <button class="btn btn-secondary w-full" onclick="showResetPassword()" type="button" id="forgotPasswordBtn">Forgot password?</button>
+        <button class="text-xs font-bold text-gray-400 hover:text-gray-600" onclick="showFirebaseConfigAgain()" type="button" style="background:none;border:none;cursor:pointer;text-align:center;">Wrong Firebase project? Change config</button>
+      </div>
+      <div class="grid gap-4 hidden" id="resetFormWrap">
+        <div>
+          <label class="label" for="resetEmail">Email</label>
+          <input class="field" type="email" id="resetEmail" placeholder="you@example.com" autocomplete="username">
+        </div>
+        <button class="btn btn-primary w-full" onclick="sendPasswordReset()" type="button">Send reset link</button>
+        <div id="resetStatus"></div>
+        <button class="btn btn-secondary w-full" onclick="showLoginForm()" type="button">Back to login</button>
+      </div>
+    </section>
+
     <section id="trackerSection" class="tracker-section">
-      <div class="mb-6 grid grid-cols-4 gap-4 mobile-stack">
+      <div class="mb-6 grid grid-cols-5 gap-4 mobile-stack">
         <article class="card p-5">
           <p class="text-sm font-bold text-gray-500">This month revenue</p>
           <div class="metric-value mt-3" id="monthlyRevenue">RM 0.00</div>
         </article>
         <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">This month sales</p>
+          <p class="text-sm font-bold text-gray-500">This month quantity</p>
           <div class="metric-value mt-3" id="monthlySalesCount">0</div>
         </article>
         <article class="card p-5">
@@ -361,10 +885,176 @@
           <div class="metric-value mt-3" id="totalRevenue">RM 0.00</div>
         </article>
         <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">All-time sales</p>
+          <p class="text-sm font-bold text-gray-500">All-time quantity</p>
           <div class="metric-value mt-3" id="totalSalesCount">0</div>
         </article>
+        <article class="card p-5">
+          <p class="text-sm font-bold text-gray-500">Quantity by product</p>
+          <div class="product-quantity-list" id="productQuantityList">
+            <div class="text-sm font-bold text-gray-500">No sales yet</div>
+          </div>
+        </article>
       </div>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">This week</h2>
+            <p class="text-sm text-gray-500">Monday to Sunday, based on the selected date filter.</p>
+          </div>
+        </div>
+        <div class="weekly-strip">
+          <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <p class="text-sm font-bold text-gray-500">Week revenue</p>
+            <div class="mini-value" id="weeklyRevenue">RM 0.00</div>
+          </article>
+          <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <p class="text-sm font-bold text-gray-500">Week quantity</p>
+            <div class="mini-value" id="weeklyQuantity">0</div>
+          </article>
+          <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <p class="text-sm font-bold text-gray-500">Best selling product</p>
+            <div class="mini-value" id="bestProduct">None</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Quick entry mode</h2>
+            <p class="text-sm text-gray-500">Fast one-tap sale entry for busy counter moments. Works well on mobile.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="toggleQuickEntry()" type="button" id="quickEntryToggleBtn">Enable quick entry</button>
+        </div>
+        <div id="quickEntryPanel" class="hidden">
+          <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
+            <div>
+              <label class="label" for="quickCustomer">Customer name</label>
+              <input class="field" type="text" id="quickCustomer" placeholder="e.g., John Doe">
+            </div>
+            <div>
+              <label class="label" for="quickQuantity">Quantity</label>
+              <input class="field" type="number" id="quickQuantity" placeholder="1" step="1" min="1" value="1">
+            </div>
+          </div>
+          <div class="quick-entry-grid" id="quickEntryButtons"></div>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Daily closing report</h2>
+            <p class="text-sm text-gray-500">Today's totals at a glance, ready to print at end of day.</p>
+          </div>
+          <button class="btn btn-primary" onclick="showDailyClosingReport()" type="button">View today's report</button>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Reports &amp; backup</h2>
+            <p class="text-sm text-gray-500">Printable weekly/monthly report, plus JSON backup and restore.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 mobile-actions">
+          <button class="btn btn-secondary" onclick="showPrintableReport('week')" type="button">Print weekly report</button>
+          <button class="btn btn-secondary" onclick="showPrintableReport('month')" type="button">Print monthly report</button>
+          <button class="btn btn-secondary" onclick="backupData()" type="button">Backup JSON</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('restoreFileInput').click()" type="button">Restore JSON</button>
+          <input type="file" id="restoreFileInput" accept="application/json" class="hidden" onchange="restoreData(event)">
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales goals</h2>
+            <p class="text-sm text-gray-500">Set targets and track progress for today and this month.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
+          <div>
+            <label class="label" for="dailyTargetInput">Today's target (RM)</label>
+            <input class="field" type="number" id="dailyTargetInput" placeholder="e.g., 200" step="1" min="0" onchange="saveTargets()">
+          </div>
+          <div>
+            <label class="label" for="monthlyTargetInput">This month's target (RM)</label>
+            <input class="field" type="number" id="monthlyTargetInput" placeholder="e.g., 5000" step="1" min="0" onchange="saveTargets()">
+          </div>
+        </div>
+        <div class="goal-block">
+          <div class="goal-row">
+            <span class="goal-label">Today</span>
+            <span class="goal-value" id="dailyGoalText">RM 0.00 / RM 0.00</span>
+          </div>
+          <div class="goal-bar"><div class="goal-bar-fill" id="dailyGoalBar" style="width:0%"></div></div>
+        </div>
+        <div class="goal-block">
+          <div class="goal-row">
+            <span class="goal-label">This month</span>
+            <span class="goal-value" id="monthlyGoalText">RM 0.00 / RM 0.00</span>
+          </div>
+          <div class="goal-bar"><div class="goal-bar-fill" id="monthlyGoalBar" style="width:0%"></div></div>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Products &amp; pricing</h2>
+            <p class="text-sm text-gray-500">Manage product names and auto-fill prices. Saved on this browser.</p>
+          </div>
+        </div>
+        <div class="product-manager-list" id="productManagerList"></div>
+        <div class="grid grid-cols-2 gap-4 mobile-stack mt-4">
+          <div>
+            <label class="label" for="newProductName">Product name</label>
+            <input class="field" type="text" id="newProductName" placeholder="e.g., Iced Lemon Tea">
+          </div>
+          <div>
+            <label class="label" for="newProductPrice">Price (RM)</label>
+            <input class="field" type="number" id="newProductPrice" placeholder="0.00" step="0.01" min="0">
+          </div>
+        </div>
+        <button class="btn btn-secondary mt-4" onclick="addProductPrice()" type="button">Add product</button>
+      </section>
+
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Filters</h2>
+            <p class="text-sm text-gray-500">Search, filter, and export only the records you are viewing.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="resetFilters()" type="button">Reset filters</button>
+        </div>
+        <div class="filter-grid">
+          <div>
+            <label class="label" for="searchInput">Search</label>
+            <input class="field" type="search" id="searchInput" placeholder="Customer, product, or staff name" oninput="handleFilterChange()">
+          </div>
+          <div>
+            <label class="label" for="dateFilter">Date range</label>
+            <select class="field" id="dateFilter" onchange="handleDateFilterChange()">
+              <option value="all">All dates</option>
+              <option value="thisWeek">This week</option>
+              <option value="lastWeek">Last week</option>
+              <option value="thisMonth">This month</option>
+              <option value="custom">Custom dates</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="filterStartDate">Start date</label>
+            <input class="field" type="date" id="filterStartDate" onchange="handleCustomDateChange()">
+          </div>
+          <div>
+            <label class="label" for="filterEndDate">End date</label>
+            <input class="field" type="date" id="filterEndDate" onchange="handleCustomDateChange()">
+          </div>
+        </div>
+      </section>
 
       <div class="mb-6">
         <section class="card p-5">
@@ -438,33 +1128,71 @@
         </div>
       </section>
     </section>
+    <div class="undo-toast" id="undoToast">
+      <span id="undoMessage">Sale deleted.</span>
+      <button class="btn btn-ghost-dark" onclick="undoDelete()" type="button">Undo</button>
+    </div>
+
+    <div class="receipt-overlay" id="receiptOverlay">
+      <div class="receipt-card" id="receiptCard">
+        <div class="receipt-actions no-print">
+          <button class="btn btn-secondary" onclick="closeReceipt()" type="button">Close</button>
+          <button class="btn btn-secondary" onclick="downloadReceipt()" type="button">Download</button>
+          <button class="btn btn-primary" onclick="printReceipt()" type="button">Print</button>
+        </div>
+        <div id="receiptContent"></div>
+      </div>
+    </div>
+
+    <div class="receipt-overlay" id="reportOverlay">
+      <div class="receipt-card report-card" id="reportCard">
+        <div class="receipt-actions no-print">
+          <button class="btn btn-secondary" onclick="closeReport()" type="button">Close</button>
+          <button class="btn btn-primary" onclick="printReport()" type="button">Print</button>
+        </div>
+        <div id="reportContent"></div>
+      </div>
+    </div>
   </main>
 
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
   <script>
     const STORAGE_KEYS = {
       config: 'studybite.firebaseConfig',
-      userName: 'studybite.userName',
-      theme: 'studybite.theme'
+      theme: 'studybite.theme',
+      pin: 'studybite.pin',
+      receiptCounter: 'studybite.receiptCounter',
+      products: 'studybite.products',
+      offlineQueue: 'studybite.offlineQueue',
+      dailyTarget: 'studybite.dailyTarget',
+      monthlyTarget: 'studybite.monthlyTarget'
     };
 
-    const DEFAULT_PRODUCTS = [
-      'Chicken Pie'
-    ];
+    const DEFAULT_PRODUCT_PRICES = {
+      'Chicken Pie': 2.50
+    };
 
     let db;
+    let auth;
     let currentUser = '';
     let allSales = [];
+    let visibleSales = [];
     let editingSaleId = null;
     let monthChart;
+    let pendingDelete = null;
+    let undoTimer = null;
 
     document.addEventListener('DOMContentLoaded', () => {
       applySavedTheme();
       hydrateSavedSetup();
       populateProductDropdown();
+      renderProductManager();
       setTodayDate();
+      loadTargets();
+      initOfflineQueue();
     });
 
     function applySavedTheme() {
@@ -491,20 +1219,31 @@
     }
 
     function hydrateSavedSetup() {
-      document.getElementById('firebaseConfig').value = localStorage.getItem(STORAGE_KEYS.config) || '';
-      document.getElementById('userName').value = localStorage.getItem(STORAGE_KEYS.userName) || '';
-      document.getElementById('firebaseConfig').addEventListener('input', saveSetupDraft);
-      document.getElementById('userName').addEventListener('input', saveSetupDraft);
+      const savedConfig = localStorage.getItem(STORAGE_KEYS.config) || '';
+      document.getElementById('firebaseConfig').value = savedConfig;
+
+      if (savedConfig) {
+        setupFirebase();
+      } else {
+        document.getElementById('setupSection').classList.remove('hidden');
+      }
     }
 
-    function saveSetupDraft() {
-      localStorage.setItem(STORAGE_KEYS.config, document.getElementById('firebaseConfig').value.trim());
-      localStorage.setItem(STORAGE_KEYS.userName, document.getElementById('userName').value.trim());
+    function getProductPrices() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.products) || 'null');
+        if (saved && typeof saved === 'object') return saved;
+      } catch (e) { /* fall through to defaults */ }
+      return { ...DEFAULT_PRODUCT_PRICES };
+    }
+
+    function saveProductPrices(prices) {
+      localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(prices));
     }
 
     function populateProductDropdown(selectedProduct = '') {
       const productSelect = document.getElementById('product');
-      const knownProducts = DEFAULT_PRODUCTS;
+      const knownProducts = Object.keys(getProductPrices());
 
       productSelect.innerHTML = [
         '<option value="">Select product or course</option>',
@@ -524,8 +1263,66 @@
     }
 
     function toggleOtherProduct() {
-      const isCustom = document.getElementById('product').value === '__custom';
+      const productValue = document.getElementById('product').value;
+      const isCustom = productValue === '__custom';
       document.getElementById('customProductWrap').classList.toggle('hidden', !isCustom);
+
+      const productPrices = getProductPrices();
+      const floorPriceInput = document.getElementById('floorPrice');
+      if (!isCustom && productValue && productPrices[productValue] !== undefined) {
+        floorPriceInput.value = productPrices[productValue].toFixed(2);
+        floorPriceInput.readOnly = true;
+        floorPriceInput.title = 'Auto-set price. Choose "Other" to enter a custom price.';
+      } else {
+        floorPriceInput.readOnly = false;
+        floorPriceInput.title = '';
+      }
+      calculateAmount();
+    }
+
+    function renderProductManager() {
+      const target = document.getElementById('productManagerList');
+      if (!target) return;
+      const prices = getProductPrices();
+      const entries = Object.entries(prices);
+
+      target.innerHTML = entries.length
+        ? entries.map(([name, price]) => `
+            <div class="product-manager-row">
+              <span class="product-manager-name">${escapeHTML(name)}</span>
+              <span class="product-manager-price">RM ${Number(price).toFixed(2)}</span>
+              <button class="btn btn-danger" onclick="removeProductPrice('${escapeAttr(name)}')" type="button">Remove</button>
+            </div>
+          `).join('')
+        : '<div class="text-sm font-bold text-gray-500">No saved products yet. Add one below.</div>';
+    }
+
+    function addProductPrice() {
+      const nameInput = document.getElementById('newProductName');
+      const priceInput = document.getElementById('newProductPrice');
+      const name = nameInput.value.trim();
+      const price = parseFloat(priceInput.value);
+
+      if (!name || !price || price <= 0) {
+        alert('Enter a product name and a valid price.');
+        return;
+      }
+
+      const prices = getProductPrices();
+      prices[name] = roundMoney(price);
+      saveProductPrices(prices);
+      renderProductManager();
+      populateProductDropdown();
+      nameInput.value = '';
+      priceInput.value = '';
+    }
+
+    function removeProductPrice(name) {
+      const prices = getProductPrices();
+      delete prices[name];
+      saveProductPrices(prices);
+      renderProductManager();
+      populateProductDropdown();
     }
 
     function setTodayDate() {
@@ -534,11 +1331,10 @@
 
     function setupFirebase() {
       const configText = document.getElementById('firebaseConfig').value.trim();
-      const userName = document.getElementById('userName').value.trim();
       const btn = document.getElementById('connectBtn');
 
-      if (!configText || !userName) {
-        showSetupStatus('Please fill in both Firebase config and your name.', 'error');
+      if (!configText) {
+        showSetupStatus('Please paste your Firebase config.', 'error');
         return;
       }
 
@@ -556,23 +1352,135 @@
         }
 
         db = firebase.database();
-        currentUser = userName;
-        saveSetupDraft();
-        document.getElementById('userBadge').textContent = `Connected as ${currentUser}`;
+        auth = firebase.auth();
+        localStorage.setItem(STORAGE_KEYS.config, configText);
 
-        db.ref('.info/connected').on('value', (snapshot) => {
-          if (snapshot.val() === true) {
-            showSetupStatus('Connected to Firebase.', 'connected');
-            document.getElementById('setupSection').style.display = 'none';
-            document.getElementById('trackerSection').classList.add('active');
-            setTodayDate();
-            listenForSales();
-          }
-        });
+        showSetupStatus('Connected. Please log in.', 'connected');
+        document.getElementById('setupSection').classList.add('hidden');
+        document.getElementById('loginSection').classList.remove('hidden');
+
+        listenForAuthChanges();
       } catch (error) {
         btn.disabled = false;
         showSetupStatus('Error: ' + error.message, 'error');
       }
+    }
+
+    function listenForAuthChanges() {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          currentUser = user.email;
+          document.getElementById('userBadge').textContent = `Logged in as ${currentUser}`;
+          document.getElementById('logoutBtn').classList.remove('hidden');
+          document.getElementById('loginSection').classList.add('hidden');
+          document.getElementById('setupSection').classList.add('hidden');
+          document.getElementById('trackerSection').classList.add('active');
+          setTodayDate();
+          listenForSales();
+          flushOfflineQueue();
+        } else {
+          currentUser = '';
+          document.getElementById('userBadge').textContent = 'Not logged in';
+          document.getElementById('logoutBtn').classList.add('hidden');
+          document.getElementById('trackerSection').classList.remove('active');
+          if (db) {
+            document.getElementById('loginSection').classList.remove('hidden');
+          }
+        }
+      });
+    }
+
+    function loginWithEmail() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const btn = document.getElementById('loginBtn');
+
+      if (!email || !password) {
+        showLoginStatus('Please enter your email and password.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      showLoginStatus('Logging in...', 'loading');
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          showLoginStatus('Logged in.', 'connected');
+        })
+        .catch((error) => {
+          btn.disabled = false;
+          showLoginStatus(friendlyAuthError(error), 'error');
+        });
+    }
+
+    function logout() {
+      if (!auth) return;
+      auth.signOut();
+      document.getElementById('loginBtn').disabled = false;
+    }
+
+    function showResetPassword() {
+      document.getElementById('loginFormWrap').classList.add('hidden');
+      document.getElementById('resetFormWrap').classList.remove('hidden');
+      document.getElementById('resetEmail').value = document.getElementById('loginEmail').value;
+    }
+
+    function showLoginForm() {
+      document.getElementById('resetFormWrap').classList.add('hidden');
+      document.getElementById('loginFormWrap').classList.remove('hidden');
+    }
+
+    function sendPasswordReset() {
+      const email = document.getElementById('resetEmail').value.trim();
+      if (!email) {
+        showResetStatus('Please enter your email.', 'error');
+        return;
+      }
+
+      auth.sendPasswordResetEmail(email)
+        .then(() => {
+          showResetStatus('Reset link sent. Check your inbox.', 'connected');
+        })
+        .catch((error) => {
+          showResetStatus(friendlyAuthError(error), 'error');
+        });
+    }
+
+    function friendlyAuthError(error) {
+      const map = {
+        'auth/invalid-email': 'That email address looks invalid.',
+        'auth/user-disabled': 'This account has been disabled.',
+        'auth/user-not-found': 'No account found for that email.',
+        'auth/wrong-password': 'Incorrect password.',
+        'auth/invalid-credential': 'Incorrect email or password.',
+        'auth/too-many-requests': 'Too many attempts. Please wait a moment and try again.'
+      };
+      return map[error.code] || ('Error: ' + error.message);
+    }
+
+    function showLoginStatus(message, type) {
+      const status = document.getElementById('loginStatus');
+      status.textContent = message;
+      status.className = 'status ' + type;
+    }
+
+    function showResetStatus(message, type) {
+      const status = document.getElementById('resetStatus');
+      status.textContent = message;
+      status.className = 'status ' + type;
+    }
+
+    function showFirebaseConfigAgain() {
+      if (!confirm('This will log you out and let you change the Firebase project. Continue?')) {
+        return;
+      }
+      if (auth) {
+        auth.signOut();
+      }
+      localStorage.removeItem(STORAGE_KEYS.config);
+      document.getElementById('loginSection').classList.add('hidden');
+      document.getElementById('setupSection').classList.remove('hidden');
+      document.getElementById('firebaseConfig').value = '';
     }
 
     function showSetupStatus(message, type) {
@@ -599,10 +1507,322 @@
       });
     }
 
+    let currentReceiptSale = null;
+
+    function showReceipt(sale) {
+      const content = document.getElementById('receiptContent');
+      const receiptNo = sale.receiptNo || generateReceiptNumber();
+      currentReceiptSale = { ...sale, receiptNo };
+
+      content.innerHTML = `
+        <div class="receipt-header">
+          <div class="receipt-shop-name">Sales Receipt</div>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-meta-row"><span class="receipt-meta-label">Receipt No.</span><span>${escapeHTML(receiptNo)}</span></div>
+        <div class="receipt-meta-row"><span class="receipt-meta-label">Date</span><span>${formatDate(sale.date)}</span></div>
+        <div class="receipt-meta-row"><span class="receipt-meta-label">Customer</span><span>${escapeHTML(sale.customerName || '')}</span></div>
+        <div class="receipt-meta-row"><span class="receipt-meta-label">Served by</span><span>${escapeHTML(sale.enteredBy || '')}</span></div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-line-item">
+          <div class="receipt-line-top">
+            <span>${escapeHTML(sale.product || '')}</span>
+            <span>${formatCurrency(Number(sale.amount || 0))}</span>
+          </div>
+          <div class="receipt-line-sub">${Number(sale.quantity || 0)} × ${formatCurrency(Number(sale.floorPrice || 0))}</div>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-total-row"><span>Total</span><span>${formatCurrency(Number(sale.amount || 0))}</span></div>
+        <div class="receipt-footer">
+          <div class="receipt-thanks">Thank you for patronizing us!</div>
+        </div>
+      `;
+
+      document.getElementById('receiptOverlay').classList.add('active');
+    }
+
+    function closeReceipt() {
+      document.getElementById('receiptOverlay').classList.remove('active');
+      currentReceiptSale = null;
+    }
+
+    function printReceipt() {
+      window.print();
+    }
+
+    function downloadReceipt() {
+      if (!currentReceiptSale) return;
+      const sale = currentReceiptSale;
+      const lines = [
+        'SALES RECEIPT',
+        '----------------------------',
+        `Receipt No.: ${sale.receiptNo || ''}`,
+        `Date: ${formatDate(sale.date)}`,
+        `Customer: ${sale.customerName || ''}`,
+        `Served by: ${sale.enteredBy || ''}`,
+        '----------------------------',
+        `${sale.product || ''}`,
+        `${Number(sale.quantity || 0)} x ${formatCurrency(Number(sale.floorPrice || 0))} = ${formatCurrency(Number(sale.amount || 0))}`,
+        '----------------------------',
+        `Total: ${formatCurrency(Number(sale.amount || 0))}`,
+        '',
+        'Thank you for patronizing us!'
+      ];
+
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `receipt-${sale.receiptNo || sale.id}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+
+    function printSaleReceipt(id) {
+      const sale = allSales.find(item => String(item.id) === String(id));
+      if (!sale) return;
+      showReceipt(sale);
+    }
+
+    function closeReport() {
+      document.getElementById('reportOverlay').classList.remove('active');
+    }
+
+    function printReport() {
+      window.print();
+    }
+
+    function showDailyClosingReport() {
+      const todayKey = new Date().toISOString().slice(0, 10);
+      const todaySales = allSales.filter(sale => String(sale.date || '') === todayKey);
+      const totalRevenue = roundMoney(todaySales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const totalQuantity = todaySales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+      const staffRows = buildStaffSummary(todaySales);
+
+      const content = document.getElementById('reportContent');
+      content.innerHTML = `
+        <div class="report-title">Daily Closing Report</div>
+        <div class="report-subtitle">${formatDate(todayKey)} • Generated ${new Date().toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit' })}</div>
+        <div class="report-summary-grid">
+          <div class="report-summary-card">
+            <div class="report-summary-label">Total Sales</div>
+            <div class="report-summary-value">${todaySales.length}</div>
+          </div>
+          <div class="report-summary-card">
+            <div class="report-summary-label">Total Quantity</div>
+            <div class="report-summary-value">${totalQuantity}</div>
+          </div>
+          <div class="report-summary-card">
+            <div class="report-summary-label">Total Revenue</div>
+            <div class="report-summary-value">${formatCurrency(totalRevenue)}</div>
+          </div>
+        </div>
+        <table class="report-table">
+          <thead>
+            <tr><th>Staff</th><th>Sales</th><th>Qty</th><th>Revenue</th></tr>
+          </thead>
+          <tbody>
+            ${staffRows.length ? staffRows.map(row => `
+              <tr>
+                <td>${escapeHTML(row.staff)}</td>
+                <td>${row.sales}</td>
+                <td>${row.quantity}</td>
+                <td>${formatCurrency(row.revenue)}</td>
+              </tr>
+            `).join('') : '<tr><td colspan="4">No sales recorded today.</td></tr>'}
+          </tbody>
+        </table>
+      `;
+
+      document.getElementById('reportOverlay').classList.add('active');
+    }
+
+    function showPrintableReport(period) {
+      const today = new Date();
+      let start, end, title;
+
+      if (period === 'week') {
+        start = getWeekStart(today);
+        end = new Date(start);
+        end.setDate(start.getDate() + 6);
+        title = 'Weekly Sales Report';
+      } else {
+        start = new Date(today.getFullYear(), today.getMonth(), 1);
+        end = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        title = 'Monthly Sales Report';
+      }
+
+      const periodSales = allSales.filter(sale => saleIsInRange(sale, start, end));
+      const totalRevenue = roundMoney(periodSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const totalQuantity = periodSales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+      const staffRows = buildStaffSummary(periodSales);
+
+      const productMap = {};
+      periodSales.forEach((sale) => {
+        const product = sale.product || 'Unknown product';
+        productMap[product] = (productMap[product] || 0) + Number(sale.quantity || 0);
+      });
+      const productRows = Object.entries(productMap).sort((a, b) => b[1] - a[1]);
+
+      const content = document.getElementById('reportContent');
+      content.innerHTML = `
+        <div class="report-title">${title}</div>
+        <div class="report-subtitle">${formatDateKey(start)} - ${formatDateKey(end)}</div>
+        <div class="report-summary-grid">
+          <div class="report-summary-card">
+            <div class="report-summary-label">Total Sales</div>
+            <div class="report-summary-value">${periodSales.length}</div>
+          </div>
+          <div class="report-summary-card">
+            <div class="report-summary-label">Total Quantity</div>
+            <div class="report-summary-value">${totalQuantity}</div>
+          </div>
+          <div class="report-summary-card">
+            <div class="report-summary-label">Total Revenue</div>
+            <div class="report-summary-value">${formatCurrency(totalRevenue)}</div>
+          </div>
+        </div>
+        <div class="report-subtitle" style="margin-bottom:6px;font-weight:800;color:#111827;">By staff</div>
+        <table class="report-table">
+          <thead><tr><th>Staff</th><th>Sales</th><th>Qty</th><th>Revenue</th></tr></thead>
+          <tbody>
+            ${staffRows.length ? staffRows.map(row => `
+              <tr><td>${escapeHTML(row.staff)}</td><td>${row.sales}</td><td>${row.quantity}</td><td>${formatCurrency(row.revenue)}</td></tr>
+            `).join('') : '<tr><td colspan="4">No sales in this period.</td></tr>'}
+          </tbody>
+        </table>
+        <div class="report-subtitle" style="margin-bottom:6px;font-weight:800;color:#111827;">By product</div>
+        <table class="report-table">
+          <thead><tr><th>Product</th><th>Quantity sold</th></tr></thead>
+          <tbody>
+            ${productRows.length ? productRows.map(([product, qty]) => `
+              <tr><td>${escapeHTML(product)}</td><td>${qty}</td></tr>
+            `).join('') : '<tr><td colspan="2">No sales in this period.</td></tr>'}
+          </tbody>
+        </table>
+      `;
+
+      document.getElementById('reportOverlay').classList.add('active');
+    }
+
+    function backupData() {
+      const backup = {
+        exportedAt: new Date().toISOString(),
+        sales: allSales
+      };
+      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `studybite-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+
+    function restoreData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          const sales = Array.isArray(parsed.sales) ? parsed.sales : (Array.isArray(parsed) ? parsed : null);
+          if (!sales) throw new Error('No sales array found in this file.');
+          if (!db) throw new Error('Firebase is not connected.');
+          if (!confirm(`Restore ${sales.length} sale(s) from this backup? This will add/overwrite matching records.`)) {
+            return;
+          }
+
+          const updates = {};
+          sales.forEach((sale) => {
+            if (sale && sale.id) {
+              updates['sales/' + sale.id] = sale;
+            }
+          });
+
+          db.ref().update(updates, (error) => {
+            if (error) {
+              alert('Restore failed: ' + error);
+            } else {
+              alert('Restore complete.');
+            }
+          });
+        } catch (error) {
+          alert('Could not restore file: ' + error.message);
+        } finally {
+          event.target.value = '';
+        }
+      };
+      reader.readAsText(file);
+    }
+
     function calculateAmount() {
       const quantity = parseFloat(document.getElementById('quantity').value) || 0;
       const floorPrice = parseFloat(document.getElementById('floorPrice').value) || 0;
       document.getElementById('amount').value = (quantity * floorPrice).toFixed(2);
+    }
+
+    function toggleQuickEntry() {
+      const panel = document.getElementById('quickEntryPanel');
+      const btn = document.getElementById('quickEntryToggleBtn');
+      const isHidden = panel.classList.toggle('hidden');
+      btn.textContent = isHidden ? 'Enable quick entry' : 'Disable quick entry';
+      if (!isHidden) {
+        renderQuickEntryButtons();
+      }
+    }
+
+    function renderQuickEntryButtons() {
+      const target = document.getElementById('quickEntryButtons');
+      if (!target) return;
+      const prices = getProductPrices();
+      const entries = Object.entries(prices);
+
+      target.innerHTML = entries.length
+        ? entries.map(([name, price]) => `
+            <button class="quick-entry-btn" onclick="quickAddSale('${escapeAttr(name)}', ${Number(price)})" type="button">
+              ${escapeHTML(name)}
+              <span class="quick-entry-btn-price">RM ${Number(price).toFixed(2)}</span>
+            </button>
+          `).join('')
+        : '<div class="text-sm font-bold text-gray-500">Add products in "Products & pricing" to use quick entry.</div>';
+    }
+
+    function quickAddSale(product, floorPrice) {
+      const customerName = document.getElementById('quickCustomer').value.trim() || 'Walk-in';
+      const quantity = parseInt(document.getElementById('quickQuantity').value, 10) || 1;
+      const amount = roundMoney(quantity * floorPrice);
+      const saleDate = new Date().toISOString().slice(0, 10);
+
+      const warning = getUnusualEntryWarning({ quantity, floorPrice, saleDate });
+      if (warning && !confirm(warning + '\n\nSave anyway?')) {
+        return;
+      }
+
+      const saleId = String(Date.now());
+      const saleData = {
+        id: saleId,
+        customerName,
+        product,
+        quantity: Math.round(quantity),
+        floorPrice: roundMoney(floorPrice),
+        amount,
+        date: saleDate,
+        timestamp: new Date(saleDate + 'T00:00:00').getTime(),
+        enteredBy: currentUser,
+        updatedBy: '',
+        updatedAt: '',
+        receiptNo: generateReceiptNumber()
+      };
+
+      saveSaleRecord(saleData, () => {
+        document.getElementById('quickCustomer').value = '';
+        document.getElementById('quickQuantity').value = '1';
+        showReceipt(saleData);
+      });
     }
 
     function getSelectedProduct() {
@@ -611,6 +1831,118 @@
         return document.getElementById('customProduct').value.trim();
       }
       return productValue.trim();
+    }
+
+    function getUnusualEntryWarning({ quantity, floorPrice, saleDate }) {
+      const warnings = [];
+
+      if (quantity > 50) {
+        warnings.push(`Quantity is unusually high (${quantity}).`);
+      }
+      if (floorPrice < 2.50) {
+        warnings.push(`Floor price is below RM 2.50 (RM ${floorPrice.toFixed(2)}).`);
+      }
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const enteredDate = new Date(saleDate + 'T00:00:00');
+      if (enteredDate > today) {
+        warnings.push(`Date (${saleDate}) is in the future.`);
+      }
+
+      return warnings.length ? warnings.join('\n') : null;
+    }
+
+    function saveSaleRecord(saleData, onSuccess) {
+      if (!navigator.onLine) {
+        queueOfflineSale(saleData);
+        applyLocalSale(saleData);
+        if (onSuccess) onSuccess();
+        return;
+      }
+
+      db.ref('sales/' + saleData.id).set(saleData, (error) => {
+        if (error) {
+          alert('Error saving sale, keeping it queued locally: ' + error);
+          queueOfflineSale(saleData);
+          applyLocalSale(saleData);
+        }
+        if (onSuccess) onSuccess();
+      });
+    }
+
+    function applyLocalSale(saleData) {
+      const idx = allSales.findIndex(sale => String(sale.id) === String(saleData.id));
+      if (idx >= 0) {
+        allSales[idx] = saleData;
+      } else {
+        allSales.unshift(saleData);
+      }
+      allSales.sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0));
+      render();
+    }
+
+    function queueOfflineSale(saleData) {
+      const queue = getOfflineQueue();
+      const idx = queue.findIndex(item => String(item.id) === String(saleData.id));
+      if (idx >= 0) {
+        queue[idx] = saleData;
+      } else {
+        queue.push(saleData);
+      }
+      localStorage.setItem(STORAGE_KEYS.offlineQueue, JSON.stringify(queue));
+      updateOfflineBanner();
+    }
+
+    function getOfflineQueue() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.offlineQueue) || '[]');
+        return Array.isArray(saved) ? saved : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function flushOfflineQueue() {
+      if (!db || !navigator.onLine) return;
+      const queue = getOfflineQueue();
+      if (!queue.length) return;
+
+      const updates = {};
+      queue.forEach((sale) => {
+        updates['sales/' + sale.id] = sale;
+      });
+
+      db.ref().update(updates, (error) => {
+        if (!error) {
+          localStorage.setItem(STORAGE_KEYS.offlineQueue, '[]');
+          updateOfflineBanner();
+        }
+      });
+    }
+
+    function updateOfflineBanner() {
+      const banner = document.getElementById('offlineBanner');
+      if (!banner) return;
+      const queueCount = getOfflineQueue().length;
+
+      if (!navigator.onLine) {
+        banner.textContent = "You're offline. New sales are saved locally and will sync when you're back online.";
+        banner.classList.add('active');
+      } else if (queueCount > 0) {
+        banner.textContent = `Syncing ${queueCount} offline sale(s)...`;
+        banner.classList.add('active');
+      } else {
+        banner.classList.remove('active');
+      }
+    }
+
+    function initOfflineQueue() {
+      updateOfflineBanner();
+      window.addEventListener('online', () => {
+        updateOfflineBanner();
+        flushOfflineQueue();
+      });
+      window.addEventListener('offline', updateOfflineBanner);
     }
 
     function saveSale() {
@@ -631,8 +1963,14 @@
         return;
       }
 
+      const warning = getUnusualEntryWarning({ quantity, floorPrice, saleDate });
+      if (warning && !confirm(warning + '\n\nSave anyway?')) {
+        return;
+      }
+
       const existingSale = allSales.find(sale => String(sale.id) === String(editingSaleId));
       const saleId = editingSaleId || String(Date.now());
+      const isNewSale = !editingSaleId;
       const saleData = {
         id: saleId,
         customerName,
@@ -644,17 +1982,23 @@
         timestamp: new Date(saleDate + 'T00:00:00').getTime(),
         enteredBy: existingSale?.enteredBy || currentUser,
         updatedBy: editingSaleId ? currentUser : '',
-        updatedAt: editingSaleId ? Date.now() : ''
+        updatedAt: editingSaleId ? Date.now() : '',
+        receiptNo: existingSale?.receiptNo || generateReceiptNumber()
       };
 
-      db.ref('sales/' + saleId).set(saleData, (error) => {
-        if (error) {
-          alert('Error saving sale: ' + error);
-          return;
-        }
-
+      saveSaleRecord(saleData, () => {
         clearSaleForm();
+        if (isNewSale) {
+          showReceipt(saleData);
+        }
       });
+    }
+
+    function generateReceiptNumber() {
+      const nextNumber = (parseInt(localStorage.getItem(STORAGE_KEYS.receiptCounter) || '0', 10) || 0) + 1;
+      localStorage.setItem(STORAGE_KEYS.receiptCounter, String(nextNumber));
+      const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      return `SB-${datePart}-${String(nextNumber).padStart(4, '0')}`;
     }
 
     function clearSaleForm() {
@@ -695,21 +2039,54 @@
     function deleteSale(id) {
       if (!db) return;
       if (confirm('Delete this sale?')) {
+        const sale = allSales.find(item => String(item.id) === String(id));
+        pendingDelete = sale ? { ...sale } : null;
         db.ref('sales/' + id).remove();
+        showUndoToast(sale);
         if (String(editingSaleId) === String(id)) {
           clearSaleForm();
         }
       }
     }
 
+    function showUndoToast(sale) {
+      const toast = document.getElementById('undoToast');
+      const message = document.getElementById('undoMessage');
+      if (!toast || !message || !sale) return;
+
+      message.textContent = `${sale.customerName || 'Sale'} deleted.`;
+      toast.classList.add('active');
+      clearTimeout(undoTimer);
+      undoTimer = setTimeout(() => {
+        toast.classList.remove('active');
+        pendingDelete = null;
+      }, 8000);
+    }
+
+    function undoDelete() {
+      if (!db || !pendingDelete) return;
+      const saleToRestore = { ...pendingDelete };
+      db.ref('sales/' + saleToRestore.id).set(saleToRestore, (error) => {
+        if (error) {
+          alert('Could not restore sale: ' + error);
+          return;
+        }
+
+        pendingDelete = null;
+        clearTimeout(undoTimer);
+        document.getElementById('undoToast').classList.remove('active');
+      });
+    }
+
     function exportSales() {
-      if (!allSales.length) {
+      const exportRows = getFilteredSales();
+      if (!exportRows.length) {
         alert('No sales to export yet.');
         return;
       }
 
       const headers = ['Date', 'Customer Name', 'Product', 'Quantity', 'Floor Price RM', 'Amount RM', 'Entered By', 'Updated By'];
-      const rows = allSales.map(sale => [
+      const rows = exportRows.map(sale => [
         sale.date || '',
         sale.customerName || '',
         sale.product || '',
@@ -727,7 +2104,7 @@
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = `studybite-sales-${new Date().toISOString().slice(0, 10)}.csv`;
+      link.download = `studybite-sales-filtered-${new Date().toISOString().slice(0, 10)}.csv`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -737,17 +2114,147 @@
     function render() {
       const now = new Date();
       const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
-      const monthlySales = allSales.filter(sale => String(sale.date || '').startsWith(currentMonth));
+      visibleSales = getFilteredSales();
+      const monthlySales = visibleSales.filter(sale => String(sale.date || '').startsWith(currentMonth));
       const monthlyTotal = roundMoney(monthlySales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
-      const totalRevenue = roundMoney(allSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const totalRevenue = roundMoney(visibleSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const monthlyQuantity = monthlySales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+      const totalQuantity = visibleSales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
 
       document.getElementById('monthlyRevenue').textContent = formatCurrency(monthlyTotal);
-      document.getElementById('monthlySalesCount').textContent = monthlySales.length;
+      document.getElementById('monthlySalesCount').textContent = monthlyQuantity;
       document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
-      document.getElementById('totalSalesCount').textContent = allSales.length;
+      document.getElementById('totalSalesCount').textContent = totalQuantity;
 
+      renderProductQuantities();
+      renderWeeklySummary();
       renderMonthlyChart();
       renderSalesTable();
+      renderGoals();
+      renderQuickEntryButtons();
+    }
+
+    function renderGoals() {
+      const todayKey = new Date().toISOString().slice(0, 10);
+      const now = new Date();
+      const currentMonthKey = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+
+      const todayRevenue = roundMoney(allSales
+        .filter(sale => String(sale.date || '') === todayKey)
+        .reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+
+      const monthRevenue = roundMoney(allSales
+        .filter(sale => String(sale.date || '').startsWith(currentMonthKey))
+        .reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+
+      const dailyTarget = Number(localStorage.getItem(STORAGE_KEYS.dailyTarget) || 0);
+      const monthlyTarget = Number(localStorage.getItem(STORAGE_KEYS.monthlyTarget) || 0);
+
+      document.getElementById('dailyGoalText').textContent = `${formatCurrency(todayRevenue)} / ${formatCurrency(dailyTarget)}`;
+      document.getElementById('monthlyGoalText').textContent = `${formatCurrency(monthRevenue)} / ${formatCurrency(monthlyTarget)}`;
+
+      const dailyPct = dailyTarget > 0 ? Math.min(100, (todayRevenue / dailyTarget) * 100) : 0;
+      const monthlyPct = monthlyTarget > 0 ? Math.min(100, (monthRevenue / monthlyTarget) * 100) : 0;
+
+      document.getElementById('dailyGoalBar').style.width = dailyPct + '%';
+      document.getElementById('monthlyGoalBar').style.width = monthlyPct + '%';
+    }
+
+    function loadTargets() {
+      const dailyTargetInput = document.getElementById('dailyTargetInput');
+      const monthlyTargetInput = document.getElementById('monthlyTargetInput');
+      dailyTargetInput.value = localStorage.getItem(STORAGE_KEYS.dailyTarget) || '';
+      monthlyTargetInput.value = localStorage.getItem(STORAGE_KEYS.monthlyTarget) || '';
+    }
+
+    function saveTargets() {
+      const dailyTarget = parseFloat(document.getElementById('dailyTargetInput').value) || 0;
+      const monthlyTarget = parseFloat(document.getElementById('monthlyTargetInput').value) || 0;
+      localStorage.setItem(STORAGE_KEYS.dailyTarget, String(dailyTarget));
+      localStorage.setItem(STORAGE_KEYS.monthlyTarget, String(monthlyTarget));
+      renderGoals();
+    }
+
+    function renderProductQuantities() {
+      const target = document.getElementById('productQuantityList');
+      const productMap = {};
+
+      visibleSales.forEach((sale) => {
+        const product = sale.product || 'Unknown product';
+        productMap[product] = (productMap[product] || 0) + Number(sale.quantity || 0);
+      });
+
+      const products = Object.entries(productMap).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+      if (!products.length) {
+        target.innerHTML = '<div class="text-sm font-bold text-gray-500">No sales yet</div>';
+        return;
+      }
+
+      target.innerHTML = products.map(([product, quantity]) => `
+        <div class="product-quantity-row">
+          <span class="product-quantity-name">${escapeHTML(product)}</span>
+          <span class="product-quantity-value">${quantity}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderWeeklySummary() {
+      const weekRange = getSelectedWeekRange();
+      const weekSales = visibleSales.filter((sale) => saleIsInRange(sale, weekRange.start, weekRange.end));
+      const weekRevenue = roundMoney(weekSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const weekQuantity = weekSales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+      const productMap = {};
+
+      weekSales.forEach((sale) => {
+        const product = sale.product || 'Unknown product';
+        productMap[product] = (productMap[product] || 0) + Number(sale.quantity || 0);
+      });
+
+      const bestProduct = Object.entries(productMap).sort((a, b) => b[1] - a[1])[0];
+      document.getElementById('weeklyRevenue').textContent = formatCurrency(weekRevenue);
+      document.getElementById('weeklyQuantity').textContent = weekQuantity;
+      document.getElementById('bestProduct').textContent = bestProduct ? `${bestProduct[0]} (${bestProduct[1]})` : 'None';
+    }
+
+    function buildStaffSummary(sales) {
+      const staffMap = {};
+
+      sales.forEach((sale) => {
+        const staff = sale.enteredBy || 'Unknown';
+        if (!staffMap[staff]) {
+          staffMap[staff] = { sales: 0, quantity: 0, revenue: 0 };
+        }
+        staffMap[staff].sales += 1;
+        staffMap[staff].quantity += Number(sale.quantity || 0);
+        staffMap[staff].revenue += Number(sale.amount || 0);
+      });
+
+      return Object.entries(staffMap)
+        .map(([staff, data]) => ({ staff, ...data, revenue: roundMoney(data.revenue) }))
+        .sort((a, b) => b.revenue - a.revenue);
+    }
+
+    function getFilteredSales() {
+      const search = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+      const { start, end } = getActiveDateRange();
+
+      return allSales.filter((sale) => {
+        const matchesSearch = !search || [
+          sale.customerName,
+          sale.product,
+          sale.enteredBy,
+          sale.updatedBy
+        ].some(value => String(value || '').toLowerCase().includes(search));
+
+        return matchesSearch && saleIsInRange(sale, start, end);
+      });
+    }
+
+    function saleIsInRange(sale, start, end) {
+      const saleDate = parseSaleDate(sale.date);
+      if (start && saleDate < start) return false;
+      if (end && saleDate > end) return false;
+      return true;
     }
 
     function renderMonthlyChart() {
@@ -820,68 +2327,216 @@
 
     function renderSalesTable() {
       const target = document.getElementById('salesTableWrap');
-      if (!allSales.length) {
-        target.innerHTML = '<div class="empty-state">No sales yet. Record your first one above.</div>';
+      if (!visibleSales.length) {
+        target.innerHTML = '<div class="empty-state">No sales match the current filters.</div>';
         return;
       }
 
-      target.innerHTML = `
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Customer</th>
-              <th>Product</th>
-              <th>Qty</th>
-              <th>Floor Price</th>
-              <th>Amount</th>
-              <th>Entered By</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${allSales.map(sale => `
-              <tr>
-                <td>${formatDate(sale.date)}</td>
-                <td class="font-bold text-gray-950">${escapeHTML(sale.customerName || '')}</td>
-                <td>${escapeHTML(sale.product || '')}</td>
-                <td>${Number(sale.quantity || 0)}</td>
-                <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
-                <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
-                <td>${escapeHTML(sale.enteredBy || '')}</td>
-                <td>
-                  <div class="flex gap-2 mobile-actions">
-                    <button class="btn btn-secondary" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
-                    <button class="btn btn-danger" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
-                  </div>
-                </td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      `;
+      target.innerHTML = groupSalesByWeek(visibleSales).map((week) => {
+        const totalQuantity = week.sales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+        const totalRevenue = week.sales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0);
+
+        return `
+          <section class="week-folder" id="week-${escapeAttr(week.key)}">
+            <div class="week-folder-tab">
+              <button class="folder-toggle" onclick="toggleWeekFolder('${escapeAttr(week.key)}')" type="button">
+                <span class="folder-chevron">›</span>
+                <span class="folder-icon">▰</span>
+                <span class="week-folder-title">${escapeHTML(week.label)}</span>
+              </button>
+              <div class="week-folder-stats">
+                <span>${week.sales.length} sale${week.sales.length === 1 ? '' : 's'}</span>
+                <span>${totalQuantity} item${totalQuantity === 1 ? '' : 's'}</span>
+                <span>${formatCurrency(totalRevenue)}</span>
+              </div>
+            </div>
+            <div class="week-folder-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Floor Price</th>
+                    <th>Amount</th>
+                    <th>Entered By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${week.sales.map(sale => `
+                    <tr>
+                      <td>${formatDate(sale.date)}</td>
+                      <td class="font-bold text-gray-950">${escapeHTML(sale.customerName || '')}</td>
+                      <td>${escapeHTML(sale.product || '')}</td>
+                      <td>${Number(sale.quantity || 0)}</td>
+                      <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
+                      <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
+                      <td>${escapeHTML(sale.enteredBy || '')}</td>
+                      <td>
+                        <div class="flex gap-2 mobile-actions">
+                          <button class="btn btn-secondary" onclick="printSaleReceipt('${escapeAttr(sale.id)}')">Receipt</button>
+                          <button class="btn btn-secondary" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
+                          <button class="btn btn-danger" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        `;
+      }).join('');
+    }
+
+    function toggleWeekFolder(key) {
+      document.getElementById('week-' + key)?.classList.toggle('collapsed');
+    }
+
+    function handleFilterChange() {
+      if (monthChart) {
+        monthChart.destroy();
+        monthChart = null;
+      }
+      render();
+    }
+
+    function handleDateFilterChange() {
+      const isCustom = document.getElementById('dateFilter').value === 'custom';
+      document.getElementById('filterStartDate').disabled = !isCustom;
+      document.getElementById('filterEndDate').disabled = !isCustom;
+      render();
+    }
+
+    function handleCustomDateChange() {
+      document.getElementById('dateFilter').value = 'custom';
+      handleDateFilterChange();
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('dateFilter').value = 'all';
+      document.getElementById('filterStartDate').value = '';
+      document.getElementById('filterEndDate').value = '';
+      handleDateFilterChange();
+    }
+
+    function getActiveDateRange() {
+      const mode = document.getElementById('dateFilter')?.value || 'all';
+      const today = new Date();
+
+      if (mode === 'thisWeek') {
+        const start = getWeekStart(today);
+        const end = new Date(start);
+        end.setDate(start.getDate() + 6);
+        return { start, end };
+      }
+
+      if (mode === 'lastWeek') {
+        const start = getWeekStart(today);
+        start.setDate(start.getDate() - 7);
+        const end = new Date(start);
+        end.setDate(start.getDate() + 6);
+        return { start, end };
+      }
+
+      if (mode === 'thisMonth') {
+        const start = new Date(today.getFullYear(), today.getMonth(), 1);
+        const end = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        return { start, end };
+      }
+
+      if (mode === 'custom') {
+        const startValue = document.getElementById('filterStartDate')?.value;
+        const endValue = document.getElementById('filterEndDate')?.value;
+        return {
+          start: startValue ? parseSaleDate(startValue) : null,
+          end: endValue ? parseSaleDate(endValue) : null
+        };
+      }
+
+      return { start: null, end: null };
+    }
+
+    function getSelectedWeekRange() {
+      const { start, end } = getActiveDateRange();
+      const baseDate = start || new Date();
+      const weekStart = getWeekStart(baseDate);
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekStart.getDate() + 6);
+      return { start: weekStart, end: end && end < weekEnd ? end : weekEnd };
+    }
+
+    function groupSalesByWeek(sales) {
+      const weekMap = new Map();
+
+      sales.forEach((sale) => {
+        const saleDate = parseSaleDate(sale.date);
+        const weekStart = getWeekStart(saleDate);
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekStart.getDate() + 6);
+        const key = weekStart.toISOString().slice(0, 10);
+
+        if (!weekMap.has(key)) {
+          weekMap.set(key, {
+            key,
+            start: weekStart,
+            end: weekEnd,
+            label: `${formatDateKey(weekStart)} - ${formatDateKey(weekEnd)}`,
+            sales: []
+          });
+        }
+
+        weekMap.get(key).sales.push(sale);
+      });
+
+      return Array.from(weekMap.values())
+        .sort((a, b) => b.start - a.start)
+        .map((week) => ({
+          ...week,
+          sales: week.sales.sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0))
+        }));
     }
 
     function buildMonthlyData() {
       const months = [];
+      const chartEndDate = getChartEndDate();
       for (let i = 11; i >= 0; i--) {
-        const d = new Date();
-        d.setDate(1);
-        d.setMonth(d.getMonth() - i);
+        const d = new Date(chartEndDate);
+        d.setMonth(chartEndDate.getMonth() - i);
         const key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
         months.push({
           key,
-          label: new Intl.DateTimeFormat('en', { month: 'short' }).format(d),
+          label: new Intl.DateTimeFormat('en', { month: 'short', year: '2-digit' }).format(d),
           total: 0
         });
       }
 
       return months.map(month => {
-        const total = allSales
+        const total = visibleSales
           .filter(sale => String(sale.date || '').startsWith(month.key))
           .reduce((sum, sale) => sum + Number(sale.amount || 0), 0);
         return { ...month, total: roundMoney(total) };
       });
+    }
+
+    function getChartEndDate() {
+      const today = new Date();
+      const endDate = new Date(today.getFullYear(), today.getMonth(), 1);
+
+      visibleSales.forEach((sale) => {
+        if (!sale.date) return;
+        const saleDate = new Date(sale.date + 'T00:00:00');
+        if (Number.isNaN(saleDate.getTime())) return;
+        const saleMonth = new Date(saleDate.getFullYear(), saleDate.getMonth(), 1);
+        if (saleMonth > endDate) {
+          endDate.setFullYear(saleMonth.getFullYear(), saleMonth.getMonth(), 1);
+        }
+      });
+
+      return endDate;
     }
 
     function roundMoney(value) {
@@ -894,11 +2549,31 @@
 
     function formatDate(value) {
       if (!value) return '';
-      return new Date(value + 'T00:00:00').toLocaleDateString('en-MY', {
+      return parseSaleDate(value).toLocaleDateString('en-MY', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
       });
+    }
+
+    function formatDateKey(date) {
+      return date.toLocaleDateString('en-MY', {
+        month: 'short',
+        day: 'numeric'
+      });
+    }
+
+    function parseSaleDate(value) {
+      const parsed = new Date((value || new Date().toISOString().slice(0, 10)) + 'T00:00:00');
+      return Number.isNaN(parsed.getTime()) ? new Date() : parsed;
+    }
+
+    function getWeekStart(date) {
+      const start = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      const day = start.getDay();
+      const diff = day === 0 ? -6 : 1 - day;
+      start.setDate(start.getDate() + diff);
+      return start;
     }
 
     function csvEscape(value) {
