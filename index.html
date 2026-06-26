@@ -1881,33 +1881,36 @@
       // receipt renders before capture, even on short mobile viewports.
       const prevMaxHeight = cardEl.style.maxHeight;
       const prevOverflowY = cardEl.style.overflowY;
+      const prevPosition = receiptEl.style.position;
       cardEl.style.maxHeight = 'none';
       cardEl.style.overflowY = 'visible';
+      receiptEl.style.position = 'static';
 
-      const fullHeight = Math.max(receiptEl.scrollHeight, receiptEl.offsetHeight);
-      const fullWidth = Math.max(receiptEl.scrollWidth, receiptEl.offsetWidth);
+      // Force a reflow so scrollHeight reflects the un-clamped layout
+      // before html2canvas measures the element.
+      void cardEl.offsetHeight;
 
-      html2canvas(receiptEl, {
-        backgroundColor: '#ffffff',
-        scale: 2,
-        height: fullHeight,
-        width: fullWidth,
-        windowHeight: fullHeight,
-        windowWidth: fullWidth,
-        scrollX: 0,
-        scrollY: 0
-      }).then((canvas) => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = `receipt-${sale.receiptNo || sale.id}.png`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }).catch(() => {
-        downloadReceiptAsText(sale);
-      }).finally(() => {
-        cardEl.style.maxHeight = prevMaxHeight;
-        cardEl.style.overflowY = prevOverflowY;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          html2canvas(receiptEl, {
+            backgroundColor: '#ffffff',
+            scale: 2,
+            useCORS: true
+          }).then((canvas) => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = `receipt-${sale.receiptNo || sale.id}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }).catch(() => {
+            downloadReceiptAsText(sale);
+          }).finally(() => {
+            cardEl.style.maxHeight = prevMaxHeight;
+            cardEl.style.overflowY = prevOverflowY;
+            receiptEl.style.position = prevPosition;
+          });
+        });
       });
     }
 
