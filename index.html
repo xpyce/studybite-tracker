@@ -196,6 +196,27 @@
 
     .table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x pan-y;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      position: relative;
+    }
+
+    .table-wrap::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .table-wrap::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 720px) {
+      .table-wrap {
+        border-radius: 8px;
+        box-shadow: inset -8px 0 8px -8px rgba(15, 23, 42, 0.15);
+      }
     }
 
     table {
@@ -2856,40 +2877,42 @@
               </div>
             </div>
             <div class="week-folder-body">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Customer</th>
-                    <th>Product</th>
-                    <th>Qty</th>
-                    <th>Floor Price</th>
-                    <th>Amount</th>
-                    <th>Entered By</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${week.sales.map(sale => `
+              <div class="table-wrap">
+                <table>
+                  <thead>
                     <tr>
-                      <td>${formatDate(sale.date)}</td>
-                      <td class="font-bold text-gray-950">${escapeHTML(sale.customerName || '')}</td>
-                      <td>${escapeHTML(sale.product || '')}</td>
-                      <td>${Number(sale.quantity || 0)}</td>
-                      <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
-                      <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
-                      <td>${escapeHTML(sale.enteredBy || '')}</td>
-                      <td>
-                        <div class="flex gap-2 mobile-actions">
-                          <button class="btn btn-secondary" onclick="printSaleReceipt('${escapeAttr(sale.id)}')">Receipt</button>
-                          <button class="btn btn-secondary admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
-                          <button class="btn btn-danger admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
-                        </div>
-                      </td>
+                      <th>Date</th>
+                      <th>Customer</th>
+                      <th>Product</th>
+                      <th>Qty</th>
+                      <th>Floor Price</th>
+                      <th>Amount</th>
+                      <th>Entered By</th>
+                      <th>Actions</th>
                     </tr>
-                  `).join('')}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    ${week.sales.map(sale => `
+                      <tr>
+                        <td>${formatDate(sale.date)}</td>
+                        <td class="font-bold text-gray-950">${escapeHTML(sale.customerName || '')}</td>
+                        <td>${escapeHTML(sale.product || '')}</td>
+                        <td>${Number(sale.quantity || 0)}</td>
+                        <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
+                        <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
+                        <td>${escapeHTML(sale.enteredBy || '')}</td>
+                        <td>
+                          <div class="flex gap-2 mobile-actions">
+                            <button class="btn btn-secondary" onclick="printSaleReceipt('${escapeAttr(sale.id)}')">Receipt</button>
+                            <button class="btn btn-secondary admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
+                            <button class="btn btn-danger admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
+                          </div>
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
         `;
