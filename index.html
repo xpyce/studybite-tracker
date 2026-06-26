@@ -1283,6 +1283,18 @@
       'eyadhaleef1@gmail.com'
     ];
 
+    // Display names shown instead of raw emails throughout the app and on receipts.
+    const STAFF_DISPLAY_NAMES = {
+      'kayodeprince27@gmail.com': 'Kayode',
+      'eyadhaleef1@gmail.com': 'Eyad'
+    };
+
+    function getDisplayName(email) {
+      if (!email) return '';
+      const key = email.toLowerCase();
+      return STAFF_DISPLAY_NAMES[key] || email;
+    }
+
     const DEFAULT_PRODUCT_PRICES = {
       'Chicken Pie': 2.50
     };
@@ -1489,7 +1501,7 @@
         if (user) {
           currentUser = user.email;
           isCurrentUserAdmin = ADMIN_EMAILS.map(e => e.toLowerCase()).includes((user.email || '').toLowerCase());
-          document.getElementById('userBadge').textContent = `Logged in as ${currentUser}${isCurrentUserAdmin ? ' (Admin)' : ''}`;
+          document.getElementById('userBadge').textContent = `Logged in as ${getDisplayName(currentUser)}${isCurrentUserAdmin ? ' (Admin)' : ''}`;
           document.getElementById('logoutBtn').classList.remove('hidden');
           document.getElementById('loginSection').classList.add('hidden');
           document.getElementById('setupSection').classList.add('hidden');
@@ -1826,7 +1838,7 @@
         <div class="receipt-meta-row"><span class="receipt-meta-label">Receipt No.</span><span>${escapeHTML(receiptNo)}</span></div>
         <div class="receipt-meta-row"><span class="receipt-meta-label">Date</span><span>${formatDate(sale.date)}</span></div>
         <div class="receipt-meta-row"><span class="receipt-meta-label">Customer</span><span>${escapeHTML(sale.customerName || '')}</span></div>
-        <div class="receipt-meta-row"><span class="receipt-meta-label">Served by</span><span>${escapeHTML(sale.enteredBy || '')}</span></div>
+        <div class="receipt-meta-row"><span class="receipt-meta-label">Served by</span><span>${escapeHTML(getDisplayName(sale.enteredBy) || '')}</span></div>
         <div class="receipt-divider"></div>
         <div class="receipt-line-item">
           <div class="receipt-line-top">
@@ -1858,15 +1870,32 @@
       if (!currentReceiptSale) return;
       const sale = currentReceiptSale;
       const receiptEl = document.getElementById('receiptContent');
+      const cardEl = document.getElementById('receiptCard');
 
       if (!window.html2canvas) {
         downloadReceiptAsText(sale);
         return;
       }
 
+      // Temporarily lift the card's scroll/height clipping so the full
+      // receipt renders before capture, even on short mobile viewports.
+      const prevMaxHeight = cardEl.style.maxHeight;
+      const prevOverflowY = cardEl.style.overflowY;
+      cardEl.style.maxHeight = 'none';
+      cardEl.style.overflowY = 'visible';
+
+      const fullHeight = Math.max(receiptEl.scrollHeight, receiptEl.offsetHeight);
+      const fullWidth = Math.max(receiptEl.scrollWidth, receiptEl.offsetWidth);
+
       html2canvas(receiptEl, {
         backgroundColor: '#ffffff',
-        scale: 2
+        scale: 2,
+        height: fullHeight,
+        width: fullWidth,
+        windowHeight: fullHeight,
+        windowWidth: fullWidth,
+        scrollX: 0,
+        scrollY: 0
       }).then((canvas) => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
@@ -1876,6 +1905,9 @@
         document.body.removeChild(link);
       }).catch(() => {
         downloadReceiptAsText(sale);
+      }).finally(() => {
+        cardEl.style.maxHeight = prevMaxHeight;
+        cardEl.style.overflowY = prevOverflowY;
       });
     }
 
@@ -1886,7 +1918,7 @@
         `Receipt No.: ${sale.receiptNo || ''}`,
         `Date: ${formatDate(sale.date)}`,
         `Customer: ${sale.customerName || ''}`,
-        `Served by: ${sale.enteredBy || ''}`,
+        `Served by: ${getDisplayName(sale.enteredBy) || ''}`,
         '----------------------------',
         `${sale.product || ''}`,
         `${Number(sale.quantity || 0)} x ${formatCurrency(Number(sale.floorPrice || 0))} = ${formatCurrency(Number(sale.amount || 0))}`,
@@ -2497,8 +2529,8 @@
         sale.quantity || 0,
         Number(sale.floorPrice || 0).toFixed(2),
         Number(sale.amount || 0).toFixed(2),
-        sale.enteredBy || '',
-        sale.updatedBy || ''
+        getDisplayName(sale.enteredBy) || '',
+        getDisplayName(sale.updatedBy) || ''
       ]);
 
       const csv = [headers, ...rows]
@@ -2661,7 +2693,7 @@
       const staffMap = {};
 
       sales.forEach((sale) => {
-        const staff = sale.enteredBy || 'Unknown';
+        const staff = getDisplayName(sale.enteredBy) || 'Unknown';
         if (!staffMap[staff]) {
           staffMap[staff] = { sales: 0, quantity: 0, revenue: 0 };
         }
@@ -2900,7 +2932,7 @@
                         <td>${Number(sale.quantity || 0)}</td>
                         <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
                         <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
-                        <td>${escapeHTML(sale.enteredBy || '')}</td>
+                        <td>${escapeHTML(getDisplayName(sale.enteredBy) || '')}</td>
                         <td>
                           <div class="flex gap-2 mobile-actions">
                             <button class="btn btn-secondary" onclick="printSaleReceipt('${escapeAttr(sale.id)}')">Receipt</button>
