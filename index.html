@@ -1244,40 +1244,6 @@
         </div>
       </section>
 
-      <section class="card mb-6 p-5">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Filters</h2>
-            <p class="text-sm text-gray-500">Search, filter, and export only the records you are viewing.</p>
-          </div>
-          <button class="btn btn-secondary" onclick="resetFilters()" type="button">Reset filters</button>
-        </div>
-        <div class="filter-grid">
-          <div>
-            <label class="label" for="searchInput">Search</label>
-            <input class="field" type="search" id="searchInput" placeholder="Customer, product, or staff name" oninput="handleFilterChange()">
-          </div>
-          <div>
-            <label class="label" for="dateFilter">Date range</label>
-            <select class="field" id="dateFilter" onchange="handleDateFilterChange()">
-              <option value="all">All dates</option>
-              <option value="thisWeek">This week</option>
-              <option value="lastWeek">Last week</option>
-              <option value="thisMonth">This month</option>
-              <option value="custom">Custom dates</option>
-            </select>
-          </div>
-          <div>
-            <label class="label" for="filterStartDate">Start date</label>
-            <input class="field" type="date" id="filterStartDate" onchange="handleCustomDateChange()">
-          </div>
-          <div>
-            <label class="label" for="filterEndDate">End date</label>
-            <input class="field" type="date" id="filterEndDate" onchange="handleCustomDateChange()">
-          </div>
-        </div>
-      </section>
-
       <section class="card overflow-hidden">
         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 p-5">
           <div>
@@ -1285,6 +1251,36 @@
             <p class="text-sm text-gray-500">Real-time records from Firebase.</p>
           </div>
           <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+        </div>
+        <div class="p-5 border-b border-gray-200">
+          <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <h3 class="text-sm font-black tracking-normal text-gray-950">Filters</h3>
+            <button class="btn btn-secondary" onclick="resetFilters()" type="button">Reset filters</button>
+          </div>
+          <div class="filter-grid">
+            <div>
+              <label class="label" for="searchInput">Search</label>
+              <input class="field" type="search" id="searchInput" placeholder="Customer, product, or staff name" oninput="handleFilterChange()">
+            </div>
+            <div>
+              <label class="label" for="dateFilter">Date range</label>
+              <select class="field" id="dateFilter" onchange="handleDateFilterChange()">
+                <option value="all">All dates</option>
+                <option value="thisWeek">This week</option>
+                <option value="lastWeek">Last week</option>
+                <option value="thisMonth">This month</option>
+                <option value="custom">Custom dates</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="filterStartDate">Start date</label>
+              <input class="field" type="date" id="filterStartDate" onchange="handleCustomDateChange()">
+            </div>
+            <div>
+              <label class="label" for="filterEndDate">End date</label>
+              <input class="field" type="date" id="filterEndDate" onchange="handleCustomDateChange()">
+            </div>
+          </div>
         </div>
         <div class="table-wrap" id="salesTableWrap">
           <div class="empty-state">No sales yet. Record your first one above.</div>
