@@ -507,6 +507,50 @@
       }
     }
 
+    .mobile-tabs {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      padding: 4px;
+      position: sticky;
+      top: 8px;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+    .mobile-tab-btn {
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer;
+      flex: 1;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 10px 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mobile-tab-btn:hover {
+      background: var(--soft);
+    }
+
+    .mobile-tab-btn.active {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
     .receipt-overlay {
       align-items: center;
       background: rgba(15, 23, 42, 0.55);
@@ -955,6 +999,83 @@
     </section>
 
     <section id="trackerSection" class="tracker-section">
+
+      <div class="mobile-tabs" id="mobileTabs">
+        <button class="mobile-tab-btn active" data-tab="sell" onclick="switchTab('sell')" type="button">Sell</button>
+        <button class="mobile-tab-btn" data-tab="dashboard" onclick="switchTab('dashboard')" type="button">Dashboard</button>
+        <button class="mobile-tab-btn" data-tab="records" onclick="switchTab('records')" type="button">Records</button>
+        <button class="mobile-tab-btn" data-tab="manage" onclick="switchTab('manage')" type="button">Manage</button>
+      </div>
+      <div class="tab-panel active" data-tab-panel="sell">
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Quick entry mode</h2>
+            <p class="text-sm text-gray-500">Fast one-tap sale entry for busy counter moments. Works well on mobile.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="toggleQuickEntry()" type="button" id="quickEntryToggleBtn">Enable quick entry</button>
+        </div>
+        <div id="quickEntryPanel" class="hidden">
+          <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
+            <div>
+              <label class="label" for="quickCustomer">Customer name</label>
+              <input class="field" type="text" id="quickCustomer" placeholder="e.g., John Doe">
+            </div>
+            <div>
+              <label class="label" for="quickQuantity">Quantity</label>
+              <input class="field" type="number" id="quickQuantity" placeholder="1" step="1" min="1" value="1">
+            </div>
+          </div>
+          <div class="quick-entry-grid" id="quickEntryButtons"></div>
+        </div>
+      </section>
+
+      
+      <section class="card p-5">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black tracking-normal text-gray-950" id="formTitle">Record a sale</h2>
+              <p class="text-sm text-gray-500">Amount is calculated from quantity and floor price.</p>
+            </div>
+            <button class="btn btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Cancel edit</button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mobile-stack">
+            <div>
+              <label class="label" for="customerName">Customer name</label>
+              <input class="field" type="text" id="customerName" placeholder="e.g., John Doe">
+            </div>
+            <div>
+              <label class="label" for="product">Product or course</label>
+              <select class="field" id="product" onchange="toggleOtherProduct()"></select>
+            </div>
+            <div class="hidden col-span-2" id="customProductWrap">
+              <label class="label" for="customProduct">Custom product</label>
+              <input class="field" type="text" id="customProduct" placeholder="Enter product or course name">
+            </div>
+            <div>
+              <label class="label" for="quantity">Quantity</label>
+              <input class="field" type="number" id="quantity" placeholder="0" step="1" min="0" oninput="calculateAmount()">
+            </div>
+            <div>
+              <label class="label" for="floorPrice">Floor price (RM)</label>
+              <input class="field" type="number" id="floorPrice" placeholder="0.00" step="0.01" min="0" oninput="calculateAmount()">
+            </div>
+            <div>
+              <label class="label" for="amount">Total amount (RM)</label>
+              <input class="field" type="number" id="amount" placeholder="0.00" step="0.01" min="0" readonly>
+            </div>
+            <div>
+              <label class="label" for="saleDate">Date</label>
+              <input class="field" type="date" id="saleDate">
+            </div>
+          </div>
+
+          <button class="btn btn-primary mt-5 w-full" id="saveSaleBtn" onclick="saveSale()">Save sale</button>
+        </section>
+
+      </div>
+      <div class="tab-panel" data-tab-panel="dashboard">
       <div class="mb-6 grid grid-cols-5 gap-4 mobile-stack">
         <article class="card p-5">
           <p class="text-sm font-bold text-gray-500">This month revenue</p>
@@ -980,6 +1101,7 @@
         </article>
       </div>
 
+      
       <section class="card mb-6 p-5">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -1003,6 +1125,41 @@
         </div>
       </section>
 
+      
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales goals</h2>
+            <p class="text-sm text-gray-500">Set targets and track progress for today and this month.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
+          <div>
+            <label class="label" for="dailyTargetInput">Today's target (RM)</label>
+            <input class="field" type="number" id="dailyTargetInput" placeholder="e.g., 200" step="1" min="0" onchange="saveTargets()">
+          </div>
+          <div>
+            <label class="label" for="monthlyTargetInput">This month's target (RM)</label>
+            <input class="field" type="number" id="monthlyTargetInput" placeholder="e.g., 5000" step="1" min="0" onchange="saveTargets()">
+          </div>
+        </div>
+        <div class="goal-block">
+          <div class="goal-row">
+            <span class="goal-label">Today</span>
+            <span class="goal-value" id="dailyGoalText">RM 0.00 / RM 0.00</span>
+          </div>
+          <div class="goal-bar"><div class="goal-bar-fill" id="dailyGoalBar" style="width:0%"></div></div>
+        </div>
+        <div class="goal-block">
+          <div class="goal-row">
+            <span class="goal-label">This month</span>
+            <span class="goal-value" id="monthlyGoalText">RM 0.00 / RM 0.00</span>
+          </div>
+          <div class="goal-bar"><div class="goal-bar-fill" id="monthlyGoalBar" style="width:0%"></div></div>
+        </div>
+      </section>
+
+      
       <section class="card mb-6 p-5">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -1022,29 +1179,29 @@
         </div>
       </section>
 
+      
       <section class="card mb-6 p-5">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Quick entry mode</h2>
-            <p class="text-sm text-gray-500">Fast one-tap sale entry for busy counter moments. Works well on mobile.</p>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales trend</h2>
+            <p class="text-sm text-gray-500" id="chartSubtitle">Revenue by month across the latest 12 months.</p>
           </div>
-          <button class="btn btn-secondary" onclick="toggleQuickEntry()" type="button" id="quickEntryToggleBtn">Enable quick entry</button>
+          <div class="flex flex-wrap gap-2 mobile-actions">
+            <button class="btn btn-secondary" onclick="setChartView('daily')" id="chartViewDailyBtn" type="button">Daily</button>
+            <button class="btn btn-secondary" onclick="setChartView('weekly')" id="chartViewWeeklyBtn" type="button">Weekly</button>
+            <button class="btn btn-secondary" onclick="setChartView('monthly')" id="chartViewMonthlyBtn" type="button">Monthly</button>
+            <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+          </div>
         </div>
-        <div id="quickEntryPanel" class="hidden">
-          <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
-            <div>
-              <label class="label" for="quickCustomer">Customer name</label>
-              <input class="field" type="text" id="quickCustomer" placeholder="e.g., John Doe">
-            </div>
-            <div>
-              <label class="label" for="quickQuantity">Quantity</label>
-              <input class="field" type="number" id="quickQuantity" placeholder="1" step="1" min="1" value="1">
-            </div>
-          </div>
-          <div class="quick-entry-grid" id="quickEntryButtons"></div>
+        <div class="h-72">
+          <canvas id="monthChart" aria-label="Sales trend chart"></canvas>
+          <div class="empty-state hidden" id="chartFallback">Chart.js could not load. Your data is still available in the table.</div>
         </div>
       </section>
 
+      
+      </div>
+      <div class="tab-panel" data-tab-panel="records">
       <section class="card mb-6 p-5">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -1055,6 +1212,7 @@
         </div>
       </section>
 
+      
       <section class="card mb-6 p-5">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -1069,6 +1227,72 @@
           <button class="btn btn-secondary admin-only hidden" onclick="document.getElementById('restoreFileInput').click()" type="button">Restore JSON</button>
           <input type="file" id="restoreFileInput" accept="application/json" class="hidden" onchange="restoreData(event)">
         </div>
+      </section>
+
+      
+      <section class="card overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 p-5">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">All sales</h2>
+            <p class="text-sm text-gray-500">Real-time records from Firebase.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+        </div>
+        <div class="p-5 border-b border-gray-200">
+          <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <h3 class="text-sm font-black tracking-normal text-gray-950">Filters</h3>
+            <button class="btn btn-secondary" onclick="resetFilters()" type="button">Reset filters</button>
+          </div>
+          <div class="filter-grid">
+            <div>
+              <label class="label" for="searchInput">Search</label>
+              <input class="field" type="search" id="searchInput" placeholder="Customer, product, or staff name" oninput="handleFilterChange()">
+            </div>
+            <div>
+              <label class="label" for="dateFilter">Date range</label>
+              <select class="field" id="dateFilter" onchange="handleDateFilterChange()">
+                <option value="all">All dates</option>
+                <option value="thisWeek">This week</option>
+                <option value="lastWeek">Last week</option>
+                <option value="thisMonth">This month</option>
+                <option value="custom">Custom dates</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="filterStartDate">Start date</label>
+              <input class="field" type="date" id="filterStartDate" onchange="handleCustomDateChange()">
+            </div>
+            <div>
+              <label class="label" for="filterEndDate">End date</label>
+              <input class="field" type="date" id="filterEndDate" onchange="handleCustomDateChange()">
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap" id="salesTableWrap">
+          <div class="empty-state">No sales yet. Record your first one above.</div>
+        </div>
+      </section>
+      </div>
+      <div class="tab-panel" data-tab-panel="manage">
+      <section class="card mb-6 p-5">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Products &amp; pricing</h2>
+            <p class="text-sm text-gray-500">Manage product names and auto-fill prices. Saved on this browser.</p>
+          </div>
+        </div>
+        <div class="product-manager-list" id="productManagerList"></div>
+        <div class="grid grid-cols-2 gap-4 mobile-stack mt-4">
+          <div>
+            <label class="label" for="newProductName">Product name</label>
+            <input class="field" type="text" id="newProductName" placeholder="e.g., Iced Lemon Tea">
+          </div>
+          <div>
+            <label class="label" for="newProductPrice">Price (RM)</label>
+            <input class="field" type="number" id="newProductPrice" placeholder="0.00" step="0.01" min="0">
+          </div>
+        </div>
+        <button class="btn btn-secondary mt-4" onclick="addProductPrice()" type="button">Add product</button>
       </section>
 
       <section class="card mb-6 p-5">
@@ -1117,166 +1341,8 @@
         </div>
       </section>
 
-      <section class="card mb-6 p-5">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales goals</h2>
-            <p class="text-sm text-gray-500">Set targets and track progress for today and this month.</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
-          <div>
-            <label class="label" for="dailyTargetInput">Today's target (RM)</label>
-            <input class="field" type="number" id="dailyTargetInput" placeholder="e.g., 200" step="1" min="0" onchange="saveTargets()">
-          </div>
-          <div>
-            <label class="label" for="monthlyTargetInput">This month's target (RM)</label>
-            <input class="field" type="number" id="monthlyTargetInput" placeholder="e.g., 5000" step="1" min="0" onchange="saveTargets()">
-          </div>
-        </div>
-        <div class="goal-block">
-          <div class="goal-row">
-            <span class="goal-label">Today</span>
-            <span class="goal-value" id="dailyGoalText">RM 0.00 / RM 0.00</span>
-          </div>
-          <div class="goal-bar"><div class="goal-bar-fill" id="dailyGoalBar" style="width:0%"></div></div>
-        </div>
-        <div class="goal-block">
-          <div class="goal-row">
-            <span class="goal-label">This month</span>
-            <span class="goal-value" id="monthlyGoalText">RM 0.00 / RM 0.00</span>
-          </div>
-          <div class="goal-bar"><div class="goal-bar-fill" id="monthlyGoalBar" style="width:0%"></div></div>
-        </div>
-      </section>
-
-      <section class="card mb-6 p-5">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Products &amp; pricing</h2>
-            <p class="text-sm text-gray-500">Manage product names and auto-fill prices. Saved on this browser.</p>
-          </div>
-        </div>
-        <div class="product-manager-list" id="productManagerList"></div>
-        <div class="grid grid-cols-2 gap-4 mobile-stack mt-4">
-          <div>
-            <label class="label" for="newProductName">Product name</label>
-            <input class="field" type="text" id="newProductName" placeholder="e.g., Iced Lemon Tea">
-          </div>
-          <div>
-            <label class="label" for="newProductPrice">Price (RM)</label>
-            <input class="field" type="number" id="newProductPrice" placeholder="0.00" step="0.01" min="0">
-          </div>
-        </div>
-        <button class="btn btn-secondary mt-4" onclick="addProductPrice()" type="button">Add product</button>
-      </section>
-
-      <div class="mb-6">
-        <section class="card p-5">
-          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h2 class="text-xl font-black tracking-normal text-gray-950" id="formTitle">Record a sale</h2>
-              <p class="text-sm text-gray-500">Amount is calculated from quantity and floor price.</p>
-            </div>
-            <button class="btn btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Cancel edit</button>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4 mobile-stack">
-            <div>
-              <label class="label" for="customerName">Customer name</label>
-              <input class="field" type="text" id="customerName" placeholder="e.g., John Doe">
-            </div>
-            <div>
-              <label class="label" for="product">Product or course</label>
-              <select class="field" id="product" onchange="toggleOtherProduct()"></select>
-            </div>
-            <div class="hidden col-span-2" id="customProductWrap">
-              <label class="label" for="customProduct">Custom product</label>
-              <input class="field" type="text" id="customProduct" placeholder="Enter product or course name">
-            </div>
-            <div>
-              <label class="label" for="quantity">Quantity</label>
-              <input class="field" type="number" id="quantity" placeholder="0" step="1" min="0" oninput="calculateAmount()">
-            </div>
-            <div>
-              <label class="label" for="floorPrice">Floor price (RM)</label>
-              <input class="field" type="number" id="floorPrice" placeholder="0.00" step="0.01" min="0" oninput="calculateAmount()">
-            </div>
-            <div>
-              <label class="label" for="amount">Total amount (RM)</label>
-              <input class="field" type="number" id="amount" placeholder="0.00" step="0.01" min="0" readonly>
-            </div>
-            <div>
-              <label class="label" for="saleDate">Date</label>
-              <input class="field" type="date" id="saleDate">
-            </div>
-          </div>
-
-          <button class="btn btn-primary mt-5 w-full" id="saveSaleBtn" onclick="saveSale()">Save sale</button>
-        </section>
       </div>
 
-      <section class="card mb-6 p-5">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales trend</h2>
-            <p class="text-sm text-gray-500" id="chartSubtitle">Revenue by month across the latest 12 months.</p>
-          </div>
-          <div class="flex flex-wrap gap-2 mobile-actions">
-            <button class="btn btn-secondary" onclick="setChartView('daily')" id="chartViewDailyBtn" type="button">Daily</button>
-            <button class="btn btn-secondary" onclick="setChartView('weekly')" id="chartViewWeeklyBtn" type="button">Weekly</button>
-            <button class="btn btn-secondary" onclick="setChartView('monthly')" id="chartViewMonthlyBtn" type="button">Monthly</button>
-            <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
-          </div>
-        </div>
-        <div class="h-72">
-          <canvas id="monthChart" aria-label="Sales trend chart"></canvas>
-          <div class="empty-state hidden" id="chartFallback">Chart.js could not load. Your data is still available in the table.</div>
-        </div>
-      </section>
-
-      <section class="card overflow-hidden">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 p-5">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">All sales</h2>
-            <p class="text-sm text-gray-500">Real-time records from Firebase.</p>
-          </div>
-          <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
-        </div>
-        <div class="p-5 border-b border-gray-200">
-          <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
-            <h3 class="text-sm font-black tracking-normal text-gray-950">Filters</h3>
-            <button class="btn btn-secondary" onclick="resetFilters()" type="button">Reset filters</button>
-          </div>
-          <div class="filter-grid">
-            <div>
-              <label class="label" for="searchInput">Search</label>
-              <input class="field" type="search" id="searchInput" placeholder="Customer, product, or staff name" oninput="handleFilterChange()">
-            </div>
-            <div>
-              <label class="label" for="dateFilter">Date range</label>
-              <select class="field" id="dateFilter" onchange="handleDateFilterChange()">
-                <option value="all">All dates</option>
-                <option value="thisWeek">This week</option>
-                <option value="lastWeek">Last week</option>
-                <option value="thisMonth">This month</option>
-                <option value="custom">Custom dates</option>
-              </select>
-            </div>
-            <div>
-              <label class="label" for="filterStartDate">Start date</label>
-              <input class="field" type="date" id="filterStartDate" onchange="handleCustomDateChange()">
-            </div>
-            <div>
-              <label class="label" for="filterEndDate">End date</label>
-              <input class="field" type="date" id="filterEndDate" onchange="handleCustomDateChange()">
-            </div>
-          </div>
-        </div>
-        <div class="table-wrap" id="salesTableWrap">
-          <div class="empty-state">No sales yet. Record your first one above.</div>
-        </div>
-      </section>
     </section>
     <div class="undo-toast" id="undoToast">
       <span id="undoMessage">Sale deleted.</span>
@@ -1324,7 +1390,8 @@
       offlineExpenseQueue: 'studybite.offlineExpenseQueue',
       dailyTarget: 'studybite.dailyTarget',
       monthlyTarget: 'studybite.monthlyTarget',
-      chartView: 'studybite.chartView'
+      chartView: 'studybite.chartView',
+      activeTab: 'studybite.activeTab'
     };
 
     // Only these emails can edit/delete sales, restore backups, or manage products.
@@ -1387,6 +1454,33 @@
         monthChart = null;
         renderMonthlyChart();
       }
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-panel').forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.tabPanel === tabName);
+      });
+      document.querySelectorAll('.mobile-tab-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+      localStorage.setItem(STORAGE_KEYS.activeTab, tabName);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Charts can't be measured correctly while their canvas was hidden
+      // (display:none) during creation, so force a clean rebuild whenever
+      // the dashboard tab becomes visible.
+      if (tabName === 'dashboard') {
+        if (monthChart) {
+          monthChart.destroy();
+          monthChart = null;
+        }
+        renderMonthlyChart();
+      }
+    }
+
+    function restoreActiveTab() {
+      const saved = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
+      switchTab(saved);
     }
 
     function updateThemeButton() {
@@ -1556,6 +1650,7 @@
           document.getElementById('loginSection').classList.add('hidden');
           document.getElementById('setupSection').classList.add('hidden');
           document.getElementById('trackerSection').classList.add('active');
+          restoreActiveTab();
           applyAdminVisibility();
           setTodayDate();
           listenForSales();
