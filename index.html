@@ -540,11 +540,15 @@
       font-size: 13px;
       font-weight: 800;
       padding: 10px 8px;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
     }
 
     .mobile-tab-btn:hover {
       background: var(--soft);
+    }
+
+    .mobile-tab-btn:active {
+      transform: scale(0.96);
     }
 
     .mobile-tab-btn.active {
@@ -554,10 +558,33 @@
 
     .tab-panel {
       display: none;
+      opacity: 0;
+      transform: translateY(6px);
     }
 
     .tab-panel.active {
       display: block;
+      animation: tabFadeIn 0.22s ease forwards;
+    }
+
+    @keyframes tabFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tab-panel.active {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
     }
 
     .receipt-overlay {
@@ -2020,7 +2047,17 @@
     let currentReceiptSale = null;
 
 
+    function closeAllModals() {
+      const receiptOverlay = document.getElementById('receiptOverlay');
+      const reportOverlay = document.getElementById('reportOverlay');
+      const exportByDateOverlay = document.getElementById('exportByDateOverlay');
+      if (receiptOverlay) receiptOverlay.classList.remove('active');
+      if (reportOverlay) reportOverlay.classList.remove('active');
+      if (exportByDateOverlay) exportByDateOverlay.classList.remove('active');
+    }
+
     function showReceipt(sale) {
+      closeAllModals();
       const content = document.getElementById('receiptContent');
       const receiptNo = sale.receiptNo || generateReceiptNumber();
       currentReceiptSale = { ...sale, receiptNo };
@@ -2232,6 +2269,7 @@
     }
 
     function showDailyClosingReport() {
+      closeAllModals();
       const todayKey = new Date().toISOString().slice(0, 10);
       const todaySales = allSales.filter(sale => String(sale.date || '') === todayKey);
       const totalRevenue = roundMoney(todaySales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
@@ -2277,6 +2315,7 @@
     }
 
     function showPrintableReport(period) {
+      closeAllModals();
       const today = new Date();
       let start, end, title;
 
@@ -2795,6 +2834,7 @@
     }
 
     function openExportByDateModal() {
+      closeAllModals();
       const startInput = document.getElementById('exportStartDate');
       const endInput = document.getElementById('exportEndDate');
       if (!startInput.value || !endInput.value) {
