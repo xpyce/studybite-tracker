@@ -892,6 +892,27 @@
       padding: 7px 10px;
     }
 
+    .receipt-actions .icon-btn {
+      align-items: center;
+      border-radius: 10px;
+      display: inline-flex;
+      flex: 0 0 auto;
+      height: 38px;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0;
+      width: 42px;
+    }
+
+    .receipt-actions .icon-btn svg {
+      height: 19px;
+      width: 19px;
+    }
+
+    .receipt-actions .icon-btn[aria-label="Close"] {
+      margin-right: auto;
+    }
+
     .receipt-body {
       padding: 8px 24px 26px;
     }
@@ -2919,10 +2940,11 @@
 
     .home-hero {
       background:
-        radial-gradient(circle at 26% 42%, rgba(226, 123, 57, 0.20), transparent 22%),
-        linear-gradient(90deg, rgba(31, 12, 5, 0.60), rgba(49, 20, 8, 0.93) 54%, rgba(49, 20, 8, 0.99)),
+        radial-gradient(circle at 27% 52%, rgba(255, 180, 91, 0.20), transparent 24%),
+        radial-gradient(circle at 69% 47%, rgba(255, 107, 44, 0.10), transparent 26%),
+        linear-gradient(90deg, rgba(20, 8, 3, 0.22), rgba(39, 15, 5, 0.76) 43%, rgba(10, 4, 1, 0.98) 100%),
         url("studybite-cafe-bg.jpg") left center / cover no-repeat,
-        #351708;
+        #1a0802;
       border: 1px solid rgba(205, 129, 73, 0.24);
       border-radius: 0;
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
@@ -2945,7 +2967,7 @@
     }
 
     .home-hero::after {
-      color: rgba(255, 243, 223, 0.035);
+      color: rgba(255, 243, 223, 0.045);
       content: "StudyBite";
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(90px, 18vw, 220px);
@@ -2953,9 +2975,9 @@
       font-weight: 900;
       line-height: 0.82;
       position: absolute;
-      right: 5vw;
+      right: 4vw;
       top: 18vh;
-      transform: rotate(-3deg);
+      transform: rotate(-4deg);
       white-space: nowrap;
       z-index: 0;
     }
@@ -2971,16 +2993,20 @@
 
     .home-mark {
       align-items: center;
-      border: 1px solid rgba(255, 243, 223, 0.42);
+      background: rgba(20, 8, 3, 0.40);
+      border: 1px solid rgba(255, 243, 223, 0.18);
       border-radius: 999px;
-      color: #fff3df;
       display: inline-flex;
-      font-size: 13px;
-      font-weight: 950;
-      height: 44px;
+      height: 54px;
       justify-content: center;
-      letter-spacing: 0;
-      width: 44px;
+      width: 54px;
+    }
+
+    .home-mark img {
+      display: block;
+      height: 42px;
+      object-fit: contain;
+      width: 42px;
     }
 
     .home-nav-links {
@@ -3060,14 +3086,27 @@
     }
 
     .home-cup-image {
-      background: url("studybite-cafe-bg.jpg") center center / cover no-repeat;
-      border: 10px solid rgba(255, 243, 223, 0.10);
+      align-items: center;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255, 107, 44, 0.25), transparent 26%),
+        radial-gradient(circle, rgba(52, 24, 12, 0.80), rgba(17, 7, 3, 0.92) 62%, rgba(255, 243, 223, 0.10) 63%, rgba(17, 7, 3, 0.78) 68%);
+      border: 10px solid rgba(255, 243, 223, 0.08);
       border-radius: 50%;
       box-shadow: 0 34px 80px rgba(0, 0, 0, 0.46), inset 0 0 0 1px rgba(255, 243, 223, 0.18);
+      display: flex;
       height: clamp(240px, 35vw, 430px);
+      justify-content: center;
       position: relative;
       width: clamp(240px, 35vw, 430px);
       z-index: 1;
+    }
+
+    .home-cup-image img {
+      display: block;
+      filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.42));
+      height: 64%;
+      object-fit: contain;
+      width: 64%;
     }
 
     .home-kicker {
@@ -3177,8 +3216,11 @@
       background: rgba(255, 243, 223, 0.10);
       border: 1px solid transparent;
       color: #fff3df;
-      height: 32px;
-      width: 32px;
+      height: 52px;
+      line-height: 1.05;
+      padding: 0 8px;
+      text-align: center;
+      width: 58px;
     }
 
     .home-dock-btn.active,
@@ -3232,6 +3274,147 @@
       color: #f4dec0;
       font-size: 13px;
       font-weight: 800;
+    }
+
+    /* Clean StudyBite hero: full image, no boxed panel or logo circle */
+    body.home-mode {
+      background: #130704 !important;
+    }
+
+    body.home-mode .app-shell {
+      max-width: none;
+      padding: 0;
+    }
+
+    .home-page {
+      min-height: 100vh;
+    }
+
+    .home-hero {
+      background:
+        linear-gradient(90deg, rgba(13, 5, 2, 0.08) 0%, rgba(25, 9, 3, 0.18) 36%, rgba(7, 3, 1, 0.82) 63%, rgba(6, 2, 1, 0.96) 100%),
+        url("studybite-cafe-bg.jpg") left center / cover no-repeat,
+        #160703;
+      border: 0;
+      box-shadow: none;
+      min-height: 100vh;
+      padding: clamp(28px, 4vw, 56px);
+    }
+
+    .home-hero::before {
+      background: linear-gradient(90deg, #6f391e, #c87232, #6f391e);
+      height: 6px;
+    }
+
+    .home-hero::after {
+      color: rgba(255, 243, 223, 0.035);
+      content: "StudyBite";
+      font-size: clamp(80px, 13vw, 190px);
+      right: 6vw;
+      top: 22vh;
+      transform: rotate(-2deg);
+    }
+
+    .home-layout {
+      grid-template-columns: minmax(360px, 1.05fr) minmax(420px, 0.95fr);
+      min-height: calc(100vh - 150px);
+    }
+
+    .home-visual,
+    .home-round-stack,
+    .home-stat-row {
+      display: none;
+    }
+
+    .home-content {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      max-width: 680px;
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .home-brand-logo {
+      display: block;
+      filter: drop-shadow(0 28px 36px rgba(0, 0, 0, 0.38));
+      height: clamp(130px, 18vw, 230px);
+      margin-bottom: 18px;
+      object-fit: contain;
+      width: clamp(130px, 18vw, 230px);
+    }
+
+    .home-brand-title {
+      color: #fff7ec;
+      font-size: clamp(54px, 7vw, 108px);
+      font-weight: 950;
+      letter-spacing: 0;
+      line-height: 0.9;
+      margin: 0;
+      text-shadow: 0 22px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .home-brand-title span {
+      color: #ff6b2c;
+    }
+
+    .home-brand-tagline {
+      align-items: center;
+      color: #fff3df;
+      display: flex;
+      gap: 16px;
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin-top: 16px;
+      text-transform: uppercase;
+    }
+
+    .home-brand-tagline::before,
+    .home-brand-tagline::after {
+      background: #ff7a2f;
+      content: "";
+      height: 2px;
+      width: 54px;
+    }
+
+    .home-personal {
+      color: #ffb13d;
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: 0.22em;
+      margin: 0 0 22px;
+      text-transform: uppercase;
+    }
+
+    .home-title {
+      display: none;
+    }
+
+    .home-copy {
+      color: rgba(255, 243, 223, 0.86);
+      font-size: clamp(15px, 1.35vw, 19px);
+      font-weight: 750;
+      line-height: 1.55;
+      margin-top: 24px;
+      max-width: 560px;
+    }
+
+    .home-side-dock {
+      background: rgba(124, 67, 31, 0.82);
+      bottom: 50%;
+      left: clamp(24px, 4vw, 64px);
+      transform: translateY(50%);
+    }
+
+    .home-discover {
+      right: clamp(36px, 5vw, 72px);
+    }
+
+    .home-discover button {
+      text-transform: uppercase;
     }
 
     @media (max-width: 720px) {
@@ -3290,41 +3473,1219 @@
         grid-template-columns: 1fr;
       }
     }
+
+    @media (max-width: 720px) {
+      body:not(.home-mode) header {
+        position: static !important;
+        top: auto !important;
+        z-index: 1 !important;
+      }
+
+      body:not(.home-mode) .header-actions,
+      body:not(.home-mode) .system-status,
+      body:not(.home-mode) #userBadge {
+        position: static !important;
+      }
+    }
+
+    /* Final home direction: recreate the supplied style in HTML/CSS. */
+    body.home-mode,
+    body.home-mode.dark-mode {
+      background: #140704 !important;
+    }
+
+    body.home-mode .app-shell {
+      max-width: none !important;
+      padding: 0 !important;
+      width: 100%;
+    }
+
+    body.home-mode .offline-banner {
+      display: none !important;
+    }
+
+    body.home-mode .home-page {
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    body.home-mode .home-hero {
+      background:
+        radial-gradient(circle at 28% 44%, rgba(255, 126, 39, 0.2), transparent 28%),
+        radial-gradient(circle at 76% 52%, rgba(255, 177, 61, 0.12), transparent 34%),
+        linear-gradient(90deg, rgba(10, 3, 1, 0.16) 0%, rgba(18, 7, 2, 0.7) 47%, rgba(6, 2, 1, 0.94) 100%),
+        url("studybite-cafe-bg.jpg") left center / cover no-repeat,
+        #140704 !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      cursor: pointer;
+      min-height: 100vh;
+      padding: clamp(22px, 4vw, 52px) !important;
+    }
+
+    .home-welcome-card {
+      background: transparent;
+      border: 0;
+      bottom: clamp(88px, 12vh, 140px);
+      box-shadow: none;
+      color: #fff3df;
+      min-width: 0;
+      padding: 0;
+      position: absolute;
+      right: clamp(38px, 6vw, 92px);
+      text-align: right;
+      z-index: 5;
+    }
+
+    .home-welcome-kicker {
+      color: #ffb13d;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.22em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .home-welcome-title {
+      color: #fff7ec;
+      font-size: clamp(30px, 4vw, 56px);
+      font-weight: 950;
+      letter-spacing: 0;
+      line-height: 1;
+      margin: 0;
+      text-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+    }
+
+    .home-welcome-name {
+      color: #ff7a2f;
+      display: inline-block;
+    }
+
+    .home-welcome-note {
+      color: rgba(255, 243, 223, 0.74);
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    body.home-mode .home-hero::before {
+      display: none !important;
+    }
+
+    body.home-mode .home-hero::after {
+      color: rgba(255, 243, 223, 0.035);
+      content: "StudyBite";
+      display: block !important;
+      font-size: clamp(72px, 13vw, 190px);
+      right: 6vw;
+      top: 20vh;
+      transform: rotate(-2deg);
+      z-index: 0;
+    }
+
+    body.home-mode .home-nav,
+    body.home-mode .home-side-dock,
+    body.home-mode .home-layout,
+    body.home-mode .home-round-stack,
+    body.home-mode .home-discover {
+      display: flex !important;
+    }
+
+    body.home-mode .home-nav {
+      display: grid !important;
+    }
+
+    body.home-mode .home-layout {
+      display: grid !important;
+    }
+
+    body.home-mode .home-visual,
+    body.home-mode .home-stat-row,
+    body.home-mode .home-title,
+    body.home-mode .home-copy {
+      display: none !important;
+    }
+
+    body.home-mode .home-content {
+      justify-self: end;
+      max-width: 660px;
+      padding: clamp(18px, 3vw, 34px);
+      text-align: left;
+    }
+
+    body.home-mode .home-brand-logo {
+      display: block;
+      height: clamp(116px, 14vw, 190px);
+      margin: 0 0 18px;
+      width: auto;
+      filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.45));
+    }
+
+    body.home-mode .home-brand-title {
+      display: block;
+      color: #fff6ea;
+      font-size: clamp(30px, 5.5vw, 78px);
+      font-weight: 950;
+      letter-spacing: 0;
+      line-height: 0.92;
+      margin: 0;
+      text-shadow: 0 14px 34px rgba(0, 0, 0, 0.44);
+    }
+
+    body.home-mode .home-brand-tagline {
+      display: flex;
+      align-items: center;
+      color: #ffe1bd;
+      font-size: clamp(13px, 1.3vw, 18px);
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+
+    body.home-mode .home-personal:not(.hidden) {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: clamp(22px, 3vw, 38px);
+    }
+
+    body.home-mode .home-personal .home-welcome-word {
+      color: #ffb35f;
+      font-size: clamp(13px, 1.2vw, 18px);
+      font-weight: 950;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    body.home-mode .home-personal .home-welcome-name {
+      color: #fff3df;
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(64px, 10vw, 150px);
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 0.86;
+      text-shadow: 0 12px 0 rgba(48, 17, 4, 0.55), 0 28px 42px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 720px) {
+      body.home-mode .home-hero {
+        background-position: center center !important;
+      }
+
+      .home-welcome-card {
+        bottom: 22px;
+        left: 18px;
+        right: 18px;
+        text-align: left;
+      }
+    }
+
+    /* Restore the previous circle welcome screen. */
+    body.home-mode .home-hero::before {
+      display: block !important;
+    }
+
+    body.home-mode .home-layout {
+      align-items: center;
+      display: grid !important;
+      gap: clamp(26px, 5vw, 66px);
+      grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1fr);
+      min-height: calc(100vh - 150px);
+    }
+
+    body.home-mode .home-visual {
+      display: flex !important;
+    }
+
+    body.home-mode .home-title,
+    body.home-mode .home-copy {
+      display: block !important;
+    }
+
+    body.home-mode .home-stat-row {
+      display: grid !important;
+    }
+
+    body.home-mode .home-brand-logo,
+    body.home-mode .home-brand-title,
+    body.home-mode .home-brand-tagline,
+    body.home-mode .home-personal {
+      display: none !important;
+    }
+
+    body.home-mode .home-content {
+      align-items: flex-start;
+      display: block;
+      justify-self: start;
+      max-width: 720px;
+      padding: 0;
+      text-align: left;
+    }
+
+    body.home-mode .home-title-main {
+      color: #ff6b2c !important;
+      opacity: 1 !important;
+      text-shadow: 0 8px 0 rgba(58, 18, 4, 0.72), 0 18px 38px rgba(255, 107, 44, 0.28);
+    }
+
+    body.home-mode .home-discover {
+      display: none !important;
+    }
+
+    @media (max-width: 720px) {
+      body.home-mode .home-layout {
+        gap: 10px;
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 24px;
+      }
+
+      body.home-mode .home-visual {
+        min-height: 260px;
+      }
+
+      body.home-mode .home-content {
+        max-width: none;
+      }
+
+      body.home-mode .home-side-dock {
+        bottom: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        left: 16px !important;
+        padding: 8px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+
+      body.home-mode .home-dock-btn {
+        height: 52px !important;
+        width: 56px !important;
+      }
+    }
+
+    /* Final coffee-cup theme polish across the full app. */
+    body:not(.home-mode):not(.dark-mode) {
+      --ink: #27120a;
+      --muted: #765241;
+      --line: rgba(92, 49, 27, 0.22);
+      --panel: rgba(255, 248, 238, 0.88);
+      --field: rgba(255, 252, 247, 0.95);
+      --soft: rgba(255, 238, 218, 0.82);
+      --brand: #ff6b2c;
+      --brand2: #b85a24;
+      --gradient: linear-gradient(135deg, #ff8a2a 0%, #ff6b2c 48%, #8b3f1f 100%);
+      background:
+        linear-gradient(90deg, rgba(255, 246, 235, 0.88), rgba(255, 242, 224, 0.78)),
+        url("studybite-cafe-bg.jpg") center center / cover fixed no-repeat !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode).dark-mode {
+      --ink: #fff4e6;
+      --muted: #d8b99c;
+      --line: rgba(255, 154, 84, 0.26);
+      --panel: rgba(21, 10, 5, 0.82);
+      --field: rgba(18, 9, 5, 0.92);
+      --soft: rgba(69, 31, 14, 0.72);
+      --brand: #ff8a2a;
+      --brand2: #ff5b2f;
+      --gradient: linear-gradient(135deg, #ff9f43 0%, #ff6b2c 52%, #c24b20 100%);
+      background:
+        linear-gradient(90deg, rgba(8, 3, 1, 0.92), rgba(18, 8, 4, 0.86)),
+        url("studybite-cafe-bg.jpg") center center / cover fixed no-repeat !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) header,
+    body:not(.home-mode) .card,
+    body:not(.home-mode) .receipt-card,
+    body:not(.home-mode) .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), transparent 36%),
+        var(--panel) !important;
+      border-color: var(--line) !important;
+      box-shadow: 0 22px 56px rgba(41, 17, 7, 0.20) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) h1,
+    body:not(.home-mode) h2,
+    body:not(.home-mode) h3,
+    body:not(.home-mode) h4,
+    body:not(.home-mode) .text-gray-950,
+    body:not(.home-mode) .text-gray-900,
+    body:not(.home-mode) .text-gray-800,
+    body:not(.home-mode) .font-black,
+    body:not(.home-mode) .font-bold,
+    body:not(.home-mode) td {
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .text-gray-600,
+    body:not(.home-mode) .text-gray-500,
+    body:not(.home-mode) .text-gray-400,
+    body:not(.home-mode) .empty-state,
+    body:not(.home-mode) .staff-rights-meta {
+      color: var(--muted) !important;
+    }
+
+    body:not(.home-mode) .label,
+    body:not(.home-mode) th,
+    body:not(.home-mode) .text-orange-600,
+    body:not(.home-mode) .text-orange-700,
+    body:not(.home-mode) .text-orange-800 {
+      color: var(--brand) !important;
+    }
+
+    body:not(.home-mode) .field,
+    body:not(.home-mode) input,
+    body:not(.home-mode) select,
+    body:not(.home-mode) textarea {
+      background: var(--field) !important;
+      border-color: var(--line) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .field::placeholder,
+    body:not(.home-mode) input::placeholder,
+    body:not(.home-mode) textarea::placeholder {
+      color: color-mix(in srgb, var(--muted) 72%, transparent) !important;
+    }
+
+    body:not(.home-mode) .btn-primary {
+      background: var(--gradient) !important;
+      border-color: rgba(255, 138, 42, 0.44) !important;
+      box-shadow: 0 14px 30px rgba(255, 107, 44, 0.24);
+      color: #fff !important;
+    }
+
+    body:not(.home-mode) .btn-primary * {
+      color: #fff !important;
+    }
+
+    body:not(.home-mode) .btn-secondary,
+    body:not(.home-mode) .sidebar-open-btn {
+      background: var(--soft) !important;
+      border-color: var(--line) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .btn-danger {
+      background: rgba(255, 238, 230, 0.9) !important;
+      border-color: rgba(230, 57, 70, 0.35) !important;
+      color: #9f241d !important;
+    }
+
+    body:not(.home-mode) .bg-white,
+    body:not(.home-mode) .bg-gray-50,
+    body:not(.home-mode) .bg-orange-50,
+    body:not(.home-mode) .report-summary-card,
+    body:not(.home-mode) .receipt-line-item,
+    body:not(.home-mode) .weekly-strip article,
+    body:not(.home-mode) .product-manager-row,
+    body:not(.home-mode) .week-folder,
+    body:not(.home-mode) .control-toggle,
+    body:not(.home-mode) .staff-rights-row {
+      background: color-mix(in srgb, var(--panel) 82%, transparent) !important;
+      border-color: var(--line) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) #userBadge,
+    body:not(.home-mode) .system-status,
+    body:not(.home-mode) .rank-pill,
+    body:not(.home-mode) .product-quantity-value,
+    body:not(.home-mode) .quick-entry-btn,
+    body:not(.home-mode) .role-pill {
+      background: rgba(255, 107, 44, 0.14) !important;
+      border-color: rgba(255, 138, 42, 0.34) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 138, 42, 0.13), transparent 38%),
+        var(--panel) !important;
+      border-color: var(--line) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.24), transparent 34%),
+        linear-gradient(105deg, #6d625c 0%, #3f332e 50%, #181312 100%) !important;
+      border-color: rgba(255, 177, 61, 0.30) !important;
+      color: #fff8ef !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.42);
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.24), transparent 34%),
+        linear-gradient(105deg, #ffad70 0%, #ff6b2c 46%, #4a2116 100%) !important;
+      border-color: rgba(255, 177, 61, 0.72) !important;
+      color: #fff !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn *,
+    body:not(.home-mode) .mobile-tab-btn.active * {
+      color: inherit !important;
+    }
+
+    body:not(.home-mode) .status.success {
+      color: #166534 !important;
+    }
+
+    body:not(.home-mode).dark-mode .status.success {
+      color: #86efac !important;
+    }
+
+    body:not(.home-mode) .status.danger,
+    body:not(.home-mode) .status.error {
+      color: #991b1b !important;
+    }
+
+    body:not(.home-mode).dark-mode .status.danger,
+    body:not(.home-mode).dark-mode .status.error {
+      color: #fca5a5 !important;
+    }
+
+    @media (max-width: 720px) {
+      body:not(.home-mode):not(.dark-mode),
+      body:not(.home-mode).dark-mode {
+        background-attachment: scroll !important;
+        background-position: center top !important;
+      }
+
+      body:not(.home-mode) .app-shell {
+        padding: 14px;
+      }
+
+      body:not(.home-mode) header,
+      body:not(.home-mode) .card {
+        border-radius: 14px;
+      }
+    }
+
+    /* Final direction: black and orange StudyBite theme, no brown wash. */
+    body.home-mode,
+    body.home-mode.dark-mode,
+    body:not(.home-mode),
+    body:not(.home-mode):not(.dark-mode),
+    body:not(.home-mode).dark-mode {
+      --ink: #fff7ed;
+      --muted: #c7b7a7;
+      --line: rgba(255, 111, 32, 0.28);
+      --panel: rgba(8, 8, 8, 0.88);
+      --field: rgba(12, 12, 12, 0.94);
+      --soft: rgba(255, 111, 32, 0.12);
+      --brand: #ff6b2c;
+      --brand2: #ff9f43;
+      --brand-soft: rgba(255, 107, 44, 0.16);
+      --brand-line: rgba(255, 107, 44, 0.48);
+      --gradient: linear-gradient(135deg, #ff9f43 0%, #ff6b2c 46%, #e63946 100%);
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(5, 5, 5, 0.88)),
+        url("studybite-cafe-bg.jpg") center center / cover fixed no-repeat !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .app-shell {
+      background: transparent !important;
+    }
+
+    body:not(.home-mode) header,
+    body:not(.home-mode) .card,
+    body:not(.home-mode) .receipt-card,
+    body:not(.home-mode) .report-card,
+    body:not(.home-mode) .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.10), transparent 36%),
+        rgba(7, 7, 7, 0.88) !important;
+      border: 1px solid rgba(255, 107, 44, 0.30) !important;
+      box-shadow: 0 22px 52px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) h1,
+    body:not(.home-mode) h2,
+    body:not(.home-mode) h3,
+    body:not(.home-mode) h4,
+    body:not(.home-mode) p,
+    body:not(.home-mode) span,
+    body:not(.home-mode) td,
+    body:not(.home-mode) .text-gray-950,
+    body:not(.home-mode) .text-gray-900,
+    body:not(.home-mode) .text-gray-800,
+    body:not(.home-mode) .font-black,
+    body:not(.home-mode) .font-bold,
+    body:not(.home-mode) .staff-rights-name {
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode) .text-gray-600,
+    body:not(.home-mode) .text-gray-500,
+    body:not(.home-mode) .text-gray-400,
+    body:not(.home-mode) .empty-state,
+    body:not(.home-mode) .staff-rights-meta,
+    body:not(.home-mode) small {
+      color: var(--muted) !important;
+    }
+
+    body:not(.home-mode) .label,
+    body:not(.home-mode) th,
+    body:not(.home-mode) .text-orange-600,
+    body:not(.home-mode) .text-orange-700,
+    body:not(.home-mode) .text-orange-800,
+    body:not(.home-mode) .metric-value,
+    body:not(.home-mode) .product-manager-price,
+    body:not(.home-mode) .folder-icon {
+      color: var(--brand2) !important;
+    }
+
+    body:not(.home-mode) .field,
+    body:not(.home-mode) input,
+    body:not(.home-mode) select,
+    body:not(.home-mode) textarea {
+      background: rgba(3, 3, 3, 0.88) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode) .field:focus,
+    body:not(.home-mode) input:focus,
+    body:not(.home-mode) select:focus,
+    body:not(.home-mode) textarea:focus {
+      border-color: #ff9f43 !important;
+      box-shadow: 0 0 0 3px rgba(255, 107, 44, 0.24) !important;
+    }
+
+    body:not(.home-mode) .field::placeholder,
+    body:not(.home-mode) input::placeholder,
+    body:not(.home-mode) textarea::placeholder {
+      color: rgba(255, 247, 237, 0.50) !important;
+    }
+
+    body:not(.home-mode) .btn-primary {
+      background: var(--gradient) !important;
+      border-color: rgba(255, 159, 67, 0.62) !important;
+      color: #ffffff !important;
+      box-shadow: 0 14px 30px rgba(255, 107, 44, 0.28) !important;
+    }
+
+    body:not(.home-mode) .btn-secondary,
+    body:not(.home-mode) .sidebar-open-btn {
+      background: rgba(255, 107, 44, 0.11) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode) .btn-secondary:hover,
+    body:not(.home-mode) .sidebar-open-btn:hover {
+      background: rgba(255, 107, 44, 0.20) !important;
+      border-color: rgba(255, 159, 67, 0.62) !important;
+    }
+
+    body:not(.home-mode) .btn-danger {
+      background: rgba(230, 57, 70, 0.14) !important;
+      border-color: rgba(230, 57, 70, 0.42) !important;
+      color: #ffb4b4 !important;
+    }
+
+    body:not(.home-mode) .bg-white,
+    body:not(.home-mode) .bg-gray-50,
+    body:not(.home-mode) .bg-orange-50,
+    body:not(.home-mode) .report-summary-card,
+    body:not(.home-mode) .receipt-line-item,
+    body:not(.home-mode) .weekly-strip article,
+    body:not(.home-mode) .product-manager-row,
+    body:not(.home-mode) .week-folder,
+    body:not(.home-mode) .control-toggle,
+    body:not(.home-mode) .staff-rights-row,
+    body:not(.home-mode) .goal-bar,
+    body:not(.home-mode) .quick-entry-btn {
+      background: rgba(11, 11, 11, 0.82) !important;
+      border-color: rgba(255, 107, 44, 0.26) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode) #userBadge,
+    body:not(.home-mode) .system-status,
+    body:not(.home-mode) .rank-pill,
+    body:not(.home-mode) .product-quantity-value,
+    body:not(.home-mode) .role-pill {
+      background: rgba(255, 107, 44, 0.16) !important;
+      border-color: rgba(255, 107, 44, 0.38) !important;
+      color: #ffe2c7 !important;
+    }
+
+    body:not(.home-mode) th {
+      background: rgba(255, 107, 44, 0.13) !important;
+    }
+
+    body:not(.home-mode) td {
+      border-color: rgba(255, 107, 44, 0.16) !important;
+    }
+
+    body:not(.home-mode) tbody tr:hover {
+      background: rgba(255, 107, 44, 0.10) !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.16), transparent 32%),
+        linear-gradient(105deg, #171717 0%, #050505 58%, #000000 100%) !important;
+      border-color: rgba(255, 107, 44, 0.36) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 32%),
+        linear-gradient(105deg, #ff9f43 0%, #ff6b2c 48%, #141414 100%) !important;
+      border-color: rgba(255, 159, 67, 0.82) !important;
+      color: #ffffff !important;
+    }
+
+    body.home-mode .home-hero {
+      background:
+        radial-gradient(circle at 24% 44%, rgba(255, 107, 44, 0.20), transparent 28%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.66) 0%, rgba(0, 0, 0, 0.78) 48%, rgba(0, 0, 0, 0.94) 100%),
+        url("studybite-cafe-bg.jpg") left center / cover no-repeat,
+        #000000 !important;
+    }
+
+    body.home-mode .home-side-dock,
+    body.home-mode .home-mark,
+    body.home-mode .home-search,
+    body.home-mode .home-cart {
+      background: rgba(3, 3, 3, 0.74) !important;
+      border-color: rgba(255, 107, 44, 0.38) !important;
+    }
+
+    body.home-mode .home-side-dock {
+      bottom: clamp(18px, 4vh, 42px) !important;
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 8px !important;
+      left: 50% !important;
+      padding: 8px !important;
+      position: absolute !important;
+      top: auto !important;
+      transform: translateX(-50%) !important;
+      width: auto !important;
+      z-index: 8 !important;
+    }
+
+    body.home-mode .home-dock-btn {
+      background: rgba(255, 107, 44, 0.13) !important;
+      color: #fff7ed !important;
+      flex: 0 0 auto !important;
+      height: 52px !important;
+      width: 56px !important;
+    }
+
+    body.home-mode .home-dock-icon {
+      display: block;
+      height: 24px;
+      width: 24px;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.38));
+    }
+
+    body.home-mode .home-dock-btn.active,
+    body.home-mode .home-dock-btn:hover {
+      background: #ff6b2c !important;
+      color: #ffffff !important;
+    }
+
+    body.home-mode .home-title-main,
+    body.home-mode .home-kicker,
+    body.home-mode .home-stat strong {
+      color: #ff6b2c !important;
+    }
+
+    body.home-mode .home-user-name,
+    body.home-mode .home-copy,
+    body.home-mode .home-stat span,
+    body.home-mode .home-nav-link {
+      color: #fff7ed !important;
+    }
+
+    body.home-mode .home-stat {
+      background: rgba(3, 3, 3, 0.68) !important;
+      border-color: rgba(255, 107, 44, 0.32) !important;
+    }
+
+    body:not(.home-mode) .logo-badge {
+      background:
+        url("studybite-logo-hero.png") center center / 78% no-repeat,
+        radial-gradient(circle at 50% 35%, rgba(255, 107, 44, 0.34), transparent 58%),
+        linear-gradient(145deg, #19120e 0%, #050505 100%) !important;
+      border: 1px solid rgba(255, 107, 44, 0.58) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34), 0 0 22px rgba(255, 107, 44, 0.22) !important;
+      height: 64px !important;
+      overflow: hidden !important;
+      width: 64px !important;
+    }
+
+    body:not(.home-mode) .logo-badge img {
+      opacity: 0 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .logo-badge {
+      background: url("studybite-logo-light.png") center center / 92% no-repeat !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-badge {
+      background:
+        url("studybite-logo-hero.png") center center / 78% no-repeat,
+        radial-gradient(circle at 50% 35%, rgba(255, 107, 44, 0.34), transparent 58%),
+        linear-gradient(145deg, #19120e 0%, #050505 100%) !important;
+      border-color: rgba(255, 107, 44, 0.58) !important;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34), 0 0 22px rgba(255, 107, 44, 0.22) !important;
+    }
+
+    /* Final light/dark switch fix: light is bright, dark is black/orange. */
+    body:not(.home-mode):not(.dark-mode) {
+      --ink: #17110d;
+      --muted: #66574e;
+      --line: rgba(255, 107, 44, 0.24);
+      --panel: rgba(255, 255, 255, 0.94);
+      --field: #ffffff;
+      --soft: rgba(255, 107, 44, 0.08);
+      --brand: #ff6b2c;
+      --brand2: #e85d1f;
+      --gradient: linear-gradient(135deg, #ff8a2a 0%, #ff6b2c 55%, #e65b1f 100%);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.64)),
+        url("studybite-doodle-pattern.png") center top / 360px auto repeat fixed,
+        url("studybite-light-bg.jpg") center center / cover fixed no-repeat !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode).dark-mode {
+      --ink: #fff7ed;
+      --muted: #c7b7a7;
+      --line: rgba(255, 111, 32, 0.30);
+      --panel: rgba(8, 8, 8, 0.90);
+      --field: rgba(12, 12, 12, 0.94);
+      --soft: rgba(255, 111, 32, 0.12);
+      --brand: #ff6b2c;
+      --brand2: #ff9f43;
+      --gradient: linear-gradient(135deg, #ff9f43 0%, #ff6b2c 50%, #e63946 100%);
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.90), rgba(5, 5, 5, 0.84)),
+        url("studybite-doodle-pattern.png") center top / 360px auto repeat fixed,
+        url("studybite-cafe-bg.jpg") center center / cover fixed no-repeat !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) header,
+    body:not(.home-mode):not(.dark-mode) .card,
+    body:not(.home-mode):not(.dark-mode) .receipt-card,
+    body:not(.home-mode):not(.dark-mode) .report-card,
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer {
+      background: var(--panel) !important;
+      border-color: var(--line) !important;
+      box-shadow: 0 18px 42px rgba(17, 17, 17, 0.12) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode).dark-mode header,
+    body:not(.home-mode).dark-mode .card,
+    body:not(.home-mode).dark-mode .receipt-card,
+    body:not(.home-mode).dark-mode .report-card,
+    body:not(.home-mode).dark-mode .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.10), transparent 36%),
+        var(--panel) !important;
+      border-color: var(--line) !important;
+      box-shadow: 0 22px 52px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) h1,
+    body:not(.home-mode):not(.dark-mode) h2,
+    body:not(.home-mode):not(.dark-mode) h3,
+    body:not(.home-mode):not(.dark-mode) h4,
+    body:not(.home-mode):not(.dark-mode) p,
+    body:not(.home-mode):not(.dark-mode) span,
+    body:not(.home-mode):not(.dark-mode) td,
+    body:not(.home-mode):not(.dark-mode) .text-gray-950,
+    body:not(.home-mode):not(.dark-mode) .text-gray-900,
+    body:not(.home-mode):not(.dark-mode) .text-gray-800,
+    body:not(.home-mode):not(.dark-mode) .font-black,
+    body:not(.home-mode):not(.dark-mode) .font-bold,
+    body:not(.home-mode):not(.dark-mode) .staff-rights-name {
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode).dark-mode h1,
+    body:not(.home-mode).dark-mode h2,
+    body:not(.home-mode).dark-mode h3,
+    body:not(.home-mode).dark-mode h4,
+    body:not(.home-mode).dark-mode p,
+    body:not(.home-mode).dark-mode span,
+    body:not(.home-mode).dark-mode td,
+    body:not(.home-mode).dark-mode .text-gray-950,
+    body:not(.home-mode).dark-mode .text-gray-900,
+    body:not(.home-mode).dark-mode .text-gray-800,
+    body:not(.home-mode).dark-mode .font-black,
+    body:not(.home-mode).dark-mode .font-bold,
+    body:not(.home-mode).dark-mode .staff-rights-name {
+      color: var(--ink) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .text-gray-600,
+    body:not(.home-mode):not(.dark-mode) .text-gray-500,
+    body:not(.home-mode):not(.dark-mode) .text-gray-400,
+    body:not(.home-mode):not(.dark-mode) .empty-state,
+    body:not(.home-mode):not(.dark-mode) .staff-rights-meta,
+    body:not(.home-mode):not(.dark-mode) small {
+      color: var(--muted) !important;
+    }
+
+    body:not(.home-mode).dark-mode .text-gray-600,
+    body:not(.home-mode).dark-mode .text-gray-500,
+    body:not(.home-mode).dark-mode .text-gray-400,
+    body:not(.home-mode).dark-mode .empty-state,
+    body:not(.home-mode).dark-mode .staff-rights-meta,
+    body:not(.home-mode).dark-mode small {
+      color: var(--muted) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .label,
+    body:not(.home-mode):not(.dark-mode) th,
+    body:not(.home-mode):not(.dark-mode) .text-orange-600,
+    body:not(.home-mode):not(.dark-mode) .text-orange-700,
+    body:not(.home-mode):not(.dark-mode) .text-orange-800,
+    body:not(.home-mode):not(.dark-mode) .metric-value,
+    body:not(.home-mode):not(.dark-mode) .product-manager-price,
+    body:not(.home-mode):not(.dark-mode) .folder-icon {
+      color: var(--brand2) !important;
+    }
+
+    body:not(.home-mode).dark-mode .label,
+    body:not(.home-mode).dark-mode th,
+    body:not(.home-mode).dark-mode .text-orange-600,
+    body:not(.home-mode).dark-mode .text-orange-700,
+    body:not(.home-mode).dark-mode .text-orange-800,
+    body:not(.home-mode).dark-mode .metric-value,
+    body:not(.home-mode).dark-mode .product-manager-price,
+    body:not(.home-mode).dark-mode .folder-icon {
+      color: var(--brand2) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .field,
+    body:not(.home-mode):not(.dark-mode) input,
+    body:not(.home-mode):not(.dark-mode) select,
+    body:not(.home-mode):not(.dark-mode) textarea {
+      background: #ffffff !important;
+      border-color: rgba(255, 107, 44, 0.28) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode).dark-mode .field,
+    body:not(.home-mode).dark-mode input,
+    body:not(.home-mode).dark-mode select,
+    body:not(.home-mode).dark-mode textarea {
+      background: rgba(12, 12, 12, 0.94) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .bg-white,
+    body:not(.home-mode):not(.dark-mode) .bg-gray-50,
+    body:not(.home-mode):not(.dark-mode) .bg-orange-50,
+    body:not(.home-mode):not(.dark-mode) .report-summary-card,
+    body:not(.home-mode):not(.dark-mode) .receipt-line-item,
+    body:not(.home-mode):not(.dark-mode) .weekly-strip article,
+    body:not(.home-mode):not(.dark-mode) .product-manager-row,
+    body:not(.home-mode):not(.dark-mode) .week-folder,
+    body:not(.home-mode):not(.dark-mode) .control-toggle,
+    body:not(.home-mode):not(.dark-mode) .staff-rights-row,
+    body:not(.home-mode):not(.dark-mode) .goal-bar,
+    body:not(.home-mode):not(.dark-mode) .quick-entry-btn {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-color: rgba(255, 107, 44, 0.22) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode).dark-mode .bg-white,
+    body:not(.home-mode).dark-mode .bg-gray-50,
+    body:not(.home-mode).dark-mode .bg-orange-50,
+    body:not(.home-mode).dark-mode .report-summary-card,
+    body:not(.home-mode).dark-mode .receipt-line-item,
+    body:not(.home-mode).dark-mode .weekly-strip article,
+    body:not(.home-mode).dark-mode .product-manager-row,
+    body:not(.home-mode).dark-mode .week-folder,
+    body:not(.home-mode).dark-mode .control-toggle,
+    body:not(.home-mode).dark-mode .staff-rights-row,
+    body:not(.home-mode).dark-mode .goal-bar,
+    body:not(.home-mode).dark-mode .quick-entry-btn {
+      background: rgba(11, 11, 11, 0.82) !important;
+      border-color: rgba(255, 107, 44, 0.26) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .btn-secondary,
+    body:not(.home-mode):not(.dark-mode) .sidebar-open-btn {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-color: rgba(255, 107, 44, 0.30) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode).dark-mode .btn-secondary,
+    body:not(.home-mode).dark-mode .sidebar-open-btn {
+      background: rgba(255, 107, 44, 0.11) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode) .btn-primary,
+    body:not(.home-mode) .btn-primary * {
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) #userBadge,
+    body:not(.home-mode):not(.dark-mode) .system-status,
+    body:not(.home-mode):not(.dark-mode) .rank-pill,
+    body:not(.home-mode):not(.dark-mode) .product-quantity-value,
+    body:not(.home-mode):not(.dark-mode) .role-pill {
+      background: rgba(255, 107, 44, 0.10) !important;
+      border-color: rgba(255, 107, 44, 0.26) !important;
+      color: #7a3215 !important;
+    }
+
+    body:not(.home-mode).dark-mode #userBadge,
+    body:not(.home-mode).dark-mode .system-status,
+    body:not(.home-mode).dark-mode .rank-pill,
+    body:not(.home-mode).dark-mode .product-quantity-value,
+    body:not(.home-mode).dark-mode .role-pill {
+      background: rgba(255, 107, 44, 0.16) !important;
+      border-color: rgba(255, 107, 44, 0.38) !important;
+      color: #ffe2c7 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .mobile-tab-btn {
+      background: rgba(255, 255, 255, 0.90) !important;
+      border-color: rgba(255, 107, 44, 0.30) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode).dark-mode .mobile-tab-btn {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.16), transparent 32%),
+        linear-gradient(105deg, #171717 0%, #050505 58%, #000000 100%) !important;
+      border-color: rgba(255, 107, 44, 0.36) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active {
+      background: var(--gradient) !important;
+      border-color: rgba(255, 159, 67, 0.82) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active * {
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .theme-switch-track {
+      background: linear-gradient(135deg, #f4f4f5, #ff8a2a) !important;
+    }
+
+    body:not(.home-mode).dark-mode .theme-switch-track {
+      background: linear-gradient(135deg, #050505, #ff6b2c) !important;
+    }
+
+    body:not(.home-mode) .status.success {
+      color: #16a34a !important;
+    }
+
+    body:not(.home-mode).dark-mode .status.success {
+      color: #86efac !important;
+    }
+
+    body:not(.home-mode) .status.danger,
+    body:not(.home-mode) .status.error {
+      color: #ef4444 !important;
+    }
+
+    body:not(.home-mode).dark-mode .status.danger,
+    body:not(.home-mode).dark-mode .status.error {
+      color: #fca5a5 !important;
+    }
+
+    /* Light mode cleanup: remove muddy grey from data areas. */
+    body:not(.home-mode):not(.dark-mode) .table-wrap,
+    body:not(.home-mode):not(.dark-mode) table,
+    body:not(.home-mode):not(.dark-mode) .week-folder-body {
+      background: rgba(255, 255, 255, 0.96) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) thead,
+    body:not(.home-mode):not(.dark-mode) th {
+      background: #fff1e8 !important;
+      color: #f15a24 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) tbody tr {
+      background: rgba(255, 255, 255, 0.96) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) tbody tr:nth-child(even) {
+      background: rgba(255, 249, 244, 0.96) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) tbody tr:hover {
+      background: #fff0e6 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) td {
+      border-color: rgba(255, 107, 44, 0.16) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .week-folder,
+    body:not(.home-mode):not(.dark-mode) .week-folder-tab {
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-color: rgba(255, 107, 44, 0.24) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-overlay {
+      background: rgba(17, 17, 17, 0.38) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-card {
+      background: #ffffff !important;
+      border-color: rgba(255, 107, 44, 0.26) !important;
+      color: #17110d !important;
+      box-shadow: 0 28px 70px rgba(17, 17, 17, 0.20) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-header {
+      background: linear-gradient(135deg, #fff5ee, #ffffff) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-body {
+      background: #ffffff !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-line-item {
+      background: #fffaf6 !important;
+      border-color: rgba(255, 107, 44, 0.18) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-total-row {
+      background: linear-gradient(135deg, #211916, #3a2118) !important;
+      color: #fff7ed !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-total-row span,
+    body:not(.home-mode):not(.dark-mode) .receipt-total-row span:last-child {
+      color: #ff6b2c !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .receipt-actions {
+      background: #fff8f2 !important;
+      border-color: rgba(255, 107, 44, 0.18) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) #monthChart {
+      background: rgba(255, 255, 255, 0.74) !important;
+      border-radius: 12px !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .btn-danger {
+      background: #fff1f2 !important;
+      border-color: rgba(230, 57, 70, 0.44) !important;
+      color: #b4232f !important;
+    }
+
+    .metric-value::after,
+    .mini-value::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    @media (max-width: 720px) {
+      body.home-mode,
+      body.home-mode.dark-mode,
+      body:not(.home-mode),
+      body:not(.home-mode):not(.dark-mode),
+      body:not(.home-mode).dark-mode {
+        background-attachment: scroll !important;
+      }
+    }
   </style>
 </head>
-<body class="home-mode">
+<body>
   <main class="app-shell">
     <div class="offline-banner" id="offlineBanner">You're offline. New sales are saved locally and will sync when you're back online.</div>
     <section class="home-page" id="homeSection">
-      <div class="home-hero">
+      <div class="home-hero" onclick="enterDatabase()" role="button" tabindex="0" onkeydown="if(event.key === 'Enter' || event.key === ' ') enterDatabase()">
         <nav class="home-nav" aria-label="Home navigation">
-          <div class="home-mark">SB</div>
+          <div class="home-mark">
+            <img src="studybite-logo-hero.png" alt="StudyBite">
+          </div>
           <div class="home-nav-links">
-            <button class="home-nav-link" onclick="enterDatabase('sell')" type="button">Menu</button>
             <button class="home-nav-link" onclick="enterDatabase('dashboard')" type="button">Dashboard</button>
+            <button class="home-nav-link" onclick="enterDatabase('sell')" type="button">Order</button>
             <button class="home-nav-link" onclick="enterDatabase('records')" type="button">Records</button>
             <button class="home-nav-link" onclick="enterDatabase('manage')" type="button">Manage</button>
+            <button class="home-nav-link" onclick="enterDatabase('owner')" type="button">Owner</button>
           </div>
           <button class="home-search" onclick="enterDatabase('records')" type="button">
             <span>Find an order</span>
-            <span aria-hidden="true">⌕</span>
+            <span aria-hidden="true">Search</span>
           </button>
           <button class="home-cart" onclick="enterDatabase('sell')" type="button" aria-label="Open order entry">+</button>
         </nav>
 
         <div class="home-side-dock" aria-label="Quick database links">
-          <button class="home-dock-btn" onclick="enterDatabase('dashboard')" type="button" aria-label="Dashboard">DB</button>
-          <button class="home-dock-btn active" onclick="enterDatabase('sell')" type="button" aria-label="Order entry">OR</button>
-          <button class="home-dock-btn" onclick="enterDatabase('records')" type="button" aria-label="Records">RC</button>
-          <button class="home-dock-btn" onclick="enterDatabase('manage')" type="button" aria-label="Manage">MG</button>
-          <button class="home-dock-btn" onclick="enterDatabase('owner')" type="button" aria-label="Owner controls">+</button>
+          <button class="home-dock-btn" onclick="enterDatabase('dashboard')" type="button" aria-label="Dashboard">
+            <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="12" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="16" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          </button>
+          <button class="home-dock-btn active" onclick="enterDatabase('sell')" type="button" aria-label="Order">
+            <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 3H18L21 8V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V8L6 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 8H21" stroke="currentColor" stroke-width="1.8"/><path d="M9 12C9 13.7 10.3 15 12 15C13.7 15 15 13.7 15 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <button class="home-dock-btn" onclick="enterDatabase('records')" type="button" aria-label="Records">
+            <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 8H16M8 12H16M8 16H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <button class="home-dock-btn" onclick="enterDatabase('manage')" type="button" aria-label="Manage">
+            <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C13.7 15 15 13.7 15 12C15 10.3 13.7 9 12 9C10.3 9 9 10.3 9 12C9 13.7 10.3 15 12 15Z" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 13.5C19.5 12.5 19.5 11.5 19.4 10.5L21 9.2L19.5 6.8L17.6 7.5C16.8 6.9 16 6.4 15 6.1L14.7 4H10.3L10 6.1C9 6.4 8.2 6.9 7.4 7.5L5.5 6.8L4 9.2L5.6 10.5C5.5 11.5 5.5 12.5 5.6 13.5L4 14.8L5.5 17.2L7.4 16.5C8.2 17.1 9 17.6 10 17.9L10.3 20H14.7L15 17.9C16 17.6 16.8 17.1 17.6 16.5L19.5 17.2L21 14.8L19.4 13.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </button>
         </div>
 
         <div class="home-layout">
           <div class="home-visual" aria-hidden="true">
-            <div class="home-cup-image"></div>
+            <div class="home-cup-image">
+              <img src="studybite-logo-hero.png" alt="">
+            </div>
           </div>
           <div class="home-content">
+            <div class="home-personal hidden" id="homeWelcomeCard">
+              <span class="home-welcome-word">Welcome</span>
+              <span class="home-welcome-name" id="homeHeroName"></span>
+            </div>
+            <img class="home-brand-logo" src="studybite-logo-hero.png" alt="StudyBite logo">
+            <h1 class="home-brand-title">STUDY<span>BITE</span></h1>
+            <div class="home-brand-tagline">Fuel your study sessions</div>
             <div class="home-kicker">StudyBite database</div>
             <h1 class="home-title">
               <span class="home-title-main">Welcome</span>
@@ -3349,14 +4710,10 @@
         </div>
 
         <div class="home-round-stack" aria-hidden="true">
-          <button class="home-round-btn" onclick="enterDatabase('dashboard')" type="button" tabindex="-1">⌃</button>
-          <button class="home-round-btn" onclick="enterDatabase('records')" type="button" tabindex="-1">⌄</button>
+          <button class="home-round-btn" onclick="enterDatabase('dashboard')" type="button" tabindex="-1">^</button>
+          <button class="home-round-btn" onclick="enterDatabase('records')" type="button" tabindex="-1">v</button>
         </div>
 
-        <div class="home-discover">
-          <button onclick="enterDatabase()" type="button">Discover</button>
-          <span aria-hidden="true"></span>
-        </div>
       </div>
     </section>
     <header class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -3887,11 +5244,21 @@
     <div class="receipt-overlay" id="receiptOverlay">
       <div class="receipt-card" id="receiptCard">
         <div class="receipt-actions no-print">
-          <button class="btn btn-secondary" onclick="closeReceipt()" type="button">Close</button>
-          <button class="btn btn-secondary" onclick="downloadReceipt()" type="button">Image</button>
-          <button class="btn btn-secondary" onclick="downloadReceiptPDF()" type="button">PDF</button>
-          <button class="btn btn-secondary" onclick="shareReceipt()" type="button" id="shareReceiptBtn">Share</button>
-          <button class="btn btn-primary" onclick="printReceipt()" type="button">Print</button>
+          <button class="btn btn-secondary icon-btn" onclick="closeReceipt()" type="button" aria-label="Close" title="Close">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="btn btn-secondary icon-btn" onclick="downloadReceipt()" type="button" aria-label="Download image" title="Image">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="m7 16 3.5-4 2.5 3 2-2.2 2.8 3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15.5" cy="9.5" r="1.4" fill="currentColor"/></svg>
+          </button>
+          <button class="btn btn-secondary icon-btn" onclick="downloadReceiptPDF()" type="button" aria-label="Download PDF" title="PDF">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h4M9 16h6M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="btn btn-secondary icon-btn" onclick="shareReceipt()" type="button" id="shareReceiptBtn" aria-label="Share" title="Share">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="btn btn-primary icon-btn" onclick="printReceipt()" type="button" aria-label="Print" title="Print">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M17 11h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
         </div>
         <div id="receiptContent"></div>
       </div>
@@ -3900,8 +5267,12 @@
     <div class="receipt-overlay" id="reportOverlay">
       <div class="receipt-card report-card" id="reportCard">
         <div class="receipt-actions no-print">
-          <button class="btn btn-secondary" onclick="closeReport()" type="button">Close</button>
-          <button class="btn btn-primary" onclick="printReport()" type="button">Print</button>
+          <button class="btn btn-secondary icon-btn" onclick="closeReport()" type="button" aria-label="Close" title="Close">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="btn btn-primary icon-btn" onclick="printReport()" type="button" aria-label="Print" title="Print">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M17 11h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
         </div>
         <div id="reportContent"></div>
       </div>
@@ -3910,7 +5281,9 @@
     <div class="receipt-overlay" id="exportByDateOverlay">
       <div class="receipt-card report-card no-print">
         <div class="receipt-actions">
-          <button class="btn btn-secondary" onclick="closeExportByDateModal()" type="button">Close</button>
+          <button class="btn btn-secondary icon-btn" onclick="closeExportByDateModal()" type="button" aria-label="Close" title="Close">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
         </div>
         <div style="padding: 0 24px 24px;">
           <h2 class="text-xl font-black tracking-normal text-gray-950 mb-1">Download by date</h2>
@@ -4076,7 +5449,7 @@
 
     // Default names shown until each person saves their own display name.
     const DEFAULT_STAFF_DISPLAY_NAMES = {
-      'kayodeprince27@gmail.com': 'Kayode',
+      'kayodeprince27@gmail.com': 'Prince',
       'eyadhaleef1@gmail.com': 'Eyad'
     };
 
@@ -4453,6 +5826,9 @@
       setupPWA();
       initTabSwipeGestures();
       initSidebarSwipeGesture();
+      document.querySelectorAll('.home-hero button').forEach((button) => {
+        button.addEventListener('click', (event) => event.stopPropagation());
+      });
       updateHomeWelcome();
       window.addEventListener('resize', () => {
         const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
@@ -4481,11 +5857,16 @@
 
     function updateHomeWelcome() {
       const nameEl = document.getElementById('homeUserName');
-      if (!nameEl) return;
+      const heroNameEl = document.getElementById('homeHeroName');
+      const heroWrap = document.getElementById('homeWelcomeCard');
 
       const displayName = currentUser ? getDisplayName(currentUser) : '';
-      nameEl.textContent = displayName;
-      nameEl.classList.toggle('hidden', !displayName);
+      if (nameEl) {
+        nameEl.textContent = displayName;
+        nameEl.classList.toggle('hidden', !displayName);
+      }
+      if (heroNameEl) heroNameEl.textContent = displayName;
+      if (heroWrap) heroWrap.classList.toggle('hidden', !displayName);
     }
 
     function enterDatabase(targetTab) {
@@ -4938,6 +6319,7 @@
           isCurrentUserOwner = normalizeEmail(user.email) === OWNER_EMAIL;
           isCurrentUserAdmin = isCurrentUserOwner || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(user.email)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
           updateCurrentUserBadge();
+          document.body.classList.add('home-mode');
           document.getElementById('logoutBtn').classList.remove('hidden');
           document.getElementById('loginSection').classList.add('hidden');
           document.getElementById('setupSection').classList.add('hidden');
@@ -4957,6 +6339,7 @@
           isCurrentUserAdmin = false;
           isCurrentUserOwner = false;
           setUserBadge('standby', 'Not logged in');
+          document.body.classList.remove('home-mode');
           updateHomeWelcome();
           renderProfileNameControl();
           updateSystemStatus();
@@ -6624,8 +8007,9 @@
       }
 
       const chartData = buildChartData();
-      const axisColor = '#f5e6d3';
-      const gridColor = 'rgba(255, 107, 44, 0.16)';
+      const isDarkTheme = document.body.classList.contains('dark-mode');
+      const axisColor = isDarkTheme ? '#f5e6d3' : '#4b4038';
+      const gridColor = isDarkTheme ? 'rgba(255, 107, 44, 0.16)' : 'rgba(255, 107, 44, 0.20)';
 
       updateChartViewButtons();
 
