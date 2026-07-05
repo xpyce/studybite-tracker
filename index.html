@@ -154,6 +154,95 @@
       background: #fef2f2;
     }
 
+    .theme-switch {
+      cursor: pointer;
+      display: inline-flex;
+      flex: none;
+    }
+
+    .theme-switch input {
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .theme-switch-track {
+      align-items: center;
+      background: #1f2937;
+      border-radius: 999px;
+      display: inline-flex;
+      height: 40px;
+      padding: 4px;
+      position: relative;
+      transition: background 0.25s ease;
+      width: 72px;
+    }
+
+    body.dark-mode .theme-switch-track {
+      background: var(--brand);
+    }
+
+    .theme-switch-thumb {
+      align-items: center;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.25);
+      display: flex;
+      height: 32px;
+      justify-content: center;
+      transform: translateX(0);
+      transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1);
+      width: 32px;
+    }
+
+    body.dark-mode .theme-switch-thumb {
+      transform: translateX(32px);
+    }
+
+    .theme-switch-icon {
+      height: 18px;
+      position: absolute;
+      transition: opacity 0.2s ease, transform 0.28s cubic-bezier(0.65, 0, 0.35, 1);
+      width: 18px;
+    }
+
+    .theme-switch-icon-sun {
+      color: #f59e0b;
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    .theme-switch-icon-moon {
+      color: #4338ca;
+      opacity: 0;
+      transform: scale(0.5) rotate(-40deg);
+    }
+
+    body.dark-mode .theme-switch-icon-sun {
+      opacity: 0;
+      transform: scale(0.5) rotate(40deg);
+    }
+
+    body.dark-mode .theme-switch-icon-moon {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    .theme-switch input:focus-visible ~ .theme-switch-track {
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.35);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .theme-switch-track,
+      .theme-switch-thumb,
+      .theme-switch-icon {
+        transition: none;
+      }
+    }
+
     .status {
       border-radius: 8px;
       font-size: 14px;
@@ -528,6 +617,19 @@
       top: 8px;
       z-index: 10;
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      isolation: isolate;
+    }
+
+    .mobile-tab-indicator {
+      background: var(--brand);
+      border-radius: 8px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      width: 0;
+      z-index: 0;
+      transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1), width 0.28s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
     .mobile-tab-btn {
@@ -540,11 +642,13 @@
       font-size: 13px;
       font-weight: 800;
       padding: 10px 8px;
-      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+      position: relative;
+      z-index: 1;
+      transition: color 0.2s ease, transform 0.1s ease;
     }
 
     .mobile-tab-btn:hover {
-      background: var(--soft);
+      color: var(--ink);
     }
 
     .mobile-tab-btn:active {
@@ -552,45 +656,45 @@
     }
 
     .mobile-tab-btn.active {
-      background: var(--brand);
       color: #fff;
     }
 
     .tab-panel {
       display: none;
-      opacity: 0;
-      transform: translateY(6px);
     }
 
-    .tab-panel.active {
+    .tab-panel.tab-panel-active {
       display: block;
-      animation: tabFadeIn 0.22s ease forwards;
     }
 
-    @keyframes tabFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .tab-panel.tab-panel-enter {
+      opacity: 0;
+      transform: translateY(10px) scale(0.995);
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tab-panel.tab-panel-enter-active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .tab-panel.active {
-        animation: none;
+      .tab-panel.tab-panel-enter,
+      .tab-panel.tab-panel-enter-active {
+        transition: none;
         opacity: 1;
         transform: none;
       }
-    }
+
+      .mobile-tab-indicator {
+        transition: none;
+      }
     }
 
     .receipt-overlay {
       align-items: center;
       background: rgba(15, 23, 42, 0.55);
-      display: none;
+      display: none !important;
       inset: 0;
       justify-content: center;
       padding: 20px;
@@ -599,7 +703,7 @@
     }
 
     .receipt-overlay.active {
-      display: flex;
+      display: flex !important;
     }
 
     .receipt-card {
@@ -984,7 +1088,15 @@
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <button class="btn btn-primary hidden" id="installAppBtn" onclick="installApp()" type="button">Install app</button>
-        <button class="btn btn-secondary" id="themeToggle" onclick="toggleDarkMode()" type="button">Enable dark mode</button>
+        <label class="theme-switch" id="themeToggle" title="Toggle dark mode">
+          <input type="checkbox" id="themeToggleInput" onchange="toggleDarkMode()">
+          <span class="theme-switch-track">
+            <span class="theme-switch-thumb">
+              <svg class="theme-switch-icon theme-switch-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V4.5M12 19.5V21.5M4.5 12H2.5M21.5 12H19.5M5.6 5.6L4.9 4.9M19.1 19.1L18.4 18.4M5.6 18.4L4.9 19.1M19.1 4.9L18.4 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <svg class="theme-switch-icon theme-switch-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5C18.9 15 17.7 15.3 16.5 15.3C11.9 15.3 8.2 11.6 8.2 7C8.2 5.8 8.5 4.6 9 3.5C5.4 4.6 2.7 7.9 2.7 11.9C2.7 16.8 6.7 20.8 11.6 20.8C15.6 20.8 18.9 18.1 20 14.5Z" fill="currentColor"/></svg>
+            </span>
+          </span>
+        </label>
         <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge">Not connected</div>
         <button class="btn btn-secondary hidden" id="logoutBtn" onclick="logout()" type="button">Log out</button>
       </div>
@@ -1038,12 +1150,13 @@
     <section id="trackerSection" class="tracker-section">
 
       <div class="mobile-tabs" id="mobileTabs">
+        <div class="mobile-tab-indicator" id="mobileTabIndicator"></div>
         <button class="mobile-tab-btn" data-tab="dashboard" onclick="switchTab('dashboard')" type="button">Dashboard</button>
         <button class="mobile-tab-btn active" data-tab="sell" onclick="switchTab('sell')" type="button">Order</button>
         <button class="mobile-tab-btn" data-tab="records" onclick="switchTab('records')" type="button">Records</button>
         <button class="mobile-tab-btn" data-tab="manage" onclick="switchTab('manage')" type="button">Manage</button>
       </div>
-      <div class="tab-panel active" data-tab-panel="sell">
+      <div class="tab-panel tab-panel-active" data-tab-panel="sell">
       <section class="card mb-6 p-5">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -1508,6 +1621,11 @@
       loadTargets();
       initOfflineQueue();
       setupPWA();
+      initTabSwipeGestures();
+      window.addEventListener('resize', () => {
+        const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
+        moveTabIndicator(current);
+      });
     });
 
     function applySavedTheme() {
@@ -1517,7 +1635,9 @@
     }
 
     function toggleDarkMode() {
-      const isDark = document.body.classList.toggle('dark-mode');
+      const input = document.getElementById('themeToggleInput');
+      const isDark = input ? input.checked : !document.body.classList.contains('dark-mode');
+      document.body.classList.toggle('dark-mode', isDark);
       localStorage.setItem(STORAGE_KEYS.theme, isDark ? 'dark' : 'light');
       updateThemeButton();
       if (monthChart) {
@@ -1528,12 +1648,47 @@
     }
 
     function switchTab(tabName) {
-      document.querySelectorAll('.tab-panel').forEach((panel) => {
-        panel.classList.toggle('active', panel.dataset.tabPanel === tabName);
-      });
+      const panels = document.querySelectorAll('.tab-panel');
+      const outgoing = document.querySelector('.tab-panel.tab-panel-active');
+      const incoming = document.querySelector(`.tab-panel[data-tab-panel="${tabName}"]`);
+
+      if (incoming && incoming !== outgoing) {
+        // Fade the outgoing panel out, then swap display so the incoming
+        // panel can fade/slide in on its own transition.
+        if (outgoing) {
+          outgoing.classList.remove('tab-panel-enter-active');
+          outgoing.classList.add('tab-panel-enter');
+        }
+
+        const finishSwap = () => {
+          panels.forEach((panel) => {
+            if (panel !== incoming) {
+              panel.classList.remove('tab-panel-active', 'tab-panel-enter', 'tab-panel-enter-active');
+            }
+          });
+
+          incoming.classList.add('tab-panel-active', 'tab-panel-enter');
+          // Force a reflow so the browser registers the "enter" (hidden)
+          // state before we flip to "enter-active", guaranteeing the
+          // transition actually plays instead of jumping straight to done.
+          void incoming.offsetHeight;
+          requestAnimationFrame(() => {
+            incoming.classList.add('tab-panel-enter-active');
+          });
+        };
+
+        if (outgoing) {
+          setTimeout(finishSwap, 140);
+        } else {
+          finishSwap();
+        }
+      }
+
       document.querySelectorAll('.mobile-tab-btn').forEach((btn) => {
         btn.classList.toggle('active', btn.dataset.tab === tabName);
       });
+      moveTabIndicator(tabName);
+
       localStorage.setItem(STORAGE_KEYS.activeTab, tabName);
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -1545,25 +1700,116 @@
           monthChart.destroy();
           monthChart = null;
         }
-        renderMonthlyChart();
-        chartNeedsRefresh = false;
+        setTimeout(() => {
+          renderMonthlyChart();
+          chartNeedsRefresh = false;
+        }, 150);
       }
+    }
+
+    function moveTabIndicator(tabName) {
+      const indicator = document.getElementById('mobileTabIndicator');
+      const activeBtn = document.querySelector(`.mobile-tab-btn[data-tab="${tabName}"]`);
+      if (!indicator || !activeBtn) return;
+
+      const container = activeBtn.parentElement;
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      const offsetLeft = btnRect.left - containerRect.left;
+
+      indicator.style.width = btnRect.width + 'px';
+      indicator.style.transform = `translateX(${offsetLeft}px)`;
     }
 
     function isDashboardTabActive() {
       const panel = document.querySelector('.tab-panel[data-tab-panel="dashboard"]');
-      return !!panel && panel.classList.contains('active');
+      return !!panel && panel.classList.contains('tab-panel-active');
     }
 
     function restoreActiveTab() {
       const saved = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
       switchTab(saved);
+      // Position the indicator instantly (no slide-in from zero) on first load.
+      const indicator = document.getElementById('mobileTabIndicator');
+      if (indicator) {
+        const prevTransition = indicator.style.transition;
+        indicator.style.transition = 'none';
+        moveTabIndicator(saved);
+        void indicator.offsetHeight;
+        indicator.style.transition = prevTransition;
+      }
+    }
+
+    const TAB_ORDER = ['dashboard', 'sell', 'records', 'manage'];
+
+    function initTabSwipeGestures() {
+      const trackerSection = document.getElementById('trackerSection');
+      if (!trackerSection) return;
+
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchStartTarget = null;
+      let tracking = false;
+
+      const SWIPE_MIN_DISTANCE = 60;
+      const SWIPE_MAX_OFF_AXIS = 60;
+
+      trackerSection.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1) {
+          tracking = false;
+          return;
+        }
+
+        const touch = event.touches[0];
+        touchStartTarget = event.target;
+
+        // Don't hijack horizontal swipes meant for scrollable tables,
+        // sliders, or the sticky tab bar itself.
+        if (touchStartTarget.closest('.table-wrap, .mobile-tabs, input[type="range"]')) {
+          tracking = false;
+          return;
+        }
+
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        tracking = true;
+      }, { passive: true });
+
+      trackerSection.addEventListener('touchend', (event) => {
+        if (!tracking) return;
+        tracking = false;
+
+        const touch = event.changedTouches[0];
+        if (!touch) return;
+
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaY) > SWIPE_MAX_OFF_AXIS) {
+          return;
+        }
+
+        const currentTab = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
+        const currentIndex = TAB_ORDER.indexOf(currentTab);
+        if (currentIndex === -1) return;
+
+        let nextIndex = currentIndex;
+        if (deltaX < 0 && currentIndex < TAB_ORDER.length - 1) {
+          nextIndex = currentIndex + 1; // swipe left -> next tab
+        } else if (deltaX > 0 && currentIndex > 0) {
+          nextIndex = currentIndex - 1; // swipe right -> previous tab
+        }
+
+        if (nextIndex !== currentIndex) {
+          switchTab(TAB_ORDER[nextIndex]);
+        }
+      }, { passive: true });
     }
 
     function updateThemeButton() {
-      const btn = document.getElementById('themeToggle');
-      if (!btn) return;
-      btn.textContent = document.body.classList.contains('dark-mode') ? 'Disable dark mode' : 'Enable dark mode';
+      const input = document.getElementById('themeToggleInput');
+      if (!input) return;
+      input.checked = document.body.classList.contains('dark-mode');
     }
 
     function hydrateSavedSetup() {
