@@ -160,6 +160,19 @@
       flex: none;
     }
 
+    .header-divider {
+      background: var(--line);
+      display: none;
+      height: 28px;
+      width: 1px;
+    }
+
+    @media (min-width: 640px) {
+      .header-divider {
+        display: block;
+      }
+    }
+
     .theme-switch input {
       height: 1px;
       overflow: hidden;
@@ -1088,6 +1101,9 @@
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <button class="btn btn-primary hidden" id="installAppBtn" onclick="installApp()" type="button">Install app</button>
+        <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge">Not connected</div>
+        <button class="btn btn-secondary hidden" id="logoutBtn" onclick="logout()" type="button">Log out</button>
+        <div class="header-divider"></div>
         <label class="theme-switch" id="themeToggle" title="Toggle dark mode">
           <input type="checkbox" id="themeToggleInput" onchange="toggleDarkMode()">
           <span class="theme-switch-track">
@@ -1097,8 +1113,6 @@
             </span>
           </span>
         </label>
-        <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge">Not connected</div>
-        <button class="btn btn-secondary hidden" id="logoutBtn" onclick="logout()" type="button">Log out</button>
       </div>
     </header>
 
