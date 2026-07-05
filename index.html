@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f97316">
+  <meta name="theme-color" content="#1e1e1e">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -766,16 +766,53 @@
     .sidebar-drawer-footer {
       border-top: 1px solid var(--line);
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items: stretch;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: flex-start;
       margin-top: auto;
       padding-top: 16px;
+    }
+
+    .sidebar-setting-row {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
     }
 
     .sidebar-drawer-footer-label {
       color: var(--muted);
       font-size: 13px;
       font-weight: 800;
+    }
+
+    .profile-name-control {
+      display: grid;
+      gap: 8px;
+    }
+
+    .profile-name-row {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr auto;
+    }
+
+    .profile-name-field {
+      min-height: 40px;
+      padding: 10px 12px;
+    }
+
+    .profile-name-save {
+      min-height: 40px;
+      padding: 10px 12px;
+    }
+
+    .profile-name-status {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      min-height: 16px;
     }
 
     .tab-panel {
@@ -1233,11 +1270,2095 @@
     @media (prefers-reduced-motion: reduce) {
       .fab { transition: none; }
     }
+
+    /* Futuristic interface refresh */
+    :root,
+    body.dark-mode {
+      color-scheme: dark;
+      --brand: #22d3ee;
+      --brand2: #e879f9;
+      --ink: #e6fbff;
+      --muted: #8ca3b8;
+      --line: rgba(125, 211, 252, 0.22);
+      --panel: rgba(8, 16, 32, 0.78);
+      --page: #07111f;
+      --field: rgba(4, 12, 24, 0.86);
+      --field-readonly: rgba(13, 24, 42, 0.86);
+      --soft: rgba(12, 25, 45, 0.82);
+      --brand-soft: rgba(34, 211, 238, 0.13);
+      --brand-line: rgba(34, 211, 238, 0.36);
+      --glass-blur: blur(22px) saturate(175%);
+      --glass-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), 0 0 46px rgba(34, 211, 238, 0.08);
+      --gradient: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 48%, #f472b6 100%);
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(34, 211, 238, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.035) 1px, transparent 1px),
+        radial-gradient(circle at 12% 12%, rgba(34, 211, 238, 0.20), transparent 32%),
+        radial-gradient(circle at 86% 0%, rgba(232, 121, 249, 0.16), transparent 34%),
+        radial-gradient(circle at 70% 82%, rgba(16, 185, 129, 0.10), transparent 28%),
+        var(--page);
+      background-attachment: fixed;
+      background-size: 44px 44px, 44px 44px, auto, auto, auto, auto;
+    }
+
+    body::before {
+      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.16), transparent);
+      content: "";
+      height: 1px;
+      left: 0;
+      pointer-events: none;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 120;
+    }
+
+    .app-shell {
+      max-width: 1260px;
+      padding: 28px;
+      position: relative;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(8, 16, 32, 0.86), rgba(12, 25, 45, 0.62));
+      border: 1px solid rgba(34, 211, 238, 0.20);
+      border-radius: 12px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      position: sticky;
+      top: 12px;
+      z-index: 30;
+    }
+
+    .card,
+    .receipt-card,
+    .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018)),
+        var(--panel);
+      border-color: var(--line);
+      border-radius: 10px;
+      box-shadow: var(--glass-shadow);
+      position: relative;
+    }
+
+    .card::before {
+      background: linear-gradient(90deg, rgba(34, 211, 238, 0.68), rgba(232, 121, 249, 0.44), transparent);
+      content: "";
+      height: 1px;
+      left: 16px;
+      opacity: 0.85;
+      position: absolute;
+      right: 16px;
+      top: 0;
+    }
+
+    .logo-badge {
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+      box-shadow: 0 0 26px rgba(34, 211, 238, 0.20);
+    }
+
+    h1,
+    h2,
+    h3,
+    .metric-value,
+    .mini-value,
+    .report-summary-value {
+      color: var(--ink) !important;
+      text-shadow: 0 0 22px rgba(34, 211, 238, 0.20);
+    }
+
+    body .text-orange-600,
+    body .text-orange-700,
+    body .text-orange-800 {
+      color: #67e8f9 !important;
+    }
+
+    body .text-gray-950,
+    body .text-gray-900,
+    body .text-gray-800 {
+      color: var(--ink) !important;
+    }
+
+    body .text-gray-600,
+    body .text-gray-500,
+    body .text-gray-400,
+    .empty-state {
+      color: var(--muted) !important;
+    }
+
+    body .bg-gray-50,
+    body .bg-white,
+    body .bg-orange-50,
+    .report-summary-card,
+    .receipt-line-item {
+      background: rgba(12, 25, 45, 0.72) !important;
+      border-color: var(--line) !important;
+    }
+
+    .field {
+      border-color: rgba(125, 211, 252, 0.22);
+      border-radius: 8px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .field:focus {
+      border-color: #67e8f9;
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.13), 0 0 24px rgba(34, 211, 238, 0.18);
+    }
+
+    .btn,
+    .quick-entry-btn,
+    .sidebar-open-btn,
+    .sidebar-close-btn,
+    .mobile-tab-btn {
+      border-radius: 8px;
+    }
+
+    .btn {
+      letter-spacing: 0;
+      min-height: 42px;
+    }
+
+    .btn-primary,
+    .fab {
+      box-shadow: 0 12px 32px rgba(34, 211, 238, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.10) inset;
+    }
+
+    .btn-primary:hover,
+    .fab:hover {
+      box-shadow: 0 16px 42px rgba(34, 211, 238, 0.32), 0 0 28px rgba(232, 121, 249, 0.24);
+    }
+
+    .btn-secondary,
+    .sidebar-open-btn {
+      background: rgba(12, 25, 45, 0.82);
+      border-color: rgba(125, 211, 252, 0.22);
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover,
+    .sidebar-open-btn:hover,
+    .mobile-tab-btn:hover {
+      background: rgba(34, 211, 238, 0.12);
+      border-color: rgba(34, 211, 238, 0.46);
+    }
+
+    .btn-secondary.active-toggle,
+    .mobile-tab-indicator {
+      background: var(--gradient);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.22);
+    }
+
+    .btn-danger {
+      background: rgba(127, 29, 29, 0.38);
+      border-color: rgba(248, 113, 113, 0.38);
+      color: #fca5a5;
+    }
+
+    .btn-danger:hover {
+      background: rgba(185, 28, 28, 0.48);
+    }
+
+    #userBadge,
+    .rank-pill,
+    .product-quantity-value,
+    .quick-entry-btn {
+      background: rgba(34, 211, 238, 0.12) !important;
+      border: 1px solid rgba(34, 211, 238, 0.32) !important;
+      color: #a5f3fc !important;
+    }
+
+    .quick-entry-btn:hover {
+      background: var(--gradient) !important;
+      color: #ffffff !important;
+    }
+
+    .metric-value {
+      background: linear-gradient(135deg, #e6fbff 0%, #67e8f9 46%, #f0abfc 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+    }
+
+    .weekly-strip article,
+    .product-manager-row,
+    .week-folder {
+      background: rgba(5, 13, 27, 0.45);
+      border-color: var(--line);
+      border-radius: 8px;
+    }
+
+    .week-folder-tab,
+    th {
+      background: linear-gradient(180deg, rgba(34, 211, 238, 0.12), rgba(12, 25, 45, 0.78));
+    }
+
+    th {
+      color: #a5f3fc;
+    }
+
+    td {
+      border-color: rgba(125, 211, 252, 0.16);
+    }
+
+    tbody tr {
+      transition: background 0.16s ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(34, 211, 238, 0.06);
+    }
+
+    .goal-bar {
+      background: rgba(12, 25, 45, 0.96);
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      height: 12px;
+    }
+
+    .goal-bar-fill {
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.42);
+    }
+
+    .sidebar-overlay,
+    .receipt-overlay {
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(34, 211, 238, 0.08), transparent 38%),
+        rgba(5, 13, 27, 0.96);
+      border-color: rgba(34, 211, 238, 0.22);
+      box-shadow: 22px 0 70px rgba(0, 0, 0, 0.42);
+    }
+
+    .theme-switch-track {
+      background: rgba(12, 25, 45, 0.95);
+      border: 1px solid rgba(125, 211, 252, 0.26);
+      box-shadow: inset 0 0 18px rgba(34, 211, 238, 0.10);
+    }
+
+    body.dark-mode .theme-switch-track {
+      background: var(--gradient);
+    }
+
+    .offline-banner {
+      background: rgba(234, 179, 8, 0.14);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      color: #fde68a;
+      margin-bottom: 14px;
+    }
+
+    .receipt-card {
+      color: var(--ink);
+    }
+
+    .receipt-header {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(232, 121, 249, 0.14));
+    }
+
+    .receipt-shop-name,
+    .receipt-line-top,
+    .receipt-thanks {
+      color: var(--ink);
+    }
+
+    .receipt-tagline,
+    .receipt-total-row span:last-child,
+    .product-manager-price,
+    .folder-icon {
+      color: #67e8f9;
+    }
+
+    .receipt-total-row {
+      background: linear-gradient(135deg, rgba(8, 16, 32, 0.96), rgba(14, 116, 144, 0.42));
+      border: 1px solid rgba(34, 211, 238, 0.26);
+    }
+
+    .header-actions {
+      justify-content: flex-end;
+    }
+
+    .system-status,
+    #userBadge {
+      align-items: center;
+      display: inline-flex;
+      gap: 9px;
+      min-height: 42px;
+      text-transform: uppercase;
+    }
+
+    .system-status {
+      background: rgba(12, 25, 45, 0.76);
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      border-radius: 8px;
+      color: #a5f3fc;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      padding: 9px 13px;
+      white-space: nowrap;
+    }
+
+    .system-status-dot,
+    #userBadge::before {
+      background: #94a3b8;
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(148, 163, 184, 0.55);
+      content: "";
+      display: inline-block;
+      flex: none;
+      height: 8px;
+      width: 8px;
+    }
+
+    .system-status[data-state="online"] .system-status-dot,
+    #userBadge[data-state="staff"]::before,
+    #userBadge[data-state="admin"]::before {
+      background: #22d3ee;
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.8);
+    }
+
+    .system-status[data-state="syncing"] .system-status-dot {
+      background: #f0abfc;
+      box-shadow: 0 0 18px rgba(240, 171, 252, 0.8);
+    }
+
+    .system-status[data-state="offline"] .system-status-dot,
+    #userBadge[data-state="offline"]::before {
+      background: #f59e0b;
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.8);
+    }
+
+    #userBadge[data-state="admin"] {
+      background: rgba(232, 121, 249, 0.14) !important;
+      border-color: rgba(232, 121, 249, 0.38) !important;
+      color: #f5d0fe !important;
+    }
+
+    #setupSection:not(.hidden),
+    #loginSection:not(.hidden) {
+      margin: 34px auto;
+      max-width: 540px;
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    #setupSection:not(.hidden)::after,
+    #loginSection:not(.hidden)::after {
+      background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.08), transparent);
+      content: "";
+      height: 140%;
+      left: -20%;
+      pointer-events: none;
+      position: absolute;
+      top: -20%;
+      transform: rotate(12deg);
+      width: 28%;
+    }
+
+    #setupSection h2::before,
+    #loginSection h2::before {
+      color: #67e8f9;
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    #setupSection h2::before {
+      content: "Config node";
+    }
+
+    #loginSection h2::before {
+      content: "Secure access";
+    }
+
+    .label {
+      color: #a5f3fc;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .field::placeholder {
+      color: rgba(140, 163, 184, 0.62);
+    }
+
+    .status {
+      background: rgba(12, 25, 45, 0.84);
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .status.connected {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.38);
+      color: #86efac;
+    }
+
+    .status.error {
+      background: rgba(239, 68, 68, 0.13);
+      border-color: rgba(248, 113, 113, 0.42);
+      color: #fca5a5;
+    }
+
+    .status.loading {
+      background: rgba(34, 211, 238, 0.12);
+      border-color: rgba(34, 211, 238, 0.38);
+      color: #a5f3fc;
+    }
+
+    .metric-value::after,
+    .mini-value::after {
+      color: rgba(103, 232, 249, 0.72);
+      content: " //";
+      font-size: 0.48em;
+      font-weight: 900;
+      vertical-align: 18%;
+    }
+
+    .card:hover {
+      border-color: rgba(34, 211, 238, 0.36);
+      box-shadow: 0 26px 78px rgba(0, 0, 0, 0.38), 0 0 58px rgba(34, 211, 238, 0.12);
+    }
+
+    .btn-primary {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .btn-primary::after {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+      content: "";
+      inset: -20% auto -20% -45%;
+      position: absolute;
+      transform: skewX(-18deg);
+      width: 42%;
+    }
+
+    .btn-primary:hover::after {
+      animation: neonSweep 0.78s ease;
+    }
+
+    .goal-bar-fill {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .goal-bar-fill::after {
+      animation: dataFlow 1.7s linear infinite;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      content: "";
+      inset: 0 auto 0 -45%;
+      position: absolute;
+      width: 42%;
+    }
+
+    .table-wrap {
+      border-radius: 8px;
+    }
+
+    table {
+      background: rgba(5, 13, 27, 0.28);
+    }
+
+    #monthChart {
+      filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.18));
+    }
+
+    .tab-panel-active .card {
+      animation: panelBoot 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes panelBoot {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes neonSweep {
+      from {
+        left: -45%;
+      }
+      to {
+        left: 120%;
+      }
+    }
+
+    @keyframes dataFlow {
+      from {
+        left: -45%;
+      }
+      to {
+        left: 120%;
+      }
+    }
+
+    ::selection {
+      background: rgba(34, 211, 238, 0.35);
+      color: #ffffff;
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        padding: 12px;
+      }
+
+      header {
+        top: 8px;
+      }
+
+      .header-actions,
+      .system-status,
+      #userBadge {
+        width: 100%;
+      }
+
+      .system-status,
+      #userBadge {
+        justify-content: center;
+      }
+
+      #setupSection:not(.hidden),
+      #loginSection:not(.hidden) {
+        margin: 18px auto;
+        padding: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn-primary:hover::after,
+      .goal-bar-fill::after,
+      .tab-panel-active .card {
+        animation: none;
+      }
+    }
+
+    /* StudyBite brand palette refresh */
+    :root,
+    body.dark-mode {
+      color-scheme: dark;
+      --brand: #ff6b2c;
+      --brand2: #e63946;
+      --ink: #fff7eb;
+      --muted: #d8c5b1;
+      --line: rgba(255, 107, 44, 0.28);
+      --panel: rgba(30, 30, 30, 0.86);
+      --page: #1e1e1e;
+      --field: rgba(24, 20, 18, 0.92);
+      --field-readonly: rgba(56, 47, 47, 0.72);
+      --soft: rgba(56, 47, 47, 0.68);
+      --brand-soft: rgba(255, 107, 44, 0.14);
+      --brand-line: rgba(255, 107, 44, 0.44);
+      --glass-blur: blur(18px) saturate(150%);
+      --glass-shadow: 0 22px 58px rgba(0, 0, 0, 0.38), 0 0 38px rgba(255, 107, 44, 0.08);
+      --gradient: linear-gradient(135deg, #ff6b2c 0%, #e63946 100%);
+      --cream: #f5e6d3;
+      --coffee: #382f2f;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 16% 10%, rgba(255, 107, 44, 0.18), transparent 30%),
+        radial-gradient(circle at 84% 4%, rgba(245, 230, 211, 0.10), transparent 26%),
+        linear-gradient(rgba(255, 107, 44, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 107, 44, 0.035) 1px, transparent 1px),
+        #1e1e1e;
+      background-attachment: fixed;
+      background-size: auto, auto, 42px 42px, 42px 42px, auto;
+    }
+
+    body::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 44, 0.52), transparent);
+    }
+
+    header,
+    .card,
+    .receipt-card,
+    .report-card {
+      background:
+        linear-gradient(145deg, rgba(245, 230, 211, 0.07), rgba(255, 107, 44, 0.035)),
+        rgba(30, 30, 30, 0.88);
+      border-color: rgba(255, 107, 44, 0.30);
+    }
+
+    header {
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(245, 230, 211, 0.08);
+    }
+
+    .card::before {
+      background: linear-gradient(90deg, #ff6b2c, rgba(230, 57, 70, 0.76), transparent);
+    }
+
+    .logo-badge {
+      background: radial-gradient(circle, rgba(245, 230, 211, 0.18), rgba(255, 107, 44, 0.08) 58%, transparent 72%);
+      box-shadow: 0 0 26px rgba(255, 107, 44, 0.20);
+    }
+
+    h1,
+    h2,
+    h3,
+    .metric-value,
+    .mini-value,
+    .report-summary-value {
+      color: var(--cream) !important;
+      text-shadow: 0 0 18px rgba(255, 107, 44, 0.20);
+    }
+
+    body .text-orange-600,
+    body .text-orange-700,
+    body .text-orange-800,
+    .receipt-tagline,
+    .receipt-total-row span:last-child,
+    .product-manager-price,
+    .folder-icon {
+      color: #ff6b2c !important;
+    }
+
+    body .text-gray-950,
+    body .text-gray-900,
+    body .text-gray-800 {
+      color: var(--cream) !important;
+    }
+
+    body .text-gray-600,
+    body .text-gray-500,
+    body .text-gray-400,
+    .empty-state {
+      color: var(--muted) !important;
+    }
+
+    body .bg-gray-50,
+    body .bg-white,
+    body .bg-orange-50,
+    .report-summary-card,
+    .receipt-line-item,
+    .weekly-strip article,
+    .product-manager-row,
+    .week-folder {
+      background: rgba(56, 47, 47, 0.60) !important;
+      border-color: rgba(255, 107, 44, 0.24) !important;
+    }
+
+    .field {
+      border-color: rgba(255, 107, 44, 0.28);
+      color: var(--cream);
+    }
+
+    .field:focus {
+      border-color: #ff6b2c;
+      box-shadow: 0 0 0 3px rgba(255, 107, 44, 0.14), 0 0 24px rgba(255, 107, 44, 0.16);
+    }
+
+    .label,
+    th {
+      color: #ffb086;
+    }
+
+    .btn-primary,
+    .fab {
+      background: var(--gradient);
+      box-shadow: 0 12px 30px rgba(255, 107, 44, 0.26), 0 0 0 1px rgba(245, 230, 211, 0.12) inset;
+    }
+
+    .btn-primary:hover,
+    .fab:hover {
+      box-shadow: 0 16px 40px rgba(255, 107, 44, 0.36), 0 0 24px rgba(230, 57, 70, 0.22);
+    }
+
+    .btn-secondary,
+    .sidebar-open-btn {
+      background: rgba(56, 47, 47, 0.72);
+      border-color: rgba(255, 107, 44, 0.28);
+      color: var(--cream);
+    }
+
+    .btn-secondary:hover,
+    .sidebar-open-btn:hover,
+    .mobile-tab-btn:hover {
+      background: rgba(255, 107, 44, 0.14);
+      border-color: rgba(255, 107, 44, 0.52);
+    }
+
+    .btn-secondary.active-toggle,
+    .mobile-tab-indicator {
+      background: var(--gradient);
+      box-shadow: 0 12px 28px rgba(255, 107, 44, 0.24);
+    }
+
+    #userBadge,
+    .system-status,
+    .rank-pill,
+    .product-quantity-value,
+    .quick-entry-btn {
+      background: rgba(255, 107, 44, 0.13) !important;
+      border-color: rgba(255, 107, 44, 0.42) !important;
+      color: #ffd4bd !important;
+    }
+
+    .system-status-dot,
+    #userBadge::before,
+    .system-status[data-state="online"] .system-status-dot,
+    #userBadge[data-state="staff"]::before,
+    #userBadge[data-state="admin"]::before {
+      background: #ff6b2c;
+      box-shadow: 0 0 18px rgba(255, 107, 44, 0.72);
+    }
+
+    #userBadge[data-state="admin"] {
+      background: rgba(230, 57, 70, 0.16) !important;
+      border-color: rgba(230, 57, 70, 0.44) !important;
+      color: #ffd0d4 !important;
+    }
+
+    .metric-value {
+      background: linear-gradient(135deg, #f5e6d3 0%, #ffb086 46%, #ff6b2c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+    }
+
+    .metric-value::after,
+    .mini-value::after {
+      color: rgba(255, 107, 44, 0.74);
+    }
+
+    .week-folder-tab,
+    th {
+      background: linear-gradient(180deg, rgba(255, 107, 44, 0.15), rgba(56, 47, 47, 0.78));
+    }
+
+    td {
+      border-color: rgba(255, 107, 44, 0.16);
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 107, 44, 0.07);
+    }
+
+    .goal-bar {
+      background: rgba(24, 20, 18, 0.96);
+      border-color: rgba(255, 107, 44, 0.22);
+    }
+
+    .goal-bar-fill {
+      background: var(--gradient);
+      box-shadow: 0 0 18px rgba(255, 107, 44, 0.38);
+    }
+
+    .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.10), transparent 38%),
+        rgba(30, 30, 30, 0.97);
+      border-color: rgba(255, 107, 44, 0.28);
+    }
+
+    #setupSection h2::before,
+    #loginSection h2::before {
+      color: #ff6b2c;
+    }
+
+    .receipt-header {
+      background: linear-gradient(135deg, rgba(245, 230, 211, 0.14), rgba(255, 107, 44, 0.15));
+    }
+
+    .receipt-total-row {
+      background: linear-gradient(135deg, rgba(30, 30, 30, 0.96), rgba(56, 47, 47, 0.92));
+      border-color: rgba(255, 107, 44, 0.32);
+    }
+
+    #monthChart {
+      filter: drop-shadow(0 0 18px rgba(255, 107, 44, 0.16));
+    }
+
+    .owner-control-grid,
+    .permission-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .control-toggle {
+      align-items: center;
+      background: rgba(56, 47, 47, 0.54);
+      border: 1px solid rgba(255, 107, 44, 0.24);
+      border-radius: 8px;
+      color: var(--cream);
+      cursor: pointer;
+      display: flex;
+      font-size: 13px;
+      font-weight: 800;
+      gap: 10px;
+      min-height: 44px;
+      padding: 10px 12px;
+    }
+
+    .control-toggle input {
+      accent-color: #ff6b2c;
+      height: 16px;
+      width: 16px;
+    }
+
+    .staff-rights-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .staff-rights-row {
+      align-items: center;
+      background: rgba(24, 20, 18, 0.62);
+      border: 1px solid rgba(255, 107, 44, 0.22);
+      border-radius: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      padding: 12px;
+    }
+
+    .staff-rights-name {
+      color: var(--cream);
+      font-weight: 900;
+    }
+
+    .staff-rights-meta {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .role-pill {
+      background: rgba(255, 107, 44, 0.14);
+      border: 1px solid rgba(255, 107, 44, 0.36);
+      border-radius: 999px;
+      color: #ffd4bd;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 5px 10px;
+      text-transform: uppercase;
+    }
+
+    .mobile-tabs {
+      gap: 10px;
+      padding: 6px 0;
+    }
+
+    .mobile-tab-indicator {
+      display: none;
+    }
+
+    .mobile-tab-btn {
+      background:
+        radial-gradient(circle at 18% 24%, rgba(245, 230, 211, 0.36), transparent 22%),
+        linear-gradient(105deg, rgba(245, 230, 211, 0.38) 0%, rgba(56, 47, 47, 0.78) 28%, rgba(8, 8, 8, 0.96) 72%);
+      border: 1px solid rgba(245, 230, 211, 0.38);
+      border-radius: 999px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        inset 0 -10px 18px rgba(0, 0, 0, 0.42),
+        0 12px 28px rgba(0, 0, 0, 0.28);
+      color: #f5e6d3;
+      min-height: 54px;
+      overflow: hidden;
+      padding: 13px 18px;
+    }
+
+    .mobile-tab-btn::after {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+      content: "";
+      height: 100%;
+      left: -55%;
+      position: absolute;
+      top: 0;
+      transform: skewX(-18deg);
+      width: 42%;
+    }
+
+    .mobile-tab-btn:hover::after,
+    .mobile-tab-btn.active::after {
+      animation: neonSweep 0.8s ease;
+    }
+
+    .mobile-tab-btn.active {
+      background:
+        radial-gradient(circle at 18% 24%, rgba(245, 230, 211, 0.50), transparent 22%),
+        linear-gradient(105deg, rgba(255, 176, 134, 0.74) 0%, rgba(255, 107, 44, 0.92) 34%, rgba(30, 30, 30, 0.98) 82%);
+      border-color: rgba(255, 107, 44, 0.74);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.40),
+        inset 0 -12px 20px rgba(0, 0, 0, 0.36),
+        0 14px 34px rgba(255, 107, 44, 0.18);
+      color: #ffffff;
+    }
+
+    .mobile-tab-btn .tab-icon {
+      filter: drop-shadow(0 0 8px rgba(255, 107, 44, 0.25));
+    }
+
+    /* StudyBite theme repair: light and dark now have separate personalities. */
+    :root {
+      color-scheme: light;
+      --brand: #ff6b2c;
+      --brand2: #e63946;
+      --ink: #241611;
+      --muted: #6f5b4d;
+      --line: rgba(56, 47, 47, 0.16);
+      --panel: rgba(255, 250, 243, 0.92);
+      --page: #f5e6d3;
+      --field: #fffaf2;
+      --field-readonly: #f0deca;
+      --soft: #fff4e8;
+      --brand-soft: rgba(255, 107, 44, 0.10);
+      --brand-line: rgba(255, 107, 44, 0.26);
+      --glass-blur: blur(16px) saturate(142%);
+      --glass-shadow: 0 18px 46px rgba(56, 47, 47, 0.13);
+      --gradient: linear-gradient(135deg, #ff6b2c 0%, #e63946 100%);
+      --cream: #f5e6d3;
+      --coffee: #382f2f;
+    }
+
+    body.dark-mode {
+      color-scheme: dark;
+      --ink: #fff7eb;
+      --muted: #d8c5b1;
+      --line: rgba(255, 107, 44, 0.28);
+      --panel: rgba(30, 30, 30, 0.88);
+      --page: #1e1e1e;
+      --field: rgba(24, 20, 18, 0.92);
+      --field-readonly: rgba(56, 47, 47, 0.72);
+      --soft: rgba(56, 47, 47, 0.68);
+      --brand-soft: rgba(255, 107, 44, 0.14);
+      --brand-line: rgba(255, 107, 44, 0.44);
+      --glass-shadow: 0 22px 58px rgba(0, 0, 0, 0.38), 0 0 38px rgba(255, 107, 44, 0.08);
+    }
+
+    body:not(.dark-mode) {
+      background:
+        radial-gradient(circle at 14% 8%, rgba(255, 107, 44, 0.16), transparent 28%),
+        radial-gradient(circle at 86% 0%, rgba(230, 57, 70, 0.08), transparent 26%),
+        linear-gradient(135deg, #fff8ef 0%, #f5e6d3 54%, #ffe5d2 100%);
+      color: var(--ink);
+    }
+
+    body.dark-mode {
+      background:
+        radial-gradient(circle at 16% 10%, rgba(255, 107, 44, 0.18), transparent 30%),
+        radial-gradient(circle at 84% 4%, rgba(245, 230, 211, 0.10), transparent 26%),
+        linear-gradient(rgba(255, 107, 44, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 107, 44, 0.035) 1px, transparent 1px),
+        #1e1e1e;
+      background-attachment: fixed;
+      background-size: auto, auto, 42px 42px, 42px 42px, auto;
+    }
+
+    body:not(.dark-mode)::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 44, 0.30), transparent);
+      opacity: 0.7;
+    }
+
+    body:not(.dark-mode) header,
+    body:not(.dark-mode) .card,
+    body:not(.dark-mode) .receipt-card,
+    body:not(.dark-mode) .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 244, 232, 0.76)),
+        rgba(255, 250, 243, 0.92);
+      border-color: rgba(56, 47, 47, 0.12);
+      box-shadow: 0 18px 46px rgba(56, 47, 47, 0.12);
+    }
+
+    body:not(.dark-mode) h1,
+    body:not(.dark-mode) h2,
+    body:not(.dark-mode) h3,
+    body:not(.dark-mode) .mini-value,
+    body:not(.dark-mode) .report-summary-value,
+    body:not(.dark-mode) .text-gray-950,
+    body:not(.dark-mode) .text-gray-900,
+    body:not(.dark-mode) .text-gray-800,
+    body:not(.dark-mode) .staff-rights-name {
+      color: var(--coffee) !important;
+      text-shadow: none;
+    }
+
+    body:not(.dark-mode) .text-gray-600,
+    body:not(.dark-mode) .text-gray-500,
+    body:not(.dark-mode) .text-gray-400,
+    body:not(.dark-mode) .empty-state,
+    body:not(.dark-mode) .staff-rights-meta {
+      color: var(--muted) !important;
+    }
+
+    body:not(.dark-mode) .text-orange-600,
+    body:not(.dark-mode) .text-orange-700,
+    body:not(.dark-mode) .text-orange-800,
+    body:not(.dark-mode) .receipt-tagline,
+    body:not(.dark-mode) .receipt-total-row span:last-child,
+    body:not(.dark-mode) .product-manager-price,
+    body:not(.dark-mode) .folder-icon {
+      color: var(--brand) !important;
+    }
+
+    body:not(.dark-mode) .metric-value {
+      background: linear-gradient(135deg, #382f2f 0%, #ff6b2c 56%, #e63946 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+      text-shadow: none;
+    }
+
+    body:not(.dark-mode) .bg-gray-50,
+    body:not(.dark-mode) .bg-white,
+    body:not(.dark-mode) .bg-orange-50,
+    body:not(.dark-mode) .report-summary-card,
+    body:not(.dark-mode) .receipt-line-item,
+    body:not(.dark-mode) .weekly-strip article,
+    body:not(.dark-mode) .product-manager-row,
+    body:not(.dark-mode) .week-folder,
+    body:not(.dark-mode) .control-toggle,
+    body:not(.dark-mode) .staff-rights-row {
+      background: rgba(255, 250, 243, 0.84) !important;
+      border-color: rgba(56, 47, 47, 0.12) !important;
+    }
+
+    body:not(.dark-mode) .field {
+      background: #fffaf2;
+      border-color: rgba(56, 47, 47, 0.16);
+      color: var(--coffee);
+    }
+
+    body:not(.dark-mode) .field:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(255, 107, 44, 0.14);
+    }
+
+    body:not(.dark-mode) .label,
+    body:not(.dark-mode) th {
+      color: #8e3d1c;
+    }
+
+    body:not(.dark-mode) .btn-secondary,
+    body:not(.dark-mode) .sidebar-open-btn {
+      background: #fff7ec;
+      border-color: rgba(56, 47, 47, 0.16);
+      color: var(--coffee);
+    }
+
+    body:not(.dark-mode) .btn-secondary:hover,
+    body:not(.dark-mode) .sidebar-open-btn:hover {
+      background: rgba(255, 107, 44, 0.12);
+      border-color: rgba(255, 107, 44, 0.38);
+    }
+
+    body:not(.dark-mode) #userBadge,
+    body:not(.dark-mode) .system-status,
+    body:not(.dark-mode) .rank-pill,
+    body:not(.dark-mode) .product-quantity-value,
+    body:not(.dark-mode) .quick-entry-btn,
+    body:not(.dark-mode) .role-pill {
+      background: rgba(255, 107, 44, 0.10) !important;
+      border-color: rgba(255, 107, 44, 0.24) !important;
+      color: #8e3d1c !important;
+    }
+
+    body:not(.dark-mode) .week-folder-tab,
+    body:not(.dark-mode) th {
+      background: linear-gradient(180deg, rgba(255, 107, 44, 0.12), rgba(255, 250, 243, 0.94));
+    }
+
+    body:not(.dark-mode) td {
+      border-color: rgba(56, 47, 47, 0.10);
+    }
+
+    body:not(.dark-mode) tbody tr:hover {
+      background: rgba(255, 107, 44, 0.08);
+    }
+
+    body:not(.dark-mode) .goal-bar {
+      background: #fff2e4;
+      border-color: rgba(56, 47, 47, 0.12);
+    }
+
+    body:not(.dark-mode) .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.08), transparent 36%),
+        rgba(255, 250, 243, 0.97);
+      border-color: rgba(56, 47, 47, 0.14);
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn {
+      background:
+        radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.66), transparent 24%),
+        linear-gradient(105deg, #fff8ef 0%, #f5e6d3 34%, #382f2f 100%);
+      border-color: rgba(56, 47, 47, 0.20);
+      color: #fff8ef;
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn.active {
+      background:
+        radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.62), transparent 22%),
+        linear-gradient(105deg, #ffcfaa 0%, #ff6b2c 42%, #382f2f 100%);
+      border-color: rgba(255, 107, 44, 0.58);
+      color: #ffffff;
+    }
+
+    body:not(.dark-mode) .theme-switch-track {
+      background: linear-gradient(135deg, #ffcfaa, #ff6b2c);
+    }
+
+    body:not(.dark-mode) .theme-switch-thumb {
+      color: var(--brand);
+    }
+
+    /* Light mode contrast polish */
+    body:not(.dark-mode) .sidebar-drawer {
+      background:
+        linear-gradient(180deg, rgba(255, 248, 239, 0.98), rgba(246, 232, 216, 0.98)),
+        #fff8ef;
+      box-shadow: 18px 0 48px rgba(56, 47, 47, 0.16);
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 22%, transparent 42%),
+        linear-gradient(105deg, #6d625c 0%, #3f332e 48%, #181312 100%);
+      border-color: rgba(56, 47, 47, 0.32);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        inset 0 -11px 18px rgba(0, 0, 0, 0.36),
+        0 12px 26px rgba(56, 47, 47, 0.22);
+      color: #ffffff !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.38);
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn:hover {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.06) 24%, transparent 42%),
+        linear-gradient(105deg, #746862 0%, #4a3b35 48%, #1e1715 100%);
+      border-color: rgba(255, 107, 44, 0.42);
+      color: #ffffff !important;
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn.active {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 24%, transparent 42%),
+        linear-gradient(105deg, #ff9a62 0%, #ff6b2c 42%, #4a2116 100%);
+      border-color: rgba(255, 107, 44, 0.72);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -12px 18px rgba(79, 24, 10, 0.32),
+        0 13px 28px rgba(255, 107, 44, 0.24);
+      color: #ffffff !important;
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn::after {
+      opacity: 0.38;
+      width: 30%;
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn .tab-icon {
+      color: #ffffff;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.34));
+    }
+
+    body:not(.dark-mode) .control-toggle,
+    body:not(.dark-mode) .control-toggle span,
+    body:not(.dark-mode) .owner-control-grid,
+    body:not(.dark-mode) .permission-grid {
+      color: var(--coffee) !important;
+    }
+
+    body:not(.dark-mode) .control-toggle {
+      background: rgba(255, 252, 247, 0.94) !important;
+      border-color: rgba(56, 47, 47, 0.18) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    body:not(.dark-mode) .control-toggle:hover {
+      background: rgba(255, 244, 232, 0.98) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+    }
+
+    body:not(.dark-mode) .control-toggle input {
+      accent-color: var(--brand);
+    }
+
+    body:not(.dark-mode) .btn-danger {
+      background: #fff4ef;
+      border-color: rgba(230, 57, 70, 0.35);
+      color: #9f241d;
+    }
+
+    body:not(.dark-mode) .btn-danger:hover {
+      background: #ffe8e0;
+      border-color: rgba(230, 57, 70, 0.52);
+      color: #7f1d1d;
+    }
+
+    body:not(.dark-mode) .sidebar-drawer-title,
+    body:not(.dark-mode) .sidebar-close-btn {
+      color: var(--coffee);
+    }
+
+    /* Warm cafe photo theme */
+    :root {
+      --brand: #ff8a2a;
+      --brand2: #d94a1a;
+      --ink: #2a1710;
+      --muted: #725342;
+      --line: rgba(115, 67, 36, 0.20);
+      --panel: rgba(255, 248, 238, 0.88);
+      --page: #f3ddc4;
+      --field: rgba(255, 250, 242, 0.92);
+      --field-readonly: rgba(244, 225, 202, 0.88);
+      --soft: rgba(255, 236, 212, 0.88);
+      --brand-soft: rgba(255, 138, 42, 0.14);
+      --brand-line: rgba(255, 138, 42, 0.34);
+      --glass-shadow: 0 20px 54px rgba(42, 23, 16, 0.18);
+      --gradient: linear-gradient(135deg, #ff9d3d 0%, #ff6b2c 52%, #d94a1a 100%);
+      --cream: #fff3df;
+      --coffee: #2a1710;
+      --wood: #7b3f1d;
+      --espresso: #140b07;
+      --amber: #ffb13d;
+    }
+
+    body.dark-mode {
+      --ink: #fff3df;
+      --muted: #e6c9a5;
+      --line: rgba(255, 177, 61, 0.28);
+      --panel: rgba(20, 11, 7, 0.86);
+      --page: #120a06;
+      --field: rgba(25, 13, 8, 0.94);
+      --field-readonly: rgba(60, 34, 19, 0.78);
+      --soft: rgba(60, 34, 19, 0.72);
+      --brand-soft: rgba(255, 138, 42, 0.16);
+      --brand-line: rgba(255, 177, 61, 0.36);
+      --glass-shadow: 0 24px 62px rgba(0, 0, 0, 0.42), 0 0 36px rgba(255, 138, 42, 0.10);
+    }
+
+    body:not(.dark-mode) {
+      background:
+        linear-gradient(180deg, rgba(255, 248, 238, 0.74), rgba(246, 226, 203, 0.82)),
+        radial-gradient(circle at 16% 12%, rgba(255, 177, 61, 0.22), transparent 30%),
+        url("studybite-cafe-bg.jpg") center center / cover fixed no-repeat;
+      color: var(--ink);
+    }
+
+    body.dark-mode {
+      background:
+        linear-gradient(180deg, rgba(10, 5, 3, 0.74), rgba(20, 9, 4, 0.88)),
+        radial-gradient(circle at 18% 12%, rgba(255, 138, 42, 0.20), transparent 32%),
+        url("studybite-cafe-bg.jpg") center center / cover fixed no-repeat;
+      color: var(--ink);
+    }
+
+    body::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 177, 61, 0.42), transparent);
+      opacity: 0.72;
+    }
+
+    body:not(.dark-mode) header,
+    body:not(.dark-mode) .card,
+    body:not(.dark-mode) .receipt-card,
+    body:not(.dark-mode) .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 253, 247, 0.86), rgba(255, 235, 205, 0.76)),
+        rgba(255, 248, 238, 0.86);
+      border-color: rgba(123, 63, 29, 0.18);
+      box-shadow: 0 18px 50px rgba(42, 23, 16, 0.18);
+      backdrop-filter: blur(18px) saturate(138%);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .card,
+    body.dark-mode .receipt-card,
+    body.dark-mode .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 177, 61, 0.08), rgba(20, 11, 7, 0.82)),
+        rgba(20, 11, 7, 0.86);
+      border-color: rgba(255, 177, 61, 0.24);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(18px) saturate(142%);
+    }
+
+    body:not(.dark-mode) h1,
+    body:not(.dark-mode) h2,
+    body:not(.dark-mode) h3,
+    body:not(.dark-mode) .mini-value,
+    body:not(.dark-mode) .report-summary-value,
+    body:not(.dark-mode) .text-gray-950,
+    body:not(.dark-mode) .text-gray-900,
+    body:not(.dark-mode) .text-gray-800,
+    body:not(.dark-mode) .staff-rights-name,
+    body:not(.dark-mode) .sidebar-drawer-title,
+    body:not(.dark-mode) .sidebar-close-btn {
+      color: var(--coffee) !important;
+    }
+
+    body .text-orange-600,
+    body .text-orange-700,
+    body .text-orange-800,
+    body .receipt-tagline,
+    body .receipt-total-row span:last-child,
+    body .product-manager-price,
+    body .folder-icon {
+      color: var(--brand) !important;
+    }
+
+    body:not(.dark-mode) .metric-value {
+      background: linear-gradient(135deg, #2a1710 0%, #7b3f1d 34%, #ff6b2c 72%, #d94a1a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+    }
+
+    body:not(.dark-mode) .bg-gray-50,
+    body:not(.dark-mode) .bg-white,
+    body:not(.dark-mode) .bg-orange-50,
+    body:not(.dark-mode) .report-summary-card,
+    body:not(.dark-mode) .receipt-line-item,
+    body:not(.dark-mode) .weekly-strip article,
+    body:not(.dark-mode) .product-manager-row,
+    body:not(.dark-mode) .week-folder,
+    body:not(.dark-mode) .control-toggle,
+    body:not(.dark-mode) .staff-rights-row {
+      background: rgba(255, 250, 242, 0.86) !important;
+      border-color: rgba(123, 63, 29, 0.18) !important;
+    }
+
+    body.dark-mode .bg-gray-50,
+    body.dark-mode .bg-white,
+    body.dark-mode .bg-orange-50,
+    body.dark-mode .report-summary-card,
+    body.dark-mode .receipt-line-item,
+    body.dark-mode .weekly-strip article,
+    body.dark-mode .product-manager-row,
+    body.dark-mode .week-folder,
+    body.dark-mode .control-toggle,
+    body.dark-mode .staff-rights-row {
+      background: rgba(44, 24, 14, 0.72) !important;
+      border-color: rgba(255, 177, 61, 0.22) !important;
+    }
+
+    .btn-primary,
+    .fab,
+    .goal-bar-fill {
+      background: var(--gradient);
+      box-shadow: 0 14px 32px rgba(217, 74, 26, 0.28), 0 0 0 1px rgba(255, 243, 223, 0.16) inset;
+    }
+
+    body:not(.dark-mode) .btn-secondary,
+    body:not(.dark-mode) .sidebar-open-btn {
+      background: rgba(255, 250, 242, 0.88);
+      border-color: rgba(123, 63, 29, 0.18);
+      color: var(--coffee);
+    }
+
+    body.dark-mode .btn-secondary,
+    body.dark-mode .sidebar-open-btn {
+      background: rgba(44, 24, 14, 0.82);
+      border-color: rgba(255, 177, 61, 0.24);
+      color: var(--cream);
+    }
+
+    body:not(.dark-mode) .field {
+      background: rgba(255, 250, 242, 0.92);
+      border-color: rgba(123, 63, 29, 0.20);
+      color: var(--coffee);
+    }
+
+    body.dark-mode .field {
+      background: rgba(25, 13, 8, 0.92);
+      border-color: rgba(255, 177, 61, 0.24);
+      color: var(--cream);
+    }
+
+    body:not(.dark-mode) .sidebar-drawer {
+      background:
+        linear-gradient(180deg, rgba(255, 248, 238, 0.94), rgba(239, 212, 181, 0.90)),
+        url("studybite-cafe-bg.jpg") center center / cover no-repeat;
+      border-color: rgba(123, 63, 29, 0.18);
+    }
+
+    body.dark-mode .sidebar-drawer {
+      background:
+        linear-gradient(180deg, rgba(15, 8, 5, 0.94), rgba(24, 12, 6, 0.94)),
+        url("studybite-cafe-bg.jpg") center center / cover no-repeat;
+      border-color: rgba(255, 177, 61, 0.24);
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn,
+    body.dark-mode .mobile-tab-btn {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 22%, transparent 42%),
+        linear-gradient(105deg, #71431f 0%, #321b10 48%, #110806 100%);
+      border-color: rgba(255, 177, 61, 0.28);
+      color: #fff8ef !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.48);
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn.active,
+    body.dark-mode .mobile-tab-btn.active {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.06) 24%, transparent 42%),
+        linear-gradient(105deg, #ffb13d 0%, #ff6b2c 45%, #64220e 100%);
+      border-color: rgba(255, 177, 61, 0.72);
+      color: #ffffff !important;
+    }
+
+    body:not(.dark-mode) #userBadge,
+    body:not(.dark-mode) .system-status,
+    body:not(.dark-mode) .rank-pill,
+    body:not(.dark-mode) .product-quantity-value,
+    body:not(.dark-mode) .quick-entry-btn,
+    body:not(.dark-mode) .role-pill {
+      background: rgba(255, 138, 42, 0.12) !important;
+      border-color: rgba(255, 138, 42, 0.32) !important;
+      color: #7b3f1d !important;
+    }
+
+    body.dark-mode #userBadge,
+    body.dark-mode .system-status,
+    body.dark-mode .rank-pill,
+    body.dark-mode .product-quantity-value,
+    body.dark-mode .quick-entry-btn,
+    body.dark-mode .role-pill {
+      background: rgba(255, 138, 42, 0.14) !important;
+      border-color: rgba(255, 177, 61, 0.32) !important;
+      color: #ffd9a6 !important;
+    }
+
+    body:not(.dark-mode) .theme-switch-track {
+      background: linear-gradient(135deg, #ffe0b2, #ff8a2a);
+    }
+
+    body.dark-mode .theme-switch-track {
+      background: linear-gradient(135deg, #3b1d0f, #ff8a2a);
+    }
+
+    /* Clearer cafe background and mobile drawer pull gesture */
+    body:not(.dark-mode) {
+      background:
+        linear-gradient(180deg, rgba(255, 246, 234, 0.34), rgba(255, 235, 210, 0.42)),
+        radial-gradient(circle at 18% 16%, rgba(255, 177, 61, 0.14), transparent 30%),
+        url("studybite-cafe-bg.jpg") center top / cover fixed no-repeat;
+      background-color: #f1d6b8;
+    }
+
+    body.dark-mode {
+      background:
+        linear-gradient(180deg, rgba(8, 4, 2, 0.54), rgba(15, 7, 3, 0.70)),
+        radial-gradient(circle at 18% 14%, rgba(255, 138, 42, 0.16), transparent 32%),
+        url("studybite-cafe-bg.jpg") center top / cover fixed no-repeat;
+      background-color: #140b07;
+    }
+
+    body:not(.dark-mode) header,
+    body:not(.dark-mode) .card,
+    body:not(.dark-mode) .receipt-card,
+    body:not(.dark-mode) .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 253, 247, 0.84), rgba(255, 236, 212, 0.72)),
+        rgba(255, 248, 238, 0.82);
+      backdrop-filter: blur(7px) saturate(128%);
+      -webkit-backdrop-filter: blur(7px) saturate(128%);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .card,
+    body.dark-mode .receipt-card,
+    body.dark-mode .report-card {
+      backdrop-filter: blur(9px) saturate(132%);
+      -webkit-backdrop-filter: blur(9px) saturate(132%);
+    }
+
+    body:not(.dark-mode) .sidebar-drawer {
+      background:
+        linear-gradient(180deg, rgba(255, 248, 238, 0.86), rgba(239, 212, 181, 0.76)),
+        url("studybite-cafe-bg.jpg") center top / cover no-repeat;
+      backdrop-filter: blur(6px) saturate(130%);
+      -webkit-backdrop-filter: blur(6px) saturate(130%);
+    }
+
+    body.dark-mode .sidebar-drawer {
+      backdrop-filter: blur(8px) saturate(132%);
+      -webkit-backdrop-filter: blur(8px) saturate(132%);
+    }
+
+    .sidebar-drawer.dragging {
+      transition: none;
+    }
+
+    .sidebar-overlay.dragging {
+      opacity: var(--drag-opacity, 0.22);
+      pointer-events: none;
+      transition: none;
+      visibility: visible;
+    }
+
+    @media (max-width: 720px) {
+      body:not(.dark-mode),
+      body.dark-mode {
+        background-attachment: scroll;
+        background-position: center top;
+      }
+    }
+
+    /* No extra blur pass */
+    :root,
+    body.dark-mode {
+      --glass-blur: none;
+    }
+
+    body:not(.dark-mode) {
+      background:
+        linear-gradient(180deg, rgba(255, 246, 234, 0.18), rgba(255, 235, 210, 0.26)),
+        url("studybite-cafe-bg.jpg") center top / cover fixed no-repeat;
+    }
+
+    body.dark-mode {
+      background:
+        linear-gradient(180deg, rgba(8, 4, 2, 0.42), rgba(15, 7, 3, 0.58)),
+        url("studybite-cafe-bg.jpg") center top / cover fixed no-repeat;
+    }
+
+    header,
+    .card,
+    .receipt-card,
+    .report-card,
+    .sidebar-drawer,
+    .sidebar-overlay {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    body:not(.dark-mode) header,
+    body:not(.dark-mode) .card,
+    body:not(.dark-mode) .receipt-card,
+    body:not(.dark-mode) .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 253, 247, 0.90), rgba(255, 236, 212, 0.82)),
+        rgba(255, 248, 238, 0.90);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .card,
+    body.dark-mode .receipt-card,
+    body.dark-mode .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 177, 61, 0.08), rgba(20, 11, 7, 0.90)),
+        rgba(20, 11, 7, 0.90);
+    }
+
+    @media (max-width: 720px) {
+      body:not(.dark-mode),
+      body.dark-mode {
+        background-attachment: scroll;
+        background-size: auto 100vh;
+      }
+    }
+
+    /* Full cafe image cover: no app blur */
+    body:not(.dark-mode),
+    body.dark-mode {
+      background-color: #120a06;
+      background-image: url("studybite-cafe-bg.jpg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    body:not(.dark-mode)::before,
+    body.dark-mode::before {
+      opacity: 0;
+    }
+
+    @media (max-width: 720px) {
+      body:not(.dark-mode),
+      body.dark-mode {
+        background-attachment: scroll;
+        background-size: cover;
+      }
+    }
+
+    body.home-mode header,
+    body.home-mode #setupSection,
+    body.home-mode #loginSection,
+    body.home-mode #trackerSection,
+    body.home-mode #sidebarOverlay,
+    body.home-mode #sidebarDrawer,
+    body.home-mode #fabBtn {
+      display: none !important;
+    }
+
+    body:not(.home-mode) #homeSection {
+      display: none !important;
+    }
+
+    .home-page {
+      align-items: center;
+      display: grid;
+      min-height: calc(100vh - 56px);
+      padding: 0;
+    }
+
+    .home-hero {
+      background:
+        radial-gradient(circle at 26% 42%, rgba(226, 123, 57, 0.20), transparent 22%),
+        linear-gradient(90deg, rgba(31, 12, 5, 0.60), rgba(49, 20, 8, 0.93) 54%, rgba(49, 20, 8, 0.99)),
+        url("studybite-cafe-bg.jpg") left center / cover no-repeat,
+        #351708;
+      border: 1px solid rgba(205, 129, 73, 0.24);
+      border-radius: 0;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+      color: #fff3df;
+      min-height: calc(100vh - 48px);
+      overflow: hidden;
+      padding: clamp(18px, 3vw, 34px);
+      position: relative;
+    }
+
+    .home-hero::before {
+      background: linear-gradient(90deg, rgba(111, 57, 30, 0.9), rgba(213, 129, 74, 0.65), rgba(111, 57, 30, 0.9));
+      content: "";
+      height: 8px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 4;
+    }
+
+    .home-hero::after {
+      color: rgba(255, 243, 223, 0.035);
+      content: "StudyBite";
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(90px, 18vw, 220px);
+      font-style: italic;
+      font-weight: 900;
+      line-height: 0.82;
+      position: absolute;
+      right: 5vw;
+      top: 18vh;
+      transform: rotate(-3deg);
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .home-nav {
+      align-items: center;
+      display: grid;
+      gap: 18px;
+      grid-template-columns: auto 1fr auto auto;
+      position: relative;
+      z-index: 3;
+    }
+
+    .home-mark {
+      align-items: center;
+      border: 1px solid rgba(255, 243, 223, 0.42);
+      border-radius: 999px;
+      color: #fff3df;
+      display: inline-flex;
+      font-size: 13px;
+      font-weight: 950;
+      height: 44px;
+      justify-content: center;
+      letter-spacing: 0;
+      width: 44px;
+    }
+
+    .home-nav-links {
+      align-items: center;
+      display: flex;
+      gap: clamp(16px, 4vw, 42px);
+      justify-content: center;
+    }
+
+    .home-nav-link {
+      background: transparent;
+      border: 0;
+      color: rgba(255, 243, 223, 0.76);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 8px 0;
+    }
+
+    .home-nav-link:hover {
+      color: #f6a35c;
+    }
+
+    .home-search,
+    .home-cart {
+      align-items: center;
+      background: rgba(92, 43, 20, 0.72);
+      border: 1px solid rgba(214, 139, 83, 0.22);
+      border-radius: 999px;
+      color: rgba(255, 243, 223, 0.76);
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 12px;
+      font-weight: 800;
+      height: 36px;
+      justify-content: center;
+    }
+
+    .home-search {
+      gap: 12px;
+      min-width: 158px;
+      padding: 0 14px 0 18px;
+    }
+
+    .home-cart {
+      color: #fff3df;
+      width: 36px;
+    }
+
+    .home-layout {
+      align-items: center;
+      display: grid;
+      gap: clamp(26px, 5vw, 66px);
+      grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1fr);
+      min-height: calc(100vh - 150px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .home-visual {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-height: 440px;
+      position: relative;
+    }
+
+    .home-visual::before {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.10), transparent 33%),
+        radial-gradient(circle at 50% 50%, rgba(93, 38, 13, 0.1), rgba(10, 4, 1, 0.58) 63%, transparent 64%);
+      border-radius: 50%;
+      content: "";
+      height: clamp(260px, 38vw, 480px);
+      position: absolute;
+      width: clamp(260px, 38vw, 480px);
+    }
+
+    .home-cup-image {
+      background: url("studybite-cafe-bg.jpg") center center / cover no-repeat;
+      border: 10px solid rgba(255, 243, 223, 0.10);
+      border-radius: 50%;
+      box-shadow: 0 34px 80px rgba(0, 0, 0, 0.46), inset 0 0 0 1px rgba(255, 243, 223, 0.18);
+      height: clamp(240px, 35vw, 430px);
+      position: relative;
+      width: clamp(240px, 35vw, 430px);
+      z-index: 1;
+    }
+
+    .home-kicker {
+      color: #ffb13d;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .home-title {
+      color: #fff3df;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(58px, 9vw, 124px);
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 0.82;
+      margin: 0;
+      max-width: 680px;
+      position: relative;
+      text-shadow: 0 5px 0 rgba(71, 31, 14, 0.88), 0 16px 36px rgba(0, 0, 0, 0.32);
+      z-index: 1;
+    }
+
+    .home-title-main,
+    .home-user-name {
+      display: block;
+    }
+
+    .home-user-name {
+      color: #fff7e8;
+      font-size: clamp(62px, 10vw, 138px);
+      margin-top: 12px;
+    }
+
+    .home-copy {
+      color: #e6c9a5;
+      font-size: clamp(16px, 2.4vw, 21px);
+      font-weight: 750;
+      line-height: 1.55;
+      margin: 22px 0 0;
+      max-width: 660px;
+    }
+
+    .home-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .home-discover {
+      align-items: center;
+      bottom: clamp(24px, 5vw, 42px);
+      display: flex;
+      gap: 18px;
+      position: absolute;
+      right: clamp(24px, 5vw, 46px);
+      z-index: 3;
+    }
+
+    .home-discover button {
+      background: transparent;
+      border: 0;
+      color: #fff3df;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 8px 0;
+    }
+
+    .home-discover span {
+      background: rgba(255, 243, 223, 0.65);
+      display: block;
+      height: 1px;
+      width: 78px;
+    }
+
+    .home-side-dock {
+      background: rgba(181, 112, 66, 0.72);
+      border: 1px solid rgba(255, 243, 223, 0.18);
+      border-radius: 999px;
+      bottom: 44px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      left: clamp(18px, 3vw, 36px);
+      padding: 9px;
+      position: absolute;
+      z-index: 3;
+    }
+
+    .home-dock-btn,
+    .home-round-btn {
+      align-items: center;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 11px;
+      font-weight: 950;
+      justify-content: center;
+    }
+
+    .home-dock-btn {
+      background: rgba(255, 243, 223, 0.10);
+      border: 1px solid transparent;
+      color: #fff3df;
+      height: 32px;
+      width: 32px;
+    }
+
+    .home-dock-btn.active,
+    .home-dock-btn:hover {
+      background: #fff3df;
+      color: #7a4424;
+    }
+
+    .home-round-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: absolute;
+      right: clamp(18px, 3vw, 36px);
+      top: 42%;
+      z-index: 3;
+    }
+
+    .home-round-btn {
+      background: rgba(255, 243, 223, 0.92);
+      border: 1px solid rgba(255, 243, 223, 0.24);
+      color: #7a4424;
+      height: 36px;
+      width: 36px;
+    }
+
+    .home-stat-row {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 34px;
+      max-width: 780px;
+    }
+
+    .home-stat {
+      background: rgba(255, 243, 223, 0.08);
+      border: 1px solid rgba(255, 177, 61, 0.18);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .home-stat strong {
+      color: #ffb13d;
+      display: block;
+      font-size: 20px;
+      font-weight: 950;
+      margin-bottom: 3px;
+    }
+
+    .home-stat span {
+      color: #f4dec0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 720px) {
+      .home-page {
+        min-height: calc(100vh - 24px);
+      }
+
+      .home-hero {
+        min-height: calc(100vh - 24px);
+        padding: 18px;
+      }
+
+      .home-nav {
+        grid-template-columns: auto 1fr auto;
+      }
+
+      .home-nav-links,
+      .home-search {
+        display: none;
+      }
+
+      .home-layout {
+        gap: 10px;
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 24px;
+      }
+
+      .home-visual {
+        min-height: 260px;
+      }
+
+      .home-title {
+        font-size: clamp(50px, 16vw, 76px);
+      }
+
+      .home-user-name {
+        font-size: clamp(58px, 18vw, 88px);
+      }
+
+      .home-side-dock,
+      .home-round-stack {
+        display: none;
+      }
+
+      .home-discover {
+        bottom: 18px;
+        right: 18px;
+      }
+
+      .home-actions .btn {
+        width: 100%;
+      }
+
+      .home-stat-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
-<body>
+<body class="home-mode">
   <main class="app-shell">
     <div class="offline-banner" id="offlineBanner">You're offline. New sales are saved locally and will sync when you're back online.</div>
+    <section class="home-page" id="homeSection">
+      <div class="home-hero">
+        <nav class="home-nav" aria-label="Home navigation">
+          <div class="home-mark">SB</div>
+          <div class="home-nav-links">
+            <button class="home-nav-link" onclick="enterDatabase('sell')" type="button">Menu</button>
+            <button class="home-nav-link" onclick="enterDatabase('dashboard')" type="button">Dashboard</button>
+            <button class="home-nav-link" onclick="enterDatabase('records')" type="button">Records</button>
+            <button class="home-nav-link" onclick="enterDatabase('manage')" type="button">Manage</button>
+          </div>
+          <button class="home-search" onclick="enterDatabase('records')" type="button">
+            <span>Find an order</span>
+            <span aria-hidden="true">⌕</span>
+          </button>
+          <button class="home-cart" onclick="enterDatabase('sell')" type="button" aria-label="Open order entry">+</button>
+        </nav>
+
+        <div class="home-side-dock" aria-label="Quick database links">
+          <button class="home-dock-btn" onclick="enterDatabase('dashboard')" type="button" aria-label="Dashboard">DB</button>
+          <button class="home-dock-btn active" onclick="enterDatabase('sell')" type="button" aria-label="Order entry">OR</button>
+          <button class="home-dock-btn" onclick="enterDatabase('records')" type="button" aria-label="Records">RC</button>
+          <button class="home-dock-btn" onclick="enterDatabase('manage')" type="button" aria-label="Manage">MG</button>
+          <button class="home-dock-btn" onclick="enterDatabase('owner')" type="button" aria-label="Owner controls">+</button>
+        </div>
+
+        <div class="home-layout">
+          <div class="home-visual" aria-hidden="true">
+            <div class="home-cup-image"></div>
+          </div>
+          <div class="home-content">
+            <div class="home-kicker">StudyBite database</div>
+            <h1 class="home-title">
+              <span class="home-title-main">Welcome</span>
+              <span class="home-user-name hidden" id="homeUserName"></span>
+            </h1>
+            <p class="home-copy">Track sales, receipts, products, staff rights, and daily performance from one focused dashboard built for fast campus service.</p>
+            <div class="home-stat-row">
+              <div class="home-stat">
+                <strong>Live</strong>
+                <span>Firebase sales tracker</span>
+              </div>
+              <div class="home-stat">
+                <strong>Fast</strong>
+                <span>Counter-ready order entry</span>
+              </div>
+              <div class="home-stat">
+                <strong>Owner</strong>
+                <span>Staff rights and controls</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-round-stack" aria-hidden="true">
+          <button class="home-round-btn" onclick="enterDatabase('dashboard')" type="button" tabindex="-1">⌃</button>
+          <button class="home-round-btn" onclick="enterDatabase('records')" type="button" tabindex="-1">⌄</button>
+        </div>
+
+        <div class="home-discover">
+          <button onclick="enterDatabase()" type="button">Discover</button>
+          <span aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
     <header class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex items-center gap-4">
         <button class="sidebar-open-btn" id="sidebarOpenBtn" onclick="openSidebar()" type="button" aria-label="Open menu">
@@ -1249,12 +3370,16 @@
         </span>
         <div>
           <h1 class="text-3xl font-black tracking-normal text-gray-950">StudyBite</h1>
-          <p class="text-sm font-bold text-orange-600">Sales tracker dashboard</p>
+          <p class="text-sm font-bold text-orange-600">Fuel your study sessions</p>
         </div>
       </div>
-      <div class="flex flex-wrap items-center gap-3">
+      <div class="header-actions flex flex-wrap items-center gap-3">
+        <div class="system-status" id="systemStatus" data-state="standby">
+          <span class="system-status-dot"></span>
+          <span class="system-status-text">Standby</span>
+        </div>
         <button class="btn btn-primary hidden" id="installAppBtn" onclick="installApp()" type="button">Install app</button>
-        <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge">Not connected</div>
+        <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge" data-state="standby">Not connected</div>
         <button class="btn btn-secondary hidden" id="logoutBtn" onclick="logout()" type="button">Log out</button>
       </div>
     </header>
@@ -1328,25 +3453,39 @@
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C13.7 15 15 13.7 15 12C15 10.3 13.7 9 12 9C10.3 9 9 10.3 9 12C9 13.7 10.3 15 12 15Z" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13.5C19.5 12.5 19.5 11.5 19.4 10.5L21 9.2L19.5 6.8L17.6 7.5C16.8 6.9 16 6.4 15 6.1L14.7 4H10.3L10 6.1C9 6.4 8.2 6.9 7.4 7.5L5.5 6.8L4 9.2L5.6 10.5C5.5 11.5 5.5 12.5 5.6 13.5L4 14.8L5.5 17.2L7.4 16.5C8.2 17.1 9 17.6 10 17.9L10.3 20H14.7L15 17.9C16 17.6 16.8 17.1 17.6 16.5L19.5 17.2L21 14.8L19.4 13.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           Manage
         </button>
+        <button class="mobile-tab-btn owner-only hidden" data-tab="owner" onclick="switchTab('owner')" type="button">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L20 6.5V11.5C20 16.4 16.7 20.3 12 21.5C7.3 20.3 4 16.4 4 11.5V6.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12L11 14L15.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Owner
+        </button>
       </nav>
       <div class="sidebar-drawer-footer">
-        <span class="sidebar-drawer-footer-label">Dark mode</span>
-        <label class="theme-switch" id="themeToggle" title="Toggle dark mode">
-          <input type="checkbox" id="themeToggleInput" onchange="toggleDarkMode()">
-          <span class="theme-switch-track">
-            <span class="theme-switch-thumb">
-              <svg class="theme-switch-icon theme-switch-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V4.5M12 19.5V21.5M4.5 12H2.5M21.5 12H19.5M5.6 5.6L4.9 4.9M19.1 19.1L18.4 18.4M5.6 18.4L4.9 19.1M19.1 4.9L18.4 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              <svg class="theme-switch-icon theme-switch-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5C18.9 15 17.7 15.3 16.5 15.3C11.9 15.3 8.2 11.6 8.2 7C8.2 5.8 8.5 4.6 9 3.5C5.4 4.6 2.7 7.9 2.7 11.9C2.7 16.8 6.7 20.8 11.6 20.8C15.6 20.8 18.9 18.1 20 14.5Z" fill="currentColor"/></svg>
+        <div class="sidebar-setting-row">
+          <span class="sidebar-drawer-footer-label">Theme</span>
+          <label class="theme-switch" id="themeToggle" title="Toggle theme">
+            <input type="checkbox" id="themeToggleInput" onchange="toggleDarkMode()">
+            <span class="theme-switch-track">
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-icon theme-switch-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V4.5M12 19.5V21.5M4.5 12H2.5M21.5 12H19.5M5.6 5.6L4.9 4.9M19.1 19.1L18.4 18.4M5.6 18.4L4.9 19.1M19.1 4.9L18.4 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <svg class="theme-switch-icon theme-switch-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5C18.9 15 17.7 15.3 16.5 15.3C11.9 15.3 8.2 11.6 8.2 7C8.2 5.8 8.5 4.6 9 3.5C5.4 4.6 2.7 7.9 2.7 11.9C2.7 16.8 6.7 20.8 11.6 20.8C15.6 20.8 18.9 18.1 20 14.5Z" fill="currentColor"/></svg>
+              </span>
             </span>
-          </span>
-        </label>
+          </label>
+        </div>
+        <div class="profile-name-control hidden" id="profileNameControl">
+          <label class="sidebar-drawer-footer-label" for="profileDisplayName">Display name</label>
+          <div class="profile-name-row">
+            <input class="field profile-name-field" id="profileDisplayName" type="text" maxlength="32" placeholder="Your name" onkeydown="if(event.key === 'Enter') saveMyDisplayName()">
+            <button class="btn btn-secondary profile-name-save" onclick="saveMyDisplayName()" type="button">Save</button>
+          </div>
+          <div class="profile-name-status" id="profileNameStatus"></div>
+        </div>
       </div>
     </aside>
 
     <section id="trackerSection" class="tracker-section">
 
       <div class="tab-panel tab-panel-active" data-tab-panel="sell">
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" data-feature-key="quickEntry">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Quick entry mode</h2>
@@ -1441,7 +3580,7 @@
       </div>
 
       
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" data-feature-key="goals">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">This week</h2>
@@ -1465,7 +3604,7 @@
       </section>
 
       
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" data-feature-key="topCustomers">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Sales goals</h2>
@@ -1499,7 +3638,7 @@
       </section>
 
       
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" data-feature-key="trends">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Top customers</h2>
@@ -1529,7 +3668,7 @@
             <button class="btn btn-secondary" onclick="setChartView('daily')" id="chartViewDailyBtn" type="button">Daily</button>
             <button class="btn btn-secondary" onclick="setChartView('weekly')" id="chartViewWeeklyBtn" type="button">Weekly</button>
             <button class="btn btn-secondary" onclick="setChartView('monthly')" id="chartViewMonthlyBtn" type="button">Monthly</button>
-            <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+            <button class="btn btn-secondary" onclick="exportSales()" data-permission="exportSales">Export CSV</button>
           </div>
         </div>
         <div class="h-72">
@@ -1541,18 +3680,18 @@
       
       </div>
       <div class="tab-panel" data-tab-panel="records">
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" data-feature-key="backup">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Daily closing report</h2>
             <p class="text-sm text-gray-500">Today's totals at a glance, ready to print at end of day.</p>
           </div>
-          <button class="btn btn-primary" onclick="showDailyClosingReport()" type="button">View today's report</button>
+        <button class="btn btn-primary" onclick="showDailyClosingReport()" type="button" data-permission="printReports">View today's report</button>
         </div>
       </section>
 
       
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" data-feature-key="backup">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Reports &amp; backup</h2>
@@ -1560,10 +3699,10 @@
           </div>
         </div>
         <div class="flex flex-wrap gap-3 mobile-actions">
-          <button class="btn btn-secondary" onclick="showPrintableReport('week')" type="button">Print weekly report</button>
-          <button class="btn btn-secondary" onclick="showPrintableReport('month')" type="button">Print monthly report</button>
-          <button class="btn btn-secondary" onclick="backupData()" type="button">Backup JSON</button>
-          <button class="btn btn-secondary admin-only hidden" onclick="document.getElementById('restoreFileInput').click()" type="button">Restore JSON</button>
+          <button class="btn btn-secondary" onclick="showPrintableReport('week')" type="button" data-permission="printReports">Print weekly report</button>
+          <button class="btn btn-secondary" onclick="showPrintableReport('month')" type="button" data-permission="printReports">Print monthly report</button>
+          <button class="btn btn-secondary" onclick="backupData()" type="button" data-permission="exportSales">Backup JSON</button>
+          <button class="btn btn-secondary admin-only hidden" data-permission="restoreBackup" onclick="document.getElementById('restoreFileInput').click()" type="button">Restore JSON</button>
           <input type="file" id="restoreFileInput" accept="application/json" class="hidden" onchange="restoreData(event)">
         </div>
       </section>
@@ -1576,8 +3715,8 @@
             <p class="text-sm text-gray-500">Real-time records from Firebase.</p>
           </div>
           <div class="flex flex-wrap gap-2 mobile-actions">
-            <button class="btn btn-secondary" onclick="openExportByDateModal()" type="button">Download by date</button>
-            <button class="btn btn-secondary" onclick="exportSales()">Export CSV</button>
+            <button class="btn btn-secondary" onclick="openExportByDateModal()" type="button" data-permission="exportSales">Download by date</button>
+            <button class="btn btn-secondary" onclick="exportSales()" data-permission="exportSales">Export CSV</button>
           </div>
         </div>
         <div class="p-5 border-b border-gray-200">
@@ -1615,8 +3754,62 @@
         </div>
       </section>
       </div>
+      <div class="tab-panel" data-tab-panel="owner">
+      <section class="card mb-6 p-5 owner-only hidden" id="ownerControlPanel">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Owner control</h2>
+            <p class="text-sm text-gray-500">Control dashboard sections, feature access, and staff rights.</p>
+          </div>
+          <span class="role-pill">Main admin</span>
+        </div>
+
+        <div class="grid gap-5">
+          <div>
+            <h3 class="text-sm font-black tracking-normal text-gray-950 mb-3">Dashboard sections</h3>
+            <div class="owner-control-grid" id="sectionToggleGrid"></div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-black tracking-normal text-gray-950 mb-3">Feature switches</h3>
+            <div class="owner-control-grid" id="featureToggleGrid"></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mobile-stack">
+            <div>
+              <label class="label" for="staffRightsEmail">Staff email</label>
+              <input class="field" type="email" id="staffRightsEmail" placeholder="staff@example.com">
+            </div>
+            <div>
+              <label class="label" for="staffRightsRole">Role</label>
+              <select class="field" id="staffRightsRole" onchange="applyRolePresetToStaffForm()">
+                <option value="staff">Staff</option>
+                <option value="manager">Manager</option>
+                <option value="viewer">Viewer</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-black tracking-normal text-gray-950 mb-3">Staff permissions</h3>
+            <div class="permission-grid" id="staffPermissionGrid"></div>
+          </div>
+
+          <div class="flex flex-wrap gap-3 mobile-actions">
+            <button class="btn btn-primary" onclick="saveOwnerDashboardSettings()" type="button">Save dashboard settings</button>
+            <button class="btn btn-secondary" onclick="saveStaffRights()" type="button">Save staff rights</button>
+            <button class="btn btn-danger" onclick="removeStaffRights()" type="button">Remove staff rights</button>
+          </div>
+          <div id="ownerSettingsStatus" class="text-sm font-bold text-gray-500"></div>
+          <div class="staff-rights-list" id="staffRightsList"></div>
+        </div>
+      </section>
+
+      </div>
       <div class="tab-panel" data-tab-panel="manage">
-      <section class="card mb-6 p-5">
+
+      <section class="card mb-6 p-5" id="productsSettingsSection" data-section-key="products">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Products &amp; pricing</h2>
@@ -1634,10 +3827,10 @@
             <input class="field" type="number" id="newProductPrice" placeholder="0.00" step="0.01" min="0">
           </div>
         </div>
-        <button class="btn btn-secondary mt-4" onclick="addProductPrice()" type="button">Add product</button>
+        <button class="btn btn-secondary mt-4" onclick="addProductPrice()" type="button" data-permission="manageProducts">Add product</button>
       </section>
 
-      <section class="card mb-6 p-5">
+      <section class="card mb-6 p-5" id="profitSettingsSection" data-section-key="profit">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Expenses &amp; profit</h2>
@@ -1658,7 +3851,7 @@
             <div class="report-summary-value" id="profitNet">RM 0.00</div>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
+        <div class="grid grid-cols-2 gap-4 mobile-stack mb-4" data-permission="manageExpenses">
           <div>
             <label class="label" for="expenseDescription">Description</label>
             <input class="field" type="text" id="expenseDescription" placeholder="e.g., Flour, Gas, Rent">
@@ -1672,7 +3865,7 @@
             <input class="field" type="date" id="expenseDate">
           </div>
         </div>
-        <button class="btn btn-secondary mb-4" onclick="addExpense()" type="button">Add expense</button>
+        <button class="btn btn-secondary mb-4" onclick="addExpense()" type="button" data-permission="manageExpenses">Add expense</button>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Added by</th><th></th></tr></thead>
@@ -1769,8 +3962,13 @@
       dailyTarget: 'studybite.dailyTarget',
       monthlyTarget: 'studybite.monthlyTarget',
       chartView: 'studybite.chartView',
-      activeTab: 'studybite.activeTab'
+      activeTab: 'studybite.activeTab',
+      ownerSettings: 'studybite.ownerSettings',
+      staffRights: 'studybite.staffRights',
+      displayNames: 'studybite.displayNames'
     };
+
+    const OWNER_EMAIL = 'kayodeprince27@gmail.com';
 
     // Only these emails can edit/delete sales, restore backups, or manage products.
     const ADMIN_EMAILS = [
@@ -1778,16 +3976,449 @@
       'eyadhaleef1@gmail.com'
     ];
 
-    // Display names shown instead of raw emails throughout the app and on receipts.
-    const STAFF_DISPLAY_NAMES = {
+    const PERMISSION_LABELS = {
+      viewDashboard: 'View dashboard',
+      addSales: 'Add sales',
+      viewRecords: 'View records',
+      editSales: 'Edit sales',
+      deleteSales: 'Delete sales',
+      exportSales: 'Export sales',
+      printReports: 'Print reports',
+      restoreBackup: 'Restore backup',
+      viewManage: 'Open manage tab',
+      manageProducts: 'Manage products',
+      viewProfit: 'View profit',
+      manageExpenses: 'Manage expenses'
+    };
+
+    const ROLE_PRESETS = {
+      viewer: {
+        viewDashboard: true,
+        addSales: false,
+        viewRecords: true,
+        editSales: false,
+        deleteSales: false,
+        exportSales: false,
+        printReports: false,
+        restoreBackup: false,
+        viewManage: false,
+        manageProducts: false,
+        viewProfit: false,
+        manageExpenses: false
+      },
+      staff: {
+        viewDashboard: true,
+        addSales: true,
+        viewRecords: true,
+        editSales: false,
+        deleteSales: false,
+        exportSales: false,
+        printReports: false,
+        restoreBackup: false,
+        viewManage: false,
+        manageProducts: false,
+        viewProfit: false,
+        manageExpenses: false
+      },
+      manager: {
+        viewDashboard: true,
+        addSales: true,
+        viewRecords: true,
+        editSales: true,
+        deleteSales: false,
+        exportSales: true,
+        printReports: true,
+        restoreBackup: false,
+        viewManage: true,
+        manageProducts: true,
+        viewProfit: true,
+        manageExpenses: true
+      },
+      owner: Object.fromEntries(Object.keys(PERMISSION_LABELS).map(key => [key, true]))
+    };
+
+    const SECTION_LABELS = {
+      dashboard: 'Dashboard',
+      sell: 'Order entry',
+      records: 'Records',
+      manage: 'Manage',
+      products: 'Products & pricing',
+      profit: 'Expenses & profit'
+    };
+
+    const FEATURE_LABELS = {
+      receipts: 'Receipts',
+      quickEntry: 'Quick entry',
+      goals: 'Sales goals',
+      topCustomers: 'Top customers',
+      trends: 'Sales trend chart',
+      backup: 'Backup tools'
+    };
+
+    const DEFAULT_OWNER_SETTINGS = {
+      sections: {
+        dashboard: true,
+        sell: true,
+        records: true,
+        manage: true,
+        products: true,
+        profit: true
+      },
+      features: {
+        receipts: true,
+        quickEntry: true,
+        goals: true,
+        topCustomers: true,
+        trends: true,
+        backup: true
+      }
+    };
+
+    // Default names shown until each person saves their own display name.
+    const DEFAULT_STAFF_DISPLAY_NAMES = {
       'kayodeprince27@gmail.com': 'Kayode',
       'eyadhaleef1@gmail.com': 'Eyad'
     };
 
     function getDisplayName(email) {
       if (!email) return '';
-      const key = email.toLowerCase();
-      return STAFF_DISPLAY_NAMES[key] || email;
+      const key = normalizeEmail(email);
+      return displayNames[key] || email;
+    }
+
+    function normalizeEmail(email) {
+      return String(email || '').trim().toLowerCase();
+    }
+
+    function getDisplayNameKey(email) {
+      return encodeURIComponent(normalizeEmail(email)).replace(/\./g, '%2E');
+    }
+
+    function decodeDisplayNameKey(key) {
+      try {
+        return decodeURIComponent(String(key || '').replace(/%2E/g, '.'));
+      } catch {
+        return String(key || '');
+      }
+    }
+
+    function loadDisplayNamesFromStorage() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.displayNames) || '{}') || {};
+        return { ...DEFAULT_STAFF_DISPLAY_NAMES, ...saved };
+      } catch {
+        return { ...DEFAULT_STAFF_DISPLAY_NAMES };
+      }
+    }
+
+    function saveDisplayNamesLocal() {
+      localStorage.setItem(STORAGE_KEYS.displayNames, JSON.stringify(displayNames));
+    }
+
+    function listenForDisplayNames() {
+      if (!db) {
+        renderProfileNameControl();
+        return;
+      }
+
+      db.ref('displayNames').on('value', (snapshot) => {
+        const remote = snapshot.val() || {};
+        const decoded = {};
+        Object.entries(remote).forEach(([key, name]) => {
+          decoded[decodeDisplayNameKey(key)] = String(name || '').trim();
+        });
+        displayNames = { ...DEFAULT_STAFF_DISPLAY_NAMES, ...decoded };
+        saveDisplayNamesLocal();
+        renderProfileNameControl();
+        updateCurrentUserBadge();
+        updateHomeWelcome();
+        renderOwnerControls();
+        render();
+      });
+    }
+
+    function getCurrentRoleLabel() {
+      if (isCurrentUserOwner) return 'Owner';
+      return isCurrentUserAdmin ? 'Admin' : 'Staff';
+    }
+
+    function updateCurrentUserBadge() {
+      if (!currentUser) return;
+      setUserBadge(isCurrentUserOwner ? 'admin' : (isCurrentUserAdmin ? 'admin' : 'staff'), `Logged in as ${getDisplayName(currentUser)} (${getCurrentRoleLabel()})`);
+      updateHomeWelcome();
+      updateSystemStatus();
+    }
+
+    function renderProfileNameControl() {
+      const control = document.getElementById('profileNameControl');
+      const input = document.getElementById('profileDisplayName');
+      if (!control || !input) return;
+
+      control.classList.toggle('hidden', !currentUser);
+      if (!currentUser) {
+        input.value = '';
+        showProfileNameStatus('');
+        return;
+      }
+
+      input.value = getDisplayName(currentUser);
+    }
+
+    function showProfileNameStatus(message) {
+      const status = document.getElementById('profileNameStatus');
+      if (status) status.textContent = message;
+    }
+
+    function saveMyDisplayName() {
+      if (!currentUser) {
+        showProfileNameStatus('Log in first.');
+        return;
+      }
+
+      const input = document.getElementById('profileDisplayName');
+      const name = String(input?.value || '').trim().replace(/\s+/g, ' ').slice(0, 32);
+      if (name.length < 2) {
+        showProfileNameStatus('Enter at least 2 characters.');
+        return;
+      }
+
+      const key = normalizeEmail(currentUser);
+      displayNames[key] = name;
+      saveDisplayNamesLocal();
+      updateCurrentUserBadge();
+      renderOwnerControls();
+      render();
+      showProfileNameStatus('Name saved.');
+
+      if (db) {
+        db.ref('displayNames/' + getDisplayNameKey(currentUser)).set(name, (error) => {
+          showProfileNameStatus(error ? 'Saved locally. Cloud sync failed.' : 'Name saved.');
+        });
+      }
+    }
+
+    function clonePermissions(role) {
+      return { ...(ROLE_PRESETS[role] || ROLE_PRESETS.staff) };
+    }
+
+    function mergeOwnerSettings(value) {
+      const source = value || {};
+      return {
+        sections: { ...DEFAULT_OWNER_SETTINGS.sections, ...(source.sections || {}) },
+        features: { ...DEFAULT_OWNER_SETTINGS.features, ...(source.features || {}) }
+      };
+    }
+
+    function loadOwnerSettingsFromStorage() {
+      try {
+        return mergeOwnerSettings(JSON.parse(localStorage.getItem(STORAGE_KEYS.ownerSettings) || 'null'));
+      } catch {
+        return mergeOwnerSettings();
+      }
+    }
+
+    function loadStaffRightsFromStorage() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.staffRights) || '{}') || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveOwnerControlsLocal() {
+      localStorage.setItem(STORAGE_KEYS.ownerSettings, JSON.stringify(ownerSettings));
+      localStorage.setItem(STORAGE_KEYS.staffRights, JSON.stringify(staffRights));
+    }
+
+    function syncOwnerControlsToFirebase() {
+      saveOwnerControlsLocal();
+      if (!db || !isCurrentUserOwner) return;
+      db.ref('adminControls').set({
+        ownerEmail: OWNER_EMAIL,
+        ownerSettings,
+        staffRights,
+        updatedAt: Date.now(),
+        updatedBy: currentUser
+      });
+    }
+
+    function listenForOwnerControls() {
+      if (!db) {
+        applyFeatureAccess();
+        renderOwnerControls();
+        return;
+      }
+
+      db.ref('adminControls').on('value', (snapshot) => {
+        const value = snapshot.val() || {};
+        ownerSettings = mergeOwnerSettings(value.ownerSettings);
+        staffRights = value.staffRights || {};
+        saveOwnerControlsLocal();
+        applyFeatureAccess();
+        renderOwnerControls();
+      });
+    }
+
+    function getStaffRightsFor(email) {
+      const key = normalizeEmail(email);
+      if (!key) return { role: 'viewer', permissions: clonePermissions('viewer') };
+      if (key === OWNER_EMAIL) return { role: 'owner', permissions: clonePermissions('owner') };
+
+      const saved = staffRights[key];
+      if (saved) {
+        return {
+          role: saved.role || 'custom',
+          permissions: { ...clonePermissions(saved.role || 'staff'), ...(saved.permissions || {}) }
+        };
+      }
+
+      if (ADMIN_EMAILS.map(normalizeEmail).includes(key)) {
+        return { role: 'manager', permissions: clonePermissions('manager') };
+      }
+
+      return { role: 'staff', permissions: clonePermissions('staff') };
+    }
+
+    function hasPermission(permission) {
+      if (isCurrentUserOwner) return true;
+      const rights = getStaffRightsFor(currentUser);
+      return !!rights.permissions[permission];
+    }
+
+    function canUseSection(section) {
+      if (isCurrentUserOwner) return true;
+      if (!ownerSettings.sections[section]) return false;
+      if (section === 'dashboard') return hasPermission('viewDashboard');
+      if (section === 'sell') return hasPermission('addSales');
+      if (section === 'records') return hasPermission('viewRecords');
+      if (section === 'manage') return hasPermission('viewManage') || hasPermission('manageProducts') || hasPermission('viewProfit') || hasPermission('manageExpenses');
+      if (section === 'products') return hasPermission('manageProducts');
+      if (section === 'profit') return hasPermission('viewProfit') || hasPermission('manageExpenses');
+      return true;
+    }
+
+    function renderOwnerControls() {
+      const sectionGrid = document.getElementById('sectionToggleGrid');
+      const featureGrid = document.getElementById('featureToggleGrid');
+      const permissionGrid = document.getElementById('staffPermissionGrid');
+      const list = document.getElementById('staffRightsList');
+      if (!sectionGrid || !featureGrid || !permissionGrid || !list) return;
+
+      sectionGrid.innerHTML = Object.entries(SECTION_LABELS).map(([key, label]) => `
+        <label class="control-toggle">
+          <input type="checkbox" data-owner-section="${escapeAttr(key)}" ${ownerSettings.sections[key] ? 'checked' : ''}>
+          <span>${escapeHTML(label)}</span>
+        </label>
+      `).join('');
+
+      featureGrid.innerHTML = Object.entries(FEATURE_LABELS).map(([key, label]) => `
+        <label class="control-toggle">
+          <input type="checkbox" data-owner-feature="${escapeAttr(key)}" ${ownerSettings.features[key] ? 'checked' : ''}>
+          <span>${escapeHTML(label)}</span>
+        </label>
+      `).join('');
+
+      const email = normalizeEmail(document.getElementById('staffRightsEmail')?.value);
+      const activeRights = getStaffRightsFor(email);
+      permissionGrid.innerHTML = Object.entries(PERMISSION_LABELS).map(([key, label]) => `
+        <label class="control-toggle">
+          <input type="checkbox" data-staff-permission="${escapeAttr(key)}" ${activeRights.permissions[key] ? 'checked' : ''}>
+          <span>${escapeHTML(label)}</span>
+        </label>
+      `).join('');
+
+      const rows = Object.entries(staffRights).sort((a, b) => a[0].localeCompare(b[0]));
+      list.innerHTML = rows.length ? rows.map(([staffEmail, rights]) => {
+        const enabled = Object.entries(rights.permissions || {}).filter(([, enabled]) => enabled).length;
+        return `
+          <div class="staff-rights-row">
+            <div>
+              <div class="staff-rights-name">${escapeHTML(getDisplayName(staffEmail))}</div>
+              <div class="staff-rights-meta">${escapeHTML(staffEmail)} · ${enabled} permission${enabled === 1 ? '' : 's'}</div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="role-pill">${escapeHTML(rights.role || 'custom')}</span>
+              <button class="btn btn-secondary" onclick="loadStaffRights('${escapeAttr(staffEmail)}')" type="button">Edit</button>
+            </div>
+          </div>
+        `;
+      }).join('') : '<div class="empty-state">No custom staff rights saved yet.</div>';
+    }
+
+    function saveOwnerDashboardSettings() {
+      if (!isCurrentUserOwner) return;
+      document.querySelectorAll('[data-owner-section]').forEach((input) => {
+        ownerSettings.sections[input.dataset.ownerSection] = input.checked;
+      });
+      document.querySelectorAll('[data-owner-feature]').forEach((input) => {
+        ownerSettings.features[input.dataset.ownerFeature] = input.checked;
+      });
+      syncOwnerControlsToFirebase();
+      applyFeatureAccess();
+      renderOwnerControls();
+      showOwnerStatus('Dashboard settings saved.');
+    }
+
+    function applyRolePresetToStaffForm() {
+      const role = document.getElementById('staffRightsRole')?.value || 'staff';
+      if (role === 'custom') return;
+      document.querySelectorAll('[data-staff-permission]').forEach((input) => {
+        input.checked = !!ROLE_PRESETS[role]?.[input.dataset.staffPermission];
+      });
+    }
+
+    function saveStaffRights() {
+      if (!isCurrentUserOwner) return;
+      const email = normalizeEmail(document.getElementById('staffRightsEmail')?.value);
+      if (!email) {
+        showOwnerStatus('Enter a staff email first.');
+        return;
+      }
+      if (email === OWNER_EMAIL) {
+        showOwnerStatus('Your owner account always keeps full access.');
+        return;
+      }
+
+      const permissions = {};
+      document.querySelectorAll('[data-staff-permission]').forEach((input) => {
+        permissions[input.dataset.staffPermission] = input.checked;
+      });
+      staffRights[email] = {
+        role: document.getElementById('staffRightsRole')?.value || 'custom',
+        permissions
+      };
+      syncOwnerControlsToFirebase();
+      applyFeatureAccess();
+      renderOwnerControls();
+      showOwnerStatus('Staff rights saved.');
+    }
+
+    function loadStaffRights(email) {
+      if (!isCurrentUserOwner) return;
+      const key = normalizeEmail(email);
+      const rights = getStaffRightsFor(key);
+      document.getElementById('staffRightsEmail').value = key;
+      document.getElementById('staffRightsRole').value = rights.role || 'custom';
+      renderOwnerControls();
+    }
+
+    function removeStaffRights() {
+      if (!isCurrentUserOwner) return;
+      const email = normalizeEmail(document.getElementById('staffRightsEmail')?.value);
+      if (!email || email === OWNER_EMAIL) {
+        showOwnerStatus('Choose a removable staff email.');
+        return;
+      }
+      delete staffRights[email];
+      syncOwnerControlsToFirebase();
+      applyFeatureAccess();
+      renderOwnerControls();
+      showOwnerStatus('Staff rights removed.');
+    }
+
+    function showOwnerStatus(message) {
+      const target = document.getElementById('ownerSettingsStatus');
+      if (target) target.textContent = message;
     }
 
     const DEFAULT_PRODUCT_PRICES = {
@@ -1798,6 +4429,10 @@
     let auth;
     let currentUser = '';
     let isCurrentUserAdmin = false;
+    let isCurrentUserOwner = false;
+    let displayNames = loadDisplayNamesFromStorage();
+    let ownerSettings = loadOwnerSettingsFromStorage();
+    let staffRights = loadStaffRightsFromStorage();
     let allSales = [];
     let allExpenses = [];
     let visibleSales = [];
@@ -1817,6 +4452,8 @@
       initOfflineQueue();
       setupPWA();
       initTabSwipeGestures();
+      initSidebarSwipeGesture();
+      updateHomeWelcome();
       window.addEventListener('resize', () => {
         const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
         moveTabIndicator(current);
@@ -1840,6 +4477,27 @@
         monthChart = null;
         renderMonthlyChart();
       }
+    }
+
+    function updateHomeWelcome() {
+      const nameEl = document.getElementById('homeUserName');
+      if (!nameEl) return;
+
+      const displayName = currentUser ? getDisplayName(currentUser) : '';
+      nameEl.textContent = displayName;
+      nameEl.classList.toggle('hidden', !displayName);
+    }
+
+    function enterDatabase(targetTab) {
+      document.body.classList.remove('home-mode');
+
+      if (currentUser && targetTab) {
+        const allowed = targetTab === 'owner' ? isCurrentUserOwner : canUseSection(targetTab);
+        if (allowed) switchTab(targetTab);
+      }
+
+      updateFabVisibility();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function switchTab(tabName) {
@@ -1919,18 +4577,27 @@
     }
 
     function openSidebar() {
-      document.getElementById('sidebarDrawer')?.classList.add('open');
+      const drawer = document.getElementById('sidebarDrawer');
+      drawer?.classList.add('open');
+      drawer?.classList.remove('dragging');
+      if (drawer) drawer.style.transform = '';
       document.getElementById('sidebarOverlay')?.classList.add('open');
-      document.getElementById('sidebarDrawer')?.setAttribute('aria-hidden', 'false');
+      document.getElementById('sidebarOverlay')?.classList.remove('dragging');
+      document.getElementById('sidebarOverlay')?.style.removeProperty('--drag-opacity');
+      drawer?.setAttribute('aria-hidden', 'false');
       // Position the indicator now that the drawer (and its layout) is visible.
       const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
       requestAnimationFrame(() => moveTabIndicator(current));
     }
 
     function closeSidebar() {
-      document.getElementById('sidebarDrawer')?.classList.remove('open');
-      document.getElementById('sidebarOverlay')?.classList.remove('open');
-      document.getElementById('sidebarDrawer')?.setAttribute('aria-hidden', 'true');
+      const drawer = document.getElementById('sidebarDrawer');
+      const overlay = document.getElementById('sidebarOverlay');
+      drawer?.classList.remove('open', 'dragging');
+      if (drawer) drawer.style.transform = '';
+      overlay?.classList.remove('open', 'dragging');
+      overlay?.style.removeProperty('--drag-opacity');
+      drawer?.setAttribute('aria-hidden', 'true');
     }
 
     function isDashboardTabActive() {
@@ -1953,7 +4620,7 @@
       updateFabVisibility();
     }
 
-    const TAB_ORDER = ['dashboard', 'sell', 'records', 'manage'];
+    const TAB_ORDER = ['dashboard', 'sell', 'records', 'manage', 'owner'];
 
     function initTabSwipeGestures() {
       const trackerSection = document.getElementById('trackerSection');
@@ -2017,6 +4684,86 @@
           switchTab(TAB_ORDER[nextIndex]);
         }
       }, { passive: true });
+    }
+
+    function initSidebarSwipeGesture() {
+      const drawer = document.getElementById('sidebarDrawer');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (!drawer || !overlay) return;
+
+      let tracking = false;
+      let startX = 0;
+      let startY = 0;
+      let drawerWidth = 0;
+
+      const EDGE_SIZE = 28;
+      const OPEN_DISTANCE = 78;
+      const MAX_OFF_AXIS = 70;
+
+      const resetDrag = () => {
+        tracking = false;
+        drawer.classList.remove('dragging');
+        overlay.classList.remove('dragging');
+        drawer.style.transform = '';
+        overlay.style.removeProperty('--drag-opacity');
+      };
+
+      document.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1 || drawer.classList.contains('open')) {
+          tracking = false;
+          return;
+        }
+
+        const touch = event.touches[0];
+        if (touch.clientX > EDGE_SIZE) {
+          tracking = false;
+          return;
+        }
+
+        startX = touch.clientX;
+        startY = touch.clientY;
+        drawerWidth = Math.max(260, drawer.getBoundingClientRect().width || 280);
+        tracking = true;
+        drawer.classList.add('dragging');
+        overlay.classList.add('dragging');
+      }, { passive: true });
+
+      document.addEventListener('touchmove', (event) => {
+        if (!tracking || event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+
+        if (Math.abs(deltaY) > MAX_OFF_AXIS) {
+          resetDrag();
+          return;
+        }
+
+        if (deltaX <= 0) return;
+        event.preventDefault();
+
+        const progress = Math.min(1, deltaX / drawerWidth);
+        const translateX = Math.min(0, -drawerWidth + deltaX);
+        drawer.style.transform = `translateX(${translateX}px)`;
+        overlay.style.setProperty('--drag-opacity', String(Math.min(0.72, progress * 0.72)));
+      }, { passive: false });
+
+      document.addEventListener('touchend', (event) => {
+        if (!tracking) return;
+        const touch = event.changedTouches[0];
+        const deltaX = touch ? touch.clientX - startX : 0;
+        const deltaY = touch ? touch.clientY - startY : 0;
+
+        if (deltaX > OPEN_DISTANCE && Math.abs(deltaY) < MAX_OFF_AXIS) {
+          resetDrag();
+          openSidebar();
+          return;
+        }
+
+        resetDrag();
+      }, { passive: true });
+
+      document.addEventListener('touchcancel', resetDrag, { passive: true });
     }
 
     function updateThemeButton() {
@@ -2105,6 +4852,10 @@
     }
 
     function addProductPrice() {
+      if (!hasPermission('manageProducts')) {
+        alert('You do not have permission to manage products.');
+        return;
+      }
       const nameInput = document.getElementById('newProductName');
       const priceInput = document.getElementById('newProductPrice');
       const name = nameInput.value.trim();
@@ -2125,6 +4876,10 @@
     }
 
     function removeProductPrice(name) {
+      if (!hasPermission('manageProducts')) {
+        alert('You do not have permission to manage products.');
+        return;
+      }
       const prices = getProductPrices();
       delete prices[name];
       saveProductPrices(prices);
@@ -2180,12 +4935,16 @@
       auth.onAuthStateChanged((user) => {
         if (user) {
           currentUser = user.email;
-          isCurrentUserAdmin = ADMIN_EMAILS.map(e => e.toLowerCase()).includes((user.email || '').toLowerCase());
-          document.getElementById('userBadge').textContent = `Logged in as ${getDisplayName(currentUser)}${isCurrentUserAdmin ? ' (Admin)' : ''}`;
+          isCurrentUserOwner = normalizeEmail(user.email) === OWNER_EMAIL;
+          isCurrentUserAdmin = isCurrentUserOwner || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(user.email)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
+          updateCurrentUserBadge();
           document.getElementById('logoutBtn').classList.remove('hidden');
           document.getElementById('loginSection').classList.add('hidden');
           document.getElementById('setupSection').classList.add('hidden');
           document.getElementById('trackerSection').classList.add('active');
+          listenForDisplayNames();
+          listenForOwnerControls();
+          renderProfileNameControl();
           restoreActiveTab();
           applyAdminVisibility();
           setTodayDate();
@@ -2196,7 +4955,11 @@
         } else {
           currentUser = '';
           isCurrentUserAdmin = false;
-          document.getElementById('userBadge').textContent = 'Not logged in';
+          isCurrentUserOwner = false;
+          setUserBadge('standby', 'Not logged in');
+          updateHomeWelcome();
+          renderProfileNameControl();
+          updateSystemStatus();
           document.getElementById('logoutBtn').classList.add('hidden');
           document.getElementById('trackerSection').classList.remove('active');
           if (db) {
@@ -2206,10 +4969,48 @@
       });
     }
 
-    function applyAdminVisibility() {
-      document.querySelectorAll('.admin-only').forEach((el) => {
-        el.classList.toggle('hidden', !isCurrentUserAdmin);
+    function applyFeatureAccess() {
+      document.querySelectorAll('.mobile-tab-btn[data-tab]').forEach((btn) => {
+        const tab = btn.dataset.tab;
+        const allowed = tab === 'owner' ? isCurrentUserOwner : canUseSection(tab);
+        btn.classList.toggle('hidden', !allowed);
       });
+
+      document.querySelectorAll('.tab-panel[data-tab-panel]').forEach((panel) => {
+        const tab = panel.dataset.tabPanel;
+        const allowed = tab === 'owner' ? isCurrentUserOwner : canUseSection(tab);
+        if (!allowed) panel.classList.remove('tab-panel-active', 'tab-panel-enter', 'tab-panel-enter-active');
+      });
+
+      document.querySelectorAll('[data-section-key]').forEach((section) => {
+        section.classList.toggle('hidden', !canUseSection(section.dataset.sectionKey));
+      });
+
+      document.querySelectorAll('[data-feature-key]').forEach((section) => {
+        section.classList.toggle('hidden', !ownerSettings.features[section.dataset.featureKey]);
+      });
+
+      document.querySelectorAll('[data-permission]').forEach((el) => {
+        el.classList.toggle('hidden', !hasPermission(el.dataset.permission));
+      });
+
+      const active = document.querySelector('.tab-panel.tab-panel-active');
+      if (!active && currentUser) {
+        const fallback = ['sell', 'dashboard', 'records', 'manage', 'owner'].find(tab => tab === 'owner' ? isCurrentUserOwner : canUseSection(tab));
+        if (fallback) switchTab(fallback);
+      }
+    }
+
+    function applyAdminVisibility() {
+      applyFeatureAccess();
+      document.querySelectorAll('.admin-only').forEach((el) => {
+        const permission = el.dataset.permission;
+        el.classList.toggle('hidden', permission ? !hasPermission(permission) : !isCurrentUserAdmin);
+      });
+      document.querySelectorAll('.owner-only').forEach((el) => {
+        el.classList.toggle('hidden', !isCurrentUserOwner);
+      });
+      renderOwnerControls();
     }
 
     function loginWithEmail() {
@@ -2348,6 +5149,10 @@
     }
 
     function addExpense() {
+      if (!hasPermission('manageExpenses')) {
+        alert('You do not have permission to manage expenses.');
+        return;
+      }
       if (!db) {
         alert('Firebase is not connected.');
         return;
@@ -2446,8 +5251,8 @@
     }
 
     function deleteExpense(id) {
-      if (!isCurrentUserAdmin) {
-        alert('Only admins can delete expenses.');
+      if (!hasPermission('manageExpenses')) {
+        alert('You do not have permission to delete expenses.');
         return;
       }
       if (!db) return;
@@ -2472,7 +5277,7 @@
           <td class="font-black text-orange-600">${formatCurrency(Number(expense.amount || 0))}</td>
           <td>${escapeHTML(expense.addedBy || '')}</td>
           <td>
-            <button class="btn btn-danger admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="deleteExpense('${escapeAttr(expense.id)}')">Delete</button>
+            <button class="btn btn-danger admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses" onclick="deleteExpense('${escapeAttr(expense.id)}')">Delete</button>
           </td>
         </tr>
       `).join('');
@@ -2728,6 +5533,10 @@
     }
 
     function showDailyClosingReport() {
+      if (!hasPermission('printReports')) {
+        alert('You do not have permission to print reports.');
+        return;
+      }
       closeAllModals();
       const todayKey = new Date().toISOString().slice(0, 10);
       const todaySales = allSales.filter(sale => String(sale.date || '') === todayKey);
@@ -2774,6 +5583,10 @@
     }
 
     function showPrintableReport(period) {
+      if (!hasPermission('printReports')) {
+        alert('You do not have permission to print reports.');
+        return;
+      }
       closeAllModals();
       const today = new Date();
       let start, end, title;
@@ -2843,6 +5656,10 @@
     }
 
     function backupData() {
+      if (!hasPermission('exportSales')) {
+        alert('You do not have permission to export sales.');
+        return;
+      }
       const backup = {
         exportedAt: new Date().toISOString(),
         sales: allSales
@@ -2858,8 +5675,8 @@
     }
 
     function restoreData(event) {
-      if (!isCurrentUserAdmin) {
-        alert('Only admins can restore backups.');
+      if (!hasPermission('restoreBackup')) {
+        alert('You do not have permission to restore backups.');
         event.target.value = '';
         return;
       }
@@ -2933,6 +5750,10 @@
     }
 
     function quickAddSale(product, floorPrice) {
+      if (!hasPermission('addSales')) {
+        alert('You do not have permission to add sales.');
+        return;
+      }
       const customerName = document.getElementById('quickCustomer').value.trim() || 'Walk-in';
       const quantity = parseInt(document.getElementById('quickQuantity').value, 10) || 1;
       const amount = roundMoney(quantity * floorPrice);
@@ -3075,6 +5896,38 @@
       } else {
         banner.classList.remove('active');
       }
+      updateSystemStatus();
+    }
+
+    function setUserBadge(state, text) {
+      const badge = document.getElementById('userBadge');
+      if (!badge) return;
+      badge.dataset.state = state;
+      badge.textContent = text;
+    }
+
+    function updateSystemStatus() {
+      const status = document.getElementById('systemStatus');
+      if (!status) return;
+      const text = status.querySelector('.system-status-text');
+      const queueCount = getOfflineQueue().length + getOfflineExpenseQueue().length;
+
+      let state = 'standby';
+      let label = currentUser ? 'Live system' : 'Standby';
+
+      if (!navigator.onLine) {
+        state = 'offline';
+        label = 'Offline cache';
+      } else if (queueCount > 0) {
+        state = 'syncing';
+        label = `Syncing ${queueCount}`;
+      } else if (currentUser) {
+        state = 'online';
+        label = isCurrentUserAdmin ? 'Admin live' : 'Staff live';
+      }
+
+      status.dataset.state = state;
+      if (text) text.textContent = label;
     }
 
     function initOfflineQueue() {
@@ -3152,6 +6005,14 @@
     }
 
     function saveSale() {
+      if (editingSaleId && !hasPermission('editSales')) {
+        alert('You do not have permission to edit sales.');
+        return;
+      }
+      if (!editingSaleId && !hasPermission('addSales')) {
+        alert('You do not have permission to add sales.');
+        return;
+      }
       if (!db) {
         alert('Firebase is not connected.');
         return;
@@ -3222,8 +6083,8 @@
     }
 
     function editSale(id) {
-      if (!isCurrentUserAdmin) {
-        alert('Only admins can edit sales.');
+      if (!hasPermission('editSales')) {
+        alert('You do not have permission to edit sales.');
         return;
       }
       const sale = allSales.find(item => String(item.id) === String(id));
@@ -3247,8 +6108,8 @@
     }
 
     function deleteSale(id) {
-      if (!isCurrentUserAdmin) {
-        alert('Only admins can delete sales.');
+      if (!hasPermission('deleteSales')) {
+        alert('You do not have permission to delete sales.');
         return;
       }
       if (!db) return;
@@ -3293,6 +6154,10 @@
     }
 
     function openExportByDateModal() {
+      if (!hasPermission('exportSales')) {
+        alert('You do not have permission to export sales.');
+        return;
+      }
       closeAllModals();
       const startInput = document.getElementById('exportStartDate');
       const endInput = document.getElementById('exportEndDate');
@@ -3356,6 +6221,10 @@
     }
 
     function downloadSalesByDate() {
+      if (!hasPermission('exportSales')) {
+        alert('You do not have permission to export sales.');
+        return;
+      }
       const startValue = document.getElementById('exportStartDate').value;
       const endValue = document.getElementById('exportEndDate').value;
 
@@ -3406,6 +6275,10 @@
     }
 
     function exportSales() {
+      if (!hasPermission('exportSales')) {
+        alert('You do not have permission to export sales.');
+        return;
+      }
       const exportRows = getFilteredSales();
       if (!exportRows.length) {
         alert('No sales to export yet.');
@@ -3751,9 +6624,8 @@
       }
 
       const chartData = buildChartData();
-      const isDark = document.body.classList.contains('dark-mode');
-      const axisColor = isDark ? '#cbd5e1' : '#6b7280';
-      const gridColor = isDark ? '#334155' : '#eef2f7';
+      const axisColor = '#f5e6d3';
+      const gridColor = 'rgba(255, 107, 44, 0.16)';
 
       updateChartViewButtons();
 
@@ -3783,8 +6655,20 @@
           datasets: [{
             label: 'Revenue',
             data: values,
-            backgroundColor: '#f97316',
-            borderRadius: 6,
+            backgroundColor: (context) => {
+              const { chart } = context;
+              const { ctx, chartArea } = chart;
+              if (!chartArea) return '#ff6b2c';
+              const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+              gradient.addColorStop(0, 'rgba(255, 107, 44, 0.48)');
+              gradient.addColorStop(0.62, 'rgba(255, 107, 44, 0.78)');
+              gradient.addColorStop(1, 'rgba(230, 57, 70, 0.86)');
+              return gradient;
+            },
+            borderColor: 'rgba(245, 230, 211, 0.62)',
+            borderWidth: 1,
+            borderRadius: 8,
+            hoverBackgroundColor: '#ffb086',
             maxBarThickness: 42
           }]
         },
@@ -3870,8 +6754,8 @@
                         <td>
                           <div class="flex gap-2 mobile-actions">
                             <button class="btn btn-secondary" onclick="printSaleReceipt('${escapeAttr(sale.id)}')">Receipt</button>
-                            <button class="btn btn-secondary admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
-                            <button class="btn btn-danger admin-only${isCurrentUserAdmin ? '' : ' hidden'}" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
+                            <button class="btn btn-secondary admin-only${hasPermission('editSales') ? '' : ' hidden'}" data-permission="editSales" onclick="editSale('${escapeAttr(sale.id)}')">Edit</button>
+                            <button class="btn btn-danger admin-only${hasPermission('deleteSales') ? '' : ' hidden'}" data-permission="deleteSales" onclick="deleteSale('${escapeAttr(sale.id)}')">Delete</button>
                           </div>
                         </td>
                       </tr>
