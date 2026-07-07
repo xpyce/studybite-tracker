@@ -763,6 +763,40 @@
       width: 18px;
     }
 
+    .tab-peek-handle {
+      align-items: center;
+      background: rgba(255, 107, 44, 0.92);
+      border: 1px solid rgba(255, 177, 61, 0.64);
+      border-radius: 999px;
+      bottom: 18px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.30);
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      height: 42px;
+      justify-content: center;
+      position: fixed;
+      width: 42px;
+      z-index: 96;
+    }
+
+    .tab-peek-handle.visible {
+      display: inline-flex;
+    }
+
+    .tab-peek-handle.left {
+      left: 10px;
+    }
+
+    .tab-peek-handle.right {
+      right: 10px;
+    }
+
+    .tab-peek-handle svg {
+      height: 20px;
+      width: 20px;
+    }
+
     .sidebar-drawer-footer {
       border-top: 1px solid var(--line);
       display: flex;
@@ -813,6 +847,41 @@
       font-size: 12px;
       font-weight: 800;
       min-height: 16px;
+    }
+
+    .profile-image-actions {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr auto;
+    }
+
+    .profile-image-actions .btn {
+      min-height: 38px;
+      padding: 8px 10px;
+    }
+
+    .profile-image-preview {
+      align-items: center;
+      background: rgba(255, 107, 44, 0.10);
+      border: 1px solid rgba(255, 107, 44, 0.24);
+      border-radius: 14px;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .profile-image-preview img {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 12px;
+      height: 48px;
+      object-fit: cover;
+      width: 48px;
+    }
+
+    .profile-image-preview span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .tab-panel {
@@ -3051,6 +3120,32 @@
       padding: 0 14px 0 18px;
     }
 
+    .home-search-input {
+      background: transparent;
+      border: 0;
+      color: #fff7ed;
+      font: inherit;
+      font-weight: 800;
+      min-width: 116px;
+      outline: 0;
+      width: 128px;
+    }
+
+    .home-search-input::placeholder {
+      color: rgba(255, 243, 223, 0.82);
+      opacity: 1;
+    }
+
+    .home-search-submit {
+      background: transparent;
+      border: 0;
+      color: #fff7ed;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      padding: 0;
+    }
+
     .home-cart {
       color: #fff3df;
       width: 36px;
@@ -3937,6 +4032,23 @@
       color: inherit !important;
     }
 
+    body:not(.home-mode) .mobile-tabs {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease !important;
+      will-change: transform;
+    }
+
+    body:not(.home-mode) .mobile-tabs.tabs-hidden-left {
+      opacity: 0.12 !important;
+      pointer-events: none !important;
+      transform: translateX(calc(-100vw - 40px)) !important;
+    }
+
+    body:not(.home-mode) .mobile-tabs.tabs-hidden-right {
+      opacity: 0.12 !important;
+      pointer-events: none !important;
+      transform: translateX(calc(100vw + 40px)) !important;
+    }
+
     body:not(.home-mode) .status.success {
       color: #166534 !important;
     }
@@ -4623,6 +4735,616 @@
       display: none !important;
     }
 
+    body:not(.home-mode) .week-folder {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.08), transparent 42%),
+        color-mix(in srgb, var(--panel) 92%, transparent) !important;
+      border: 1px solid rgba(255, 107, 44, 0.28) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16) !important;
+      margin: 16px 0 !important;
+      overflow: hidden !important;
+    }
+
+    body:not(.home-mode) .week-folder-tab {
+      align-items: center !important;
+      background:
+        linear-gradient(90deg, rgba(255, 107, 44, 0.14), rgba(255, 255, 255, 0.02) 46%, rgba(255, 107, 44, 0.08)) !important;
+      border-bottom: 1px solid rgba(255, 107, 44, 0.2) !important;
+      display: flex !important;
+      gap: 14px !important;
+      justify-content: space-between !important;
+      padding: 14px 16px !important;
+    }
+
+    body:not(.home-mode) .folder-toggle {
+      align-items: center !important;
+      background: transparent !important;
+      border: 0 !important;
+      color: var(--ink) !important;
+      display: flex !important;
+      gap: 12px !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      text-align: left !important;
+    }
+
+    body:not(.home-mode) .folder-chevron {
+      align-items: center;
+      border: 1px solid rgba(255, 107, 44, 0.34);
+      border-radius: 999px;
+      display: inline-flex;
+      flex: 0 0 auto;
+      height: 30px;
+      justify-content: center;
+      transform: rotate(90deg);
+      transition: transform 0.18s ease;
+      width: 30px;
+    }
+
+    body:not(.home-mode) .folder-chevron svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    body:not(.home-mode) .week-folder.collapsed .folder-chevron {
+      transform: rotate(0deg);
+    }
+
+    body:not(.home-mode) .folder-icon {
+      align-items: center;
+      background: rgba(255, 107, 44, 0.14);
+      border: 1px solid rgba(255, 107, 44, 0.26);
+      border-radius: 8px;
+      color: #ff6b2c !important;
+      display: inline-flex;
+      flex: 0 0 auto;
+      height: 38px;
+      justify-content: center;
+      width: 38px;
+    }
+
+    body:not(.home-mode) .folder-icon svg {
+      height: 22px;
+      width: 22px;
+    }
+
+    body:not(.home-mode) .week-folder-title-block {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    body:not(.home-mode) .week-folder-title {
+      color: var(--ink) !important;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    body:not(.home-mode) .week-folder-subtitle {
+      color: var(--muted) !important;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    body:not(.home-mode) .week-folder-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    body:not(.home-mode) .week-folder-stats span {
+      background: rgba(255, 107, 44, 0.10);
+      border: 1px solid rgba(255, 107, 44, 0.20);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+      padding: 7px 10px;
+    }
+
+    body:not(.home-mode) .week-folder-stats strong {
+      color: #ff6b2c;
+    }
+
+    .expense-dashboard-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .expense-dashboard-card,
+    .expense-record-card {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.10), transparent 48%),
+        color-mix(in srgb, var(--panel) 92%, transparent);
+      border: 1px solid rgba(255, 107, 44, 0.24);
+      border-radius: 8px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+      color: var(--ink);
+      min-width: 0;
+    }
+
+    .expense-dashboard-card {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+    }
+
+    .expense-dashboard-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .expense-dashboard-card strong {
+      color: var(--ink);
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 1000;
+      line-height: 1;
+    }
+
+    .expense-dashboard-card small {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .expense-purpose-card {
+      grid-column: span 1;
+    }
+
+    .expense-purpose-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .expense-purpose-row {
+      align-items: center;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .expense-purpose-name {
+      font-weight: 900;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .expense-purpose-amount {
+      color: #ff6b2c;
+      font-weight: 1000;
+    }
+
+    .expense-purpose-track {
+      background: rgba(255, 107, 44, 0.12);
+      border-radius: 999px;
+      grid-column: 1 / -1;
+      height: 7px;
+      overflow: hidden;
+    }
+
+    .expense-purpose-fill {
+      background: linear-gradient(90deg, #ff6b2c, #e63946);
+      border-radius: inherit;
+      display: block;
+      height: 100%;
+      min-width: 4px;
+    }
+
+    .expense-record-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .expense-record-card {
+      align-items: center;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: auto minmax(0, 1fr) auto auto;
+      padding: 12px;
+    }
+
+    .expense-record-date {
+      align-items: center;
+      background: rgba(255, 107, 44, 0.14);
+      border: 1px solid rgba(255, 107, 44, 0.24);
+      border-radius: 8px;
+      color: #ff6b2c;
+      display: grid;
+      font-size: 12px;
+      font-weight: 1000;
+      height: 46px;
+      justify-content: center;
+      min-width: 72px;
+      padding: 0 10px;
+      text-align: center;
+    }
+
+    .expense-record-main {
+      min-width: 0;
+    }
+
+    .expense-record-purpose {
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 1000;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .expense-record-desc {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .expense-record-amount {
+      color: #ff6b2c;
+      font-size: 16px;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .expense-dashboard-card,
+    body:not(.home-mode):not(.dark-mode) .expense-record-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(255, 107, 44, 0.22);
+    }
+
+    body:not(.home-mode).dark-mode .expense-dashboard-card,
+    body:not(.home-mode).dark-mode .expense-record-card {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.12), transparent 48%),
+        rgba(8, 8, 8, 0.88);
+      border-color: rgba(255, 107, 44, 0.32);
+    }
+
+    @media (max-width: 920px) {
+      .expense-dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .expense-record-card {
+        align-items: stretch;
+        grid-template-columns: 1fr;
+      }
+
+      .expense-record-date {
+        justify-content: start;
+        width: max-content;
+      }
+    }
+
+    body:not(.home-mode) .week-folder-body {
+      background: color-mix(in srgb, var(--panel) 78%, transparent) !important;
+    }
+
+    body:not(.home-mode) .week-folder .table-wrap {
+      border: 0 !important;
+      border-radius: 0 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .week-folder {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-color: rgba(255, 107, 44, 0.24) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .week-folder-tab {
+      background: linear-gradient(90deg, #fff4ec, #fffaf6) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .week-folder-body {
+      background: rgba(255, 255, 255, 0.98) !important;
+    }
+
+    body:not(.home-mode).dark-mode .week-folder {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.12), transparent 42%),
+        rgba(8, 8, 8, 0.9) !important;
+      border-color: rgba(255, 107, 44, 0.32) !important;
+    }
+
+    @media (max-width: 720px) {
+      body:not(.home-mode) .week-folder-tab {
+        align-items: stretch !important;
+        flex-direction: column !important;
+      }
+
+      body:not(.home-mode) .week-folder-stats {
+        justify-content: flex-start;
+      }
+    }
+
+    /* Receipt export theme: keep saved images/PDFs matching the current site mode. */
+    #receiptContent.receipt-export {
+      border: 1px solid rgba(255, 107, 44, 0.24) !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      width: 100% !important;
+    }
+
+    #receiptContent.receipt-export .receipt-header {
+      border-radius: 0 !important;
+      margin: 0 !important;
+      padding: 28px 24px 22px !important;
+      text-align: center !important;
+    }
+
+    #receiptContent.receipt-export .receipt-body {
+      padding: 24px 24px 28px !important;
+    }
+
+    #receiptContent.receipt-theme-light {
+      background: #ffffff !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 107, 44, 0.06) !important;
+      color: #17110d !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-header {
+      background: linear-gradient(135deg, #fff4ec 0%, #ffffff 100%) !important;
+      border-bottom: 1px solid rgba(255, 107, 44, 0.18) !important;
+      color: #17110d !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-shop-name,
+    #receiptContent.receipt-theme-light .receipt-thanks,
+    #receiptContent.receipt-theme-light .receipt-line-top span:first-child {
+      color: #17110d !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-tagline,
+    #receiptContent.receipt-theme-light .receipt-items-label,
+    #receiptContent.receipt-theme-light .receipt-line-top span:last-child {
+      color: #ff5a1f !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-body {
+      background: #ffffff !important;
+      color: #17110d !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-line-item {
+      background: #fff8f2 !important;
+      border: 1px solid rgba(255, 107, 44, 0.18) !important;
+      color: #17110d !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-meta-label,
+    #receiptContent.receipt-theme-light .receipt-line-sub,
+    #receiptContent.receipt-theme-light .receipt-footer-note {
+      color: #7b6a5d !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-divider {
+      border-color: rgba(255, 107, 44, 0.14) !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-total-row {
+      background: linear-gradient(135deg, #17110d 0%, #3a2118 100%) !important;
+      border: 1px solid rgba(255, 107, 44, 0.22) !important;
+      color: #fff7ed !important;
+    }
+
+    #receiptContent.receipt-theme-light .receipt-total-row span:last-child {
+      color: #ff6b2c !important;
+    }
+
+    #receiptContent.receipt-theme-dark {
+      background: #080808 !important;
+      border-color: rgba(255, 107, 44, 0.42) !important;
+      color: #fff7ed !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 107, 44, 0.10) !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-header {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 107, 44, 0.24), transparent 56%),
+        linear-gradient(135deg, #050505 0%, #1a0d08 58%, #ff6b2c 140%) !important;
+      border-bottom: 1px solid rgba(255, 107, 44, 0.36) !important;
+      color: #fff7ed !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-body {
+      background:
+        linear-gradient(180deg, rgba(255, 107, 44, 0.08), transparent 36%),
+        #080808 !important;
+      color: #fff7ed !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-shop-name,
+    #receiptContent.receipt-theme-dark .receipt-thanks,
+    #receiptContent.receipt-theme-dark .receipt-line-top span:first-child {
+      color: #fff7ed !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-tagline,
+    #receiptContent.receipt-theme-dark .receipt-items-label,
+    #receiptContent.receipt-theme-dark .receipt-line-top span:last-child {
+      color: #ff7a32 !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-line-item {
+      background: rgba(255, 255, 255, 0.055) !important;
+      border: 1px solid rgba(255, 107, 44, 0.28) !important;
+      color: #fff7ed !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-meta-label,
+    #receiptContent.receipt-theme-dark .receipt-line-sub,
+    #receiptContent.receipt-theme-dark .receipt-footer-note {
+      color: #d8c5b1 !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-divider {
+      border-color: rgba(255, 107, 44, 0.24) !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-total-row {
+      background: linear-gradient(135deg, #ff6b2c 0%, #e63946 100%) !important;
+      border: 0 !important;
+      color: #fff7ed !important;
+      box-shadow: 0 16px 32px rgba(255, 107, 44, 0.24) !important;
+    }
+
+    #receiptContent.receipt-theme-dark .receipt-total-row span,
+    #receiptContent.receipt-theme-dark .receipt-total-row span:last-child {
+      color: #fff7ed !important;
+    }
+
+    /* Uploaded welcome images should fill the big circle instead of showing as a square. */
+    .home-cup-image {
+      overflow: hidden !important;
+    }
+
+    .home-cup-image.has-custom-image img {
+      border-radius: 50% !important;
+      filter: none !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
+
+    .home-cup-image:not(.has-custom-image) img {
+      border-radius: 0 !important;
+      height: 64% !important;
+      object-fit: contain !important;
+      width: 64% !important;
+    }
+
+    /* Keep the small header logo readable in dark mode. */
+    body:not(.home-mode).dark-mode .logo-badge {
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255, 107, 44, 0.18), transparent 64%),
+        rgba(255, 255, 255, 0.06) !important;
+      border-color: rgba(255, 107, 44, 0.46) !important;
+      box-shadow: 0 0 0 1px rgba(255, 107, 44, 0.18), 0 12px 28px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-light {
+      display: block !important;
+      opacity: 1 !important;
+      filter: drop-shadow(0 0 10px rgba(255, 107, 44, 0.34)) !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-dark {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    /* GitHub Pages logo fallback: use the built-in images, not external files. */
+    body:not(.home-mode) .logo-badge {
+      align-items: center !important;
+      background: transparent !important;
+      display: grid !important;
+      justify-content: center !important;
+      place-items: center !important;
+    }
+
+    body:not(.home-mode) .logo-badge img {
+      grid-area: 1 / 1 !important;
+      height: 58px !important;
+      opacity: 1 !important;
+      width: 58px !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .logo-badge {
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .logo-light {
+      display: block !important;
+      opacity: 1 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .logo-dark {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-badge {
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255, 107, 44, 0.34), transparent 58%),
+        linear-gradient(145deg, #19120e 0%, #050505 100%) !important;
+      border-color: rgba(255, 107, 44, 0.58) !important;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34), 0 0 22px rgba(255, 107, 44, 0.22) !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-light {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-dark {
+      display: block !important;
+      opacity: 1 !important;
+    }
+
+    /* Final logo readability lock: keep the bright logo visible on black/orange dark mode. */
+    body:not(.home-mode).dark-mode .logo-badge {
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255, 107, 44, 0.18), transparent 64%),
+        rgba(255, 255, 255, 0.06) !important;
+      border-color: rgba(255, 107, 44, 0.46) !important;
+      box-shadow: 0 0 0 1px rgba(255, 107, 44, 0.18), 0 12px 28px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-light {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-dark {
+      display: block !important;
+      filter: drop-shadow(0 0 10px rgba(255, 107, 44, 0.42)) !important;
+      opacity: 1 !important;
+    }
+
+    body.home-mode {
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    body.home-mode .app-shell,
+    body.home-mode .home-page {
+      max-width: none !important;
+      overflow: visible !important;
+    }
+
+    body.home-mode .home-hero {
+      overflow: visible !important;
+    }
+
+    @media (max-width: 720px) {
+      body.home-mode .app-shell {
+        min-width: 760px !important;
+        padding: 0 !important;
+      }
+
+      body.home-mode .home-page {
+        min-height: 100vh !important;
+        width: 760px !important;
+      }
+
+      body.home-mode .home-hero {
+        min-height: 100vh !important;
+        min-width: 760px !important;
+      }
+    }
+
     @media (max-width: 720px) {
       body.home-mode,
       body.home-mode.dark-mode,
@@ -4644,30 +5366,30 @@
             <img src="studybite-logo-hero.png" alt="StudyBite">
           </div>
           <div class="home-nav-links">
-            <button class="home-nav-link" onclick="enterDatabase('dashboard')" type="button">Dashboard</button>
-            <button class="home-nav-link" onclick="enterDatabase('sell')" type="button">Order</button>
-            <button class="home-nav-link" onclick="enterDatabase('records')" type="button">Records</button>
-            <button class="home-nav-link" onclick="enterDatabase('manage')" type="button">Manage</button>
-            <button class="home-nav-link" onclick="enterDatabase('owner')" type="button">Owner</button>
+            <button class="home-nav-link" data-home-tab="dashboard" onclick="enterDatabase('dashboard')" type="button">Dashboard</button>
+            <button class="home-nav-link" data-home-tab="sell" onclick="enterDatabase('sell')" type="button">Order</button>
+            <button class="home-nav-link" data-home-tab="records" onclick="enterDatabase('records')" type="button">Records</button>
+            <button class="home-nav-link" data-home-tab="manage" onclick="enterDatabase('manage')" type="button">Manage</button>
+            <button class="home-nav-link" data-home-tab="owner" onclick="enterDatabase('owner')" type="button">Owner</button>
           </div>
-          <button class="home-search" onclick="enterDatabase('records')" type="button">
-            <span>Find an order</span>
-            <span aria-hidden="true">Search</span>
-          </button>
-          <button class="home-cart" onclick="enterDatabase('sell')" type="button" aria-label="Open order entry">+</button>
+          <form class="home-search" data-home-search="records" onsubmit="findHomeOrder(event)" onclick="event.stopPropagation()">
+            <input class="home-search-input" id="homeOrderSearchInput" type="search" placeholder="Find an order" aria-label="Find an order">
+            <button class="home-search-submit" type="submit">Search</button>
+          </form>
+          <button class="home-cart" data-home-tab="sell" onclick="enterDatabase('sell')" type="button" aria-label="Open order entry">+</button>
         </nav>
 
         <div class="home-side-dock" aria-label="Quick database links">
-          <button class="home-dock-btn" onclick="enterDatabase('dashboard')" type="button" aria-label="Dashboard">
+          <button class="home-dock-btn" data-home-tab="dashboard" onclick="enterDatabase('dashboard')" type="button" aria-label="Dashboard">
             <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="12" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="16" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
           </button>
-          <button class="home-dock-btn active" onclick="enterDatabase('sell')" type="button" aria-label="Order">
+          <button class="home-dock-btn active" data-home-tab="sell" onclick="enterDatabase('sell')" type="button" aria-label="Order">
             <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 3H18L21 8V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V8L6 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 8H21" stroke="currentColor" stroke-width="1.8"/><path d="M9 12C9 13.7 10.3 15 12 15C13.7 15 15 13.7 15 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </button>
-          <button class="home-dock-btn" onclick="enterDatabase('records')" type="button" aria-label="Records">
+          <button class="home-dock-btn" data-home-tab="records" onclick="enterDatabase('records')" type="button" aria-label="Records">
             <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 8H16M8 12H16M8 16H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </button>
-          <button class="home-dock-btn" onclick="enterDatabase('manage')" type="button" aria-label="Manage">
+          <button class="home-dock-btn" data-home-tab="manage" onclick="enterDatabase('manage')" type="button" aria-label="Manage">
             <svg class="home-dock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C13.7 15 15 13.7 15 12C15 10.3 13.7 9 12 9C10.3 9 9 10.3 9 12C9 13.7 10.3 15 12 15Z" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 13.5C19.5 12.5 19.5 11.5 19.4 10.5L21 9.2L19.5 6.8L17.6 7.5C16.8 6.9 16 6.4 15 6.1L14.7 4H10.3L10 6.1C9 6.4 8.2 6.9 7.4 7.5L5.5 6.8L4 9.2L5.6 10.5C5.5 11.5 5.5 12.5 5.6 13.5L4 14.8L5.5 17.2L7.4 16.5C8.2 17.1 9 17.6 10 17.9L10.3 20H14.7L15 17.9C16 17.6 16.8 17.1 17.6 16.5L19.5 17.2L21 14.8L19.4 13.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           </button>
         </div>
@@ -4675,7 +5397,7 @@
         <div class="home-layout">
           <div class="home-visual" aria-hidden="true">
             <div class="home-cup-image">
-              <img src="studybite-logo-hero.png" alt="">
+              <img id="homeCircleImage" src="studybite-logo-hero.png" alt="">
             </div>
           </div>
           <div class="home-content">
@@ -4835,6 +5557,18 @@
             <button class="btn btn-secondary profile-name-save" onclick="saveMyDisplayName()" type="button">Save</button>
           </div>
           <div class="profile-name-status" id="profileNameStatus"></div>
+          <label class="sidebar-drawer-footer-label" for="homeCircleImageInput">Welcome circle image</label>
+          <div class="profile-image-preview">
+            <img id="homeCircleImagePreview" alt="">
+            <span>Shown in the big circle on your welcome screen.</span>
+          </div>
+          <div class="profile-image-actions">
+            <input class="hidden" id="homeCircleImageInput" type="file" accept="image/*" onchange="saveHomeCircleImage(event)">
+            <button class="btn btn-secondary" onclick="document.getElementById('homeCircleImageInput').click()" type="button">Choose image</button>
+            <button class="btn btn-secondary" onclick="resetHomeCircleImage()" type="button" aria-label="Reset welcome image" title="Reset image">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="height:18px;width:18px;"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 5v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </aside>
@@ -5143,6 +5877,7 @@
                 <option value="staff">Staff</option>
                 <option value="manager">Manager</option>
                 <option value="viewer">Viewer</option>
+                <option value="owner">Owner control</option>
                 <option value="custom">Custom</option>
               </select>
             </div>
@@ -5208,10 +5943,34 @@
             <div class="report-summary-value" id="profitNet">RM 0.00</div>
           </div>
         </div>
+        <div class="expense-dashboard-grid mb-4">
+          <div class="expense-dashboard-card">
+            <span class="expense-dashboard-label">Total spent</span>
+            <strong id="expenseTotalSpent">RM 0.00</strong>
+            <small id="expenseTotalCount">0 expense records</small>
+          </div>
+          <div class="expense-dashboard-card">
+            <span class="expense-dashboard-label">Top purpose</span>
+            <strong id="expenseTopPurpose">None</strong>
+            <small id="expenseTopPurposeAmount">RM 0.00</small>
+          </div>
+          <div class="expense-dashboard-card expense-purpose-card">
+            <div class="expense-purpose-head">
+              <span class="expense-dashboard-label">Spent by purpose</span>
+            </div>
+            <div class="expense-purpose-list" id="expensePurposeList">
+              <div class="empty-state">No expense purpose yet.</div>
+            </div>
+          </div>
+        </div>
         <div class="grid grid-cols-2 gap-4 mobile-stack mb-4" data-permission="manageExpenses">
           <div>
             <label class="label" for="expenseDescription">Description</label>
             <input class="field" type="text" id="expenseDescription" placeholder="e.g., Flour, Gas, Rent">
+          </div>
+          <div>
+            <label class="label" for="expensePurpose">Purpose</label>
+            <input class="field" type="text" id="expensePurpose" placeholder="e.g., Stock, Transport, Rent">
           </div>
           <div>
             <label class="label" for="expenseAmount">Amount (RM)</label>
@@ -5223,11 +5982,12 @@
           </div>
         </div>
         <button class="btn btn-secondary mb-4" onclick="addExpense()" type="button" data-permission="manageExpenses">Add expense</button>
+        <div class="expense-record-list" id="expenseRecordList"></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Added by</th><th></th></tr></thead>
+            <thead><tr><th>Date</th><th>Purpose</th><th>Description</th><th>Amount</th><th>Added by</th><th></th></tr></thead>
             <tbody id="expenseTableBody">
-              <tr><td colspan="5" class="empty-state">No expenses logged yet</td></tr>
+              <tr><td colspan="6" class="empty-state">No expenses logged yet</td></tr>
             </tbody>
           </table>
         </div>
@@ -5310,6 +6070,10 @@
       </div>
     </div>
 
+    <button class="tab-peek-handle right" id="tabPeekHandle" onclick="showMobileTabs()" type="button" aria-label="Show tabs" title="Show tabs">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
     <button class="fab" id="fabBtn" onclick="fabAction()" type="button" aria-label="Quick sale">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
@@ -5338,7 +6102,8 @@
       activeTab: 'studybite.activeTab',
       ownerSettings: 'studybite.ownerSettings',
       staffRights: 'studybite.staffRights',
-      displayNames: 'studybite.displayNames'
+      displayNames: 'studybite.displayNames',
+      homeCircleImages: 'studybite.homeCircleImages'
     };
 
     const OWNER_EMAIL = 'kayodeprince27@gmail.com';
@@ -5350,6 +6115,7 @@
     ];
 
     const PERMISSION_LABELS = {
+      ownerControl: 'Owner control',
       viewDashboard: 'View dashboard',
       addSales: 'Add sales',
       viewRecords: 'View records',
@@ -5366,6 +6132,7 @@
 
     const ROLE_PRESETS = {
       viewer: {
+        ownerControl: false,
         viewDashboard: true,
         addSales: false,
         viewRecords: true,
@@ -5380,6 +6147,7 @@
         manageExpenses: false
       },
       staff: {
+        ownerControl: false,
         viewDashboard: true,
         addSales: true,
         viewRecords: true,
@@ -5394,6 +6162,7 @@
         manageExpenses: false
       },
       manager: {
+        ownerControl: false,
         viewDashboard: true,
         addSales: true,
         viewRecords: true,
@@ -5512,6 +6281,7 @@
 
     function getCurrentRoleLabel() {
       if (isCurrentUserOwner) return 'Owner';
+      if (canUseOwnerControls()) return 'Owner control';
       return isCurrentUserAdmin ? 'Admin' : 'Staff';
     }
 
@@ -5535,11 +6305,76 @@
       }
 
       input.value = getDisplayName(currentUser);
+      updateHomeCircleImage();
     }
 
     function showProfileNameStatus(message) {
       const status = document.getElementById('profileNameStatus');
       if (status) status.textContent = message;
+    }
+
+    function loadHomeCircleImages() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.homeCircleImages) || '{}') || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveHomeCircleImages(images) {
+      localStorage.setItem(STORAGE_KEYS.homeCircleImages, JSON.stringify(images || {}));
+    }
+
+    function getHomeCircleImage() {
+      const images = loadHomeCircleImages();
+      const userKey = normalizeEmail(currentUser);
+      return userKey ? (images[userKey] || '') : (images.default || '');
+    }
+
+    function updateHomeCircleImage() {
+      const imageSrc = getHomeCircleImage();
+      const circleImg = document.getElementById('homeCircleImage');
+      const previewImg = document.getElementById('homeCircleImagePreview');
+      const circleFrame = circleImg?.closest('.home-cup-image');
+      const fallbackLogo = 'studybite-logo-hero.png';
+      const src = imageSrc || fallbackLogo;
+      if (circleImg) circleImg.src = src;
+      if (previewImg) previewImg.src = src;
+      if (circleFrame) circleFrame.classList.toggle('has-custom-image', Boolean(imageSrc));
+    }
+
+    function saveHomeCircleImage(event) {
+      const file = event?.target?.files?.[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        showProfileNameStatus('Choose an image file.');
+        return;
+      }
+      if (file.size > 900000) {
+        showProfileNameStatus('Image is too large. Pick one under 900 KB.');
+        event.target.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const images = loadHomeCircleImages();
+        images[normalizeEmail(currentUser) || 'default'] = String(reader.result || '');
+        saveHomeCircleImages(images);
+        updateHomeCircleImage();
+        showProfileNameStatus('Welcome image saved.');
+        event.target.value = '';
+      };
+      reader.onerror = () => showProfileNameStatus('Could not read that image.');
+      reader.readAsDataURL(file);
+    }
+
+    function resetHomeCircleImage() {
+      const images = loadHomeCircleImages();
+      delete images[normalizeEmail(currentUser) || 'default'];
+      saveHomeCircleImages(images);
+      updateHomeCircleImage();
+      showProfileNameStatus('Welcome image reset.');
     }
 
     function saveMyDisplayName() {
@@ -5565,7 +6400,12 @@
 
       if (db) {
         db.ref('displayNames/' + getDisplayNameKey(currentUser)).set(name, (error) => {
-          showProfileNameStatus(error ? 'Saved locally. Cloud sync failed.' : 'Name saved.');
+          if (error) {
+            const reason = error.code === 'PERMISSION_DENIED' ? 'Firebase rules blocked it.' : (error.message || 'Cloud sync failed.');
+            showProfileNameStatus(`Saved locally. ${reason}`);
+          } else {
+            showProfileNameStatus('Name saved.');
+          }
         });
       }
     }
@@ -5627,6 +6467,10 @@
         ownerSettings = mergeOwnerSettings(value.ownerSettings);
         staffRights = value.staffRights || {};
         saveOwnerControlsLocal();
+        if (currentUser) {
+          isCurrentUserAdmin = isCurrentUserOwner || hasPermission('ownerControl') || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(currentUser)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
+          updateCurrentUserBadge();
+        }
         applyFeatureAccess();
         renderOwnerControls();
       });
@@ -5658,8 +6502,13 @@
       return !!rights.permissions[permission];
     }
 
+    function canUseOwnerControls() {
+      return isCurrentUserOwner || hasPermission('ownerControl');
+    }
+
     function canUseSection(section) {
       if (isCurrentUserOwner) return true;
+      if (section === 'owner') return canUseOwnerControls();
       if (!ownerSettings.sections[section]) return false;
       if (section === 'dashboard') return hasPermission('viewDashboard');
       if (section === 'sell') return hasPermission('addSales');
@@ -5719,7 +6568,7 @@
     }
 
     function saveOwnerDashboardSettings() {
-      if (!isCurrentUserOwner) return;
+      if (!canUseOwnerControls()) return;
       document.querySelectorAll('[data-owner-section]').forEach((input) => {
         ownerSettings.sections[input.dataset.ownerSection] = input.checked;
       });
@@ -5741,7 +6590,7 @@
     }
 
     function saveStaffRights() {
-      if (!isCurrentUserOwner) return;
+      if (!canUseOwnerControls()) return;
       const email = normalizeEmail(document.getElementById('staffRightsEmail')?.value);
       if (!email) {
         showOwnerStatus('Enter a staff email first.');
@@ -5767,7 +6616,7 @@
     }
 
     function loadStaffRights(email) {
-      if (!isCurrentUserOwner) return;
+      if (!canUseOwnerControls()) return;
       const key = normalizeEmail(email);
       const rights = getStaffRightsFor(key);
       document.getElementById('staffRightsEmail').value = key;
@@ -5776,7 +6625,7 @@
     }
 
     function removeStaffRights() {
-      if (!isCurrentUserOwner) return;
+      if (!canUseOwnerControls()) return;
       const email = normalizeEmail(document.getElementById('staffRightsEmail')?.value);
       if (!email || email === OWNER_EMAIL) {
         showOwnerStatus('Choose a removable staff email.');
@@ -5817,6 +6666,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       applySavedTheme();
+      hydrateInlineLogos();
       hydrateSavedSetup();
       populateProductDropdown();
       renderProductManager();
@@ -5825,16 +6675,27 @@
       initOfflineQueue();
       setupPWA();
       initTabSwipeGestures();
+      initMobileTabHideGestures();
       initSidebarSwipeGesture();
       document.querySelectorAll('.home-hero button').forEach((button) => {
         button.addEventListener('click', (event) => event.stopPropagation());
       });
       updateHomeWelcome();
+      updateHomeCircleImage();
       window.addEventListener('resize', () => {
         const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
         moveTabIndicator(current);
       });
     });
+
+    function hydrateInlineLogos() {
+      const embeddedLogo = document.querySelector('.logo-light')?.getAttribute('src');
+      if (!embeddedLogo) return;
+      document.querySelectorAll('img[src="studybite-logo-hero.png"]').forEach((img) => {
+        if (img.id === 'homeCircleImage' || img.closest('.home-mark') || img.classList.contains('home-brand-logo')) return;
+        img.src = embeddedLogo;
+      });
+    }
 
     function applySavedTheme() {
       const savedTheme = localStorage.getItem(STORAGE_KEYS.theme);
@@ -5848,6 +6709,11 @@
       document.body.classList.toggle('dark-mode', isDark);
       localStorage.setItem(STORAGE_KEYS.theme, isDark ? 'dark' : 'light');
       updateThemeButton();
+      const openReceipt = document.getElementById('receiptContent');
+      if (openReceipt?.classList.contains('receipt-export')) {
+        openReceipt.classList.toggle('receipt-theme-dark', isDark);
+        openReceipt.classList.toggle('receipt-theme-light', !isDark);
+      }
       if (monthChart) {
         monthChart.destroy();
         monthChart = null;
@@ -5873,7 +6739,7 @@
       document.body.classList.remove('home-mode');
 
       if (currentUser && targetTab) {
-        const allowed = targetTab === 'owner' ? isCurrentUserOwner : canUseSection(targetTab);
+        const allowed = targetTab === 'owner' ? canUseOwnerControls() : canUseSection(targetTab);
         if (allowed) switchTab(targetTab);
       }
 
@@ -5881,7 +6747,53 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function findHomeOrder(event) {
+      event?.preventDefault();
+      event?.stopPropagation();
+
+      if (!currentUser) {
+        enterDatabase();
+        return;
+      }
+
+      if (!canUseSection('records')) {
+        alert('You do not have permission to view records.');
+        return;
+      }
+
+      const value = document.getElementById('homeOrderSearchInput')?.value.trim() || '';
+      const searchInput = document.getElementById('searchInput');
+      const dateFilter = document.getElementById('dateFilter');
+      const startInput = document.getElementById('filterStartDate');
+      const endInput = document.getElementById('filterEndDate');
+
+      if (searchInput) searchInput.value = value;
+      if (dateFilter) dateFilter.value = 'all';
+      if (startInput) startInput.value = '';
+      if (endInput) endInput.value = '';
+
+      document.body.classList.remove('home-mode');
+      switchTab('records');
+      handleFilterChange();
+
+      setTimeout(() => {
+        const target = searchInput || document.getElementById('salesTableWrap');
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!value && searchInput) searchInput.focus();
+      }, 180);
+    }
+
     function switchTab(tabName) {
+      if (currentUser) {
+        const allowed = tabName === 'owner' ? canUseOwnerControls() : canUseSection(tabName);
+        if (!allowed) {
+          alert(tabName === 'records' ? 'You do not have permission to view records.' : 'You do not have permission to open this section.');
+          const fallback = ['sell', 'dashboard', 'records', 'manage', 'owner'].find(tab => tab === 'owner' ? canUseOwnerControls() : canUseSection(tab));
+          if (fallback && fallback !== tabName) switchTab(fallback);
+          return;
+        }
+      }
+
       const panels = document.querySelectorAll('.tab-panel');
       const outgoing = document.querySelector('.tab-panel.tab-panel-active');
       const incoming = document.querySelector(`.tab-panel[data-tab-panel="${tabName}"]`);
@@ -6064,6 +6976,100 @@
         if (nextIndex !== currentIndex) {
           switchTab(TAB_ORDER[nextIndex]);
         }
+      }, { passive: true });
+    }
+
+    function setMobileTabsHidden(direction) {
+      const tabs = document.getElementById('mobileTabs');
+      const handle = document.getElementById('tabPeekHandle');
+      if (!tabs || !handle) return;
+
+      tabs.classList.remove('tabs-hidden-left', 'tabs-hidden-right');
+      handle.classList.remove('visible', 'left', 'right');
+
+      if (direction === 'left' || direction === 'right') {
+        tabs.classList.add(direction === 'left' ? 'tabs-hidden-left' : 'tabs-hidden-right');
+        handle.classList.add('visible', direction === 'left' ? 'left' : 'right');
+        handle.setAttribute('aria-label', 'Show tabs');
+        handle.title = 'Show tabs';
+        handle.innerHTML = direction === 'left'
+          ? '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+    }
+
+    function showMobileTabs() {
+      setMobileTabsHidden('');
+      requestAnimationFrame(() => {
+        const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
+        moveTabIndicator(current);
+      });
+    }
+
+    function initMobileTabHideGestures() {
+      const tabs = document.getElementById('mobileTabs');
+      if (!tabs) return;
+
+      let startX = 0;
+      let startY = 0;
+      let trackingTabs = false;
+      let edgeStartX = 0;
+      let edgeStartY = 0;
+      let trackingEdge = false;
+      let lastTap = 0;
+
+      tabs.addEventListener('click', () => {
+        const now = Date.now();
+        if (now - lastTap < 320) {
+          setMobileTabsHidden('right');
+        }
+        lastTap = now;
+      });
+
+      tabs.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        trackingTabs = true;
+      }, { passive: true });
+
+      tabs.addEventListener('touchend', (event) => {
+        if (!trackingTabs) return;
+        trackingTabs = false;
+        const touch = event.changedTouches[0];
+        if (!touch) return;
+
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+        if (Math.abs(deltaX) < 55 || Math.abs(deltaY) > 55) return;
+        setMobileTabsHidden(deltaX < 0 ? 'left' : 'right');
+      }, { passive: true });
+
+      document.addEventListener('touchstart', (event) => {
+        const tabsNow = document.getElementById('mobileTabs');
+        if (!tabsNow || (!tabsNow.classList.contains('tabs-hidden-left') && !tabsNow.classList.contains('tabs-hidden-right'))) return;
+        if (event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        const fromLeft = tabsNow.classList.contains('tabs-hidden-left');
+        const edgeHit = fromLeft ? touch.clientX < 40 : touch.clientX > window.innerWidth - 40;
+        trackingEdge = edgeHit;
+        edgeStartX = touch.clientX;
+        edgeStartY = touch.clientY;
+      }, { passive: true });
+
+      document.addEventListener('touchend', (event) => {
+        if (!trackingEdge) return;
+        trackingEdge = false;
+        const tabsNow = document.getElementById('mobileTabs');
+        if (!tabsNow || (!tabsNow.classList.contains('tabs-hidden-left') && !tabsNow.classList.contains('tabs-hidden-right'))) return;
+        const touch = event.changedTouches[0];
+        if (!touch) return;
+        const fromLeft = tabsNow.classList.contains('tabs-hidden-left');
+        const deltaX = touch.clientX - edgeStartX;
+        const deltaY = touch.clientY - edgeStartY;
+        const revealSwipe = fromLeft ? deltaX > 55 : deltaX < -55;
+        if (revealSwipe && Math.abs(deltaY) < 70) showMobileTabs();
       }, { passive: true });
     }
 
@@ -6317,7 +7323,7 @@
         if (user) {
           currentUser = user.email;
           isCurrentUserOwner = normalizeEmail(user.email) === OWNER_EMAIL;
-          isCurrentUserAdmin = isCurrentUserOwner || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(user.email)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
+          isCurrentUserAdmin = isCurrentUserOwner || hasPermission('ownerControl') || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(user.email)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
           updateCurrentUserBadge();
           document.body.classList.add('home-mode');
           document.getElementById('logoutBtn').classList.remove('hidden');
@@ -6353,15 +7359,25 @@
     }
 
     function applyFeatureAccess() {
+      document.querySelectorAll('[data-home-tab]').forEach((btn) => {
+        const tab = btn.dataset.homeTab;
+        const allowed = tab === 'owner' ? canUseOwnerControls() : canUseSection(tab);
+        btn.classList.toggle('hidden', !allowed);
+      });
+
+      document.querySelectorAll('[data-home-search]').forEach((el) => {
+        el.classList.toggle('hidden', !canUseSection(el.dataset.homeSearch));
+      });
+
       document.querySelectorAll('.mobile-tab-btn[data-tab]').forEach((btn) => {
         const tab = btn.dataset.tab;
-        const allowed = tab === 'owner' ? isCurrentUserOwner : canUseSection(tab);
+        const allowed = tab === 'owner' ? canUseOwnerControls() : canUseSection(tab);
         btn.classList.toggle('hidden', !allowed);
       });
 
       document.querySelectorAll('.tab-panel[data-tab-panel]').forEach((panel) => {
         const tab = panel.dataset.tabPanel;
-        const allowed = tab === 'owner' ? isCurrentUserOwner : canUseSection(tab);
+        const allowed = tab === 'owner' ? canUseOwnerControls() : canUseSection(tab);
         if (!allowed) panel.classList.remove('tab-panel-active', 'tab-panel-enter', 'tab-panel-enter-active');
       });
 
@@ -6379,7 +7395,7 @@
 
       const active = document.querySelector('.tab-panel.tab-panel-active');
       if (!active && currentUser) {
-        const fallback = ['sell', 'dashboard', 'records', 'manage', 'owner'].find(tab => tab === 'owner' ? isCurrentUserOwner : canUseSection(tab));
+        const fallback = ['sell', 'dashboard', 'records', 'manage', 'owner'].find(tab => tab === 'owner' ? canUseOwnerControls() : canUseSection(tab));
         if (fallback) switchTab(fallback);
       }
     }
@@ -6391,7 +7407,7 @@
         el.classList.toggle('hidden', permission ? !hasPermission(permission) : !isCurrentUserAdmin);
       });
       document.querySelectorAll('.owner-only').forEach((el) => {
-        el.classList.toggle('hidden', !isCurrentUserOwner);
+        el.classList.toggle('hidden', !canUseOwnerControls());
       });
       renderOwnerControls();
     }
@@ -6542,6 +7558,8 @@
       }
 
       const description = document.getElementById('expenseDescription').value.trim();
+      const purposeInput = document.getElementById('expensePurpose');
+      const purpose = (purposeInput?.value || '').trim() || description;
       const amount = parseFloat(document.getElementById('expenseAmount').value);
       const date = document.getElementById('expenseDate').value || new Date().toISOString().slice(0, 10);
 
@@ -6554,6 +7572,7 @@
       const expenseData = {
         id: expenseId,
         description,
+        purpose,
         amount: roundMoney(amount),
         date,
         timestamp: new Date(date + 'T00:00:00').getTime(),
@@ -6578,6 +7597,7 @@
       }
 
       document.getElementById('expenseDescription').value = '';
+      if (purposeInput) purposeInput.value = '';
       document.getElementById('expenseAmount').value = '';
       document.getElementById('expenseDate').value = new Date().toISOString().slice(0, 10);
     }
@@ -6644,21 +7664,87 @@
       }
     }
 
+    function getExpensePurpose(expense) {
+      return String(expense.purpose || expense.category || expense.description || 'General').trim() || 'General';
+    }
+
+    function renderExpenseDashboard() {
+      const totalEl = document.getElementById('expenseTotalSpent');
+      const countEl = document.getElementById('expenseTotalCount');
+      const topPurposeEl = document.getElementById('expenseTopPurpose');
+      const topAmountEl = document.getElementById('expenseTopPurposeAmount');
+      const purposeList = document.getElementById('expensePurposeList');
+      if (!totalEl || !countEl || !topPurposeEl || !topAmountEl || !purposeList) return;
+
+      const totalSpent = roundMoney(allExpenses.reduce((sum, expense) => sum + Number(expense.amount || 0), 0));
+      const purposeMap = {};
+      allExpenses.forEach((expense) => {
+        const purpose = getExpensePurpose(expense);
+        if (!purposeMap[purpose]) purposeMap[purpose] = { amount: 0, count: 0 };
+        purposeMap[purpose].amount += Number(expense.amount || 0);
+        purposeMap[purpose].count += 1;
+      });
+
+      const rows = Object.entries(purposeMap)
+        .map(([purpose, data]) => ({ purpose, amount: roundMoney(data.amount), count: data.count }))
+        .sort((a, b) => b.amount - a.amount);
+
+      const top = rows[0];
+      totalEl.textContent = formatCurrency(totalSpent);
+      countEl.textContent = `${allExpenses.length} expense record${allExpenses.length === 1 ? '' : 's'}`;
+      topPurposeEl.textContent = top ? top.purpose : 'None';
+      topAmountEl.textContent = top ? formatCurrency(top.amount) : 'RM 0.00';
+
+      if (!rows.length) {
+        purposeList.innerHTML = '<div class="empty-state">No expense purpose yet.</div>';
+        return;
+      }
+
+      purposeList.innerHTML = rows.slice(0, 6).map((row) => {
+        const width = totalSpent ? Math.max(6, Math.round((row.amount / totalSpent) * 100)) : 0;
+        return `
+          <div class="expense-purpose-row">
+            <span class="expense-purpose-name">${escapeHTML(row.purpose)}</span>
+            <span class="expense-purpose-amount">${formatCurrency(row.amount)}</span>
+            <span class="expense-purpose-track"><span class="expense-purpose-fill" style="width:${width}%"></span></span>
+          </div>
+        `;
+      }).join('');
+    }
+
     function renderExpenses() {
       const body = document.getElementById('expenseTableBody');
+      const cardList = document.getElementById('expenseRecordList');
+      renderExpenseDashboard();
       if (!body) return;
 
       if (!allExpenses.length) {
-        body.innerHTML = '<tr><td colspan="5" class="empty-state">No expenses logged yet</td></tr>';
+        body.innerHTML = '<tr><td colspan="6" class="empty-state">No expenses logged yet</td></tr>';
+        if (cardList) cardList.innerHTML = '<div class="empty-state">No expense records yet.</div>';
         return;
+      }
+
+      if (cardList) {
+        cardList.innerHTML = allExpenses.map(expense => `
+          <div class="expense-record-card">
+            <div class="expense-record-date">${escapeHTML(formatDate(expense.date))}</div>
+            <div class="expense-record-main">
+              <div class="expense-record-purpose">${escapeHTML(getExpensePurpose(expense))}</div>
+              <div class="expense-record-desc">${escapeHTML(expense.description || '')} · ${escapeHTML(getDisplayName(expense.addedBy) || '')}</div>
+            </div>
+            <div class="expense-record-amount">${formatCurrency(Number(expense.amount || 0))}</div>
+            <button class="btn btn-danger admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses" onclick="deleteExpense('${escapeAttr(expense.id)}')">Delete</button>
+          </div>
+        `).join('');
       }
 
       body.innerHTML = allExpenses.map(expense => `
         <tr>
           <td>${formatDate(expense.date)}</td>
+          <td class="font-bold text-gray-950">${escapeHTML(getExpensePurpose(expense))}</td>
           <td class="font-bold text-gray-950">${escapeHTML(expense.description || '')}</td>
           <td class="font-black text-orange-600">${formatCurrency(Number(expense.amount || 0))}</td>
-          <td>${escapeHTML(expense.addedBy || '')}</td>
+          <td>${escapeHTML(getDisplayName(expense.addedBy) || '')}</td>
           <td>
             <button class="btn btn-danger admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses" onclick="deleteExpense('${escapeAttr(expense.id)}')">Delete</button>
           </td>
@@ -6708,6 +7794,8 @@
       const content = document.getElementById('receiptContent');
       const receiptNo = sale.receiptNo || generateReceiptNumber();
       currentReceiptSale = { ...sale, receiptNo };
+      const isDarkReceipt = document.body.classList.contains('dark-mode');
+      content.className = `receipt-export ${isDarkReceipt ? 'receipt-theme-dark' : 'receipt-theme-light'}`;
 
       content.innerHTML = `
         <div class="receipt-header">
@@ -6756,6 +7844,7 @@
     function captureReceiptCanvas() {
       const receiptEl = document.getElementById('receiptContent');
       const cardEl = document.getElementById('receiptCard');
+      const isDarkReceipt = receiptEl.classList.contains('receipt-theme-dark');
 
       if (!window.html2canvas) {
         return Promise.reject(new Error('html2canvas not available'));
@@ -6780,7 +7869,7 @@
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             html2canvas(receiptEl, {
-              backgroundColor: '#ffffff',
+              backgroundColor: isDarkReceipt ? '#080808' : '#ffffff',
               scale: 2,
               useCORS: true
             }).then(resolve).catch(reject).finally(() => {
@@ -6832,6 +7921,13 @@
           unit: 'mm',
           format: [pageWidth, pageHeight]
         });
+        if (document.getElementById('receiptContent')?.classList.contains('receipt-theme-dark')) {
+          pdf.setFillColor(8, 8, 8);
+          pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+        } else {
+          pdf.setFillColor(255, 255, 255);
+          pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+        }
         pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
         pdf.save(`receipt-${sale.receiptNo || sale.id}.pdf`);
       }).catch(() => {
@@ -7894,10 +8990,18 @@
 
       return allSales.filter((sale) => {
         const matchesSearch = !search || [
+          sale.id,
+          sale.receiptNo,
+          sale.date,
+          formatDate(sale.date),
           sale.customerName,
           sale.product,
           sale.enteredBy,
-          sale.updatedBy
+          getDisplayName(sale.enteredBy),
+          sale.updatedBy,
+          getDisplayName(sale.updatedBy),
+          sale.amount,
+          sale.quantity
         ].some(value => String(value || '').toLowerCase().includes(search));
 
         return matchesSearch && saleIsInRange(sale, start, end);
