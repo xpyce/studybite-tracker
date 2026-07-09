@@ -821,6 +821,77 @@
       font-weight: 800;
     }
 
+    .sidebar-tools-toggle {
+      align-items: center;
+      background: linear-gradient(135deg, rgba(255, 107, 44, 0.10), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 107, 44, 0.36);
+      border-radius: 16px;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      font-weight: 900;
+      justify-content: space-between;
+      min-height: 48px;
+      padding: 0 14px;
+      text-align: left;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
+      width: 100%;
+    }
+
+    .sidebar-tools-toggle:hover,
+    .sidebar-tools-toggle:focus-visible {
+      border-color: rgba(255, 107, 44, 0.72);
+      box-shadow: 0 12px 28px rgba(255, 107, 44, 0.16);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .sidebar-tools-toggle svg {
+      height: 18px;
+      transition: transform 0.2s ease;
+      width: 18px;
+    }
+
+    .sidebar-tools-panel {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 12px;
+    }
+
+    .sidebar-drawer-footer.tools-open .sidebar-tools-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .sidebar-drawer-footer.tools-open .sidebar-tools-panel {
+      display: flex;
+    }
+
+    .sidebar-drawer-footer:not(.tools-open) {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    .sidebar-drawer-footer.tools-open {
+      max-height: 44dvh !important;
+      overflow-y: auto !important;
+    }
+
+    .notification-control {
+      align-items: center;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr auto;
+    }
+
+    .notification-status {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      grid-column: 1 / -1;
+      min-height: 16px;
+    }
+
     .profile-name-control {
       display: grid;
       gap: 8px;
@@ -5341,21 +5412,55 @@
     /* Final mobile/app navigation polish */
     .app-floating-tabs {
       align-items: center;
-      background: rgba(3, 3, 3, 0.82);
+      animation: liquidGlassBreathe 5.4s ease-in-out infinite;
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 107, 44, 0.15) 38%, rgba(3, 3, 3, 0.84)),
+        rgba(3, 3, 3, 0.82);
       border: 1px solid rgba(255, 107, 44, 0.44);
       border-radius: 999px;
       bottom: max(16px, env(safe-area-inset-bottom));
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -18px 34px rgba(0, 0, 0, 0.22),
+        0 18px 46px rgba(0, 0, 0, 0.34);
       display: none;
       gap: 8px;
       left: 50%;
       max-width: calc(100vw - 24px);
-      overflow-x: auto;
+      overflow: hidden;
       padding: 8px;
       position: fixed;
       scrollbar-width: none;
       transform: translateX(-50%);
       z-index: 85;
+    }
+
+    .app-floating-tabs::before,
+    .app-floating-tabs::after {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .app-floating-tabs::before {
+      animation: liquidGlassSweep 4.8s ease-in-out infinite;
+      background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.22) 38%, rgba(255, 177, 61, 0.16) 50%, transparent 68%);
+      border-radius: inherit;
+      bottom: -35%;
+      left: -70%;
+      top: -35%;
+      transform: rotate(8deg);
+      width: 76%;
+    }
+
+    .app-floating-tabs::after {
+      background: radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.36), transparent 28%);
+      border-radius: inherit;
+      inset: 1px;
+      opacity: 0.48;
     }
 
     .app-floating-tabs::-webkit-scrollbar {
@@ -5368,7 +5473,17 @@
 
     body.home-mode .app-floating-tabs,
     body.sidebar-open .app-floating-tabs,
+    body.floating-tabs-hidden .app-floating-tabs,
     .app-floating-tab.hidden {
+      display: none !important;
+    }
+
+    body:not(.logged-in) .sidebar-open-btn,
+    body:not(.logged-in) .sidebar-drawer,
+    body:not(.logged-in) .sidebar-overlay,
+    body:not(.logged-in) .app-floating-tabs,
+    body:not(.logged-in) .tab-peek-handle,
+    body:not(.logged-in) .fab {
       display: none !important;
     }
 
@@ -5385,6 +5500,8 @@
       justify-content: center;
       min-height: 44px;
       min-width: 44px;
+      position: relative;
+      z-index: 1;
       transition: background 0.22s ease, color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
       width: 52px;
     }
@@ -5405,9 +5522,14 @@
     }
 
     body:not(.home-mode):not(.dark-mode) .app-floating-tabs {
-      background: rgba(255, 255, 255, 0.94);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 107, 44, 0.13) 42%, rgba(255, 255, 255, 0.76)),
+        rgba(255, 255, 255, 0.94);
       border-color: rgba(255, 107, 44, 0.34);
-      box-shadow: 0 18px 46px rgba(50, 24, 8, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        inset 0 -18px 34px rgba(255, 107, 44, 0.08),
+        0 18px 46px rgba(50, 24, 8, 0.16);
     }
 
     body:not(.home-mode):not(.dark-mode) .app-floating-tab {
@@ -5420,6 +5542,62 @@
     body:not(.home-mode):not(.dark-mode) .app-floating-tab.active {
       background: #ff6b2c;
       color: #ffffff;
+    }
+
+    .floating-tabs-peek {
+      align-items: center;
+      background: rgba(255, 107, 44, 0.94);
+      border: 1px solid rgba(255, 177, 61, 0.54);
+      border-radius: 999px;
+      bottom: max(20px, env(safe-area-inset-bottom));
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.30);
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      height: 48px;
+      justify-content: center;
+      left: 50%;
+      position: fixed;
+      transform: translateX(-50%);
+      width: 48px;
+      z-index: 84;
+    }
+
+    .floating-tabs-peek svg {
+      height: 22px;
+      width: 22px;
+    }
+
+    body.logged-in:not(.home-mode).floating-tabs-hidden:not(.sidebar-open) .floating-tabs-peek {
+      display: inline-flex;
+    }
+
+    @keyframes liquidGlassSweep {
+      0% { transform: translateX(-30%) rotate(8deg); opacity: 0.22; }
+      45% { transform: translateX(185%) rotate(8deg); opacity: 0.62; }
+      100% { transform: translateX(185%) rotate(8deg); opacity: 0; }
+    }
+
+    @keyframes liquidGlassBreathe {
+      0%, 100% {
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.20),
+          inset 0 -18px 34px rgba(0, 0, 0, 0.22),
+          0 18px 46px rgba(0, 0, 0, 0.34);
+      }
+      50% {
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.32),
+          inset 0 -18px 38px rgba(255, 107, 44, 0.16),
+          0 22px 54px rgba(255, 107, 44, 0.18);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .app-floating-tabs,
+      .app-floating-tabs::before {
+        animation: none !important;
+      }
     }
 
     body:not(.home-mode) .tracker-section {
@@ -5624,6 +5802,10 @@
       animation: studybiteDockIn 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
+    body:not(.home-mode) .app-floating-tabs {
+      animation: studybiteDockIn 0.34s cubic-bezier(0.22, 1, 0.36, 1) both, liquidGlassBreathe 5.4s ease-in-out 0.4s infinite;
+    }
+
     .btn,
     .mobile-tab-btn,
     .app-floating-tab,
@@ -5708,6 +5890,75 @@
         display: none !important;
       }
     }
+
+    /* Professional icon-only side tabs */
+    .mobile-tabs {
+      align-items: center !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(56px, 1fr)) !important;
+      gap: 10px !important;
+    }
+
+    .mobile-tab-indicator {
+      display: none !important;
+    }
+
+    .mobile-tab-btn {
+      align-items: center !important;
+      aspect-ratio: 1 / 1 !important;
+      border-radius: 22px !important;
+      display: inline-flex !important;
+      font-size: 0 !important;
+      justify-content: center !important;
+      min-height: 58px !important;
+      min-width: 58px !important;
+      padding: 0 !important;
+      position: relative !important;
+      width: 100% !important;
+    }
+
+    .mobile-tab-btn .tab-icon {
+      height: 25px !important;
+      margin: 0 !important;
+      width: 25px !important;
+    }
+
+    .mobile-tab-btn::after {
+      background: rgba(0, 0, 0, 0.86);
+      border: 1px solid rgba(255, 107, 44, 0.34);
+      border-radius: 999px;
+      bottom: -34px;
+      color: #fff3df;
+      content: attr(aria-label);
+      font-size: 12px;
+      font-weight: 800;
+      left: 50%;
+      opacity: 0;
+      padding: 6px 10px;
+      pointer-events: none;
+      position: absolute;
+      transform: translateX(-50%) translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      white-space: nowrap;
+      z-index: 5;
+    }
+
+    .mobile-tab-btn:hover::after,
+    .mobile-tab-btn:focus-visible::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    body:not(.dark-mode) .mobile-tab-btn::after {
+      background: rgba(255, 255, 255, 0.96);
+      color: #17110d;
+    }
+
+    @media (max-width: 520px) {
+      .mobile-tabs {
+        grid-template-columns: repeat(2, minmax(58px, 1fr)) !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -5723,6 +5974,7 @@
             <button class="home-nav-link" data-home-tab="dashboard" onclick="enterDatabase('dashboard')" type="button">Dashboard</button>
             <button class="home-nav-link" data-home-tab="sell" onclick="enterDatabase('sell')" type="button">Order</button>
             <button class="home-nav-link" data-home-tab="records" onclick="enterDatabase('records')" type="button">Records</button>
+            <button class="home-nav-link" data-home-tab="expenses" onclick="enterDatabase('expenses')" type="button">Expenses</button>
             <button class="home-nav-link" data-home-tab="manage" onclick="enterDatabase('manage')" type="button">Manage</button>
             <button class="home-nav-link" data-home-tab="owner" onclick="enterDatabase('owner')" type="button">Owner</button>
           </div>
@@ -5767,21 +6019,6 @@
               <span class="home-title-main">Welcome</span>
               <span class="home-user-name hidden" id="homeUserName"></span>
             </h1>
-            <p class="home-copy">Track sales, receipts, products, staff rights, and daily performance from one focused dashboard built for fast campus service.</p>
-            <div class="home-stat-row">
-              <div class="home-stat">
-                <strong>Live</strong>
-                <span>Firebase sales tracker</span>
-              </div>
-              <div class="home-stat">
-                <strong>Fast</strong>
-                <span>Counter-ready order entry</span>
-              </div>
-              <div class="home-stat">
-                <strong>Owner</strong>
-                <span>Staff rights and controls</span>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -5870,45 +6107,57 @@
       </div>
       <nav class="mobile-tabs" id="mobileTabs">
         <div class="mobile-tab-indicator" id="mobileTabIndicator"></div>
-        <button class="mobile-tab-btn" data-tab="dashboard" onclick="switchTab('dashboard')" type="button">
+        <button class="mobile-tab-btn" data-tab="dashboard" onclick="switchTab('dashboard')" type="button" aria-label="Dashboard" title="Dashboard">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="12" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="16" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>
           Dashboard
         </button>
-        <button class="mobile-tab-btn active" data-tab="sell" onclick="switchTab('sell')" type="button">
+        <button class="mobile-tab-btn active" data-tab="sell" onclick="switchTab('sell')" type="button" aria-label="Order" title="Order">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3H18L21 8V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V8L6 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 8H21" stroke="currentColor" stroke-width="1.6"/><path d="M9 12C9 13.7 10.3 15 12 15C13.7 15 15 13.7 15 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           Order
         </button>
-        <button class="mobile-tab-btn" data-tab="records" onclick="switchTab('records')" type="button">
+        <button class="mobile-tab-btn" data-tab="records" onclick="switchTab('records')" type="button" aria-label="Records" title="Records">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8H16M8 12H16M8 16H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           Records
         </button>
-        <button class="mobile-tab-btn" data-tab="expenses" onclick="switchTab('expenses')" type="button">
+        <button class="mobile-tab-btn" data-tab="expenses" onclick="switchTab('expenses')" type="button" aria-label="Expenses" title="Expenses">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7.5C4 5.6 7.6 4 12 4S20 5.6 20 7.5 16.4 11 12 11 4 9.4 4 7.5Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 7.5V12C4 13.9 7.6 15.5 12 15.5S20 13.9 20 12V7.5M4 12V16.5C4 18.4 7.6 20 12 20S20 18.4 20 16.5V12" stroke="currentColor" stroke-width="1.6"/></svg>
           Expenses
         </button>
-        <button class="mobile-tab-btn" data-tab="manage" onclick="switchTab('manage')" type="button">
+        <button class="mobile-tab-btn" data-tab="manage" onclick="switchTab('manage')" type="button" aria-label="Manage" title="Manage">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C13.7 15 15 13.7 15 12C15 10.3 13.7 9 12 9C10.3 9 9 10.3 9 12C9 13.7 10.3 15 12 15Z" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13.5C19.5 12.5 19.5 11.5 19.4 10.5L21 9.2L19.5 6.8L17.6 7.5C16.8 6.9 16 6.4 15 6.1L14.7 4H10.3L10 6.1C9 6.4 8.2 6.9 7.4 7.5L5.5 6.8L4 9.2L5.6 10.5C5.5 11.5 5.5 12.5 5.6 13.5L4 14.8L5.5 17.2L7.4 16.5C8.2 17.1 9 17.6 10 17.9L10.3 20H14.7L15 17.9C16 17.6 16.8 17.1 17.6 16.5L19.5 17.2L21 14.8L19.4 13.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           Manage
         </button>
-        <button class="mobile-tab-btn owner-only hidden" data-tab="owner" onclick="switchTab('owner')" type="button">
+        <button class="mobile-tab-btn owner-only hidden" data-tab="owner" onclick="switchTab('owner')" type="button" aria-label="Owner" title="Owner">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L20 6.5V11.5C20 16.4 16.7 20.3 12 21.5C7.3 20.3 4 16.4 4 11.5V6.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12L11 14L15.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Owner
         </button>
       </nav>
       <div class="sidebar-drawer-footer">
-        <div class="sidebar-setting-row">
-          <span class="sidebar-drawer-footer-label">Theme</span>
-          <label class="theme-switch" id="themeToggle" title="Toggle theme">
-            <input type="checkbox" id="themeToggleInput" onchange="toggleDarkMode()">
-            <span class="theme-switch-track">
-              <span class="theme-switch-thumb">
-                <svg class="theme-switch-icon theme-switch-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V4.5M12 19.5V21.5M4.5 12H2.5M21.5 12H19.5M5.6 5.6L4.9 4.9M19.1 19.1L18.4 18.4M5.6 18.4L4.9 19.1M19.1 4.9L18.4 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-                <svg class="theme-switch-icon theme-switch-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5C18.9 15 17.7 15.3 16.5 15.3C11.9 15.3 8.2 11.6 8.2 7C8.2 5.8 8.5 4.6 9 3.5C5.4 4.6 2.7 7.9 2.7 11.9C2.7 16.8 6.7 20.8 11.6 20.8C15.6 20.8 18.9 18.1 20 14.5Z" fill="currentColor"/></svg>
+        <button class="sidebar-tools-toggle" id="sidebarToolsToggle" onclick="toggleSidebarTools()" type="button" aria-expanded="false">
+          <span>Profile & theme</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sidebar-tools-panel" id="sidebarToolsPanel">
+          <div class="sidebar-setting-row">
+            <span class="sidebar-drawer-footer-label">Theme</span>
+            <label class="theme-switch" id="themeToggle" title="Toggle theme">
+              <input type="checkbox" id="themeToggleInput" onchange="toggleDarkMode()">
+              <span class="theme-switch-track">
+                <span class="theme-switch-thumb">
+                  <svg class="theme-switch-icon theme-switch-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V4.5M12 19.5V21.5M4.5 12H2.5M21.5 12H19.5M5.6 5.6L4.9 4.9M19.1 19.1L18.4 18.4M5.6 18.4L4.9 19.1M19.1 4.9L18.4 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <svg class="theme-switch-icon theme-switch-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5C18.9 15 17.7 15.3 16.5 15.3C11.9 15.3 8.2 11.6 8.2 7C8.2 5.8 8.5 4.6 9 3.5C5.4 4.6 2.7 7.9 2.7 11.9C2.7 16.8 6.7 20.8 11.6 20.8C15.6 20.8 18.9 18.1 20 14.5Z" fill="currentColor"/></svg>
+                </span>
               </span>
-            </span>
-          </label>
-        </div>
-        <div class="profile-name-control hidden" id="profileNameControl">
+            </label>
+          </div>
+          <div class="notification-control">
+            <span class="sidebar-drawer-footer-label">Notifications</span>
+            <button class="btn btn-secondary profile-name-save" onclick="enableStudyBiteNotifications()" type="button" aria-label="Enable notifications" title="Enable notifications">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="height:18px;width:18px;"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 21h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="notification-status" id="notificationStatus"></div>
+          </div>
+          <div class="profile-name-control hidden" id="profileNameControl">
           <label class="sidebar-drawer-footer-label" for="profileDisplayName">Display name</label>
           <div class="profile-name-row">
             <input class="field profile-name-field" id="profileDisplayName" type="text" maxlength="32" placeholder="Your name" onkeydown="if(event.key === 'Enter') saveMyDisplayName()">
@@ -5926,6 +6175,7 @@
             <button class="btn btn-secondary" onclick="resetHomeCircleImage()" type="button" aria-label="Reset welcome image" title="Reset image">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="height:18px;width:18px;"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 5v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
+          </div>
           </div>
         </div>
       </div>
@@ -5952,6 +6202,9 @@
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L20 6.5V11.5C20 16.4 16.7 20.3 12 21.5C7.3 20.3 4 16.4 4 11.5V6.5L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12L11 14L15.5 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </nav>
+      <button class="floating-tabs-peek" id="floatingTabsPeek" onclick="showFloatingTabs()" type="button" aria-label="Show quick tabs" title="Show quick tabs">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
 
       <div class="tab-panel tab-panel-active" data-tab-panel="sell">
       <section class="card mb-6 p-5" data-feature-key="quickEntry">
@@ -6488,7 +6741,8 @@
       ownerSettings: 'studybite.ownerSettings',
       staffRights: 'studybite.staffRights',
       displayNames: 'studybite.displayNames',
-      homeCircleImages: 'studybite.homeCircleImages'
+      homeCircleImages: 'studybite.homeCircleImages',
+      notificationsEnabled: 'studybite.notificationsEnabled'
     };
 
     const OWNER_EMAIL = 'kayodeprince27@gmail.com';
@@ -6711,6 +6965,23 @@
       localStorage.setItem(STORAGE_KEYS.homeCircleImages, JSON.stringify(images || {}));
     }
 
+    function listenForHomeCircleImages() {
+      if (!db) {
+        updateHomeCircleImage();
+        return;
+      }
+
+      db.ref('homeCircleImages').on('value', (snapshot) => {
+        const remote = snapshot.val() || {};
+        const decoded = {};
+        Object.entries(remote).forEach(([key, imageSrc]) => {
+          decoded[decodeDisplayNameKey(key)] = String(imageSrc || '');
+        });
+        saveHomeCircleImages(decoded);
+        updateHomeCircleImage();
+      });
+    }
+
     function getHomeCircleImage() {
       const images = loadHomeCircleImages();
       const userKey = normalizeEmail(currentUser);
@@ -6744,12 +7015,24 @@
 
       const reader = new FileReader();
       reader.onload = () => {
+        const imageData = String(reader.result || '');
         const images = loadHomeCircleImages();
-        images[normalizeEmail(currentUser) || 'default'] = String(reader.result || '');
+        images[normalizeEmail(currentUser) || 'default'] = imageData;
         saveHomeCircleImages(images);
         updateHomeCircleImage();
-        showProfileNameStatus('Welcome image saved.');
+        showProfileNameStatus(db ? 'Welcome image saved here. Syncing cloud...' : 'Welcome image saved locally.');
         event.target.value = '';
+
+        if (db && currentUser) {
+          db.ref('homeCircleImages/' + getDisplayNameKey(currentUser)).set(imageData, (error) => {
+            if (error) {
+              const reason = error.code === 'PERMISSION_DENIED' ? 'Firebase rules blocked image sync.' : (error.message || 'Cloud sync failed.');
+              showProfileNameStatus(`Image saved locally. ${reason}`);
+            } else {
+              showProfileNameStatus('Welcome image saved. Cloud synced.');
+            }
+          });
+        }
       };
       reader.onerror = () => showProfileNameStatus('Could not read that image.');
       reader.readAsDataURL(file);
@@ -6760,7 +7043,17 @@
       delete images[normalizeEmail(currentUser) || 'default'];
       saveHomeCircleImages(images);
       updateHomeCircleImage();
-      showProfileNameStatus('Welcome image reset.');
+      showProfileNameStatus(db ? 'Welcome image reset here. Syncing cloud...' : 'Welcome image reset locally.');
+      if (db && currentUser) {
+        db.ref('homeCircleImages/' + getDisplayNameKey(currentUser)).remove((error) => {
+          if (error) {
+            const reason = error.code === 'PERMISSION_DENIED' ? 'Firebase rules blocked image reset.' : (error.message || 'Cloud sync failed.');
+            showProfileNameStatus(`Image reset locally. ${reason}`);
+          } else {
+            showProfileNameStatus('Welcome image reset. Cloud synced.');
+          }
+        });
+      }
     }
 
     function saveMyDisplayName() {
@@ -6829,6 +7122,26 @@
       localStorage.setItem(STORAGE_KEYS.staffRights, JSON.stringify(staffRights));
     }
 
+    function refreshAccessState() {
+      if (currentUser) {
+        isCurrentUserAdmin = isCurrentUserOwner
+          || hasPermission('ownerControl')
+          || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(currentUser))
+          || hasPermission('editSales')
+          || hasPermission('deleteSales')
+          || hasPermission('manageProducts')
+          || hasPermission('manageExpenses');
+        updateCurrentUserBadge();
+      }
+      applyAdminVisibility();
+      const currentTab = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
+      moveTabIndicator(currentTab);
+      updateFabVisibility();
+      render();
+      renderExpenses();
+      renderProfit();
+    }
+
     function setOwnerControlBusy(isBusy) {
       ['saveDashboardSettingsBtn', 'saveStaffRightsBtn', 'removeStaffRightsBtn'].forEach((id) => {
         const button = document.getElementById(id);
@@ -6861,18 +7174,28 @@
         setOwnerControlBusy(false);
         showOwnerStatus(`${successMessage} Applied here. Cloud is still taking longer than usual.`);
       }, 8000);
-      db.ref('adminControls').set({
-        ownerEmail: OWNER_EMAIL,
-        ownerSettings,
-        staffRights,
-        updatedAt: Date.now(),
-        updatedBy: currentUser
+      const publicStaffRights = {};
+      Object.entries(staffRights).forEach(([email, rights]) => {
+        publicStaffRights[getDisplayNameKey(email)] = rights;
+      });
+      db.ref().update({
+        adminControls: {
+          ownerEmail: OWNER_EMAIL,
+          ownerSettings,
+          staffRights,
+          updatedAt: Date.now(),
+          updatedBy: currentUser
+        },
+        publicOwnerSettings: ownerSettings,
+        publicStaffRights,
+        publicOwnerControlsUpdatedAt: Date.now()
       }, (error) => {
         if (error) {
           const reason = error.code === 'PERMISSION_DENIED' ? 'Firebase rules blocked cloud sync.' : (error.message || 'Cloud sync failed.');
           showOwnerStatus(`${successMessage} Saved locally. ${reason}`);
         } else {
           showOwnerStatus(`${successMessage} Cloud synced.`);
+          notifyStudyBite('StudyBite synced', successMessage);
         }
         clearTimeout(ownerControlSyncTimer);
         ownerControlWritePending = false;
@@ -6883,7 +7206,7 @@
 
     function listenForOwnerControls() {
       if (!db) {
-        applyFeatureAccess();
+        refreshAccessState();
         renderOwnerControls();
         return;
       }
@@ -6894,12 +7217,59 @@
         ownerSettings = mergeOwnerSettings(value.ownerSettings);
         staffRights = value.staffRights || {};
         saveOwnerControlsLocal();
-        if (currentUser) {
-          isCurrentUserAdmin = isCurrentUserOwner || hasPermission('ownerControl') || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(currentUser)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
-          updateCurrentUserBadge();
-        }
-        applyFeatureAccess();
+        refreshAccessState();
         renderOwnerControls();
+      }, (error) => {
+        if (canUseOwnerControls()) {
+          showOwnerStatus('Could not read full owner controls: ' + (error.message || error));
+        }
+      });
+    }
+
+    function listenForDashboardAccess() {
+      if (!db || !currentUser) {
+        refreshAccessState();
+        return;
+      }
+
+      db.ref('publicOwnerSettings').on('value', (snapshot) => {
+        if (snapshot.exists()) {
+          ownerSettings = mergeOwnerSettings(snapshot.val());
+          saveOwnerControlsLocal();
+        }
+        refreshAccessState();
+      });
+
+      const currentKey = getDisplayNameKey(currentUser);
+      db.ref('publicStaffRights/' + currentKey).on('value', (snapshot) => {
+        const email = normalizeEmail(currentUser);
+        if (snapshot.exists()) {
+          staffRights[email] = snapshot.val() || {};
+        } else if (!isCurrentUserOwner) {
+          delete staffRights[email];
+        }
+        saveOwnerControlsLocal();
+        refreshAccessState();
+      });
+    }
+
+    function stopDashboardAccessListeners() {
+      if (!db || !currentUser) return;
+      db.ref('publicOwnerSettings').off();
+      db.ref('publicStaffRights/' + getDisplayNameKey(currentUser)).off();
+      db.ref('homeCircleImages').off();
+      db.ref('displayNames').off();
+      db.ref('adminControls').off();
+      db.ref('sales').off();
+      db.ref('expenses').off();
+    }
+
+    function verifyOwnerControlsCloud() {
+      if (!db || !isCurrentUserOwner) return;
+      db.ref('publicOwnerControlsUpdatedAt').once('value', (snapshot) => {
+        if (!snapshot.exists()) {
+          showOwnerStatus('Owner commands are local until Firebase rules allow publicOwnerSettings/publicStaffRights.');
+        }
       });
     }
 
@@ -7087,6 +7457,8 @@
     let chartNeedsRefresh = false;
     let pendingDelete = null;
     let undoTimer = null;
+    let salesListenerReady = false;
+    let knownSaleIds = new Set();
 
     document.addEventListener('DOMContentLoaded', () => {
       applySavedTheme();
@@ -7100,6 +7472,7 @@
       setupPWA();
       initTabSwipeGestures();
       initMobileTabHideGestures();
+      initFloatingTabSwipeGestures();
       initSidebarSwipeGesture();
       document.querySelectorAll('.home-hero button').forEach((button) => {
         button.addEventListener('click', (event) => event.stopPropagation());
@@ -7342,7 +7715,7 @@
       updateFabVisibility();
     }
 
-    const TAB_ORDER = ['dashboard', 'sell', 'records', 'manage', 'owner'];
+    const TAB_ORDER = ['dashboard', 'sell', 'records', 'expenses', 'manage', 'owner'];
 
     function initTabSwipeGestures() {
       const trackerSection = document.getElementById('trackerSection');
@@ -7433,6 +7806,52 @@
         const current = localStorage.getItem(STORAGE_KEYS.activeTab) || 'sell';
         moveTabIndicator(current);
       });
+    }
+
+    function setFloatingTabsHidden(hidden) {
+      document.body.classList.toggle('floating-tabs-hidden', !!hidden);
+    }
+
+    function showFloatingTabs() {
+      setFloatingTabsHidden(false);
+    }
+
+    function toggleFloatingTabs() {
+      setFloatingTabsHidden(!document.body.classList.contains('floating-tabs-hidden'));
+    }
+
+    function initFloatingTabSwipeGestures() {
+      let startX = 0;
+      let startY = 0;
+      let tracking = false;
+
+      document.addEventListener('touchstart', (event) => {
+        if (!document.body.classList.contains('logged-in') || document.body.classList.contains('home-mode')) return;
+        if (event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        tracking = !!event.target.closest('.app-floating-tabs, .floating-tabs-peek') || startY > window.innerHeight - 150;
+      }, { passive: true });
+
+      document.addEventListener('touchend', (event) => {
+        if (!tracking) return;
+        tracking = false;
+        const touch = event.changedTouches[0];
+        if (!touch) return;
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+        if (deltaX > 60 && Math.abs(deltaY) < 55) toggleFloatingTabs();
+      }, { passive: true });
+    }
+
+    function toggleSidebarTools(force) {
+      const footer = document.querySelector('.sidebar-drawer-footer');
+      const button = document.getElementById('sidebarToolsToggle');
+      if (!footer || !button) return;
+      const open = typeof force === 'boolean' ? force : !footer.classList.contains('tools-open');
+      footer.classList.toggle('tools-open', open);
+      button.setAttribute('aria-expanded', String(open));
     }
 
     function initMobileTabHideGestures() {
