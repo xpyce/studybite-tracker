@@ -6264,12 +6264,12 @@
           <div>
             <h3 class="text-sm font-black tracking-normal text-gray-950 mb-3">Staff permissions</h3>
             <div class="permission-grid" id="staffPermissionGrid"></div>
-          </div>
+        </div>
 
           <div class="flex flex-wrap gap-3 mobile-actions">
-            <button class="btn btn-primary" onclick="saveOwnerDashboardSettings()" type="button">Save dashboard settings</button>
-            <button class="btn btn-secondary" onclick="saveStaffRights()" type="button">Save staff rights</button>
-            <button class="btn btn-danger" onclick="removeStaffRights()" type="button">Remove staff rights</button>
+            <button class="btn btn-primary" id="saveDashboardSettingsBtn" onclick="saveOwnerDashboardSettings()" type="button">Save dashboard settings</button>
+            <button class="btn btn-secondary" id="saveStaffRightsBtn" onclick="saveStaffRights()" type="button">Save staff rights</button>
+            <button class="btn btn-danger" id="removeStaffRightsBtn" onclick="removeStaffRights()" type="button">Remove staff rights</button>
           </div>
           <div id="ownerSettingsStatus" class="text-sm font-bold text-gray-500"></div>
           <div class="staff-rights-list" id="staffRightsList"></div>
@@ -6829,17 +6829,38 @@
       localStorage.setItem(STORAGE_KEYS.staffRights, JSON.stringify(staffRights));
     }
 
-    function syncOwnerControlsToFirebase(successMessage = 'Owner controls saved.') {
+    function setOwnerControlBusy(isBusy) {
+      ['saveDashboardSettingsBtn', 'saveStaffRightsBtn', 'removeStaffRightsBtn'].forEach((id) => {
+        const button = document.getElementById(id);
+        if (!button) return;
+        button.disabled = false;
+        button.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+        button.classList.toggle('opacity-60', isBusy);
+      });
+    }
+
+    function syncOwnerControlsToFirebase(successMessage = 'Owner controls saved.', savingMessage = 'Saving owner controls...') {
+      showOwnerStatus(`${successMessage} Applied here. Syncing cloud...`);
+      setOwnerControlBusy(true);
       saveOwnerControlsLocal();
       applyFeatureAccess();
       if (!db) {
         showOwnerStatus(`${successMessage} Saved locally.`);
+        setOwnerControlBusy(false);
         return;
       }
       if (!isCurrentUserOwner) {
         showOwnerStatus(`${successMessage} Saved locally. Cloud owner changes are limited to the main admin.`);
+        setOwnerControlBusy(false);
         return;
       }
+      ownerControlWritePending = true;
+      clearTimeout(ownerControlSyncTimer);
+      ownerControlSyncTimer = setTimeout(() => {
+        ownerControlWritePending = false;
+        setOwnerControlBusy(false);
+        showOwnerStatus(`${successMessage} Applied here. Cloud is still taking longer than usual.`);
+      }, 8000);
       db.ref('adminControls').set({
         ownerEmail: OWNER_EMAIL,
         ownerSettings,
@@ -6851,8 +6872,12 @@
           const reason = error.code === 'PERMISSION_DENIED' ? 'Firebase rules blocked cloud sync.' : (error.message || 'Cloud sync failed.');
           showOwnerStatus(`${successMessage} Saved locally. ${reason}`);
         } else {
-          showOwnerStatus(successMessage);
+          showOwnerStatus(`${successMessage} Cloud synced.`);
         }
+        clearTimeout(ownerControlSyncTimer);
+        ownerControlWritePending = false;
+        setOwnerControlBusy(false);
+        renderOwnerControls();
       });
     }
 
@@ -6864,6 +6889,7 @@
       }
 
       db.ref('adminControls').on('value', (snapshot) => {
+        if (ownerControlWritePending) return;
         const value = snapshot.val() || {};
         ownerSettings = mergeOwnerSettings(value.ownerSettings);
         staffRights = value.staffRights || {};
@@ -6977,8 +7003,8 @@
       document.querySelectorAll('[data-owner-feature]').forEach((input) => {
         ownerSettings.features[input.dataset.ownerFeature] = input.checked;
       });
-      syncOwnerControlsToFirebase('Dashboard settings saved.');
       renderOwnerControls();
+      syncOwnerControlsToFirebase('Dashboard settings saved.', 'Saving dashboard settings...');
     }
 
     function applyRolePresetToStaffForm() {
@@ -7009,8 +7035,8 @@
         role: document.getElementById('staffRightsRole')?.value || 'custom',
         permissions
       };
-      syncOwnerControlsToFirebase('Staff rights saved.');
       renderOwnerControls();
+      syncOwnerControlsToFirebase('Staff rights saved.', 'Saving staff rights...');
     }
 
     function loadStaffRights(email) {
@@ -7030,8 +7056,8 @@
         return;
       }
       delete staffRights[email];
-      syncOwnerControlsToFirebase('Staff rights removed.');
       renderOwnerControls();
+      syncOwnerControlsToFirebase('Staff rights removed.', 'Removing staff rights...');
     }
 
     function showOwnerStatus(message) {
@@ -7051,6 +7077,8 @@
     let displayNames = loadDisplayNamesFromStorage();
     let ownerSettings = loadOwnerSettingsFromStorage();
     let staffRights = loadStaffRightsFromStorage();
+    let ownerControlWritePending = false;
+    let ownerControlSyncTimer = null;
     let allSales = [];
     let allExpenses = [];
     let visibleSales = [];
@@ -8033,6 +8061,12 @@
       updateOfflineBanner();
     }
 
+    function removeQueuedOfflineExpense(id) {
+      const queue = getOfflineExpenseQueue().filter(item => String(item.id) !== String(id));
+      localStorage.setItem(STORAGE_KEYS.offlineExpenseQueue, JSON.stringify(queue));
+      updateOfflineBanner();
+    }
+
     function getOfflineExpenseQueue() {
       try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.offlineExpenseQueue) || '[]');
@@ -8065,9 +8099,23 @@
         alert('You do not have permission to delete expenses.');
         return;
       }
-      if (!db) return;
+      if (!db) {
+        alert('Firebase is not connected.');
+        return;
+      }
       if (confirm('Delete this expense?')) {
-        db.ref('expenses/' + id).remove();
+        const removedExpense = allExpenses.find(expense => String(expense.id) === String(id));
+        allExpenses = allExpenses.filter(expense => String(expense.id) !== String(id));
+        removeQueuedOfflineExpense(id);
+        renderExpenses();
+        renderProfit();
+
+        db.ref('expenses/' + id).remove((error) => {
+          if (error) {
+            if (removedExpense) applyLocalExpense(removedExpense);
+            alert('Could not delete expense from Firebase: ' + (error.message || error));
+          }
+        });
       }
     }
 
