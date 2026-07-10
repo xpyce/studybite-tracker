@@ -6742,7 +6742,8 @@
       staffRights: 'studybite.staffRights',
       displayNames: 'studybite.displayNames',
       homeCircleImages: 'studybite.homeCircleImages',
-      notificationsEnabled: 'studybite.notificationsEnabled'
+      notificationsEnabled: 'studybite.notificationsEnabled',
+      deviceId: 'studybite.deviceId'
     };
 
     const OWNER_EMAIL = 'kayodeprince27@gmail.com';
@@ -6951,6 +6952,135 @@
     function showProfileNameStatus(message) {
       const status = document.getElementById('profileNameStatus');
       if (status) status.textContent = message;
+    }
+
+    function notificationsAreEnabled() {
+      return localStorage.getItem(STORAGE_KEYS.notificationsEnabled) === 'true'
+        && 'Notification' in window
+        && Notification.permission === 'granted';
+    }
+
+    function updateNotificationStatus(message) {
+      const status = document.getElementById('notificationStatus');
+      if (!status) return;
+      if (message) {
+        status.textContent = message;
+        return;
+      }
+      if (!('Notification' in window)) {
+        status.textContent = 'This browser does not support alerts.';
+      } else if (Notification.permission === 'granted' && localStorage.getItem(STORAGE_KEYS.notificationsEnabled) === 'true') {
+        status.textContent = 'Order and sync alerts are on.';
+      } else if (Notification.permission === 'denied') {
+        status.textContent = 'Notifications are blocked in browser settings.';
+      } else {
+        status.textContent = 'Tap the bell to turn on order and sync alerts.';
+      }
+    }
+
+    function getStudyBiteDeviceId() {
+      let id = localStorage.getItem(STORAGE_KEYS.deviceId);
+      if (!id) {
+        id = 'device_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(STORAGE_KEYS.deviceId, id);
+      }
+      return id;
+    }
+
+    function getStudyBiteNotificationTitle(title) {
+      const text = String(title || 'Alert').trim();
+      return text.toLowerCase().includes('studybite') ? text : `StudyBite - ${text}`;
+    }
+
+    function getStudyBiteNotificationIcon() {
+      return new URL('studybite-logo-hero.png', window.location.href).href;
+    }
+
+    function notifyStudyBite(title, body, tag = 'studybite-live-alert') {
+      if (!notificationsAreEnabled()) return;
+      try {
+        const icon = getStudyBiteNotificationIcon();
+        const notification = new Notification(getStudyBiteNotificationTitle(title), {
+          body: String(body || ''),
+          icon,
+          badge: icon,
+          tag
+        });
+        setTimeout(() => notification.close(), 6500);
+      } catch {
+        // Some browsers allow permission but still block file:// notifications.
+      }
+    }
+
+    function broadcastStudyBiteNotification(title, body, type = 'info') {
+      const brandedTitle = getStudyBiteNotificationTitle(title);
+      if (!db) {
+        notifyStudyBite(brandedTitle, body);
+        return;
+      }
+      const id = Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 9);
+      notifyStudyBite(brandedTitle, body, 'studybite-local-' + id);
+      db.ref('notifications/' + id).set({
+        id,
+        title: brandedTitle,
+        body,
+        type,
+        createdAt: Date.now(),
+        createdBy: currentUser || 'studybite-device',
+        deviceId: getStudyBiteDeviceId()
+      }, () => {});
+    }
+
+    function listenForStudyBiteNotifications() {
+      if (!db) return;
+      if (studyBiteNotificationsListening) return;
+      studyBiteNotificationsListening = true;
+      db.ref('notifications').orderByChild('createdAt').limitToLast(30).on('value', (snapshot) => {
+        const previousIds = knownNotificationIds;
+        const items = [];
+        if (snapshot.exists()) {
+          Object.entries(snapshot.val()).forEach(([key, value]) => {
+            items.push({ ...(value || {}), id: value?.id || key });
+          });
+        }
+        items.sort((a, b) => Number(a.createdAt || 0) - Number(b.createdAt || 0));
+        const nextIds = new Set(items.map((item) => String(item.id)));
+        if (notificationsListenerReady) {
+          items
+            .filter((item) => !previousIds.has(String(item.id)))
+            .filter((item) => item.deviceId !== getStudyBiteDeviceId())
+            .filter((item) => Number(item.createdAt || 0) > Date.now() - 60000)
+            .forEach((item) => notifyStudyBite(getStudyBiteNotificationTitle(item.title || 'Alert'), item.body || '', 'studybite-' + String(item.id)));
+        } else {
+          notificationsListenerReady = true;
+        }
+        knownNotificationIds = nextIds;
+      }, () => {
+        updateNotificationStatus('Cloud alerts need Firebase rules for notifications.');
+      });
+    }
+
+    function enableStudyBiteNotifications() {
+      if (!('Notification' in window)) {
+        updateNotificationStatus('This browser does not support alerts.');
+        return;
+      }
+      if (Notification.permission === 'granted') {
+        localStorage.setItem(STORAGE_KEYS.notificationsEnabled, 'true');
+        updateNotificationStatus('Alerts turned on.');
+        notifyStudyBite('StudyBite alerts on', 'You will be notified when orders or cloud sync updates happen.');
+        return;
+      }
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          localStorage.setItem(STORAGE_KEYS.notificationsEnabled, 'true');
+          updateNotificationStatus('Alerts turned on.');
+          notifyStudyBite('StudyBite alerts on', 'You will be notified when orders or cloud sync updates happen.');
+        } else {
+          localStorage.setItem(STORAGE_KEYS.notificationsEnabled, 'false');
+          updateNotificationStatus('Notifications were not allowed.');
+        }
+      });
     }
 
     function loadHomeCircleImages() {
@@ -7195,7 +7325,7 @@
           showOwnerStatus(`${successMessage} Saved locally. ${reason}`);
         } else {
           showOwnerStatus(`${successMessage} Cloud synced.`);
-          notifyStudyBite('StudyBite synced', successMessage);
+          broadcastStudyBiteNotification('StudyBite synced', successMessage, 'sync');
         }
         clearTimeout(ownerControlSyncTimer);
         ownerControlWritePending = false;
@@ -7459,6 +7589,9 @@
     let undoTimer = null;
     let salesListenerReady = false;
     let knownSaleIds = new Set();
+    let notificationsListenerReady = false;
+    let knownNotificationIds = new Set();
+    let studyBiteNotificationsListening = false;
 
     document.addEventListener('DOMContentLoaded', () => {
       applySavedTheme();
@@ -8154,6 +8287,8 @@
         db = firebase.database();
         auth = firebase.auth();
         localStorage.setItem(STORAGE_KEYS.config, configText);
+        listenForStudyBiteNotifications();
+        updateNotificationStatus();
 
         showSetupStatus('Connected. Please log in.', 'connected');
         document.getElementById('setupSection').classList.add('hidden');
@@ -8173,30 +8308,42 @@
           isCurrentUserOwner = normalizeEmail(user.email) === OWNER_EMAIL;
           isCurrentUserAdmin = isCurrentUserOwner || hasPermission('ownerControl') || ADMIN_EMAILS.map(normalizeEmail).includes(normalizeEmail(user.email)) || hasPermission('editSales') || hasPermission('deleteSales') || hasPermission('manageProducts') || hasPermission('manageExpenses');
           updateCurrentUserBadge();
-          document.body.classList.add('home-mode');
+          document.body.classList.add('logged-in', 'home-mode');
+          document.body.classList.remove('floating-tabs-hidden', 'sidebar-open');
           document.getElementById('logoutBtn').classList.remove('hidden');
           document.getElementById('loginSection').classList.add('hidden');
           document.getElementById('setupSection').classList.add('hidden');
           document.getElementById('trackerSection').classList.add('active');
           listenForDisplayNames();
+          listenForHomeCircleImages();
+          listenForDashboardAccess();
           listenForOwnerControls();
+          listenForStudyBiteNotifications();
           renderProfileNameControl();
           restoreActiveTab();
-          applyAdminVisibility();
+          refreshAccessState();
+          updateNotificationStatus();
+          verifyOwnerControlsCloud();
           setTodayDate();
           listenForSales();
           listenForExpenses();
           flushOfflineQueue();
           flushOfflineExpenseQueue();
         } else {
+          stopDashboardAccessListeners();
           currentUser = '';
           isCurrentUserAdmin = false;
           isCurrentUserOwner = false;
+          salesListenerReady = false;
+          knownSaleIds = new Set();
+          notificationsListenerReady = false;
+          knownNotificationIds = new Set();
           setUserBadge('standby', 'Not logged in');
-          document.body.classList.remove('home-mode');
+          document.body.classList.remove('logged-in', 'home-mode', 'sidebar-open', 'floating-tabs-hidden');
           updateHomeWelcome();
           renderProfileNameControl();
           updateSystemStatus();
+          updateNotificationStatus();
           document.getElementById('logoutBtn').classList.add('hidden');
           document.getElementById('trackerSection').classList.remove('active');
           if (db) {
@@ -8369,6 +8516,7 @@
       if (!db) return;
 
       db.ref('sales').on('value', (snapshot) => {
+        const previousIds = knownSaleIds;
         if (snapshot.exists()) {
           allSales = Object.entries(snapshot.val()).map(([key, value]) => ({
             ...value,
@@ -8378,6 +8526,13 @@
         } else {
           allSales = [];
         }
+        const nextIds = new Set(allSales.map((sale) => String(sale.id)));
+        if (salesListenerReady) {
+          allSales.some((sale) => !previousIds.has(String(sale.id)));
+        } else {
+          salesListenerReady = true;
+        }
+        knownSaleIds = nextIds;
         populateProductDropdown(document.getElementById('product').value === '__custom' ? document.getElementById('customProduct').value : document.getElementById('product').value);
         render();
       });
@@ -8439,6 +8594,8 @@
             alert('Error saving expense, keeping it queued locally: ' + error);
             queueOfflineExpense(expenseData);
             applyLocalExpense(expenseData);
+          } else {
+            broadcastStudyBiteNotification('Expense synced', `${expenseData.purpose || 'Expense'} - ${formatCurrency(expenseData.amount || 0)} saved.`, 'expense');
           }
         });
       };
@@ -8446,6 +8603,7 @@
       if (!navigator.onLine) {
         queueOfflineExpense(expenseData);
         applyLocalExpense(expenseData);
+        notifyStudyBite('Expense saved offline', 'Expense saved locally and will sync when internet returns.');
       } else {
         save();
       }
@@ -8509,6 +8667,7 @@
         if (!error) {
           localStorage.setItem(STORAGE_KEYS.offlineExpenseQueue, '[]');
           updateOfflineBanner();
+          broadcastStudyBiteNotification('Expenses synced', `${queue.length} offline expense record(s) uploaded.`, 'sync');
         }
       });
     }
@@ -8533,6 +8692,8 @@
           if (error) {
             if (removedExpense) applyLocalExpense(removedExpense);
             alert('Could not delete expense from Firebase: ' + (error.message || error));
+          } else {
+            broadcastStudyBiteNotification('Expense deleted', 'Expense removed from cloud.', 'expense');
           }
         });
       }
@@ -9171,6 +9332,7 @@
       if (!navigator.onLine) {
         queueOfflineSale(saleData);
         applyLocalSale(saleData);
+        notifyStudyBite('StudyBite saved offline', 'Order saved locally and will sync when internet returns.');
         if (onSuccess) onSuccess();
         return;
       }
@@ -9180,6 +9342,8 @@
           alert('Error saving sale, keeping it queued locally: ' + error);
           queueOfflineSale(saleData);
           applyLocalSale(saleData);
+        } else {
+          broadcastStudyBiteNotification('Order synced', `${saleData.customer || 'Customer'} - ${formatCurrency(saleData.amount || 0)} saved to cloud.`, 'order');
         }
         if (onSuccess) onSuccess();
       });
@@ -9231,6 +9395,7 @@
         if (!error) {
           localStorage.setItem(STORAGE_KEYS.offlineQueue, '[]');
           updateOfflineBanner();
+          broadcastStudyBiteNotification('Sales synced', `${queue.length} offline sale record(s) uploaded.`, 'sync');
         }
       });
     }
