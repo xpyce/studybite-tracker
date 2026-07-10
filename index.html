@@ -5353,14 +5353,16 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34), 0 0 22px rgba(255, 107, 44, 0.22) !important;
     }
 
-    body:not(.home-mode).dark-mode .logo-light {
-      display: none !important;
-      opacity: 0 !important;
+    body:not(.home-mode).dark-mode .logo-light,
+    body:not(.home-mode).dark-mode .logo-badge img {
+      content: url("studybite-logo-hero.png") !important;
+      display: block !important;
+      opacity: 1 !important;
     }
 
     body:not(.home-mode).dark-mode .logo-dark {
-      display: block !important;
-      opacity: 1 !important;
+      display: none !important;
+      opacity: 0 !important;
     }
 
     /* Final logo readability lock: keep the bright logo visible on black/orange dark mode. */
@@ -5372,15 +5374,17 @@
       box-shadow: 0 0 0 1px rgba(255, 107, 44, 0.18), 0 12px 28px rgba(0, 0, 0, 0.34) !important;
     }
 
-    body:not(.home-mode).dark-mode .logo-light {
-      display: none !important;
-      opacity: 0 !important;
-    }
-
-    body:not(.home-mode).dark-mode .logo-dark {
+    body:not(.home-mode).dark-mode .logo-light,
+    body:not(.home-mode).dark-mode .logo-badge img {
+      content: url("studybite-logo-hero.png") !important;
       display: block !important;
       filter: drop-shadow(0 0 10px rgba(255, 107, 44, 0.42)) !important;
       opacity: 1 !important;
+    }
+
+    body:not(.home-mode).dark-mode .logo-dark {
+      display: none !important;
+      opacity: 0 !important;
     }
 
     body.home-mode {
@@ -5412,25 +5416,29 @@
     /* Final mobile/app navigation polish */
     .app-floating-tabs {
       align-items: center;
-      animation: liquidGlassBreathe 5.4s ease-in-out infinite;
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      animation: liquidGlassBreathe 5.6s ease-in-out infinite;
+      backdrop-filter: blur(26px) saturate(190%) contrast(112%);
+      -webkit-backdrop-filter: blur(26px) saturate(190%) contrast(112%);
       background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 107, 44, 0.15) 38%, rgba(3, 3, 3, 0.84)),
-        rgba(3, 3, 3, 0.82);
-      border: 1px solid rgba(255, 107, 44, 0.44);
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.34), transparent 26%),
+        radial-gradient(circle at 82% 100%, rgba(255, 107, 44, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 42%, rgba(8, 8, 8, 0.18)),
+        rgba(12, 10, 9, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 999px;
       bottom: max(16px, env(safe-area-inset-bottom));
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.22),
-        inset 0 -18px 34px rgba(0, 0, 0, 0.22),
-        0 18px 46px rgba(0, 0, 0, 0.34);
+        inset 0 1px 1px rgba(255, 255, 255, 0.38),
+        inset 0 -14px 28px rgba(0, 0, 0, 0.16),
+        inset 0 0 18px rgba(255, 255, 255, 0.06),
+        0 18px 48px rgba(0, 0, 0, 0.30),
+        0 0 0 1px rgba(255, 107, 44, 0.10);
       display: none;
-      gap: 8px;
+      gap: 9px;
       left: 50%;
       max-width: calc(100vw - 24px);
       overflow: hidden;
-      padding: 8px;
+      padding: 9px;
       position: fixed;
       scrollbar-width: none;
       transform: translateX(-50%);
@@ -5446,21 +5454,26 @@
     }
 
     .app-floating-tabs::before {
-      animation: liquidGlassSweep 4.8s ease-in-out infinite;
-      background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.22) 38%, rgba(255, 177, 61, 0.16) 50%, transparent 68%);
+      animation: liquidGlassSweep 4.6s ease-in-out infinite;
+      background:
+        linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.08) 28%, rgba(255, 255, 255, 0.42) 46%, rgba(255, 107, 44, 0.14) 56%, transparent 74%);
       border-radius: inherit;
-      bottom: -35%;
-      left: -70%;
-      top: -35%;
-      transform: rotate(8deg);
-      width: 76%;
+      bottom: -50%;
+      filter: blur(1px);
+      left: -82%;
+      top: -50%;
+      transform: rotate(12deg);
+      width: 72%;
     }
 
     .app-floating-tabs::after {
-      background: radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.36), transparent 28%);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.30), transparent 42%),
+        radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.26), transparent 26%);
       border-radius: inherit;
       inset: 1px;
-      opacity: 0.48;
+      mix-blend-mode: screen;
+      opacity: 0.54;
     }
 
     .app-floating-tabs::-webkit-scrollbar {
@@ -5487,12 +5500,151 @@
       display: none !important;
     }
 
+    body:not(.logged-in):not(.home-mode) {
+      min-height: 100dvh;
+    }
+
+    body:not(.logged-in):not(.home-mode) header {
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      margin-bottom: 10px !important;
+    }
+
+    body:not(.logged-in):not(.home-mode) header .status-pill,
+    body:not(.logged-in):not(.home-mode) header #logoutBtn {
+      display: none !important;
+    }
+
+    #setupSection:not(.hidden),
+    #loginSection:not(.hidden) {
+      backdrop-filter: blur(28px) saturate(185%) contrast(110%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(185%) contrast(110%) !important;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.18), transparent 26%),
+        radial-gradient(circle at 100% 100%, rgba(255, 107, 44, 0.20), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035) 46%, rgba(0, 0, 0, 0.46)),
+        rgba(0, 0, 0, 0.54) !important;
+      border: 1px solid rgba(255, 255, 255, 0.24) !important;
+      border-radius: 30px !important;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.44),
+        inset 0 -22px 44px rgba(0, 0, 0, 0.18),
+        0 28px 80px rgba(0, 0, 0, 0.44),
+        0 0 44px rgba(255, 107, 44, 0.10) !important;
+      color: #fff8ef !important;
+      margin: clamp(26px, 7vh, 70px) auto !important;
+      max-width: 430px !important;
+      overflow: hidden !important;
+      padding: clamp(24px, 5vw, 36px) !important;
+      position: relative !important;
+    }
+
+    #setupSection:not(.hidden)::before,
+    #loginSection:not(.hidden)::before {
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 30%, rgba(255, 255, 255, 0.30) 47%, rgba(255, 107, 44, 0.12) 58%, transparent 76%);
+      content: "";
+      filter: blur(0.5px);
+      inset: -35% auto -35% -80%;
+      pointer-events: none;
+      position: absolute;
+      transform: rotate(14deg);
+      width: 72%;
+      animation: liquidGlassSweep 5.2s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    #setupSection:not(.hidden) > *,
+    #loginSection:not(.hidden) > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    #setupSection:not(.hidden) h2,
+    #loginSection:not(.hidden) h2 {
+      color: #fff8ef !important;
+      font-size: clamp(26px, 6vw, 34px) !important;
+      letter-spacing: 0 !important;
+      text-align: center !important;
+      text-shadow: 0 12px 34px rgba(0, 0, 0, 0.38) !important;
+    }
+
+    #setupSection:not(.hidden) h2::before,
+    #loginSection:not(.hidden) h2::before {
+      color: #ff9a4d !important;
+      font-size: 12px !important;
+      letter-spacing: 0.16em !important;
+      margin-bottom: 10px !important;
+      text-align: center !important;
+    }
+
+    #setupSection:not(.hidden) p,
+    #loginSection:not(.hidden) p {
+      color: rgba(255, 244, 232, 0.72) !important;
+      text-align: center !important;
+    }
+
+    #setupSection:not(.hidden) .label,
+    #loginSection:not(.hidden) .label {
+      color: rgba(255, 244, 232, 0.82) !important;
+      font-size: 12px !important;
+      text-transform: none !important;
+    }
+
+    #setupSection:not(.hidden) .field,
+    #loginSection:not(.hidden) .field {
+      background: rgba(0, 0, 0, 0.22) !important;
+      border-color: rgba(255, 255, 255, 0.42) !important;
+      border-radius: 12px !important;
+      color: #fff8ef !important;
+      min-height: 48px !important;
+      box-shadow: inset 0 1px 12px rgba(0, 0, 0, 0.20) !important;
+    }
+
+    #setupSection:not(.hidden) .field::placeholder,
+    #loginSection:not(.hidden) .field::placeholder {
+      color: rgba(255, 244, 232, 0.45) !important;
+    }
+
+    #setupSection:not(.hidden) .field:focus,
+    #loginSection:not(.hidden) .field:focus {
+      border-color: rgba(255, 154, 77, 0.86) !important;
+      box-shadow: 0 0 0 3px rgba(255, 107, 44, 0.20), inset 0 1px 12px rgba(0, 0, 0, 0.20) !important;
+    }
+
+    #setupSection:not(.hidden) .btn-primary,
+    #loginSection:not(.hidden) .btn-primary {
+      background: linear-gradient(135deg, rgba(255, 143, 69, 0.96), rgba(166, 95, 255, 0.86)) !important;
+      border-color: rgba(255, 255, 255, 0.42) !important;
+      box-shadow: 0 14px 32px rgba(255, 107, 44, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+      min-height: 48px !important;
+    }
+
+    #setupSection:not(.hidden) .btn-secondary,
+    #loginSection:not(.hidden) .btn-secondary {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border-color: rgba(255, 255, 255, 0.24) !important;
+      color: #fff8ef !important;
+    }
+
+    #setupSection:not(.hidden) .status,
+    #loginSection:not(.hidden) .status,
+    #loginSection:not(.hidden) button[style*="background:none"] {
+      color: rgba(255, 244, 232, 0.78) !important;
+    }
+
     .app-floating-tab {
       align-items: center;
-      background: rgba(255, 107, 44, 0.14);
-      border: 0;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.26), transparent 32%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+        rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 999px;
-      color: #fff3df;
+      color: rgba(255, 244, 232, 0.92);
       cursor: pointer;
       display: inline-flex;
       flex: 0 0 auto;
@@ -5502,8 +5654,19 @@
       min-width: 44px;
       position: relative;
       z-index: 1;
-      transition: background 0.22s ease, color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+      transition: background 0.24s ease, border-color 0.24s ease, color 0.24s ease, transform 0.18s ease, box-shadow 0.24s ease;
       width: 52px;
+    }
+
+    .app-floating-tab::before {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 52%);
+      border-radius: inherit;
+      content: "";
+      inset: 1px 1px auto 1px;
+      height: 42%;
+      opacity: 0.52;
+      pointer-events: none;
+      position: absolute;
     }
 
     .app-floating-tab svg {
@@ -5514,8 +5677,14 @@
     .app-floating-tab:hover,
     .app-floating-tab:focus-visible,
     .app-floating-tab.active {
-      background: #ff6b2c;
-      box-shadow: 0 10px 24px rgba(255, 107, 44, 0.32);
+      background:
+        radial-gradient(circle at 30% 16%, rgba(255, 255, 255, 0.32), transparent 32%),
+        linear-gradient(145deg, rgba(255, 122, 54, 0.86), rgba(255, 61, 61, 0.70));
+      border-color: rgba(255, 206, 145, 0.60);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.30),
+        0 10px 24px rgba(255, 107, 44, 0.30),
+        0 0 26px rgba(255, 107, 44, 0.22);
       color: #ffffff;
       outline: none;
       transform: translateY(-1px);
@@ -5523,18 +5692,24 @@
 
     body:not(.home-mode):not(.dark-mode) .app-floating-tabs {
       background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 107, 44, 0.13) 42%, rgba(255, 255, 255, 0.76)),
-        rgba(255, 255, 255, 0.94);
-      border-color: rgba(255, 107, 44, 0.34);
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.86), transparent 28%),
+        radial-gradient(circle at 82% 100%, rgba(255, 107, 44, 0.15), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.24)),
+        rgba(255, 255, 255, 0.38);
+      border-color: rgba(255, 107, 44, 0.22);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.82),
-        inset 0 -18px 34px rgba(255, 107, 44, 0.08),
-        0 18px 46px rgba(50, 24, 8, 0.16);
+        inset 0 1px 1px rgba(255, 255, 255, 0.90),
+        inset 0 -14px 28px rgba(255, 107, 44, 0.08),
+        0 18px 46px rgba(50, 24, 8, 0.13);
     }
 
     body:not(.home-mode):not(.dark-mode) .app-floating-tab {
-      background: rgba(255, 107, 44, 0.10);
-      color: #17110d;
+      background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.72), transparent 32%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.18)),
+        rgba(255, 255, 255, 0.24);
+      border-color: rgba(59, 34, 20, 0.10);
+      color: #21140f;
     }
 
     body:not(.home-mode):not(.dark-mode) .app-floating-tab:hover,
@@ -5891,6 +6066,276 @@
       }
     }
 
+    /* Site-wide liquid glass polish */
+    body:not(.home-mode) header,
+    body:not(.home-mode) .card,
+    body:not(.home-mode) .sidebar-drawer,
+    body:not(.home-mode) .table-wrap,
+    body:not(.home-mode) .week-folder,
+    body:not(.home-mode) .expense-dashboard-card,
+    body:not(.home-mode) .report-summary-card {
+      backdrop-filter: blur(24px) saturate(178%) contrast(108%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(178%) contrast(108%) !important;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 100% 100%, rgba(255, 107, 44, 0.11), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.035) 46%, rgba(0, 0, 0, 0.18)),
+        rgba(10, 8, 7, 0.42) !important;
+      border: 1px solid rgba(255, 255, 255, 0.17) !important;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.24),
+        inset 0 -18px 34px rgba(0, 0, 0, 0.12),
+        0 18px 48px rgba(0, 0, 0, 0.22) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) header,
+    body:not(.home-mode):not(.dark-mode) .card,
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer,
+    body:not(.home-mode):not(.dark-mode) .table-wrap,
+    body:not(.home-mode):not(.dark-mode) .week-folder,
+    body:not(.home-mode):not(.dark-mode) .expense-dashboard-card,
+    body:not(.home-mode):not(.dark-mode) .report-summary-card {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.88), transparent 32%),
+        radial-gradient(circle at 100% 100%, rgba(255, 107, 44, 0.10), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.36)),
+        rgba(255, 255, 255, 0.52) !important;
+      border-color: rgba(255, 107, 44, 0.18) !important;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.82),
+        inset 0 -18px 34px rgba(255, 107, 44, 0.06),
+        0 18px 44px rgba(50, 24, 8, 0.11) !important;
+    }
+
+    body:not(.home-mode) .field,
+    body:not(.home-mode) select.field,
+    body:not(.home-mode) textarea.field {
+      backdrop-filter: blur(14px) saturate(150%) !important;
+      -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
+      background: rgba(0, 0, 0, 0.26) !important;
+      border-color: rgba(255, 255, 255, 0.18) !important;
+      box-shadow: inset 0 1px 12px rgba(0, 0, 0, 0.16) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .field,
+    body:not(.home-mode):not(.dark-mode) select.field,
+    body:not(.home-mode):not(.dark-mode) textarea.field {
+      background: rgba(255, 255, 255, 0.58) !important;
+      border-color: rgba(255, 107, 44, 0.22) !important;
+      color: #21140f !important;
+    }
+
+    body:not(.home-mode) .btn {
+      backdrop-filter: blur(14px) saturate(160%) !important;
+      -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 26px rgba(0, 0, 0, 0.16) !important;
+    }
+
+    body:not(.home-mode) .btn-primary {
+      background:
+        linear-gradient(135deg, rgba(255, 143, 69, 0.96), rgba(255, 61, 61, 0.86)) !important;
+      border-color: rgba(255, 206, 145, 0.44) !important;
+    }
+
+    body:not(.home-mode) .btn-secondary {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border-color: rgba(255, 255, 255, 0.17) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .btn-secondary {
+      background: rgba(255, 255, 255, 0.54) !important;
+      border-color: rgba(255, 107, 44, 0.22) !important;
+      color: #21140f !important;
+    }
+
+    body:not(.home-mode) table {
+      background: transparent !important;
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+    }
+
+    body:not(.home-mode) th {
+      background: rgba(255, 107, 44, 0.18) !important;
+      color: #ff8a45 !important;
+    }
+
+    body:not(.home-mode) td {
+      background: rgba(255, 255, 255, 0.045) !important;
+      border-color: rgba(255, 107, 44, 0.12) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) td {
+      background: rgba(255, 255, 255, 0.36) !important;
+      color: #21140f !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) th {
+      background: rgba(255, 107, 44, 0.10) !important;
+      color: #d94b14 !important;
+    }
+
+    /* Final theme lock: dark = pure black/orange, light = white/orange */
+    body.dark-mode {
+      --bg: #000000;
+      --card: rgba(0, 0, 0, 0.78);
+      --ink: #ffffff;
+      --muted: #d8d8d8;
+      --line: rgba(255, 107, 44, 0.42);
+      --accent: #ff6b2c;
+      --accent-2: #ff9a4d;
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.dark-mode) {
+      --bg: #ffffff;
+      --card: rgba(255, 255, 255, 0.82);
+      --ink: #111111;
+      --muted: #585858;
+      --line: rgba(255, 107, 44, 0.30);
+      --accent: #ff6b2c;
+      --accent-2: #ff8a45;
+      background-color: #ffffff !important;
+      color: #111111 !important;
+    }
+
+    body:not(.home-mode).dark-mode {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 107, 44, 0.12), transparent 32%),
+        linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.76)),
+        url("studybite-black-coffee-bg-mirror.jpg") center center / cover fixed no-repeat,
+        #000000 !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 107, 44, 0.10), transparent 34%),
+        linear-gradient(rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.88)),
+        url("studybite-light-bg.jpg") center center / cover fixed no-repeat,
+        #ffffff !important;
+      color: #111111 !important;
+    }
+
+    @media (max-width: 720px) {
+      body:not(.home-mode).dark-mode,
+      body:not(.home-mode):not(.dark-mode),
+      body.home-mode,
+      body.home-mode.dark-mode {
+        background-attachment: scroll !important;
+        background-position: center top !important;
+        background-size: cover !important;
+      }
+    }
+
+    body:not(.home-mode).dark-mode header,
+    body:not(.home-mode).dark-mode .card,
+    body:not(.home-mode).dark-mode .sidebar-drawer,
+    body:not(.home-mode).dark-mode .table-wrap,
+    body:not(.home-mode).dark-mode .week-folder,
+    body:not(.home-mode).dark-mode .expense-dashboard-card,
+    body:not(.home-mode).dark-mode .report-summary-card,
+    body:not(.home-mode).dark-mode .receipt-card {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 107, 44, 0.10), transparent 30%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(0, 0, 0, 0.94)),
+        rgba(0, 0, 0, 0.90) !important;
+      border-color: rgba(255, 107, 44, 0.42) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) header,
+    body:not(.home-mode):not(.dark-mode) .card,
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer,
+    body:not(.home-mode):not(.dark-mode) .table-wrap,
+    body:not(.home-mode):not(.dark-mode) .week-folder,
+    body:not(.home-mode):not(.dark-mode) .expense-dashboard-card,
+    body:not(.home-mode):not(.dark-mode) .report-summary-card,
+    body:not(.home-mode):not(.dark-mode) .receipt-card {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 107, 44, 0.09), transparent 30%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72)),
+        rgba(255, 255, 255, 0.86) !important;
+      border-color: rgba(255, 107, 44, 0.28) !important;
+      color: #111111 !important;
+    }
+
+    body.dark-mode :is(h1, h2, h3, h4, label, p, span, td, th, button, input, select, textarea, .text-gray-950, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500) {
+      color: inherit;
+    }
+
+    body:not(.dark-mode) :is(h1, h2, h3, h4, label, p, span, td, th, button, input, select, textarea, .text-gray-950, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500) {
+      color: inherit;
+    }
+
+    body:not(.home-mode).dark-mode .field,
+    body:not(.home-mode).dark-mode select.field,
+    body:not(.home-mode).dark-mode textarea.field {
+      background: rgba(0, 0, 0, 0.72) !important;
+      border-color: rgba(255, 107, 44, 0.38) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .field,
+    body:not(.home-mode):not(.dark-mode) select.field,
+    body:not(.home-mode):not(.dark-mode) textarea.field {
+      background: rgba(255, 255, 255, 0.88) !important;
+      border-color: rgba(255, 107, 44, 0.30) !important;
+      color: #111111 !important;
+    }
+
+    body.dark-mode .btn-secondary {
+      background: rgba(0, 0, 0, 0.74) !important;
+      border-color: rgba(255, 107, 44, 0.38) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.dark-mode) .btn-secondary {
+      background: rgba(255, 255, 255, 0.86) !important;
+      border-color: rgba(255, 107, 44, 0.30) !important;
+      color: #111111 !important;
+    }
+
+    body.dark-mode .app-floating-tabs {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.18), transparent 26%),
+        radial-gradient(circle at 82% 100%, rgba(255, 107, 44, 0.20), transparent 34%),
+        rgba(0, 0, 0, 0.58) !important;
+      border-color: rgba(255, 107, 44, 0.42) !important;
+    }
+
+    body:not(.dark-mode) .app-floating-tabs {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.90), transparent 28%),
+        radial-gradient(circle at 82% 100%, rgba(255, 107, 44, 0.14), transparent 36%),
+        rgba(255, 255, 255, 0.58) !important;
+      border-color: rgba(255, 107, 44, 0.24) !important;
+    }
+
+    body.home-mode.dark-mode,
+    body.home-mode {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 107, 44, 0.12), transparent 32%),
+        linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.78)),
+        url("studybite-black-coffee-bg-mirror.jpg") center center / cover fixed no-repeat,
+        #000000 !important;
+    }
+
+    body.home-mode .home-hero {
+      background:
+        radial-gradient(circle at 24% 44%, rgba(255, 107, 44, 0.14), transparent 28%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.44) 0%, rgba(0, 0, 0, 0.64) 48%, rgba(0, 0, 0, 0.86) 100%),
+        url("studybite-black-coffee-bg-mirror.jpg") center center / cover no-repeat,
+        #000000 !important;
+    }
+
+    @media (max-width: 720px) {
+      body.home-mode .home-hero {
+        background-position: center top !important;
+        background-size: auto 100% !important;
+      }
+    }
+
     /* Professional icon-only side tabs */
     .mobile-tabs {
       align-items: center !important;
@@ -5958,6 +6403,255 @@
       .mobile-tabs {
         grid-template-columns: repeat(2, minmax(58px, 1fr)) !important;
       }
+    }
+
+    /* Liquid glass side menu */
+    body:not(.home-mode) .sidebar-overlay {
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255, 107, 44, 0.14), transparent 28%),
+        rgba(0, 0, 0, 0.44) !important;
+      backdrop-filter: blur(8px) saturate(130%) !important;
+      -webkit-backdrop-filter: blur(8px) saturate(130%) !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer {
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.20), transparent 22%),
+        radial-gradient(circle at 100% 34%, rgba(255, 107, 44, 0.18), transparent 30%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(0, 0, 0, 0.40) 44%, rgba(0, 0, 0, 0.62)),
+        rgba(0, 0, 0, 0.42) !important;
+      backdrop-filter: blur(30px) saturate(185%) contrast(112%) !important;
+      -webkit-backdrop-filter: blur(30px) saturate(185%) contrast(112%) !important;
+      border-right: 1px solid rgba(255, 107, 44, 0.50) !important;
+      box-shadow:
+        inset 1px 0 0 rgba(255, 255, 255, 0.18),
+        inset -28px 0 58px rgba(255, 107, 44, 0.06),
+        24px 0 80px rgba(0, 0, 0, 0.50) !important;
+      color: #fff8ef !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer::before {
+      background: linear-gradient(100deg, rgba(255, 255, 255, 0.18), transparent 38%, rgba(255, 107, 44, 0.10) 70%, transparent);
+      content: "";
+      inset: 0;
+      opacity: 0.58;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    body:not(.home-mode) .sidebar-drawer > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    body:not(.home-mode) .sidebar-drawer-title,
+    body:not(.home-mode) .sidebar-close-btn,
+    body:not(.home-mode) .sidebar-drawer-footer-label {
+      color: #fff6e8 !important;
+    }
+
+    body:not(.home-mode) .sidebar-close-btn {
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      min-height: 44px !important;
+      min-width: 44px !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn {
+      background:
+        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.16), transparent 30%),
+        rgba(0, 0, 0, 0.32) !important;
+      border: 1px solid rgba(255, 107, 44, 0.38) !important;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.18),
+        inset 0 -14px 22px rgba(0, 0, 0, 0.20),
+        0 16px 34px rgba(0, 0, 0, 0.28) !important;
+      color: #fff8ef !important;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn:hover,
+    body:not(.home-mode) .mobile-tab-btn:focus-visible {
+      transform: translateY(-1px) !important;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.24),
+        0 18px 38px rgba(255, 107, 44, 0.18) !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active {
+      background:
+        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.28), transparent 30%),
+        linear-gradient(135deg, rgba(255, 144, 69, 0.96), rgba(255, 54, 46, 0.92)) !important;
+      border-color: rgba(255, 226, 183, 0.62) !important;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.28),
+        0 18px 44px rgba(255, 107, 44, 0.34) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer-footer {
+      border-top: 1px solid rgba(255, 107, 44, 0.30) !important;
+      margin-top: 16px !important;
+      padding-top: 16px !important;
+    }
+
+    body:not(.home-mode) .sidebar-tools-toggle,
+    body:not(.home-mode) .sidebar-tools-panel,
+    body:not(.home-mode) .profile-image-preview {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.14), transparent 30%),
+        rgba(0, 0, 0, 0.26) !important;
+      border: 1px solid rgba(255, 107, 44, 0.34) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16), 0 14px 34px rgba(0, 0, 0, 0.20) !important;
+      color: #fff8ef !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .sidebar-overlay {
+      background: rgba(255, 255, 255, 0.22) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer {
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.84), transparent 24%),
+        radial-gradient(circle at 100% 34%, rgba(255, 107, 44, 0.12), transparent 30%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.36)),
+        rgba(255, 255, 255, 0.34) !important;
+      color: #1d120e !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer-title,
+    body:not(.home-mode):not(.dark-mode) .sidebar-close-btn,
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer-footer-label {
+      color: #1d120e !important;
+    }
+
+    /* Final cleanup: transparent menu, no brown haze. */
+    body:not(.home-mode) .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.018)),
+        rgba(0, 0, 0, 0.14) !important;
+      backdrop-filter: blur(18px) saturate(155%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(155%) !important;
+      border-right: 1px solid rgba(255, 107, 44, 0.44) !important;
+      box-shadow:
+        inset 1px 0 0 rgba(255, 255, 255, 0.16),
+        18px 0 58px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer::before {
+      background: linear-gradient(105deg, rgba(255, 255, 255, 0.14), transparent 42%) !important;
+      opacity: 0.30 !important;
+    }
+
+    body:not(.home-mode) .sidebar-overlay {
+      background: rgba(0, 0, 0, 0.22) !important;
+      backdrop-filter: blur(3px) !important;
+      -webkit-backdrop-filter: blur(3px) !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn,
+    body:not(.home-mode) .sidebar-tools-toggle,
+    body:not(.home-mode) .sidebar-tools-panel,
+    body:not(.home-mode) .profile-image-preview {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.015)),
+        rgba(0, 0, 0, 0.18) !important;
+      backdrop-filter: blur(12px) saturate(145%) !important;
+      -webkit-backdrop-filter: blur(12px) saturate(145%) !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active {
+      background:
+        radial-gradient(circle at 30% 16%, rgba(255, 255, 255, 0.26), transparent 30%),
+        linear-gradient(135deg, rgba(255, 111, 44, 0.96), rgba(255, 64, 50, 0.88)) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.22)),
+        rgba(255, 255, 255, 0.18) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .mobile-tab-btn,
+    body:not(.home-mode):not(.dark-mode) .sidebar-tools-toggle,
+    body:not(.home-mode):not(.dark-mode) .sidebar-tools-panel,
+    body:not(.home-mode):not(.dark-mode) .profile-image-preview {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.28)),
+        rgba(255, 255, 255, 0.18) !important;
+    }
+
+    body.home-mode .home-visual::before {
+      display: none !important;
+    }
+
+    body.home-mode .home-cup-image {
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255, 107, 44, 0.18), transparent 28%),
+        linear-gradient(145deg, rgba(8, 8, 8, 0.92), rgba(0, 0, 0, 0.98)) !important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.44),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+        inset 0 0 42px rgba(255, 107, 44, 0.06) !important;
+    }
+
+    /* Absolute no-brown/no-panel lock. */
+    body.sidebar-open .sidebar-overlay,
+    body:not(.home-mode) .sidebar-overlay,
+    body:not(.home-mode):not(.dark-mode) .sidebar-overlay {
+      background: rgba(0, 0, 0, 0.06) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer,
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border-right: 1px solid rgba(255, 107, 44, 0.48) !important;
+      box-shadow: none !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer::before,
+    body:not(.home-mode) .sidebar-drawer::after {
+      display: none !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn,
+    body:not(.home-mode) .sidebar-close-btn,
+    body:not(.home-mode) .sidebar-tools-toggle,
+    body:not(.home-mode) .sidebar-tools-panel,
+    body:not(.home-mode) .profile-image-preview {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)),
+        rgba(0, 0, 0, 0.18) !important;
+      backdrop-filter: blur(10px) saturate(140%) !important;
+      -webkit-backdrop-filter: blur(10px) saturate(140%) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14), 0 14px 28px rgba(0, 0, 0, 0.20) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .mobile-tab-btn,
+    body:not(.home-mode):not(.dark-mode) .sidebar-close-btn,
+    body:not(.home-mode):not(.dark-mode) .sidebar-tools-toggle,
+    body:not(.home-mode):not(.dark-mode) .sidebar-tools-panel,
+    body:not(.home-mode):not(.dark-mode) .profile-image-preview {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.18)),
+        rgba(255, 255, 255, 0.14) !important;
+    }
+
+    body.home-mode .home-cup-image,
+    body:not(.home-mode).dark-mode .logo-badge,
+    body:not(.home-mode).dark-mode header,
+    body:not(.home-mode).dark-mode .card,
+    body:not(.home-mode).dark-mode .table-wrap,
+    body:not(.home-mode).dark-mode .week-folder,
+    body:not(.home-mode).dark-mode .expense-dashboard-card,
+    body:not(.home-mode).dark-mode .report-summary-card,
+    body:not(.home-mode).dark-mode .receipt-card {
+      background-color: rgba(0, 0, 0, 0.82) !important;
     }
   </style>
 </head>
@@ -6086,7 +6780,6 @@
         <button class="btn btn-primary w-full" id="loginBtn" onclick="loginWithEmail()">Log in</button>
         <div id="loginStatus"></div>
         <button class="btn btn-secondary w-full" onclick="showResetPassword()" type="button" id="forgotPasswordBtn">Forgot password?</button>
-        <button class="text-xs font-bold text-gray-400 hover:text-gray-600" onclick="showFirebaseConfigAgain()" type="button" style="background:none;border:none;cursor:pointer;text-align:center;">Wrong Firebase project? Change config</button>
       </div>
       <div class="grid gap-4 hidden" id="resetFormWrap">
         <div>
@@ -7308,29 +8001,44 @@
       Object.entries(staffRights).forEach(([email, rights]) => {
         publicStaffRights[getDisplayNameKey(email)] = rights;
       });
-      db.ref().update({
-        adminControls: {
-          ownerEmail: OWNER_EMAIL,
-          ownerSettings,
-          staffRights,
-          updatedAt: Date.now(),
-          updatedBy: currentUser
-        },
-        publicOwnerSettings: ownerSettings,
-        publicStaffRights,
-        publicOwnerControlsUpdatedAt: Date.now()
-      }, (error) => {
+      const privateOwnerPayload = {
+        ownerEmail: OWNER_EMAIL,
+        ownerSettings,
+        staffRights,
+        updatedAt: Date.now(),
+        updatedBy: currentUser
+      };
+      const finishOwnerSync = (error, usedFallback = false) => {
         if (error) {
           const reason = error.code === 'PERMISSION_DENIED' ? 'Firebase rules blocked cloud sync.' : (error.message || 'Cloud sync failed.');
           showOwnerStatus(`${successMessage} Saved locally. ${reason}`);
         } else {
-          showOwnerStatus(`${successMessage} Cloud synced.`);
+          showOwnerStatus(usedFallback ? `${successMessage} Cloud synced through adminControls.` : `${successMessage} Cloud synced.`);
           broadcastStudyBiteNotification('StudyBite synced', successMessage, 'sync');
         }
         clearTimeout(ownerControlSyncTimer);
         ownerControlWritePending = false;
         setOwnerControlBusy(false);
         renderOwnerControls();
+      };
+      db.ref().update({
+        adminControls: {
+          ...privateOwnerPayload,
+          publicSync: true
+        },
+        publicOwnerSettings: ownerSettings,
+        publicStaffRights,
+        publicOwnerControlsUpdatedAt: Date.now()
+      }, (error) => {
+        if (error) {
+          db.ref('adminControls').set({
+            ...privateOwnerPayload,
+            publicSync: false,
+            publicSyncBlocked: true
+          }, (fallbackError) => finishOwnerSync(fallbackError, true));
+          return;
+        }
+        finishOwnerSync(null, false);
       });
     }
 
@@ -8287,14 +8995,21 @@
         db = firebase.database();
         auth = firebase.auth();
         localStorage.setItem(STORAGE_KEYS.config, configText);
-        listenForStudyBiteNotifications();
-        updateNotificationStatus();
+        auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+          .then(() => {
+            listenForStudyBiteNotifications();
+            updateNotificationStatus();
 
-        showSetupStatus('Connected. Please log in.', 'connected');
-        document.getElementById('setupSection').classList.add('hidden');
-        document.getElementById('loginSection').classList.remove('hidden');
+            showSetupStatus('Connected. Please log in.', 'connected');
+            document.getElementById('setupSection').classList.add('hidden');
+            document.getElementById('loginSection').classList.remove('hidden');
 
-        listenForAuthChanges();
+            listenForAuthChanges();
+          })
+          .catch((error) => {
+            btn.disabled = false;
+            showSetupStatus('Could not set secure session login: ' + error.message, 'error');
+          });
       } catch (error) {
         btn.disabled = false;
         showSetupStatus('Error: ' + error.message, 'error');
