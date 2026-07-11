@@ -6653,6 +6653,920 @@
     body:not(.home-mode).dark-mode .receipt-card {
       background-color: rgba(0, 0, 0, 0.82) !important;
     }
+
+    /* Final visual lock: exact chalkboard coffee background, no brown wash. */
+    body.home-mode,
+    body.home-mode.dark-mode,
+    body:not(.home-mode).dark-mode {
+      background: url("studybite-black-coffee-bg.jpg") center center / cover fixed no-repeat #000000 !important;
+      background-blend-mode: normal !important;
+    }
+
+    body.home-mode .home-hero {
+      background: transparent !important;
+      background-blend-mode: normal !important;
+    }
+
+    @media (max-width: 720px) {
+      body.home-mode,
+      body.home-mode.dark-mode,
+      body:not(.home-mode).dark-mode {
+        background-attachment: scroll !important;
+        background-position: center center !important;
+        background-size: cover !important;
+      }
+
+      body.home-mode .home-hero {
+        background: transparent !important;
+        background-size: cover !important;
+      }
+    }
+
+    body.home-mode .home-hero::before,
+    body.home-mode .home-hero::after {
+      display: none !important;
+    }
+
+    body:not(.home-mode).dark-mode header,
+    body:not(.home-mode).dark-mode .card,
+    body:not(.home-mode).dark-mode .table-wrap,
+    body:not(.home-mode).dark-mode .week-folder,
+    body:not(.home-mode).dark-mode .expense-dashboard-card,
+    body:not(.home-mode).dark-mode .report-summary-card,
+    body:not(.home-mode).dark-mode .receipt-card,
+    body:not(.home-mode).dark-mode .modal-card,
+    body:not(.home-mode).dark-mode .report-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025) 42%, rgba(0, 0, 0, 0.24)),
+        rgba(0, 0, 0, 0.44) !important;
+      backdrop-filter: blur(22px) saturate(145%) contrast(108%) !important;
+      -webkit-backdrop-filter: blur(22px) saturate(145%) contrast(108%) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -1px 0 rgba(255, 107, 44, 0.10),
+        0 18px 54px rgba(0, 0, 0, 0.40) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode).dark-mode .card::before,
+    body:not(.home-mode).dark-mode header::before,
+    body:not(.home-mode).dark-mode .table-wrap::before,
+    body:not(.home-mode).dark-mode .week-folder::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent) !important;
+      opacity: 0.38 !important;
+    }
+
+    body:not(.home-mode) .sidebar-overlay,
+    body:not(.home-mode):not(.dark-mode) .sidebar-overlay {
+      background: rgba(0, 0, 0, 0.18) !important;
+      backdrop-filter: blur(4px) saturate(125%) !important;
+      -webkit-backdrop-filter: blur(4px) saturate(125%) !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer,
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.035) 46%, rgba(0, 0, 0, 0.20)),
+        rgba(0, 0, 0, 0.34) !important;
+      backdrop-filter: blur(28px) saturate(150%) contrast(110%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(150%) contrast(110%) !important;
+      border-right: 1px solid rgba(255, 107, 44, 0.42) !important;
+      box-shadow:
+        inset 1px 0 0 rgba(255, 255, 255, 0.16),
+        24px 0 78px rgba(0, 0, 0, 0.46) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer::before,
+    body:not(.home-mode) .sidebar-drawer::after {
+      display: none !important;
+    }
+
+    body:not(.home-mode) .app-floating-tabs,
+    body:not(.home-mode) .mobile-tab-btn,
+    body:not(.home-mode) .sidebar-close-btn,
+    body:not(.home-mode) .sidebar-tools-toggle,
+    body:not(.home-mode) .sidebar-tools-panel,
+    body:not(.home-mode) .profile-image-preview,
+    body:not(.home-mode) .home-search,
+    body:not(.home-mode) .home-cart {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035) 48%, rgba(0, 0, 0, 0.16)),
+        rgba(0, 0, 0, 0.34) !important;
+      backdrop-filter: blur(18px) saturate(150%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+      border-color: rgba(255, 107, 44, 0.34) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 14px 34px rgba(0, 0, 0, 0.30) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode) .mobile-tab-btn.active,
+    body:not(.home-mode) .app-floating-tabs .floating-tab-btn.active {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.24), rgba(255, 107, 44, 0.92)),
+        #ff6b2c !important;
+      border-color: rgba(255, 226, 183, 0.62) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.30),
+        0 0 28px rgba(255, 107, 44, 0.34),
+        0 16px 38px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    body.home-mode .home-nav,
+    body.home-mode .home-side-dock,
+    body.home-mode .home-round-stack,
+    body.home-mode .home-search,
+    body.home-mode .home-cart {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.025) 46%, rgba(0, 0, 0, 0.24)),
+        rgba(0, 0, 0, 0.30) !important;
+      backdrop-filter: blur(18px) saturate(145%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+      border-color: rgba(255, 107, 44, 0.30) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        0 18px 46px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    body.home-mode .home-cup-image {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.18)),
+        rgba(0, 0, 0, 0.34) !important;
+      backdrop-filter: blur(18px) saturate(145%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+      border-color: rgba(255, 255, 255, 0.16) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        0 30px 72px rgba(0, 0, 0, 0.46) !important;
+    }
+
+    body:not(.home-mode) .logo-badge,
+    body:not(.home-mode).dark-mode .logo-badge,
+    body:not(.home-mode):not(.dark-mode) .logo-badge {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.018)),
+        rgba(0, 0, 0, 0.40) !important;
+      backdrop-filter: blur(12px) saturate(145%) !important;
+      -webkit-backdrop-filter: blur(12px) saturate(145%) !important;
+      border: 1px solid rgba(255, 107, 44, 0.48) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 12px 28px rgba(0, 0, 0, 0.26) !important;
+    }
+
+    body:not(.home-mode) .logo-badge img,
+    body:not(.home-mode).dark-mode .logo-badge img {
+      filter: brightness(1.35) contrast(1.22) saturate(1.22) drop-shadow(0 0 7px rgba(255, 107, 44, 0.34)) !important;
+      opacity: 1 !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .logo-badge {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.42)),
+        rgba(255, 255, 255, 0.34) !important;
+      border-color: rgba(255, 107, 44, 0.24) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.46), 0 12px 26px rgba(0, 0, 0, 0.08) !important;
+    }
+    /* Final interaction polish: combined profit chart, compact floating tabs, no logo halo. */
+    .expense-chart-card {
+      border: 1px solid rgba(255, 107, 44, 0.24);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .expense-chart-wrap {
+      height: 280px;
+      min-height: 240px;
+      position: relative;
+    }
+
+    .expense-chart-wrap canvas {
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    .expense-form-actions,
+    .expense-record-actions {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .expense-record-actions .btn {
+      min-height: 44px;
+      padding: 0 14px;
+      white-space: nowrap;
+    }
+
+    .studybite-alert-toast {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035)),
+        rgba(0, 0, 0, 0.78);
+      border: 1px solid rgba(255, 107, 44, 0.42);
+      border-radius: 14px;
+      bottom: 96px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      color: #fff7ed;
+      display: grid;
+      gap: 3px;
+      left: 50%;
+      max-width: calc(100vw - 28px);
+      opacity: 0;
+      padding: 12px 16px;
+      pointer-events: none;
+      position: fixed;
+      transform: translate(-50%, 16px) scale(0.96);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      width: min(360px, calc(100vw - 28px));
+      z-index: 1300;
+    }
+
+    .studybite-alert-toast.active {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    .studybite-alert-toast strong {
+      color: #ff8a3d;
+      font-size: 13px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+
+    .studybite-alert-toast span {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    body:not(.home-mode) .app-floating-tabs {
+      box-sizing: border-box !important;
+      left: 50% !important;
+      max-width: calc(100vw - 24px) !important;
+      overflow-x: auto !important;
+      padding: 8px !important;
+      transform: translateX(-50%) !important;
+      width: max-content !important;
+      scrollbar-width: none;
+    }
+
+    body:not(.home-mode) .app-floating-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    body:not(.home-mode) .app-floating-tab {
+      flex: 0 0 48px !important;
+      height: 48px !important;
+      min-height: 48px !important;
+      min-width: 48px !important;
+      width: 48px !important;
+    }
+
+    body:not(.home-mode) .app-floating-tab.active {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.24), rgba(255, 107, 44, 0.92)),
+        #ff6b2c !important;
+      border-color: rgba(255, 226, 183, 0.62) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.30),
+        0 10px 28px rgba(0, 0, 0, 0.30) !important;
+    }
+
+    @media (max-width: 430px) {
+      body:not(.home-mode) .app-floating-tabs {
+        gap: 6px !important;
+        max-width: calc(100vw - 16px) !important;
+        padding: 7px !important;
+      }
+
+      body:not(.home-mode) .app-floating-tab {
+        flex-basis: 44px !important;
+        height: 44px !important;
+        min-height: 44px !important;
+        min-width: 44px !important;
+        width: 44px !important;
+      }
+
+      .expense-chart-wrap {
+        height: 230px;
+      }
+    }
+
+    body.home-mode .home-cup-image,
+    body.home-mode.dark-mode .home-cup-image,
+    body:not(.home-mode) .logo-badge,
+    body:not(.home-mode).dark-mode .logo-badge,
+    body:not(.home-mode):not(.dark-mode) .logo-badge {
+      background: rgba(0, 0, 0, 0.18) !important;
+      box-shadow: none !important;
+    }
+
+    body.home-mode .home-cup-image::before,
+    body.home-mode .home-cup-image::after,
+    body:not(.home-mode) .logo-badge::before,
+    body:not(.home-mode) .logo-badge::after {
+      display: none !important;
+    }
+
+    body.home-mode .home-cup-image img,
+    body:not(.home-mode) .logo-badge img,
+    body:not(.home-mode).dark-mode .logo-badge img {
+      filter: brightness(1.22) contrast(1.16) saturate(1.14) !important;
+    }
+
+    /* Professional live dashboard refresh inspired by compact admin analytics UI. */
+    .dashboard-hero-card {
+      align-items: center;
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dashboard-eyebrow,
+    .dashboard-kpi-label {
+      color: #ff8a3d !important;
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: 0;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .dashboard-greeting {
+      color: var(--ink) !important;
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 1000;
+      letter-spacing: 0;
+      line-height: 0.98;
+      margin-top: 8px;
+    }
+
+    .dashboard-greeting span {
+      color: #ff6b2c;
+      text-shadow: 0 0 24px rgba(255, 107, 44, 0.28);
+    }
+
+    .dashboard-subline {
+      color: var(--muted) !important;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-top: 10px;
+    }
+
+    .dashboard-live-pill {
+      align-items: center;
+      border: 1px solid rgba(255, 107, 44, 0.34);
+      border-radius: 999px;
+      color: var(--ink);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 13px;
+      font-weight: 1000;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 16px;
+      text-transform: uppercase;
+    }
+
+    .dashboard-live-pill span {
+      background: #ff6b2c;
+      border-radius: 999px;
+      box-shadow: 0 0 18px rgba(255, 107, 44, 0.8);
+      height: 9px;
+      width: 9px;
+    }
+
+    .dashboard-kpi-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+    }
+
+    .dashboard-kpi-card {
+      align-items: center;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 44px minmax(0, 1fr);
+      min-height: 112px;
+      min-width: 0;
+      position: relative;
+    }
+
+    .dashboard-kpi-icon {
+      align-items: center;
+      border: 1px solid rgba(255, 107, 44, 0.28);
+      border-radius: 14px;
+      color: #ff8a3d;
+      display: inline-flex;
+      height: 44px;
+      justify-content: center;
+      width: 44px;
+    }
+
+    .dashboard-kpi-icon svg {
+      height: 23px;
+      width: 23px;
+    }
+
+    .dashboard-kpi-card .metric-value {
+      background: none !important;
+      color: #ff8a3d !important;
+      font-size: clamp(22px, 1.65vw, 30px);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+      line-height: 1.05;
+      margin-top: 8px;
+      max-width: 100%;
+      overflow: visible;
+      text-shadow: 0 0 18px rgba(255, 107, 44, 0.18);
+      white-space: normal;
+      word-break: normal;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    .dashboard-kpi-card .dashboard-kpi-label {
+      overflow-wrap: anywhere;
+    }
+
+    .dashboard-kpi-card > div:last-child {
+      min-width: 0;
+      word-break: normal;
+    }
+
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-kpi-card .metric-value {
+      color: #e85a1f !important;
+      text-shadow: none;
+    }
+
+    .dashboard-status-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .dashboard-status-card {
+      border: 1px solid rgba(255, 107, 44, 0.26);
+      border-radius: 16px;
+      min-height: 124px;
+      padding: 16px;
+      position: relative;
+    }
+
+    .dashboard-status-card p {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+      margin-top: 14px;
+      text-transform: uppercase;
+    }
+
+    .dashboard-status-card strong {
+      color: var(--ink);
+      display: block;
+      font-size: 34px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 1000;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .dashboard-status-card small {
+      color: var(--muted);
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-top: 8px;
+    }
+
+    .status-dot {
+      border-radius: 999px;
+      display: block;
+      height: 10px;
+      width: 10px;
+    }
+
+    .status-new { background: #ff6b2c; box-shadow: 0 0 18px rgba(255, 107, 44, 0.78); }
+    .status-warn { background: #ffb347; box-shadow: 0 0 18px rgba(255, 179, 71, 0.54); }
+    .status-info { background: #ffffff; box-shadow: 0 0 18px rgba(255, 255, 255, 0.34); }
+    .status-done { background: #22c55e; box-shadow: 0 0 18px rgba(34, 197, 94, 0.42); }
+
+    .dashboard-main-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: minmax(0, 1.45fr) minmax(310px, 0.75fr);
+    }
+
+    .dashboard-side-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .dashboard-chart-height {
+      height: 340px;
+      position: relative;
+    }
+
+    .dashboard-chart-height canvas {
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    .dashboard-weekly-strip {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-weekly-strip article {
+      border: 1px solid rgba(255, 107, 44, 0.22);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .dashboard-weekly-strip p {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+
+    .dashboard-product-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .dashboard-table-wrap {
+      max-height: 420px;
+      overflow: auto;
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] .card,
+    body:not(.home-mode) [data-tab-panel="dashboard"] .dashboard-status-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
+        rgba(0, 0, 0, 0.58) !important;
+      backdrop-filter: blur(18px) saturate(140%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+      border-color: rgba(255, 107, 44, 0.32) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 18px 54px rgba(0, 0, 0, 0.30) !important;
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] .card::before {
+      display: none !important;
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] .dashboard-kpi-icon {
+      background:
+        linear-gradient(145deg, rgba(255, 107, 44, 0.18), rgba(0, 0, 0, 0.18)),
+        rgba(0, 0, 0, 0.32);
+    }
+
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .card,
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-status-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72)),
+        rgba(255, 255, 255, 0.84) !important;
+      border-color: rgba(255, 107, 44, 0.22) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.78),
+        0 16px 42px rgba(24, 24, 27, 0.08) !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-live-pill,
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-kpi-icon,
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-weekly-strip article {
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] table th {
+      background: rgba(255, 107, 44, 0.14) !important;
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] tbody tr {
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] tbody tr:hover {
+      background: rgba(255, 107, 44, 0.08) !important;
+    }
+
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-kpi-card,
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-status-card {
+      animation: dashboardRise 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-status-card:nth-child(2),
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-kpi-card:nth-child(2) {
+      animation-delay: 35ms;
+    }
+
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-status-card:nth-child(3),
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-kpi-card:nth-child(3) {
+      animation-delay: 70ms;
+    }
+
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-status-card:nth-child(4),
+    .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-kpi-card:nth-child(4) {
+      animation-delay: 105ms;
+    }
+
+    @keyframes dashboardRise {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 1280px) {
+      .dashboard-kpi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+      }
+
+      .dashboard-main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .dashboard-hero-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .dashboard-kpi-grid,
+      .dashboard-status-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .dashboard-chart-height {
+        height: 270px;
+      }
+
+      .dashboard-kpi-card {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-kpi-card .metric-value,
+      .dashboard-status-card strong {
+        font-size: 27px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .dashboard-kpi-grid,
+      .dashboard-status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-greeting {
+        font-size: 34px;
+      }
+
+      .dashboard-chart-height {
+        height: 240px;
+      }
+    }
+
+    /* Keep the drawer menu as a clear vertical list; floating tabs stay compact. */
+    body:not(.home-mode) .sidebar-drawer .mobile-tabs {
+      align-content: stretch !important;
+      display: flex !important;
+      flex: 1 1 auto !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      grid-template-columns: none !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      padding: 2px 0 14px !important;
+      scrollbar-width: thin;
+    }
+
+    body:not(.home-mode) .sidebar-drawer .mobile-tab-indicator {
+      display: none !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer .mobile-tab-btn {
+      align-items: center !important;
+      aspect-ratio: auto !important;
+      border: 1px solid rgba(255, 107, 44, 0.34) !important;
+      border-radius: 16px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex: 0 0 auto !important;
+      flex-direction: row !important;
+      font-size: 15px !important;
+      font-weight: 1000 !important;
+      gap: 12px !important;
+      height: auto !important;
+      justify-content: flex-start !important;
+      line-height: 1.1 !important;
+      min-height: 56px !important;
+      min-width: 0 !important;
+      padding: 0 16px !important;
+      text-align: left !important;
+      text-transform: none !important;
+      width: 100% !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer .mobile-tab-btn::after {
+      display: none !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer .mobile-tab-btn .tab-icon {
+      flex: 0 0 22px !important;
+      height: 22px !important;
+      margin: 0 !important;
+      width: 22px !important;
+    }
+
+    body:not(.home-mode) .sidebar-drawer .mobile-tab-btn.active {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 107, 44, 0.94)),
+        #ff6b2c !important;
+      border-color: rgba(255, 226, 183, 0.62) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 12px 30px rgba(255, 107, 44, 0.22) !important;
+      color: #ffffff !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer .mobile-tab-btn {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.36)),
+        rgba(255, 255, 255, 0.22) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .sidebar-drawer .mobile-tab-btn.active {
+      color: #ffffff !important;
+    }
+
+    /* Advanced account command bar in the header. */
+    .header-command-bar {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .account-pill,
+    .header-logout,
+    .header-command-bar .system-status {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.018)),
+        rgba(0, 0, 0, 0.34) !important;
+      backdrop-filter: blur(16px) saturate(145%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(145%) !important;
+      border: 1px solid rgba(255, 107, 44, 0.34) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 14px 34px rgba(0, 0, 0, 0.20) !important;
+      color: #fff7ed !important;
+    }
+
+    .account-pill {
+      align-items: center;
+      border-radius: 18px;
+      display: inline-flex;
+      gap: 11px;
+      min-height: 52px;
+      min-width: 0;
+      padding: 7px 14px 7px 8px;
+      width: min(300px, 100%);
+    }
+
+    .account-avatar {
+      align-items: center;
+      background:
+        radial-gradient(circle at 35% 20%, rgba(255, 255, 255, 0.28), transparent 34%),
+        linear-gradient(145deg, #ff8a3d, #ff4f38);
+      border-radius: 14px;
+      color: #ffffff;
+      display: inline-flex;
+      flex: 0 0 38px;
+      font-size: 13px;
+      font-weight: 1000;
+      height: 38px;
+      justify-content: center;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .account-copy {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .account-label {
+      color: #ffb086;
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: 0;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .account-name {
+      color: #fff7ed;
+      display: block;
+      font-size: 13px;
+      font-weight: 1000;
+      line-height: 1.15;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .header-logout {
+      align-items: center;
+      border-radius: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 13px;
+      font-weight: 1000;
+      gap: 8px;
+      min-height: 52px;
+      padding: 0 14px;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .header-logout svg {
+      height: 19px;
+      width: 19px;
+    }
+
+    .header-logout:hover,
+    .header-logout:focus-visible {
+      border-color: rgba(255, 176, 86, 0.72) !important;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    body:not(.home-mode):not(.dark-mode) .account-pill,
+    body:not(.home-mode):not(.dark-mode) .header-logout,
+    body:not(.home-mode):not(.dark-mode) .header-command-bar .system-status {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.38)),
+        rgba(255, 255, 255, 0.24) !important;
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .account-name,
+    body:not(.home-mode):not(.dark-mode) .header-logout {
+      color: #17110d !important;
+    }
+
+    body:not(.home-mode):not(.dark-mode) .account-label {
+      color: #e85a1f;
+    }
+
+    @media (max-width: 720px) {
+      .header-command-bar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        width: 100%;
+      }
+
+      .header-command-bar .system-status,
+      .account-pill {
+        width: 100% !important;
+      }
+
+      .account-pill {
+        grid-column: 1 / -1;
+      }
+
+      .header-logout {
+        justify-content: center;
+        min-width: 52px;
+        padding: 0 13px;
+      }
+
+      .header-logout span {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-kpi-card,
+      .tab-panel.tab-panel-active[data-tab-panel="dashboard"] .dashboard-status-card {
+        animation: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -6737,14 +7651,23 @@
           <p class="text-sm font-bold text-orange-600">Fuel your study sessions</p>
         </div>
       </div>
-      <div class="header-actions flex flex-wrap items-center gap-3">
+      <div class="header-actions header-command-bar">
         <div class="system-status" id="systemStatus" data-state="standby">
           <span class="system-status-dot"></span>
           <span class="system-status-text">Standby</span>
         </div>
         <button class="btn btn-primary hidden" id="installAppBtn" onclick="installApp()" type="button">Install app</button>
-        <div class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-bold text-orange-800" id="userBadge" data-state="standby">Not connected</div>
-        <button class="btn btn-secondary hidden" id="logoutBtn" onclick="logout()" type="button">Log out</button>
+        <div class="account-pill" id="userBadge" data-state="standby">
+          <span class="account-avatar" id="userAvatar">SB</span>
+          <span class="account-copy">
+            <span class="account-label">Account</span>
+            <span class="account-name" id="userBadgeName">Not connected</span>
+          </span>
+        </div>
+        <button class="header-logout hidden" id="logoutBtn" onclick="logout()" type="button" aria-label="Log out">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4M14 8l4 4-4 4M18 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Log out</span>
+        </button>
       </div>
     </header>
 
@@ -6969,127 +7892,203 @@
 
       </div>
       <div class="tab-panel" data-tab-panel="dashboard">
-      <div class="mb-6 grid grid-cols-5 gap-4 mobile-stack">
-        <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">This month revenue</p>
-          <div class="metric-value mt-3" id="monthlyRevenue">RM 0.00</div>
+      <section class="dashboard-hero-card card mb-5 p-5">
+        <div>
+          <p class="dashboard-eyebrow">StudyBite live dashboard</p>
+          <h2 class="dashboard-greeting">Hello, <span id="dashboardHelloName">Prince</span></h2>
+          <p class="dashboard-subline" id="dashboardSubText">Here is today's StudyBite performance.</p>
+        </div>
+        <div class="dashboard-live-pill">
+          <span></span>
+          Live Firebase data
+        </div>
+      </section>
+
+      <div class="dashboard-kpi-grid mb-5">
+        <article class="dashboard-kpi-card card p-4">
+          <div class="dashboard-kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 19V5M12 19V9M18 19V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="dashboard-kpi-label">Today revenue</p>
+            <div class="metric-value" id="todayRevenueMetric">RM 0.00</div>
+          </div>
         </article>
-        <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">This month quantity</p>
-          <div class="metric-value mt-3" id="monthlySalesCount">0</div>
+        <article class="dashboard-kpi-card card p-4">
+          <div class="dashboard-kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12l3 5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8l3-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 8h18M9 12a3 3 0 0 0 6 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="dashboard-kpi-label">Today orders</p>
+            <div class="metric-value" id="todayOrdersMetric">0</div>
+          </div>
         </article>
-        <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">All-time revenue</p>
-          <div class="metric-value mt-3" id="totalRevenue">RM 0.00</div>
+        <article class="dashboard-kpi-card card p-4">
+          <div class="dashboard-kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20M17 6.5H9.5a3 3 0 0 0 0 6H14a3 3 0 0 1 0 6H6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="dashboard-kpi-label">This month revenue</p>
+            <div class="metric-value" id="monthlyRevenue">RM 0.00</div>
+          </div>
         </article>
-        <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">All-time quantity</p>
-          <div class="metric-value mt-3" id="totalSalesCount">0</div>
+        <article class="dashboard-kpi-card card p-4">
+          <div class="dashboard-kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7h8M8 12h8M8 17h5M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p class="dashboard-kpi-label">This month quantity</p>
+            <div class="metric-value" id="monthlySalesCount">0</div>
+          </div>
         </article>
-        <article class="card p-5">
-          <p class="text-sm font-bold text-gray-500">Quantity by product</p>
-          <div class="product-quantity-list" id="productQuantityList">
-            <div class="text-sm font-bold text-gray-500">No sales yet</div>
+        <article class="dashboard-kpi-card card p-4">
+          <div class="dashboard-kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M7 16v-5M12 16V6M17 16v-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="dashboard-kpi-label">All-time revenue</p>
+            <div class="metric-value" id="totalRevenue">RM 0.00</div>
+          </div>
+        </article>
+        <article class="dashboard-kpi-card card p-4">
+          <div class="dashboard-kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7.5C4 5.6 7.6 4 12 4s8 1.6 8 3.5S16.4 11 12 11 4 9.4 4 7.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M4 7.5V16.5C4 18.4 7.6 20 12 20s8-1.6 8-3.5v-9" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
+          <div>
+            <p class="dashboard-kpi-label">All-time quantity</p>
+            <div class="metric-value" id="totalSalesCount">0</div>
           </div>
         </article>
       </div>
 
-      
-      <section class="card mb-6 p-5" data-feature-key="goals">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">This week</h2>
-            <p class="text-sm text-gray-500">Monday to Sunday, based on the selected date filter.</p>
-          </div>
-        </div>
-        <div class="weekly-strip">
-          <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
-            <p class="text-sm font-bold text-gray-500">Week revenue</p>
-            <div class="mini-value" id="weeklyRevenue">RM 0.00</div>
-          </article>
-          <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
-            <p class="text-sm font-bold text-gray-500">Week quantity</p>
-            <div class="mini-value" id="weeklyQuantity">0</div>
-          </article>
-          <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
-            <p class="text-sm font-bold text-gray-500">Best selling product</p>
-            <div class="mini-value" id="bestProduct">None</div>
-          </article>
-        </div>
+      <section class="dashboard-status-grid mb-5" aria-label="Order status summary">
+        <article class="dashboard-status-card">
+          <span class="status-dot status-new"></span>
+          <p>New today</p>
+          <strong id="dashNewOrders">0</strong>
+          <small>Orders entered today</small>
+        </article>
+        <article class="dashboard-status-card">
+          <span class="status-dot status-warn"></span>
+          <p>This week</p>
+          <strong id="dashWeekOrders">0</strong>
+          <small>Weekly sales count</small>
+        </article>
+        <article class="dashboard-status-card">
+          <span class="status-dot status-info"></span>
+          <p>This month</p>
+          <strong id="dashMonthOrders">0</strong>
+          <small>Monthly sales count</small>
+        </article>
+        <article class="dashboard-status-card">
+          <span class="status-dot status-done"></span>
+          <p>All records</p>
+          <strong id="dashAllOrders">0</strong>
+          <small>Current filtered list</small>
+        </article>
       </section>
 
-      
-      <section class="card mb-6 p-5" data-feature-key="topCustomers">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
+      <section class="dashboard-main-grid mb-6">
+        <article class="card p-5 dashboard-chart-card" data-feature-key="trends">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black tracking-normal text-gray-950">Revenue trend</h2>
+              <p class="text-sm text-gray-500" id="chartSubtitle">Revenue by month across the latest 12 months.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mobile-actions">
+              <button class="btn btn-secondary" onclick="setChartView('daily')" id="chartViewDailyBtn" type="button">Daily</button>
+              <button class="btn btn-secondary" onclick="setChartView('weekly')" id="chartViewWeeklyBtn" type="button">Weekly</button>
+              <button class="btn btn-secondary" onclick="setChartView('monthly')" id="chartViewMonthlyBtn" type="button">Monthly</button>
+              <button class="btn btn-secondary" onclick="exportSales()" data-permission="exportSales">Export CSV</button>
+            </div>
+          </div>
+          <div class="dashboard-chart-height">
+            <canvas id="monthChart" aria-label="Sales trend chart"></canvas>
+            <div class="empty-state hidden" id="chartFallback">Chart.js could not load. Your data is still available in the table.</div>
+          </div>
+        </article>
+
+        <aside class="dashboard-side-stack">
+          <section class="card p-5" data-feature-key="goals">
+            <div class="mb-4">
+              <h2 class="text-xl font-black tracking-normal text-gray-950">This week</h2>
+              <p class="text-sm text-gray-500">Monday to Sunday, based on the selected date filter.</p>
+            </div>
+            <div class="weekly-strip dashboard-weekly-strip">
+              <article>
+                <p>Week revenue</p>
+                <div class="mini-value" id="weeklyRevenue">RM 0.00</div>
+              </article>
+              <article>
+                <p>Week quantity</p>
+                <div class="mini-value" id="weeklyQuantity">0</div>
+              </article>
+              <article>
+                <p>Best product</p>
+                <div class="mini-value" id="bestProduct">None</div>
+              </article>
+            </div>
+          </section>
+
+          <section class="card p-5">
+            <p class="dashboard-kpi-label">Quantity by product</p>
+            <div class="product-quantity-list dashboard-product-list" id="productQuantityList">
+              <div class="text-sm font-bold text-gray-500">No sales yet</div>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="dashboard-main-grid mb-6">
+        <article class="card p-5" data-feature-key="topCustomers">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black tracking-normal text-gray-950">Top customers</h2>
+              <p class="text-sm text-gray-500">Highest-spending customers from current filters.</p>
+            </div>
+          </div>
+          <div class="table-wrap dashboard-table-wrap">
+            <table>
+              <thead>
+                <tr><th>Customer</th><th>Visits</th><th>Items</th><th>Total</th></tr>
+              </thead>
+              <tbody id="topCustomersBody">
+                <tr><td colspan="4" class="empty-state">No sales yet</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card p-5" data-feature-key="goals">
+          <div class="mb-4">
             <h2 class="text-xl font-black tracking-normal text-gray-950">Sales goals</h2>
             <p class="text-sm text-gray-500">Set targets and track progress for today and this month.</p>
           </div>
-        </div>
-        <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
-          <div>
-            <label class="label" for="dailyTargetInput">Today's target (RM)</label>
-            <input class="field" type="number" id="dailyTargetInput" placeholder="e.g., 200" step="1" min="0" onchange="saveTargets()">
+          <div class="grid grid-cols-2 gap-4 mobile-stack mb-4">
+            <div>
+              <label class="label" for="dailyTargetInput">Today's target (RM)</label>
+              <input class="field" type="number" id="dailyTargetInput" placeholder="e.g., 200" step="1" min="0" onchange="saveTargets()">
+            </div>
+            <div>
+              <label class="label" for="monthlyTargetInput">This month's target (RM)</label>
+              <input class="field" type="number" id="monthlyTargetInput" placeholder="e.g., 5000" step="1" min="0" onchange="saveTargets()">
+            </div>
           </div>
-          <div>
-            <label class="label" for="monthlyTargetInput">This month's target (RM)</label>
-            <input class="field" type="number" id="monthlyTargetInput" placeholder="e.g., 5000" step="1" min="0" onchange="saveTargets()">
+          <div class="goal-block">
+            <div class="goal-row">
+              <span class="goal-label">Today</span>
+              <span class="goal-value" id="dailyGoalText">RM 0.00 / RM 0.00</span>
+            </div>
+            <div class="goal-bar"><div class="goal-bar-fill" id="dailyGoalBar" style="width:0%"></div></div>
           </div>
-        </div>
-        <div class="goal-block">
-          <div class="goal-row">
-            <span class="goal-label">Today</span>
-            <span class="goal-value" id="dailyGoalText">RM 0.00 / RM 0.00</span>
+          <div class="goal-block">
+            <div class="goal-row">
+              <span class="goal-label">This month</span>
+              <span class="goal-value" id="monthlyGoalText">RM 0.00 / RM 0.00</span>
+            </div>
+            <div class="goal-bar"><div class="goal-bar-fill" id="monthlyGoalBar" style="width:0%"></div></div>
           </div>
-          <div class="goal-bar"><div class="goal-bar-fill" id="dailyGoalBar" style="width:0%"></div></div>
-        </div>
-        <div class="goal-block">
-          <div class="goal-row">
-            <span class="goal-label">This month</span>
-            <span class="goal-value" id="monthlyGoalText">RM 0.00 / RM 0.00</span>
-          </div>
-          <div class="goal-bar"><div class="goal-bar-fill" id="monthlyGoalBar" style="width:0%"></div></div>
-        </div>
-      </section>
-
-      
-      <section class="card mb-6 p-5" data-feature-key="trends">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Top customers</h2>
-            <p class="text-sm text-gray-500">Your most frequent and highest-spending customers, based on current filters.</p>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Customer</th><th>Visits</th><th>Items bought</th><th>Total spent</th></tr>
-            </thead>
-            <tbody id="topCustomersBody">
-              <tr><td colspan="4" class="empty-state">No sales yet</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      
-      <section class="card mb-6 p-5">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-black tracking-normal text-gray-950">Sales trend</h2>
-            <p class="text-sm text-gray-500" id="chartSubtitle">Revenue by month across the latest 12 months.</p>
-          </div>
-          <div class="flex flex-wrap gap-2 mobile-actions">
-            <button class="btn btn-secondary" onclick="setChartView('daily')" id="chartViewDailyBtn" type="button">Daily</button>
-            <button class="btn btn-secondary" onclick="setChartView('weekly')" id="chartViewWeeklyBtn" type="button">Weekly</button>
-            <button class="btn btn-secondary" onclick="setChartView('monthly')" id="chartViewMonthlyBtn" type="button">Monthly</button>
-            <button class="btn btn-secondary" onclick="exportSales()" data-permission="exportSales">Export CSV</button>
-          </div>
-        </div>
-        <div class="h-72">
-          <canvas id="monthChart" aria-label="Sales trend chart"></canvas>
-          <div class="empty-state hidden" id="chartFallback">Chart.js could not load. Your data is still available in the table.</div>
-        </div>
+        </article>
       </section>
 
       
@@ -7258,21 +8257,21 @@
         </div>
         <div class="report-summary-grid" style="margin-bottom:18px;">
           <div class="report-summary-card">
-            <div class="report-summary-label">This month revenue</div>
+            <div class="report-summary-label">All-time revenue</div>
             <div class="report-summary-value" id="profitRevenue">RM 0.00</div>
           </div>
           <div class="report-summary-card">
-            <div class="report-summary-label">This month expenses</div>
+            <div class="report-summary-label">All-time expenses</div>
             <div class="report-summary-value" id="profitExpenses">RM 0.00</div>
           </div>
           <div class="report-summary-card">
-            <div class="report-summary-label">This month profit</div>
+            <div class="report-summary-label">All-time profit</div>
             <div class="report-summary-value" id="profitNet">RM 0.00</div>
           </div>
         </div>
         <div class="expense-dashboard-grid mb-4">
           <div class="expense-dashboard-card">
-            <span class="expense-dashboard-label">Total spent</span>
+            <span class="expense-dashboard-label">All-time spent</span>
             <strong id="expenseTotalSpent">RM 0.00</strong>
             <small id="expenseTotalCount">0 expense records</small>
           </div>
@@ -7288,6 +8287,18 @@
             <div class="expense-purpose-list" id="expensePurposeList">
               <div class="empty-state">No expense purpose yet.</div>
             </div>
+          </div>
+        </div>
+        <div class="expense-chart-card mb-4">
+          <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3 class="text-lg font-black tracking-normal text-gray-950">Profit &amp; expenses chart</h3>
+              <p class="text-sm text-gray-500">All-time revenue, expenses, and profit in one view.</p>
+            </div>
+          </div>
+          <div class="expense-chart-wrap">
+            <canvas id="expenseChart" aria-label="Profit and expenses chart"></canvas>
+            <div class="empty-state hidden" id="expenseChartFallback">Add sales or expenses to build this chart.</div>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4 mobile-stack mb-4" data-permission="manageExpenses">
@@ -7308,7 +8319,10 @@
             <input class="field" type="date" id="expenseDate">
           </div>
         </div>
-        <button class="btn btn-secondary mb-4" onclick="addExpense()" type="button" data-permission="manageExpenses">Add expense</button>
+        <div class="expense-form-actions mb-4" data-permission="manageExpenses">
+          <button class="btn btn-secondary" id="expenseSaveBtn" onclick="saveExpense()" type="button">Add expense</button>
+          <button class="btn btn-ghost-dark hidden" id="expenseCancelEditBtn" onclick="cancelEditExpense()" type="button">Cancel edit</button>
+        </div>
         <div class="mb-3">
           <h3 class="text-lg font-black tracking-normal text-gray-950">Expense records</h3>
           <p class="text-sm text-gray-500">Every expense logged with its purpose, amount, and staff account.</p>
@@ -7330,6 +8344,10 @@
     <div class="undo-toast" id="undoToast">
       <span id="undoMessage">Sale deleted.</span>
       <button class="btn btn-ghost-dark" onclick="undoDelete()" type="button">Undo</button>
+    </div>
+    <div class="studybite-alert-toast" id="studyBiteAlertToast" role="status" aria-live="polite">
+      <strong id="studyBiteAlertTitle">StudyBite</strong>
+      <span id="studyBiteAlertBody">Alert synced.</span>
     </div>
 
     <div class="receipt-overlay" id="receiptOverlay">
@@ -7621,7 +8639,7 @@
 
     function updateCurrentUserBadge() {
       if (!currentUser) return;
-      setUserBadge(isCurrentUserOwner ? 'admin' : (isCurrentUserAdmin ? 'admin' : 'staff'), `Logged in as ${getDisplayName(currentUser)} (${getCurrentRoleLabel()})`);
+      setUserBadge(isCurrentUserOwner ? 'admin' : (isCurrentUserAdmin ? 'admin' : 'staff'), getDisplayName(currentUser), getCurrentRoleLabel());
       updateHomeWelcome();
       updateSystemStatus();
     }
@@ -7689,7 +8707,22 @@
       return new URL('studybite-logo-hero.png', window.location.href).href;
     }
 
+    function showStudyBiteAlertToast(title, body) {
+      const toast = document.getElementById('studyBiteAlertToast');
+      const titleEl = document.getElementById('studyBiteAlertTitle');
+      const bodyEl = document.getElementById('studyBiteAlertBody');
+      if (!toast || !titleEl || !bodyEl) return;
+      titleEl.textContent = getStudyBiteNotificationTitle(title);
+      bodyEl.textContent = String(body || 'Synced.');
+      toast.classList.add('active');
+      clearTimeout(toast._studyBiteTimer);
+      toast._studyBiteTimer = setTimeout(() => {
+        toast.classList.remove('active');
+      }, 4200);
+    }
+
     function notifyStudyBite(title, body, tag = 'studybite-live-alert') {
+      showStudyBiteAlertToast(title, body);
       if (!notificationsAreEnabled()) return;
       try {
         const icon = getStudyBiteNotificationIcon();
@@ -8001,10 +9034,14 @@
       Object.entries(staffRights).forEach(([email, rights]) => {
         publicStaffRights[getDisplayNameKey(email)] = rights;
       });
+      const encodedStaffRightsForCloud = {};
+      Object.entries(staffRights).forEach(([email, rights]) => {
+        encodedStaffRightsForCloud[getDisplayNameKey(email)] = rights;
+      });
       const privateOwnerPayload = {
         ownerEmail: OWNER_EMAIL,
         ownerSettings,
-        staffRights,
+        staffRights: encodedStaffRightsForCloud,
         updatedAt: Date.now(),
         updatedBy: currentUser
       };
@@ -8053,7 +9090,12 @@
         if (ownerControlWritePending) return;
         const value = snapshot.val() || {};
         ownerSettings = mergeOwnerSettings(value.ownerSettings);
-        staffRights = value.staffRights || {};
+        const decodedStaffRights = {};
+        Object.entries(value.staffRights || {}).forEach(([key, rights]) => {
+          const email = normalizeEmail(decodeDisplayNameKey(key));
+          if (email) decodedStaffRights[email] = rights;
+        });
+        staffRights = decodedStaffRights;
         saveOwnerControlsLocal();
         refreshAccessState();
         renderOwnerControls();
@@ -8291,7 +9333,9 @@
     let allExpenses = [];
     let visibleSales = [];
     let editingSaleId = null;
+    let editingExpenseId = null;
     let monthChart;
+    let expenseChart;
     let chartNeedsRefresh = false;
     let pendingDelete = null;
     let undoTimer = null;
@@ -8356,6 +9400,11 @@
         monthChart.destroy();
         monthChart = null;
         renderMonthlyChart();
+      }
+      if (expenseChart) {
+        expenseChart.destroy();
+        expenseChart = null;
+        renderExpenseChart();
       }
     }
 
@@ -8492,6 +9541,13 @@
           renderMonthlyChart();
           chartNeedsRefresh = false;
         }, 150);
+      }
+      if (tabName === 'expenses') {
+        if (expenseChart) {
+          expenseChart.destroy();
+          expenseChart = null;
+        }
+        setTimeout(renderExpenseChart, 150);
       }
       updateFabVisibility();
     }
@@ -9271,6 +10327,27 @@
       });
     }
 
+    function saveExpense() {
+      if (editingExpenseId) {
+        updateExpense(editingExpenseId);
+        return;
+      }
+      addExpense();
+    }
+
+    function resetExpenseForm() {
+      const purposeInput = document.getElementById('expensePurpose');
+      document.getElementById('expenseDescription').value = '';
+      if (purposeInput) purposeInput.value = '';
+      document.getElementById('expenseAmount').value = '';
+      document.getElementById('expenseDate').value = new Date().toISOString().slice(0, 10);
+      editingExpenseId = null;
+      const saveBtn = document.getElementById('expenseSaveBtn');
+      const cancelBtn = document.getElementById('expenseCancelEditBtn');
+      if (saveBtn) saveBtn.textContent = 'Add expense';
+      if (cancelBtn) cancelBtn.classList.add('hidden');
+    }
+
     function addExpense() {
       if (!hasPermission('manageExpenses')) {
         alert('You do not have permission to manage expenses.');
@@ -9323,10 +10400,83 @@
         save();
       }
 
-      document.getElementById('expenseDescription').value = '';
-      if (purposeInput) purposeInput.value = '';
-      document.getElementById('expenseAmount').value = '';
-      document.getElementById('expenseDate').value = new Date().toISOString().slice(0, 10);
+      resetExpenseForm();
+    }
+
+    function startEditExpense(id) {
+      if (!hasPermission('manageExpenses')) {
+        alert('You do not have permission to edit expenses.');
+        return;
+      }
+      const expense = allExpenses.find(item => String(item.id) === String(id));
+      if (!expense) return;
+
+      editingExpenseId = String(expense.id);
+      document.getElementById('expenseDescription').value = expense.description || '';
+      document.getElementById('expensePurpose').value = getExpensePurpose(expense);
+      document.getElementById('expenseAmount').value = Number(expense.amount || 0).toFixed(2);
+      document.getElementById('expenseDate').value = expense.date || new Date().toISOString().slice(0, 10);
+
+      const saveBtn = document.getElementById('expenseSaveBtn');
+      const cancelBtn = document.getElementById('expenseCancelEditBtn');
+      if (saveBtn) saveBtn.textContent = 'Save changes';
+      if (cancelBtn) cancelBtn.classList.remove('hidden');
+      document.getElementById('expenseDescription')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function cancelEditExpense() {
+      resetExpenseForm();
+    }
+
+    function updateExpense(id) {
+      if (!hasPermission('manageExpenses')) {
+        alert('You do not have permission to edit expenses.');
+        return;
+      }
+      if (!db) {
+        alert('Firebase is not connected.');
+        return;
+      }
+
+      const existing = allExpenses.find(item => String(item.id) === String(id));
+      if (!existing) {
+        resetExpenseForm();
+        return;
+      }
+
+      const description = document.getElementById('expenseDescription').value.trim();
+      const purposeInput = document.getElementById('expensePurpose');
+      const purpose = (purposeInput?.value || '').trim() || description;
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+      const date = document.getElementById('expenseDate').value || new Date().toISOString().slice(0, 10);
+
+      if (!description || !amount || amount <= 0) {
+        alert('Please enter a description and a valid amount.');
+        return;
+      }
+
+      const updatedExpense = {
+        ...existing,
+        description,
+        purpose,
+        amount: roundMoney(amount),
+        date,
+        timestamp: new Date(date + 'T00:00:00').getTime(),
+        updatedAt: Date.now(),
+        updatedBy: currentUser
+      };
+
+      applyLocalExpense(updatedExpense);
+      resetExpenseForm();
+
+      db.ref('expenses/' + id).set(updatedExpense, (error) => {
+        if (error) {
+          applyLocalExpense(existing);
+          alert('Could not update expense in Firebase: ' + (error.message || error));
+        } else {
+          broadcastStudyBiteNotification('Expense updated', `${updatedExpense.purpose || 'Expense'} - ${formatCurrency(updatedExpense.amount || 0)} updated.`, 'expense');
+        }
+      });
     }
 
     function applyLocalExpense(expenseData) {
@@ -9339,6 +10489,7 @@
       allExpenses.sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0));
       renderExpenses();
       renderProfit();
+      renderExpenseChart();
     }
 
     function queueOfflineExpense(expenseData) {
@@ -9402,6 +10553,7 @@
         removeQueuedOfflineExpense(id);
         renderExpenses();
         renderProfit();
+        renderExpenseChart();
 
         db.ref('expenses/' + id).remove((error) => {
           if (error) {
@@ -9483,7 +10635,10 @@
               <div class="expense-record-desc">${escapeHTML(expense.description || '')} · ${escapeHTML(getDisplayName(expense.addedBy) || '')}</div>
             </div>
             <div class="expense-record-amount">${formatCurrency(Number(expense.amount || 0))}</div>
-            <button class="btn btn-danger admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses" onclick="deleteExpense('${escapeAttr(expense.id)}')">Delete</button>
+            <div class="expense-record-actions admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses">
+              <button class="btn btn-secondary" onclick="startEditExpense('${escapeAttr(expense.id)}')" type="button">Edit</button>
+              <button class="btn btn-danger" onclick="deleteExpense('${escapeAttr(expense.id)}')" type="button">Delete</button>
+            </div>
           </div>
         `).join('');
       }
@@ -9496,35 +10651,124 @@
           <td class="font-black text-orange-600">${formatCurrency(Number(expense.amount || 0))}</td>
           <td>${escapeHTML(getDisplayName(expense.addedBy) || '')}</td>
           <td>
-            <button class="btn btn-danger admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses" onclick="deleteExpense('${escapeAttr(expense.id)}')">Delete</button>
+            <div class="expense-record-actions admin-only${hasPermission('manageExpenses') ? '' : ' hidden'}" data-permission="manageExpenses">
+              <button class="btn btn-secondary" onclick="startEditExpense('${escapeAttr(expense.id)}')" type="button">Edit</button>
+              <button class="btn btn-danger" onclick="deleteExpense('${escapeAttr(expense.id)}')" type="button">Delete</button>
+            </div>
           </td>
         </tr>
       `).join('');
     }
 
+    function renderExpenseChart() {
+      const chartCanvas = document.getElementById('expenseChart');
+      const fallback = document.getElementById('expenseChartFallback');
+      if (!chartCanvas || !fallback) return;
+      const panel = chartCanvas.closest('.tab-panel');
+      if (panel && !panel.classList.contains('tab-panel-active')) return;
+
+      const allTimeRevenue = roundMoney(allSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const allTimeExpenses = roundMoney(allExpenses.reduce((sum, expense) => sum + Number(expense.amount || 0), 0));
+      const netProfit = roundMoney(allTimeRevenue - allTimeExpenses);
+      const values = [allTimeRevenue, allTimeExpenses, netProfit];
+      const hasData = values.some(value => Math.abs(Number(value || 0)) > 0);
+
+      if (!window.Chart || !hasData) {
+        chartCanvas.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        if (expenseChart) {
+          expenseChart.destroy();
+          expenseChart = null;
+        }
+        return;
+      }
+
+      chartCanvas.classList.remove('hidden');
+      fallback.classList.add('hidden');
+
+      const isDarkTheme = document.body.classList.contains('dark-mode');
+      const axisColor = isDarkTheme ? '#fff7ed' : '#1f130f';
+      const gridColor = isDarkTheme ? 'rgba(255, 107, 44, 0.18)' : 'rgba(255, 107, 44, 0.20)';
+      const profitColor = netProfit < 0 ? 'rgba(230, 57, 70, 0.82)' : 'rgba(34, 197, 94, 0.74)';
+      const profitBorder = netProfit < 0 ? '#e63946' : '#22c55e';
+
+      if (expenseChart) {
+        expenseChart.data.datasets[0].data = values;
+        expenseChart.data.datasets[0].backgroundColor = [
+          'rgba(255, 107, 44, 0.82)',
+          'rgba(255, 176, 86, 0.72)',
+          profitColor
+        ];
+        expenseChart.data.datasets[0].borderColor = ['#ff6b2c', '#ffb056', profitBorder];
+        expenseChart.options.scales.x.ticks.color = axisColor;
+        expenseChart.options.scales.y.ticks.color = axisColor;
+        expenseChart.options.scales.y.grid.color = gridColor;
+        expenseChart.update();
+        return;
+      }
+
+      expenseChart = new Chart(chartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Revenue', 'Expenses', 'Profit'],
+          datasets: [{
+            label: 'All-time total',
+            data: values,
+            backgroundColor: [
+              'rgba(255, 107, 44, 0.82)',
+              'rgba(255, 176, 86, 0.72)',
+              profitColor
+            ],
+            borderColor: ['#ff6b2c', '#ffb056', profitBorder],
+            borderWidth: 1.5,
+            borderRadius: 12,
+            maxBarThickness: 64
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => formatCurrency(Number(context.raw || 0))
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: axisColor, font: { weight: 900 } }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: gridColor },
+              ticks: {
+                color: axisColor,
+                callback: (value) => 'RM ' + value
+              }
+            }
+          }
+        }
+      });
+    }
+
     function renderProfit() {
-      const now = new Date();
-      const currentMonthKey = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
-
-      const monthRevenue = roundMoney(allSales
-        .filter(sale => String(sale.date || '').startsWith(currentMonthKey))
-        .reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
-
-      const monthExpenses = roundMoney(allExpenses
-        .filter(expense => String(expense.date || '').startsWith(currentMonthKey))
-        .reduce((sum, expense) => sum + Number(expense.amount || 0), 0));
-
-      const netProfit = roundMoney(monthRevenue - monthExpenses);
+      const allTimeRevenue = roundMoney(allSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const allTimeExpenses = roundMoney(allExpenses.reduce((sum, expense) => sum + Number(expense.amount || 0), 0));
+      const netProfit = roundMoney(allTimeRevenue - allTimeExpenses);
 
       const revenueEl = document.getElementById('profitRevenue');
       const expensesEl = document.getElementById('profitExpenses');
       const netEl = document.getElementById('profitNet');
       if (!revenueEl || !expensesEl || !netEl) return;
 
-      revenueEl.textContent = formatCurrency(monthRevenue);
-      expensesEl.textContent = formatCurrency(monthExpenses);
+      revenueEl.textContent = formatCurrency(allTimeRevenue);
+      expensesEl.textContent = formatCurrency(allTimeExpenses);
       netEl.textContent = formatCurrency(netProfit);
       netEl.style.color = netProfit < 0 ? '#dc2626' : '';
+      renderExpenseChart();
     }
 
     let currentReceiptSale = null;
@@ -10132,11 +11376,24 @@
       updateSystemStatus();
     }
 
-    function setUserBadge(state, text) {
+    function getInitialsFromName(name) {
+      const cleaned = String(name || '').replace(/@.*/, '').trim();
+      const parts = cleaned.split(/\s+/).filter(Boolean);
+      if (!parts.length) return 'SB';
+      return parts.slice(0, 2).map(part => part[0]).join('').toUpperCase();
+    }
+
+    function setUserBadge(state, text, roleLabel = '') {
       const badge = document.getElementById('userBadge');
       if (!badge) return;
       badge.dataset.state = state;
-      badge.textContent = text;
+      const label = badge.querySelector('.account-label');
+      const name = badge.querySelector('.account-name');
+      const avatar = badge.querySelector('.account-avatar');
+      const cleanText = String(text || 'Not connected').replace(/^Logged in as\s+/i, '').replace(/\s+\([^)]*\)$/, '');
+      if (label) label.textContent = state === 'standby' ? 'Account' : (roleLabel || getCurrentRoleLabel());
+      if (name) name.textContent = cleanText;
+      if (avatar) avatar.textContent = getInitialsFromName(cleanText);
     }
 
     function updateSystemStatus() {
@@ -10578,16 +11835,36 @@
       const now = new Date();
       const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
       visibleSales = getFilteredSales();
-      const monthlySales = visibleSales.filter(sale => String(sale.date || '').startsWith(currentMonth));
+      const todayKey = new Date().toISOString().slice(0, 10);
+      const monthlySales = allSales.filter(sale => String(sale.date || '').startsWith(currentMonth));
+      const todaySales = allSales.filter(sale => String(sale.date || '') === todayKey);
+      const weekRange = getSelectedWeekRange();
+      const weekSales = allSales.filter(sale => saleIsInRange(sale, weekRange.start, weekRange.end));
+      const todayTotal = roundMoney(todaySales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
       const monthlyTotal = roundMoney(monthlySales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
-      const totalRevenue = roundMoney(visibleSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
+      const totalRevenue = roundMoney(allSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0));
       const monthlyQuantity = monthlySales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
-      const totalQuantity = visibleSales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+      const totalQuantity = allSales.reduce((sum, sale) => sum + Number(sale.quantity || 0), 0);
+      const displayName = currentUser ? getDisplayName(currentUser) : 'there';
+      const friendlyName = displayName && displayName.includes('@') ? displayName.split('@')[0] : (displayName || 'there');
+      const helloName = document.getElementById('dashboardHelloName');
+      const subText = document.getElementById('dashboardSubText');
+      if (helloName) helloName.textContent = friendlyName;
+      if (subText) {
+        const orderLabel = todaySales.length === 1 ? 'order' : 'orders';
+        subText.textContent = `${todaySales.length} ${orderLabel} today - ${formatCurrency(todayTotal)} revenue.`;
+      }
 
+      animateCounter(document.getElementById('todayRevenueMetric'), todayTotal, 'RM ', 2, 800);
+      animateCounter(document.getElementById('todayOrdersMetric'), todaySales.length, '', 0, 650);
       animateCounter(document.getElementById('monthlyRevenue'), monthlyTotal, 'RM ', 2, 900);
       animateCounter(document.getElementById('monthlySalesCount'), monthlyQuantity, '', 0, 700);
       animateCounter(document.getElementById('totalRevenue'), totalRevenue, 'RM ', 2, 900);
       animateCounter(document.getElementById('totalSalesCount'), totalQuantity, '', 0, 700);
+      animateCounter(document.getElementById('dashNewOrders'), todaySales.length, '', 0, 650);
+      animateCounter(document.getElementById('dashWeekOrders'), weekSales.length, '', 0, 650);
+      animateCounter(document.getElementById('dashMonthOrders'), monthlySales.length, '', 0, 650);
+      animateCounter(document.getElementById('dashAllOrders'), allSales.length, '', 0, 650);
 
       renderProductQuantities();
       renderWeeklySummary();
@@ -10891,7 +12168,7 @@
       }
 
       monthChart = new Chart(chartCanvas, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels,
           datasets: [{
@@ -10900,18 +12177,25 @@
             backgroundColor: (context) => {
               const { chart } = context;
               const { ctx, chartArea } = chart;
-              if (!chartArea) return '#ff6b2c';
+              if (!chartArea) return 'rgba(255, 138, 61, 0.18)';
               const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-              gradient.addColorStop(0, 'rgba(255, 107, 44, 0.48)');
-              gradient.addColorStop(0.62, 'rgba(255, 107, 44, 0.78)');
-              gradient.addColorStop(1, 'rgba(230, 57, 70, 0.86)');
+              gradient.addColorStop(0, 'rgba(255, 138, 61, 0.02)');
+              gradient.addColorStop(0.52, 'rgba(255, 138, 61, 0.12)');
+              gradient.addColorStop(1, 'rgba(255, 176, 86, 0.26)');
               return gradient;
             },
-            borderColor: 'rgba(245, 230, 211, 0.62)',
-            borderWidth: 1,
-            borderRadius: 8,
-            hoverBackgroundColor: '#ffb086',
-            maxBarThickness: 42
+            borderColor: '#ff8a3d',
+            borderWidth: 3,
+            cubicInterpolationMode: 'monotone',
+            fill: true,
+            pointBackgroundColor: '#fff7ed',
+            pointBorderColor: '#ff6b2c',
+            pointBorderWidth: 2,
+            pointHoverBackgroundColor: '#ff6b2c',
+            pointHoverBorderColor: '#fff7ed',
+            pointHoverRadius: 6,
+            pointRadius: 3,
+            tension: 0.38
           }]
         },
         options: {
