@@ -5355,7 +5355,6 @@
 
     body:not(.home-mode).dark-mode .logo-light,
     body:not(.home-mode).dark-mode .logo-badge img {
-      content: url("studybite-logo-hero.png") !important;
       display: block !important;
       opacity: 1 !important;
     }
@@ -5376,7 +5375,6 @@
 
     body:not(.home-mode).dark-mode .logo-light,
     body:not(.home-mode).dark-mode .logo-badge img {
-      content: url("studybite-logo-hero.png") !important;
       display: block !important;
       filter: drop-shadow(0 0 10px rgba(255, 107, 44, 0.42)) !important;
       opacity: 1 !important;
@@ -6979,16 +6977,20 @@
     /* Professional live dashboard refresh inspired by compact admin analytics UI. */
     .dashboard-hero-card {
       align-items: center;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
       display: flex;
       gap: 18px;
       justify-content: space-between;
       overflow: hidden;
+      padding: 10px 4px 22px !important;
       position: relative;
     }
 
     .dashboard-eyebrow,
     .dashboard-kpi-label {
-      color: #ff8a3d !important;
+      color: #ff9f5a !important;
       font-size: 12px;
       font-weight: 1000;
       letter-spacing: 0;
@@ -6997,48 +6999,50 @@
     }
 
     .dashboard-greeting {
-      color: var(--ink) !important;
+      color: #fff7ed !important;
       font-size: clamp(30px, 4vw, 52px);
       font-weight: 1000;
       letter-spacing: 0;
       line-height: 0.98;
       margin-top: 8px;
+      max-width: 760px;
+      text-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
     }
 
     .dashboard-greeting span {
-      color: #ff6b2c;
-      text-shadow: 0 0 24px rgba(255, 107, 44, 0.28);
+      color: #ff7a30;
+      text-shadow: 0 0 28px rgba(255, 107, 44, 0.36);
     }
 
     .dashboard-subline {
-      color: var(--muted) !important;
+      color: rgba(255, 247, 237, 0.84) !important;
       font-size: 15px;
       font-weight: 800;
       line-height: 1.45;
       margin-top: 10px;
+      max-width: 620px;
+    }
+
+    body:not(.dark-mode) .dashboard-greeting {
+      color: #17110d !important;
+      text-shadow: 0 12px 30px rgba(255, 255, 255, 0.74);
+    }
+
+    body:not(.dark-mode) .dashboard-greeting span {
+      color: #e85a1f;
+      text-shadow: 0 0 20px rgba(232, 90, 31, 0.24);
+    }
+
+    body:not(.dark-mode) .dashboard-subline {
+      color: #4d4037 !important;
     }
 
     .dashboard-live-pill {
-      align-items: center;
-      border: 1px solid rgba(255, 107, 44, 0.34);
-      border-radius: 999px;
-      color: var(--ink);
-      display: inline-flex;
-      flex: 0 0 auto;
-      font-size: 13px;
-      font-weight: 1000;
-      gap: 8px;
-      min-height: 44px;
-      padding: 0 16px;
-      text-transform: uppercase;
+      display: none !important;
     }
 
     .dashboard-live-pill span {
-      background: #ff6b2c;
-      border-radius: 999px;
-      box-shadow: 0 0 18px rgba(255, 107, 44, 0.8);
-      height: 9px;
-      width: 9px;
+      display: none !important;
     }
 
     .dashboard-kpi-grid {
@@ -7414,99 +7418,48 @@
       color: #ffffff !important;
     }
 
-    /* Advanced account command bar in the header. */
+    /* Compact session controls in the header. */
     .header-command-bar {
       align-items: center;
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
       justify-content: flex-end;
       min-width: 0;
     }
 
-    .account-pill,
     .header-logout,
     .header-command-bar .system-status {
+      align-items: center;
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.018)),
         rgba(0, 0, 0, 0.34) !important;
       backdrop-filter: blur(16px) saturate(145%) !important;
       -webkit-backdrop-filter: blur(16px) saturate(145%) !important;
       border: 1px solid rgba(255, 107, 44, 0.34) !important;
+      border-radius: 16px !important;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 14px 34px rgba(0, 0, 0, 0.20) !important;
       color: #fff7ed !important;
-    }
-
-    .account-pill {
-      align-items: center;
-      border-radius: 18px;
       display: inline-flex;
-      gap: 11px;
-      min-height: 52px;
-      min-width: 0;
-      padding: 7px 14px 7px 8px;
-      width: min(300px, 100%);
-    }
-
-    .account-avatar {
-      align-items: center;
-      background:
-        radial-gradient(circle at 35% 20%, rgba(255, 255, 255, 0.28), transparent 34%),
-        linear-gradient(145deg, #ff8a3d, #ff4f38);
-      border-radius: 14px;
-      color: #ffffff;
-      display: inline-flex;
-      flex: 0 0 38px;
-      font-size: 13px;
-      font-weight: 1000;
-      height: 38px;
+      height: 48px !important;
       justify-content: center;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    .account-copy {
-      display: grid;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .account-label {
-      color: #ffb086;
-      font-size: 10px;
-      font-weight: 1000;
-      letter-spacing: 0;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .account-name {
-      color: #fff7ed;
-      display: block;
-      font-size: 13px;
-      font-weight: 1000;
-      line-height: 1.15;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      min-height: 48px !important;
+      min-width: 48px !important;
+      padding: 0 !important;
+      width: 48px !important;
     }
 
     .header-logout {
-      align-items: center;
-      border-radius: 16px;
       cursor: pointer;
-      display: inline-flex;
-      font-size: 13px;
-      font-weight: 1000;
-      gap: 8px;
-      min-height: 52px;
-      padding: 0 14px;
       transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
     .header-logout svg {
-      height: 19px;
-      width: 19px;
+      height: 21px;
+      width: 21px;
+    }
+
+    .header-logout span {
+      display: none !important;
     }
 
     .header-logout:hover,
@@ -7516,7 +7469,6 @@
       transform: translateY(-1px);
     }
 
-    body:not(.home-mode):not(.dark-mode) .account-pill,
     body:not(.home-mode):not(.dark-mode) .header-logout,
     body:not(.home-mode):not(.dark-mode) .header-command-bar .system-status {
       background:
@@ -7525,40 +7477,64 @@
       color: #17110d !important;
     }
 
-    body:not(.home-mode):not(.dark-mode) .account-name,
     body:not(.home-mode):not(.dark-mode) .header-logout {
       color: #17110d !important;
     }
 
-    body:not(.home-mode):not(.dark-mode) .account-label {
-      color: #e85a1f;
+    .header-command-bar .system-status {
+      cursor: default;
+      gap: 0 !important;
+    }
+
+    .header-command-bar .system-status .system-status-dot {
+      background: #ef4444 !important;
+      border-radius: 999px;
+      box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.13), 0 0 18px rgba(239, 68, 68, 0.72) !important;
+      height: 13px !important;
+      width: 13px !important;
+    }
+
+    .header-command-bar .system-status[data-state="online"] .system-status-dot,
+    .header-command-bar .system-status[data-state="syncing"] .system-status-dot {
+      background: #22c55e !important;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.13), 0 0 18px rgba(34, 197, 94, 0.72) !important;
+    }
+
+    .header-command-bar .system-status .system-status-text {
+      clip: rect(0 0 0 0);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .account-pill {
+      display: none !important;
     }
 
     @media (max-width: 720px) {
       .header-command-bar {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        width: 100%;
-      }
-
-      .header-command-bar .system-status,
-      .account-pill {
-        width: 100% !important;
-      }
-
-      .account-pill {
-        grid-column: 1 / -1;
+        display: flex;
+        width: auto;
       }
 
       .header-logout {
         justify-content: center;
-        min-width: 52px;
-        padding: 0 13px;
       }
+    }
 
-      .header-logout span {
-        display: none;
-      }
+    body:not(.home-mode) [data-tab-panel="dashboard"] .dashboard-hero-card,
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-hero-card {
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      padding: 10px 4px 22px !important;
+    }
+
+    body:not(.home-mode) [data-tab-panel="dashboard"] .dashboard-live-pill,
+    body:not(.home-mode):not(.dark-mode) [data-tab-panel="dashboard"] .dashboard-live-pill {
+      display: none !important;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -7652,21 +7628,14 @@
         </div>
       </div>
       <div class="header-actions header-command-bar">
-        <div class="system-status" id="systemStatus" data-state="standby">
+        <div class="system-status" id="systemStatus" data-state="standby" title="Inactive" aria-label="Inactive">
           <span class="system-status-dot"></span>
-          <span class="system-status-text">Standby</span>
+          <span class="system-status-text">Inactive</span>
         </div>
         <button class="btn btn-primary hidden" id="installAppBtn" onclick="installApp()" type="button">Install app</button>
-        <div class="account-pill" id="userBadge" data-state="standby">
-          <span class="account-avatar" id="userAvatar">SB</span>
-          <span class="account-copy">
-            <span class="account-label">Account</span>
-            <span class="account-name" id="userBadgeName">Not connected</span>
-          </span>
-        </div>
-        <button class="header-logout hidden" id="logoutBtn" onclick="logout()" type="button" aria-label="Log out">
+        <div class="account-pill hidden" id="userBadge" data-state="standby" aria-hidden="true"></div>
+        <button class="header-logout hidden" id="logoutBtn" onclick="logout()" type="button" aria-label="Log out" title="Log out">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4M14 8l4 4-4 4M18 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>Log out</span>
         </button>
       </div>
     </header>
@@ -8704,7 +8673,72 @@
     }
 
     function getStudyBiteNotificationIcon() {
-      return new URL('studybite-logo-hero.png', window.location.href).href;
+      return document.querySelector('.logo-light')?.getAttribute('src')
+        || document.getElementById('homeCircleImage')?.getAttribute('src')
+        || new URL('studybite-logo-hero.png', window.location.href).href;
+    }
+
+    function getStudyBiteAudioContext() {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      if (!studyBiteAudioContext) studyBiteAudioContext = new AudioContextClass();
+      return studyBiteAudioContext;
+    }
+
+    function unlockStudyBiteNotificationSound() {
+      const audio = getStudyBiteAudioContext();
+      if (!audio) return;
+      if (audio.state === 'suspended') {
+        audio.resume().then(() => {
+          studyBiteAudioUnlocked = true;
+        }).catch(() => {});
+      } else {
+        studyBiteAudioUnlocked = true;
+      }
+    }
+
+    function initStudyBiteNotificationSound() {
+      ['pointerdown', 'touchstart', 'keydown'].forEach((eventName) => {
+        window.addEventListener(eventName, unlockStudyBiteNotificationSound, { once: true, passive: true });
+      });
+    }
+
+    function playStudyBiteNotificationSound() {
+      const audio = getStudyBiteAudioContext();
+      if (!audio) return;
+      if (audio.state === 'suspended') {
+        audio.resume().then(() => playStudyBiteNotificationSound()).catch(() => {});
+        return;
+      }
+      studyBiteAudioUnlocked = true;
+      const now = Date.now();
+      if (now - lastStudyBiteSoundAt < 900) return;
+      lastStudyBiteSoundAt = now;
+
+      const startedAt = audio.currentTime;
+      const master = audio.createGain();
+      master.gain.setValueAtTime(0.0001, startedAt);
+      master.gain.exponentialRampToValueAtTime(0.16, startedAt + 0.018);
+      master.gain.exponentialRampToValueAtTime(0.0001, startedAt + 0.48);
+      master.connect(audio.destination);
+
+      [
+        { frequency: 659.25, delay: 0 },
+        { frequency: 880, delay: 0.075 }
+      ].forEach(({ frequency, delay }) => {
+        const oscillator = audio.createOscillator();
+        const gain = audio.createGain();
+        const t = startedAt + delay;
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, t);
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.9, t + 0.018);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.34);
+        oscillator.connect(gain);
+        gain.connect(master);
+        oscillator.start(t);
+        oscillator.stop(t + 0.38);
+      });
     }
 
     function showStudyBiteAlertToast(title, body) {
@@ -8723,6 +8757,7 @@
 
     function notifyStudyBite(title, body, tag = 'studybite-live-alert') {
       showStudyBiteAlertToast(title, body);
+      playStudyBiteNotificationSound();
       if (!notificationsAreEnabled()) return;
       try {
         const icon = getStudyBiteNotificationIcon();
@@ -8787,6 +8822,7 @@
     }
 
     function enableStudyBiteNotifications() {
+      unlockStudyBiteNotificationSound();
       if (!('Notification' in window)) {
         updateNotificationStatus('This browser does not support alerts.');
         return;
@@ -9344,6 +9380,9 @@
     let notificationsListenerReady = false;
     let knownNotificationIds = new Set();
     let studyBiteNotificationsListening = false;
+    let studyBiteAudioContext = null;
+    let studyBiteAudioUnlocked = false;
+    let lastStudyBiteSoundAt = 0;
 
     document.addEventListener('DOMContentLoaded', () => {
       applySavedTheme();
@@ -9355,6 +9394,7 @@
       loadTargets();
       initOfflineQueue();
       setupPWA();
+      initStudyBiteNotificationSound();
       initTabSwipeGestures();
       initMobileTabHideGestures();
       initFloatingTabSwipeGestures();
@@ -11418,6 +11458,9 @@
 
       status.dataset.state = state;
       if (text) text.textContent = label;
+      const activeLabel = state === 'online' || state === 'syncing' ? 'Active' : 'Inactive';
+      status.title = activeLabel;
+      status.setAttribute('aria-label', activeLabel);
     }
 
     function initOfflineQueue() {
