@@ -5777,6 +5777,122 @@
       padding-bottom: 94px;
     }
 
+    .order-status-badge {
+      align-items: center;
+      border: 1px solid rgba(255, 107, 44, 0.34);
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 0.76rem;
+      font-weight: 900;
+      gap: 0.45rem;
+      padding: 0.42rem 0.7rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .order-status-badge::before {
+      border-radius: 50%;
+      content: "";
+      height: 0.5rem;
+      width: 0.5rem;
+    }
+
+    .order-status-placed {
+      background: rgba(255, 107, 44, 0.12);
+      color: #ffb36f;
+    }
+
+    .order-status-placed::before {
+      background: #ff6b2c;
+      box-shadow: 0 0 14px rgba(255, 107, 44, 0.72);
+    }
+
+    .order-status-preparing {
+      background: rgba(245, 158, 11, 0.14);
+      color: #ffd28a;
+    }
+
+    .order-status-preparing::before {
+      background: #f59e0b;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.64);
+    }
+
+    .order-status-ready {
+      background: rgba(34, 197, 94, 0.14);
+      border-color: rgba(34, 197, 94, 0.34);
+      color: #86efac;
+    }
+
+    .order-status-ready::before {
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.56);
+    }
+
+    .order-status-completed {
+      background: rgba(148, 163, 184, 0.16);
+      border-color: rgba(148, 163, 184, 0.34);
+      color: #e5e7eb;
+    }
+
+    .order-status-completed::before {
+      background: #94a3b8;
+      box-shadow: 0 0 14px rgba(148, 163, 184, 0.48);
+    }
+
+    .sale-product-cell {
+      display: grid;
+      gap: 4px;
+    }
+
+    .sale-product-cell strong {
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .sale-product-cell small {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .payment-status-awaiting {
+      background: rgba(245, 158, 11, 0.14);
+      color: #ffd28a;
+    }
+
+    .payment-status-awaiting::before {
+      background: #f59e0b;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.64);
+    }
+
+    .payment-status-confirmed,
+    .payment-status-cash {
+      background: rgba(34, 197, 94, 0.14);
+      border-color: rgba(34, 197, 94, 0.34);
+      color: #86efac;
+    }
+
+    .payment-status-confirmed::before,
+    .payment-status-cash::before {
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.56);
+    }
+
+    .order-status-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.45rem;
+    }
+
+    .order-status-action {
+      border-radius: 999px !important;
+      min-height: 34px !important;
+      padding: 0.35rem 0.7rem !important;
+      font-size: 0.72rem !important;
+    }
+
     .sidebar-drawer {
       display: flex !important;
       flex-direction: column !important;
@@ -8037,6 +8153,7 @@
             <button class="home-nav-link" data-home-tab="dashboard" onclick="enterDatabase('dashboard')" type="button">Dashboard</button>
             <button class="home-nav-link" data-home-tab="sell" onclick="enterDatabase('sell')" type="button">Order</button>
             <button class="home-nav-link" data-home-tab="records" onclick="enterDatabase('records')" type="button">Records</button>
+            <button class="home-nav-link" data-home-tab="customers" onclick="enterDatabase('customers')" type="button">Customers</button>
             <button class="home-nav-link" data-home-tab="expenses" onclick="enterDatabase('expenses')" type="button">Expenses</button>
             <button class="home-nav-link" data-home-tab="manage" onclick="enterDatabase('manage')" type="button">Manage</button>
             <button class="home-nav-link" data-home-tab="owner" onclick="enterDatabase('owner')" type="button">Owner</button>
@@ -8190,6 +8307,10 @@
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8H16M8 12H16M8 16H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           Records
         </button>
+        <button class="mobile-tab-btn" data-tab="customers" onclick="switchTab('customers')" type="button" aria-label="Customers" title="Customers">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 20a4 4 0 0 0-8 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 19a3.5 3.5 0 0 0-3-3.5M17 5.2a3.2 3.2 0 0 1 0 5.6M4 19a3.5 3.5 0 0 1 3-3.5M7 5.2a3.2 3.2 0 0 0 0 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Customers
+        </button>
         <button class="mobile-tab-btn" data-tab="expenses" onclick="switchTab('expenses')" type="button" aria-label="Expenses" title="Expenses">
           <svg class="tab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7.5C4 5.6 7.6 4 12 4S20 5.6 20 7.5 16.4 11 12 11 4 9.4 4 7.5Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 7.5V12C4 13.9 7.6 15.5 12 15.5S20 13.9 20 12V7.5M4 12V16.5C4 18.4 7.6 20 12 20S20 18.4 20 16.5V12" stroke="currentColor" stroke-width="1.6"/></svg>
           Expenses
@@ -8262,6 +8383,9 @@
         </button>
         <button class="app-floating-tab" data-tab="records" onclick="switchTab('records')" type="button" aria-label="Records" title="Records">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 8H16M8 12H16M8 16H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="app-floating-tab" data-tab="customers" onclick="switchTab('customers')" type="button" aria-label="Customers" title="Customers">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M16 20a4 4 0 0 0-8 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 19a3.5 3.5 0 0 0-3-3.5M17 5.2a3.2 3.2 0 0 1 0 5.6M4 19a3.5 3.5 0 0 1 3-3.5M7 5.2a3.2 3.2 0 0 0 0 5.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
         <button class="app-floating-tab" data-tab="expenses" onclick="switchTab('expenses')" type="button" aria-label="Expenses" title="Expenses">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M4 7.5C4 5.6 7.6 4 12 4S20 5.6 20 7.5 16.4 11 12 11 4 9.4 4 7.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M4 7.5V12C4 13.9 7.6 15.5 12 15.5S20 13.9 20 12V7.5M4 12V16.5C4 18.4 7.6 20 12 20S20 18.4 20 16.5V12" stroke="currentColor" stroke-width="1.8"/></svg>
@@ -8739,7 +8863,7 @@
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 class="text-xl font-black tracking-normal text-gray-950">Products &amp; pricing</h2>
-            <p class="text-sm text-gray-500">Manage product names and auto-fill prices. Saved on this browser.</p>
+            <p class="text-sm text-gray-500">Manage products, images, promotions, and customer menu visibility.</p>
           </div>
         </div>
         <div class="product-manager-list" id="productManagerList"></div>
@@ -8752,8 +8876,76 @@
             <label class="label" for="newProductPrice">Price (RM)</label>
             <input class="field" type="number" id="newProductPrice" placeholder="0.00" step="0.01" min="0">
           </div>
+          <div>
+            <label class="label" for="newProductCategory">Category</label>
+            <input class="field" type="text" id="newProductCategory" placeholder="Coffee, Bites, Drinks">
+          </div>
+          <div>
+            <label class="label" for="newProductImageFile">Product images</label>
+            <input class="field" type="file" id="newProductImageFile" accept="image/*" multiple onchange="handleProductImageUpload(event)">
+            <input type="hidden" id="newProductImage">
+            <p class="text-xs font-bold text-gray-500" id="newProductImageStatus">Upload one or more product photos from this dashboard.</p>
+          </div>
+          <div class="col-span-2">
+            <label class="label" for="newProductDescription">Description</label>
+            <input class="field" type="text" id="newProductDescription" placeholder="Short menu description">
+          </div>
+          <div class="col-span-2">
+            <label class="label" for="newProductPromo">Promotion text</label>
+            <input class="field" type="text" id="newProductPromo" placeholder="Limited offer, 20% off, combo deal">
+          </div>
         </div>
         <button class="btn btn-secondary mt-4" onclick="addProductPrice()" type="button" data-permission="manageProducts">Add product</button>
+      </section>
+
+      <section class="card mb-6 p-5" id="paymentOptionsSection" data-section-key="manage">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Customer payment options</h2>
+            <p class="text-sm text-gray-500">Add QR codes, account numbers, cash pickup, or transfer instructions for the order app checkout.</p>
+          </div>
+        </div>
+        <div class="product-manager-list" id="paymentOptionsList"></div>
+        <div class="grid grid-cols-2 gap-4 mobile-stack mt-4">
+          <div>
+            <label class="label" for="newPaymentName">Payment name</label>
+            <input class="field" type="text" id="newPaymentName" placeholder="DuitNow QR, Maybank, Cash">
+          </div>
+          <div>
+            <label class="label" for="newPaymentType">Type</label>
+            <select class="field" id="newPaymentType">
+              <option value="qr">QR payment</option>
+              <option value="bank">Bank transfer</option>
+              <option value="cash">Cash on pickup</option>
+              <option value="wallet">E-wallet</option>
+              <option value="card">Card</option>
+            </select>
+          </div>
+          <div class="col-span-2">
+            <label class="label" for="newPaymentDetails">Account number / instructions</label>
+            <input class="field" type="text" id="newPaymentDetails" placeholder="Account number, phone, or payment instruction">
+          </div>
+          <div class="col-span-2">
+            <label class="label" for="newPaymentQrFile">QR image</label>
+            <input class="field" type="file" id="newPaymentQrFile" accept="image/*" onchange="handlePaymentQrUpload(event)">
+            <input type="hidden" id="newPaymentQr">
+            <p class="text-xs font-bold text-gray-500" id="newPaymentQrStatus">Optional for bank/cash, useful for QR or e-wallet.</p>
+          </div>
+        </div>
+        <button class="btn btn-secondary mt-4" onclick="addPaymentOption()" type="button" data-permission="manageProducts">Add payment option</button>
+      </section>
+
+      </div>
+      <div class="tab-panel" data-tab-panel="customers">
+
+      <section class="card mb-6 p-5" id="customerAccountsSection" data-section-key="customers">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-black tracking-normal text-gray-950">Customer accounts</h2>
+            <p class="text-sm text-gray-500">Customers who sign up from the order app will appear here with their order totals.</p>
+          </div>
+        </div>
+        <div class="product-manager-list" id="customerManagerList"></div>
       </section>
 
       </div>
@@ -8955,6 +9147,7 @@
       pin: 'studybite.pin',
       receiptCounter: 'studybite.receiptCounter',
       products: 'studybite.products',
+      paymentOptions: 'studybite.paymentOptions',
       offlineQueue: 'studybite.offlineQueue',
       offlineExpenseQueue: 'studybite.offlineExpenseQueue',
       dailyTarget: 'studybite.dailyTarget',
@@ -8989,6 +9182,7 @@
       exportSales: 'Export sales',
       printReports: 'Print reports',
       restoreBackup: 'Restore backup',
+      viewCustomers: 'View customers',
       viewManage: 'Open manage tab',
       manageProducts: 'Manage products',
       viewProfit: 'View profit',
@@ -9006,6 +9200,7 @@
         exportSales: false,
         printReports: false,
         restoreBackup: false,
+        viewCustomers: false,
         viewManage: false,
         manageProducts: false,
         viewProfit: false,
@@ -9021,6 +9216,7 @@
         exportSales: false,
         printReports: false,
         restoreBackup: false,
+        viewCustomers: false,
         viewManage: false,
         manageProducts: false,
         viewProfit: false,
@@ -9036,6 +9232,7 @@
         exportSales: true,
         printReports: true,
         restoreBackup: false,
+        viewCustomers: true,
         viewManage: true,
         manageProducts: true,
         viewProfit: true,
@@ -9048,6 +9245,7 @@
       dashboard: 'Dashboard',
       sell: 'Order entry',
       records: 'Records',
+      customers: 'Customers',
       expenses: 'Expenses',
       manage: 'Manage',
       products: 'Products & pricing'
@@ -9067,6 +9265,7 @@
         dashboard: true,
         sell: true,
         records: true,
+        customers: true,
         expenses: true,
         manage: true,
         products: true,
@@ -9953,6 +10152,7 @@
       if (section === 'dashboard') return hasPermission('viewDashboard');
       if (section === 'sell') return hasPermission('addSales');
       if (section === 'records') return hasPermission('viewRecords');
+      if (section === 'customers') return hasPermission('viewCustomers');
       if (section === 'expenses') return hasPermission('viewProfit') || hasPermission('manageExpenses');
       if (section === 'manage') return hasPermission('viewManage') || hasPermission('manageProducts');
       if (section === 'products') return hasPermission('manageProducts');
@@ -10237,6 +10437,36 @@
       'Chicken Pie': 2.50
     };
 
+    const DEFAULT_PRODUCT_CATALOG = Object.fromEntries(
+      Object.entries(DEFAULT_PRODUCT_PRICES).map(([name, price]) => [
+        getDisplayNameKey(name),
+        {
+          id: getDisplayNameKey(name),
+          name,
+          price,
+          category: 'Chicken Bites',
+          description: 'Fresh StudyBite menu item.',
+          imageUrl: '',
+          images: [],
+          promoText: '',
+          promoActive: false,
+          available: true
+        }
+      ])
+    );
+
+    const DEFAULT_PAYMENT_OPTIONS = {
+      cash_pickup: {
+        id: 'cash_pickup',
+        name: 'Cash on pickup',
+        type: 'cash',
+        details: 'Pay at the StudyBite counter when collecting your order.',
+        qrImage: '',
+        active: true,
+        updatedAt: Date.now()
+      }
+    };
+
     let db;
     let auth;
     let currentUser = '';
@@ -10247,6 +10477,10 @@
     let staffRights = loadStaffRightsFromStorage();
     let ownerControlWritePending = false;
     let ownerControlSyncTimer = null;
+    let allProductsCatalog = {};
+    let allPaymentOptions = {};
+    let allCustomers = [];
+    let customerPhoneIndex = [];
     let allSales = [];
     let allExpenses = [];
     let visibleSales = [];
@@ -10397,7 +10631,7 @@
         const allowed = tabName === 'owner' ? canUseOwnerControls() : canUseSection(tabName);
         if (!allowed) {
           alert(tabName === 'records' ? 'You do not have permission to view records.' : 'You do not have permission to open this section.');
-          const fallback = ['sell', 'dashboard', 'records', 'expenses', 'manage', 'owner'].find(tab => tab === 'owner' ? canUseOwnerControls() : canUseSection(tab));
+          const fallback = ['sell', 'dashboard', 'records', 'customers', 'expenses', 'manage', 'owner'].find(tab => tab === 'owner' ? canUseOwnerControls() : canUseSection(tab));
           if (fallback && fallback !== tabName) switchTab(fallback);
           return;
         }
@@ -10837,16 +11071,430 @@
       }
     }
 
-    function getProductPrices() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.products) || 'null');
-        if (saved && typeof saved === 'object') return saved;
-      } catch (e) { /* fall through to defaults */ }
-      return { ...DEFAULT_PRODUCT_PRICES };
+    function normalizeProductEntry(value, fallbackName = '') {
+      if (typeof value === 'number') {
+        return {
+          id: getDisplayNameKey(fallbackName),
+          name: fallbackName,
+          price: roundMoney(value),
+          category: 'Menu',
+          description: 'Fresh StudyBite menu item.',
+          imageUrl: '',
+          promoText: '',
+          promoActive: false,
+          available: true
+        };
+      }
+
+      const entry = value && typeof value === 'object' ? value : {};
+      const name = String(entry.name || fallbackName || '').trim();
+      const id = String(entry.id || getDisplayNameKey(name));
+      return {
+        id,
+        name,
+        price: roundMoney(entry.price || entry.floorPrice || 0),
+        category: String(entry.category || 'Menu').trim() || 'Menu',
+        description: String(entry.description || 'Fresh StudyBite menu item.').trim(),
+        imageUrl: String(entry.imageUrl || entry.image || '').trim(),
+        images: Array.isArray(entry.images)
+          ? entry.images.map(src => String(src || '').trim()).filter(Boolean)
+          : String(entry.imageUrl || entry.image || '').trim()
+            ? [String(entry.imageUrl || entry.image || '').trim()]
+            : [],
+        promoText: String(entry.promoText || entry.promo || '').trim(),
+        promoActive: !!entry.promoActive || !!entry.promotion,
+        available: entry.available !== false,
+        updatedAt: Number(entry.updatedAt || Date.now())
+      };
     }
 
-    function saveProductPrices(prices) {
-      localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(prices));
+    function compressImageFile(file, maxSize = 900, quality = 0.82) {
+      return new Promise((resolve, reject) => {
+        if (!file || !file.type || !file.type.startsWith('image/')) {
+          reject(new Error('Choose an image file.'));
+          return;
+        }
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Could not read image.'));
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = () => reject(new Error('Could not load image.'));
+          img.onload = () => {
+            const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(1, Math.round(img.width * scale));
+            canvas.height = Math.max(1, Math.round(img.height * scale));
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function loadImageFromFile(file) {
+      return new Promise((resolve, reject) => {
+        if (!file || !file.type || !file.type.startsWith('image/')) {
+          reject(new Error('Choose an image file.'));
+          return;
+        }
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Could not read image.'));
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = () => reject(new Error('Could not load image.'));
+          img.onload = () => resolve(img);
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function cropImageToDataUrl(img, rect, maxSize = 900, quality = 0.95) {
+      const scale = Math.min(1, maxSize / Math.max(rect.width, rect.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(rect.width * scale));
+      canvas.height = Math.max(1, Math.round(rect.height * scale));
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, rect.x, rect.y, rect.width, rect.height, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL('image/png', quality);
+    }
+
+    async function preparePaymentQrImage(file) {
+      const img = await loadImageFromFile(file);
+      if ('BarcodeDetector' in window) {
+        try {
+          const detector = new BarcodeDetector({ formats: ['qr_code'] });
+          const codes = await detector.detect(img);
+          const qr = codes.find(code => code.format === 'qr_code') || codes[0];
+          if (qr?.boundingBox) {
+            const box = qr.boundingBox;
+            const pad = Math.round(Math.max(box.width, box.height) * 0.16);
+            const rect = {
+              x: Math.max(0, Math.round(box.x - pad)),
+              y: Math.max(0, Math.round(box.y - pad)),
+              width: Math.min(img.naturalWidth || img.width, Math.round(box.width + pad * 2)),
+              height: Math.min(img.naturalHeight || img.height, Math.round(box.height + pad * 2))
+            };
+            rect.width = Math.min(rect.width, (img.naturalWidth || img.width) - rect.x);
+            rect.height = Math.min(rect.height, (img.naturalHeight || img.height) - rect.y);
+            return { dataUrl: cropImageToDataUrl(img, rect), cropped: true };
+          }
+        } catch (error) {
+          // Some browsers expose BarcodeDetector but do not support QR detection.
+        }
+      }
+      return { dataUrl: await compressImageFile(file, 900, 0.9), cropped: false };
+    }
+
+    function setUploadStatus(id, message, isError = false) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.textContent = message;
+      target.className = isError ? 'text-xs font-bold text-red-500' : 'text-xs font-bold text-gray-500';
+    }
+
+    function parseProductImageInput() {
+      const raw = document.getElementById('newProductImage')?.value || '';
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed.filter(Boolean) : [];
+      } catch {
+        return raw ? [raw] : [];
+      }
+    }
+
+    function handleProductImageUpload(event) {
+      const files = Array.from(event.target.files || []);
+      if (!files.length) return;
+      setUploadStatus('newProductImageStatus', files.length === 1 ? 'Preparing image...' : `Preparing ${files.length} images...`);
+      Promise.all(files.map((file) => compressImageFile(file, 900, 0.84)))
+        .then((dataUrls) => {
+          document.getElementById('newProductImage').value = JSON.stringify(dataUrls);
+          setUploadStatus('newProductImageStatus', `${dataUrls.length} image${dataUrls.length === 1 ? '' : 's'} ready. Add product to publish.`);
+        })
+        .catch((error) => setUploadStatus('newProductImageStatus', error.message || 'Image upload failed.', true));
+    }
+
+    function handlePaymentQrUpload(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      setUploadStatus('newPaymentQrStatus', 'Detecting QR image...');
+      preparePaymentQrImage(file)
+        .then((result) => {
+          document.getElementById('newPaymentQr').value = result.dataUrl;
+          setUploadStatus('newPaymentQrStatus', result.cropped
+            ? 'QR detected and cropped. Add payment option to publish it.'
+            : 'QR saved. Use a close-up QR image if you want tighter cropping.');
+        })
+        .catch((error) => setUploadStatus('newPaymentQrStatus', error.message || 'QR upload failed.', true));
+    }
+
+    function getProductCatalog() {
+      if (Object.keys(allProductsCatalog).length) return allProductsCatalog;
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.products) || 'null');
+        if (saved && typeof saved === 'object') {
+          const normalized = {};
+          Object.entries(saved).forEach(([key, value]) => {
+            const entry = normalizeProductEntry(value, key);
+            if (entry.name && entry.price > 0) normalized[entry.id || getDisplayNameKey(entry.name)] = entry;
+          });
+          if (Object.keys(normalized).length) {
+            allProductsCatalog = normalized;
+            return normalized;
+          }
+        }
+      } catch (e) { /* fall through to defaults */ }
+      allProductsCatalog = { ...DEFAULT_PRODUCT_CATALOG };
+      return allProductsCatalog;
+    }
+
+    function saveProductCatalog(catalog, syncCloud = true) {
+      allProductsCatalog = catalog || {};
+      localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(allProductsCatalog));
+      if (syncCloud && db && hasPermission('manageProducts')) {
+        db.ref('products').set(allProductsCatalog, (error) => {
+          if (error) {
+            alert('Product saved locally, but Firebase blocked product sync: ' + (error.message || error));
+          } else {
+            broadcastStudyBiteNotification('Products updated', 'Customer menu updated from dashboard.', 'products');
+          }
+        });
+      }
+    }
+
+    function getProductPrices() {
+      const prices = {};
+      Object.values(getProductCatalog()).forEach((entry) => {
+        if (entry.name && entry.available !== false) prices[entry.name] = Number(entry.price || 0);
+      });
+      return prices;
+    }
+
+    function listenForProducts() {
+      if (!db) return;
+      db.ref('products').on('value', (snapshot) => {
+        if (snapshot.exists()) {
+          const catalog = {};
+          Object.entries(snapshot.val() || {}).forEach(([key, value]) => {
+            const entry = normalizeProductEntry(value, key);
+            if (entry.name && entry.price > 0) catalog[entry.id || key] = entry;
+          });
+          allProductsCatalog = catalog;
+          localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(catalog));
+        } else {
+          allProductsCatalog = getProductCatalog();
+          if (currentUser && hasPermission('manageProducts')) {
+            saveProductCatalog(allProductsCatalog, true);
+          }
+        }
+        renderProductManager();
+        populateProductDropdown(document.getElementById('product')?.value === '__custom' ? document.getElementById('customProduct')?.value : document.getElementById('product')?.value);
+        renderQuickEntryButtons();
+      });
+    }
+
+    function normalizePaymentOption(value, fallbackName = '') {
+      const entry = value && typeof value === 'object' ? value : {};
+      const name = String(entry.name || fallbackName || '').trim();
+      const id = String(entry.id || getDisplayNameKey(name));
+      return {
+        id,
+        name,
+        type: String(entry.type || 'qr').trim() || 'qr',
+        details: String(entry.details || entry.accountNumber || '').trim(),
+        qrImage: String(entry.qrImage || entry.qr || '').trim(),
+        active: entry.active !== false,
+        updatedAt: Number(entry.updatedAt || Date.now())
+      };
+    }
+
+    function getPaymentOptions() {
+      if (Object.keys(allPaymentOptions).length) return allPaymentOptions;
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.paymentOptions) || 'null');
+        if (saved && typeof saved === 'object') {
+          const normalized = {};
+          Object.entries(saved).forEach(([key, value]) => {
+            const entry = normalizePaymentOption(value, key);
+            if (entry.name) normalized[entry.id || key] = entry;
+          });
+          if (Object.keys(normalized).length) {
+            allPaymentOptions = normalized;
+            return normalized;
+          }
+        }
+      } catch (e) { /* fall through to defaults */ }
+      allPaymentOptions = { ...DEFAULT_PAYMENT_OPTIONS };
+      return allPaymentOptions;
+    }
+
+    function savePaymentOptions(options, syncCloud = true) {
+      allPaymentOptions = options || {};
+      localStorage.setItem(STORAGE_KEYS.paymentOptions, JSON.stringify(allPaymentOptions));
+      if (syncCloud && db && hasPermission('manageProducts')) {
+        db.ref('paymentOptions').set(allPaymentOptions, (error) => {
+          if (error) {
+            alert('Payment option saved locally, but Firebase blocked sync: ' + (error.message || error));
+          } else {
+            broadcastStudyBiteNotification('Payment options updated', 'Customer checkout payment options were updated.', 'payments');
+          }
+        });
+      }
+    }
+
+    function listenForPaymentOptions() {
+      if (!db) return;
+      db.ref('paymentOptions').on('value', (snapshot) => {
+        if (snapshot.exists()) {
+          const options = {};
+          Object.entries(snapshot.val() || {}).forEach(([key, value]) => {
+            const entry = normalizePaymentOption(value, key);
+            if (entry.name) options[entry.id || key] = entry;
+          });
+          allPaymentOptions = options;
+          localStorage.setItem(STORAGE_KEYS.paymentOptions, JSON.stringify(options));
+        } else {
+          allPaymentOptions = getPaymentOptions();
+          if (currentUser && hasPermission('manageProducts')) {
+            savePaymentOptions(allPaymentOptions, true);
+          }
+        }
+        renderPaymentOptions();
+      });
+    }
+
+    function renderPaymentOptions() {
+      const target = document.getElementById('paymentOptionsList');
+      if (!target) return;
+      const entries = Object.entries(getPaymentOptions()).sort((a, b) => String(a[1].name || '').localeCompare(String(b[1].name || '')));
+      target.innerHTML = entries.length
+        ? entries.map(([key, entry]) => `
+          <div class="product-manager-row">
+            <span class="product-manager-name">
+              ${entry.qrImage ? `<img src="${escapeAttr(entry.qrImage)}" alt="" style="width:42px;height:42px;object-fit:cover;border-radius:12px;margin-right:10px;vertical-align:middle;">` : ''}
+              ${escapeHTML(entry.name)}
+              <small style="display:block;color:var(--muted);font-weight:800;">${escapeHTML(entry.type)}${entry.details ? ' - ' + escapeHTML(entry.details) : ''}</small>
+            </span>
+            <span class="product-manager-price">${entry.active ? 'Active' : 'Hidden'}</span>
+            <button class="btn btn-danger" onclick="removePaymentOption('${escapeAttr(key)}')" type="button">Remove</button>
+          </div>
+        `).join('')
+        : '<div class="text-sm font-bold text-gray-500">No payment options yet.</div>';
+    }
+
+    function addPaymentOption() {
+      if (!hasPermission('manageProducts')) {
+        alert('You do not have permission to manage payment options.');
+        return;
+      }
+      const nameInput = document.getElementById('newPaymentName');
+      const typeInput = document.getElementById('newPaymentType');
+      const detailsInput = document.getElementById('newPaymentDetails');
+      const qrInput = document.getElementById('newPaymentQr');
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert('Enter a payment name.');
+        return;
+      }
+      const options = getPaymentOptions();
+      const id = getDisplayNameKey(name);
+      options[id] = normalizePaymentOption({
+        id,
+        name,
+        type: typeInput.value,
+        details: detailsInput.value,
+        qrImage: qrInput.value,
+        active: true,
+        updatedAt: Date.now()
+      }, name);
+      savePaymentOptions(options, true);
+      renderPaymentOptions();
+      nameInput.value = '';
+      detailsInput.value = '';
+      qrInput.value = '';
+      document.getElementById('newPaymentQrFile').value = '';
+      setUploadStatus('newPaymentQrStatus', 'Optional for bank/cash, useful for QR or e-wallet.');
+    }
+
+    function removePaymentOption(key) {
+      if (!hasPermission('manageProducts')) {
+        alert('You do not have permission to manage payment options.');
+        return;
+      }
+      const options = getPaymentOptions();
+      delete options[key];
+      savePaymentOptions(options, true);
+      renderPaymentOptions();
+    }
+
+    function listenForCustomers() {
+      if (!db) return;
+      db.ref('customers').on('value', (snapshot) => {
+        allCustomers = snapshot.exists()
+          ? Object.entries(snapshot.val() || {}).map(([uid, value]) => ({ uid, ...(value || {}) }))
+          : [];
+        allCustomers.sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0));
+        renderCustomerAccounts();
+      }, () => {
+        allCustomers = [];
+        renderCustomerAccounts("Firebase rules are blocking customer account reads. Allow the owner dashboard to read 'customers'.");
+      });
+      db.ref('customerPhones').on('value', (snapshot) => {
+        customerPhoneIndex = snapshot.exists()
+          ? Object.entries(snapshot.val() || {}).map(([phoneKey, value]) => ({
+              phoneKey,
+              phone: decodeURIComponent(phoneKey).replace(/%2E/g, '.'),
+              ...(value || {})
+            }))
+          : [];
+        renderCustomerAccounts();
+      });
+    }
+
+    function renderCustomerAccounts(message = '') {
+      const target = document.getElementById('customerManagerList');
+      if (!target) return;
+      const customerMap = new Map();
+      allCustomers.forEach((customer) => {
+        const key = customer.uid || normalizeEmail(customer.email) || customer.phone || customer.phoneKey;
+        if (key) customerMap.set(key, customer);
+      });
+      customerPhoneIndex.forEach((customer) => {
+        const key = customer.uid || normalizeEmail(customer.email) || customer.phone || customer.phoneKey;
+        if (!key) return;
+        customerMap.set(key, { ...(customerMap.get(key) || {}), ...customer });
+      });
+      const customersToRender = Array.from(customerMap.values()).sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0));
+      if (message && !customersToRender.length) {
+        target.innerHTML = `<div class="text-sm font-bold text-gray-500">${escapeHTML(message)}</div>`;
+        return;
+      }
+      if (!customersToRender.length) {
+        target.innerHTML = '<div class="text-sm font-bold text-gray-500">No customer accounts yet.</div>';
+        return;
+      }
+      target.innerHTML = customersToRender.map((customer) => {
+        const customerSales = allSales.filter((sale) =>
+          (customer.uid && sale.customerUid === customer.uid)
+          || (customer.email && normalizeEmail(sale.customerEmail) === normalizeEmail(customer.email))
+          || (customer.phone && String(sale.customerPhone || '') === String(customer.phone))
+        );
+        const spent = customerSales.reduce((sum, sale) => sum + Number(sale.amount || 0), 0);
+        return `
+          <div class="product-manager-row">
+            <span class="product-manager-name">
+              ${escapeHTML(customer.name || customer.email || 'Customer')}
+              <small style="display:block;color:var(--muted);font-weight:800;">${escapeHTML(customer.email || '')}${customer.phone ? ' - ' + escapeHTML(customer.phone) : ''}</small>
+            </span>
+            <span class="product-manager-price">${customerSales.length} order${customerSales.length === 1 ? '' : 's'} - ${formatCurrency(spent)}</span>
+          </div>
+        `;
+      }).join('');
     }
 
     function populateProductDropdown(selectedProduct = '') {
@@ -10891,15 +11539,19 @@
     function renderProductManager() {
       const target = document.getElementById('productManagerList');
       if (!target) return;
-      const prices = getProductPrices();
-      const entries = Object.entries(prices);
+      const catalog = getProductCatalog();
+      const entries = Object.entries(catalog).sort((a, b) => String(a[1].name || '').localeCompare(String(b[1].name || '')));
 
       target.innerHTML = entries.length
-        ? entries.map(([name, price]) => `
+        ? entries.map(([key, entry]) => `
             <div class="product-manager-row">
-              <span class="product-manager-name">${escapeHTML(name)}</span>
-              <span class="product-manager-price">RM ${Number(price).toFixed(2)}</span>
-              <button class="btn btn-danger" onclick="removeProductPrice('${escapeAttr(name)}')" type="button">Remove</button>
+              <span class="product-manager-name">
+                ${(entry.images?.[0] || entry.imageUrl) ? `<img src="${escapeAttr(entry.images?.[0] || entry.imageUrl)}" alt="" style="width:42px;height:42px;object-fit:cover;border-radius:12px;margin-right:10px;vertical-align:middle;">` : ''}
+                ${escapeHTML(entry.name)}
+                <small style="display:block;color:var(--muted);font-weight:800;">${escapeHTML(entry.category || 'Menu')}${entry.promoText ? ' - ' + escapeHTML(entry.promoText) : ''}${entry.images?.length ? ' - ' + entry.images.length + ' image' + (entry.images.length === 1 ? '' : 's') : ''}</small>
+              </span>
+              <span class="product-manager-price">RM ${Number(entry.price).toFixed(2)}</span>
+              <button class="btn btn-danger" onclick="removeProductPrice('${escapeAttr(key)}')" type="button">Remove</button>
             </div>
           `).join('')
         : '<div class="text-sm font-bold text-gray-500">No saved products yet. Add one below.</div>';
@@ -10912,31 +11564,55 @@
       }
       const nameInput = document.getElementById('newProductName');
       const priceInput = document.getElementById('newProductPrice');
+      const categoryInput = document.getElementById('newProductCategory');
+      const imageInput = document.getElementById('newProductImage');
+      const descriptionInput = document.getElementById('newProductDescription');
+      const promoInput = document.getElementById('newProductPromo');
       const name = nameInput.value.trim();
       const price = parseFloat(priceInput.value);
+      const images = parseProductImageInput();
 
       if (!name || !price || price <= 0) {
         alert('Enter a product name and a valid price.');
         return;
       }
 
-      const prices = getProductPrices();
-      prices[name] = roundMoney(price);
-      saveProductPrices(prices);
+      const catalog = getProductCatalog();
+      const id = getDisplayNameKey(name);
+      catalog[id] = normalizeProductEntry({
+        id,
+        name,
+        price,
+        category: categoryInput.value,
+        imageUrl: images[0] || imageInput.value,
+        images,
+        description: descriptionInput.value,
+        promoText: promoInput.value,
+        promoActive: !!promoInput.value.trim(),
+        available: true,
+        updatedAt: Date.now()
+      }, name);
+      saveProductCatalog(catalog, true);
       renderProductManager();
       populateProductDropdown();
       nameInput.value = '';
       priceInput.value = '';
+      categoryInput.value = '';
+      imageInput.value = '';
+      document.getElementById('newProductImageFile').value = '';
+      descriptionInput.value = '';
+      promoInput.value = '';
+      setUploadStatus('newProductImageStatus', 'Upload one or more product photos from this dashboard.');
     }
 
-    function removeProductPrice(name) {
+    function removeProductPrice(key) {
       if (!hasPermission('manageProducts')) {
         alert('You do not have permission to manage products.');
         return;
       }
-      const prices = getProductPrices();
-      delete prices[name];
-      saveProductPrices(prices);
+      const catalog = getProductCatalog();
+      delete catalog[key];
+      saveProductCatalog(catalog, true);
       renderProductManager();
       populateProductDropdown();
     }
@@ -11043,6 +11719,9 @@
           updateNotificationStatus();
           verifyOwnerControlsCloud();
           setTodayDate();
+          listenForProducts();
+          listenForPaymentOptions();
+          listenForCustomers();
           listenForSales();
           listenForExpenses();
           flushOfflineQueue();
@@ -11259,6 +11938,7 @@
         knownSaleIds = nextIds;
         populateProductDropdown(document.getElementById('product').value === '__custom' ? document.getElementById('customProduct').value : document.getElementById('product').value);
         render();
+        renderCustomerAccounts();
       });
     }
 
@@ -12630,6 +13310,117 @@
       }
     }
 
+    function normalizeOrderStatus(status) {
+      const value = String(status || 'placed').toLowerCase();
+      return ['placed', 'preparing', 'ready', 'completed'].includes(value) ? value : 'placed';
+    }
+
+    function orderStatusLabel(status) {
+      const labels = {
+        placed: 'Placed',
+        preparing: 'Preparing',
+        ready: 'Ready',
+        completed: 'Completed'
+      };
+      return labels[normalizeOrderStatus(status)] || 'Placed';
+    }
+
+    function renderOrderStatusControls(sale) {
+      const status = normalizeOrderStatus(sale.status);
+      const badge = `<span class="order-status-badge order-status-${status}">${orderStatusLabel(status)}</span>`;
+      if (!hasPermission('editSales') || status === 'completed') return badge;
+      const actions = [
+        ['placed', 'Placed'],
+        ['preparing', 'Preparing'],
+        ['ready', 'Ready'],
+        ['completed', 'Completed']
+      ].filter(([next]) => next !== status).map(([next, label]) => `
+        <button class="btn btn-secondary order-status-action" onclick="updateOrderStatus('${escapeAttr(sale.id)}', '${next}')" type="button">${label}</button>
+      `).join('');
+      return `${badge}<div class="order-status-actions">${actions}</div>`;
+    }
+
+    function normalizePaymentStatus(status) {
+      const value = String(status || '').toLowerCase();
+      if (value === 'confirmed') return 'confirmed';
+      if (value === 'cash_on_pickup') return 'cash';
+      return 'awaiting';
+    }
+
+    function paymentStatusLabel(sale) {
+      const status = normalizePaymentStatus(sale.paymentStatus);
+      if (status === 'confirmed') return 'Payment confirmed';
+      if (status === 'cash') return 'Cash pickup';
+      return sale.customerMarkedPaid ? 'Awaiting confirm' : 'Payment pending';
+    }
+
+    function renderPaymentStatusControls(sale) {
+      const status = normalizePaymentStatus(sale.paymentStatus);
+      const badge = `<span class="order-status-badge payment-status-${status}">${escapeHTML(paymentStatusLabel(sale))}</span>`;
+      if (!hasPermission('editSales') || status === 'confirmed' || status === 'cash') return badge;
+      return `${badge}<div class="order-status-actions"><button class="btn btn-secondary order-status-action" onclick="confirmOrderPayment('${escapeAttr(sale.id)}')" type="button">Confirm paid</button></div>`;
+    }
+
+    function confirmOrderPayment(id) {
+      if (!hasPermission('editSales')) {
+        alert('You do not have permission to confirm payments.');
+        return;
+      }
+      if (!db) return;
+      const sale = allSales.find(item => String(item.id) === String(id));
+      db.ref('sales/' + id).update({
+        paymentStatus: 'confirmed',
+        paymentConfirmedAt: Date.now(),
+        paymentConfirmedBy: currentUser,
+        updatedBy: currentUser,
+        updatedAt: Date.now()
+      }, (error) => {
+        if (error) {
+          alert('Could not confirm payment: ' + error);
+          return;
+        }
+        if (sale) {
+          sale.paymentStatus = 'confirmed';
+          sale.paymentConfirmedAt = Date.now();
+        }
+        render();
+        broadcastStudyBiteNotification('Payment confirmed', `${sale?.receiptNo || sale?.customerName || 'Customer order'} payment confirmed.`, 'payment-confirmed');
+      });
+    }
+
+    function updateOrderStatus(id, status) {
+      if (!hasPermission('editSales')) {
+        alert('You do not have permission to update order status.');
+        return;
+      }
+      if (!db) return;
+      const sale = allSales.find(item => String(item.id) === String(id));
+      const nextStatus = normalizeOrderStatus(status);
+      db.ref('sales/' + id).update({
+        status: nextStatus,
+        statusUpdatedAt: Date.now(),
+        readyAt: nextStatus === 'ready' ? Date.now() : (sale?.readyAt || ''),
+        completedAt: nextStatus === 'completed' ? Date.now() : (sale?.completedAt || ''),
+        updatedBy: currentUser,
+        updatedAt: Date.now()
+      }, (error) => {
+        if (error) {
+          alert('Could not update order status: ' + error);
+          return;
+        }
+        if (sale) {
+          sale.status = nextStatus;
+          sale.statusUpdatedAt = Date.now();
+        }
+        render();
+        if (nextStatus === 'ready') {
+          broadcastStudyBiteNotification('Order ready', `${sale?.receiptNo || sale?.customerName || 'Customer order'} is ready for pickup.`, 'order-ready');
+        } else if (nextStatus === 'completed') {
+          broadcastStudyBiteNotification('Order completed', `${sale?.receiptNo || sale?.customerName || 'Customer order'} has been completed.`, 'order-completed');
+        }
+      });
+    }
+
     function showUndoToast(sale) {
       const toast = document.getElementById('undoToast');
       const message = document.getElementById('undoMessage');
@@ -13287,6 +14078,8 @@
                       <th>Floor Price</th>
                       <th>Amount</th>
                       <th>Entered By</th>
+                      <th>Payment</th>
+                      <th>Status</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -13295,11 +14088,18 @@
                       <tr>
                         <td>${formatDate(sale.date)}</td>
                         <td class="font-bold text-gray-950">${escapeHTML(sale.customerName || '')}</td>
-                        <td>${escapeHTML(sale.product || '')}</td>
+                        <td>
+                          <div class="sale-product-cell">
+                            <strong>${escapeHTML(sale.product || '')}</strong>
+                            ${sale.source === 'customerOrderApp' ? `<small>Customer app - ${escapeHTML(sale.fulfillmentType || sale.orderType || 'pickup')}${sale.deliveryAddress ? ` - ${escapeHTML(sale.deliveryAddress)}` : ''}</small>` : ''}
+                          </div>
+                        </td>
                         <td>${Number(sale.quantity || 0)}</td>
                         <td>${formatCurrency(Number(sale.floorPrice || 0))}</td>
                         <td class="font-black text-orange-600">${formatCurrency(Number(sale.amount || 0))}</td>
                         <td>${escapeHTML(getDisplayName(sale.enteredBy) || '')}</td>
+                        <td>${renderPaymentStatusControls(sale)}</td>
+                        <td>${renderOrderStatusControls(sale)}</td>
                         <td>
                           <div class="flex gap-2 mobile-actions">
                             <button class="btn btn-secondary" onclick="printSaleReceipt('${escapeAttr(sale.id)}')">Receipt</button>
